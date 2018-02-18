@@ -1,0 +1,37 @@
+<?php
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class CreateProductSellTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('product_Sell', function (Blueprint $table) {
+            $table->increments('Prosell_ID');
+            
+            $table->integer('Usersell_ID');
+            $table->integer('Prosell_Quantity');
+            $table->integer('Prosell_totalPirce');
+            $table->string('Prosell_send');
+            $table->dateTime('Prosell_creat');
+
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('product_Sell');
+    }
+}
