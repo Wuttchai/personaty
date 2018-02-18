@@ -684,7 +684,7 @@ if (response.data[0].prison == 'จัดการ') {
                                        information.xxerror = response.data.messages.name[0];
                                  }
                                  if(response.data.messages.fileoffice != null){
-                                information.fileofficeerror = true;
+                                
                                 information.fileofficeerror = response.data.messages.fileoffice[0];
                                                              }
                                 }else {
