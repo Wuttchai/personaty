@@ -14,7 +14,7 @@
 <link href="/css/app.css" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-
+<link href="/css/bootstrap-datepicker.css" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('css/sweetalert2.min.css') }}">
 <style media="screen">
 .loader {
@@ -179,6 +179,7 @@
 
                         <li><a class="nav-link" href="/official/addoffice">เพิ่มข้อมูลเจ้าหน้าที่</a></li>
   @endif
+                        <li><a class="nav-link" href="/official/hotnews">จัดการข่าวประชาสัมพันธ์</a></li>
                         <li><a class="nav-link" href="/official/person">เพิ่มข้อมูลผู้ต้องขัง</a></li>
                         <li><a class="nav-link" href="/official">จัดการภาพแบรน์เนอร์</a></li>
                         @if (session('nameoffice'))
@@ -218,6 +219,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
+<script src="/js/jquery-2.1.3.min.js"></script>
+<script src="/js/bootstrap-datepicker-custom.js"></script>
+<script src="/js/bootstrap-datepicker.th.min.js" charset="UTF-8"></script>
 
       @stack('scripts')
 </body>

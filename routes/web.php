@@ -14,6 +14,9 @@ Auth::routes();
 Route::get('/', function () {
     return view('home');
 });
+Route::get('/ww', function () {
+    return view('welcome');
+});
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/official', function () {
@@ -73,3 +76,15 @@ Route::post('/officiallist/delete/{official_id}', 'Official\AddOfficeController@
 Route::post('/official/updateofficial/{official_id}', 'Official\AddOfficeController@update');
 
 Route::get('/official/person', 'Official\PersonController@index');
+Route::get('/official/personlist', 'Official\PersonController@readItems');
+Route::post('/official/person/add', 'Official\PersonController@insert');
+Route::get('/person/edit{Person_ID}', 'Official\PersonController@showedit');
+Route::post('/person/updateinfo/{Person_ID}', 'Official\PersonController@update');
+Route::post('/person/delete/{Person_ID}', 'Official\PersonController@delete');
+
+Route::get('/official/hotnews', 'Official\HotnewController@index');
+Route::get('/official/hotnewslist', 'Official\PersonController@readItems');
+Route::post('/official/hotnews/add', 'Official\PersonController@insert');
+Route::get('/hotnews/edit{Person_ID}', 'Official\PersonController@showedit');
+Route::post('/hotnews/updateinfo/{Person_ID}', 'Official\PersonController@update');
+Route::post('/hotnews/delete/{Person_ID}', 'Official\PersonController@delete');

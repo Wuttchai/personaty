@@ -29,9 +29,9 @@ class PersonController extends Controller
 public $timestamps = false;
 
      public function readItems() {
-       $info = \App\person::join('log','person.Log_ID','=','log.Log_ID')
+       $info = \App\person::join('log','person_count.Log_ID','=','log.Log_ID')
                    ->join('official', 'official.official_ID', '=', 'log.official_ID')
-                   ->select('official.official_Name', 'person.Person_Type', 'person.Person_Num','person.perupdated_at','person.Person_ID','official.official_ID')
+                   ->select('official.official_Name', 'person_count.Person_Type', 'person_count.Person_Num','person_count.perupdated_at','person_count.Person_ID','official.official_ID')
                    ->get();
 
 
@@ -45,8 +45,8 @@ public $timestamps = false;
 
     $validator =  Validator::make($request->all(), [
          'id' => 'required|string',
-         'name' => 'required|string',
-        'fileoffice' => 'required|image64:jpeg,jpg,png'
+         'name' => 'required|string|unique:person_count,Person_Type',
+        'count' => 'required|string|numeric'
 
            ]);
 
@@ -60,15 +60,12 @@ public $timestamps = false;
 
 
 
-                 $imageData = $request->get('fileoffice');
-       $fileName = Carbon::now()->timestamp . '_' . uniqid() . '.' . explode('/', explode(':', substr($imageData, 0, strpos($imageData, ';')))[1])[1];
-     \Image::make($imageData)->save(public_path('images/').$fileName);
 
 
 $time =Carbon::now('Asia/Bangkok');
     \App\log::insert([
       'official_ID' => $request->id,
-      'table_log' => 'info',
+      'table_log' => 'person_count',
       'project_log' => '0',
       'Log_Event' => 'เพิ่ม',
       'Log_IP'  => \Request::ip(),
@@ -81,16 +78,16 @@ $time =Carbon::now('Asia/Bangkok');
 
 
 
-                \App\info::insert([
+                \App\person::insert([
                               'Log_ID' => $logid,
-                              'Info_Name' => $request->name,
-                              'Info_Img'  => $fileName,
-                              'infocreated_at' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "" ,
-                              'Infoupdated_at' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
+                              'Person_Type' => $request->name,
+                              'Person_Num'  => $request->count,
+                              'percreated_at' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "" ,
+                              'perupdated_at' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
                             ]);
-                $projectlog =  \App\info::where([
+                $projectlog =  \App\person::where([
                                 ['Log_ID', '=', $logid],
-                                ])->max('Info_ID');
+                                ])->max('Person_ID');
 
                 \App\log::where('Log_ID',$logid)
                                       ->update([
@@ -110,24 +107,26 @@ $time =Carbon::now('Asia/Bangkok');
 
      }
      public function showedit($id) {
-       $infoedit = \App\info::join('log','info.Log_ID','=','log.Log_ID')
+
+       $info = \App\person::join('log','person_count.Log_ID','=','log.Log_ID')
                    ->join('official', 'official.official_ID', '=', 'log.official_ID')
-                   ->select('official.official_ID', 'info.Info_Name','info.Info_Img','info.Info_ID')
-                   ->where('info.Info_ID','=' ,$id)
+                   ->select('person_count.Person_Type','person_count.Person_Num','person_count.Person_ID')
+                   ->where('person_count.Person_ID','=' ,$id)
                    ->get();
 
-        return response()->json($infoedit);
+
+        return response()->json($info);
       }
 
      public function update(Request $request,$id)
      {
-$time =Carbon::now('Asia/Bangkok');
 
-if ($request->fileoffice) {
+
+
   $Validator = Validator::make($request->all(),[
     'id' => 'required|string',
     'name' => 'required|string',
-   'fileoffice' => 'required|image64:jpeg,jpg,png'
+   'count' => 'required|string'
   ]);
   if($Validator->errors()->messages() != null){
     return[
@@ -138,11 +137,6 @@ if ($request->fileoffice) {
 
 
 
-  $imageData = $request->get('fileoffice');
- $fileName = Carbon::now()->timestamp . '_' . uniqid() . '.' . explode('/', explode(':', substr($imageData, 0, strpos($imageData, ';')))[1])[1];
- \Image::make($imageData)->save(public_path('images/').$fileName);
-
-
 //-------------
 
 
@@ -151,7 +145,7 @@ if ($request->fileoffice) {
             $time =Carbon::now('Asia/Bangkok');
                 \App\log::insert([
                   'official_ID' => $request->id,
-                  'table_log' => 'info',
+                  'table_log' => 'person_count',
                   'project_log' => '0',
                   'Log_Event' => 'แก้ไข',
                   'Log_IP'  => \Request::ip(),
@@ -164,12 +158,12 @@ if ($request->fileoffice) {
 
 
 
-            \App\info::where('Info_ID',$id)
+            \App\person::where('Person_ID',$id)
                         ->update([
                           'Log_ID' => $logid,
-                          'Info_Name' => $request->name,
-                          'Info_Img'  => $fileName,
-                          'Infoupdated_at' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
+                          'Person_Type' => $request->name,
+                          'Person_Num'  => $request->count,
+                          'perupdated_at' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
                         ]);
 
 
@@ -184,48 +178,7 @@ if ($request->fileoffice) {
 //------
 
 
-}else {
-  $Validator = Validator::make($request->all(),[
-    'id' => 'required|string',
-    'name' => 'required|string',
-  ]);
 
-  if($Validator->errors()->messages() != null){
-    return[
-    'messages' => $Validator->errors()->messages()
-    ];
-  }
-//-----------------
-            $time =Carbon::now('Asia/Bangkok');
-                \App\log::insert([
-                  'official_ID' => $request->id,
-                  'table_log' => 'info',
-                  'project_log' => '0',
-                  'Log_Event' => 'แก้ไข',
-                  'Log_IP'  => \Request::ip(),
-                  'Log_Time'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
-            ]);
-
-        $logid =  \App\log::where([
-            ['official_ID', '=', $request->id],
-            ])->max('Log_ID');
-
-
-
-            \App\info::where('Info_ID',$id)
-                        ->update([
-                          'Log_ID' => $logid,
-                          'Info_Name' => $request->name,
-                          'Infoupdated_at' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
-                        ]);
-
-
-
-      \App\log::where('Log_ID',$logid)
-      ->update([
-      'project_log' => $id,
-  ]);
-}
 
 
 
@@ -238,20 +191,19 @@ if ($request->fileoffice) {
        $time =Carbon::now('Asia/Bangkok');
          \App\log::insert([
          'official_ID' => $request->id,
-         'table_log' => 'official',
+         'table_log' => 'person_count',
          'project_log' => $id,
          'Log_Event' => 'ลบ',
          'Log_IP'  => \Request::ip(),
          'Log_Time'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
          ]);
 
-     \App\info::where('Info_ID', '=', $id)->delete();
+     \App\person::where('Person_ID', '=', $id)->delete();
 
-     $info = \App\info::join('log','info.Log_ID','=','log.Log_ID')
+     $info = \App\person::join('log','person_count.Log_ID','=','log.Log_ID')
                  ->join('official', 'official.official_ID', '=', 'log.official_ID')
-                 ->select('official.official_Name', 'info.Info_Name', 'info.Infoupdated_at','info.Info_Img','info.Info_ID')
+                 ->select('official.official_Name', 'person_count.Person_Type', 'person_count.Person_Num','person_count.perupdated_at','person_count.Person_ID','official.official_ID')
                  ->get();
-
 
      return response()->json($info);
 
