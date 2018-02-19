@@ -570,7 +570,7 @@ information.passworderror = false;
                                    if (response.data.nocheck == 'yes') {
 
                                      information.nocheck = true;
-                                   }
+}
                   if (response.data.messages != null) {
                     if(response.data.messages.name != null){
 
@@ -589,10 +589,10 @@ information.passworderror = false;
                   information.password_confirmationerror = true;
                   information.password_confirmationerror = response.data.messages.password_confirmation[0];
                 }
-
-                  }else {
-location.reload();
-                  }
+}
+if (response.data.messages == null && response.data.nocheck != 'yes') {
+  location.reload();
+}
 
 
 
@@ -674,7 +674,7 @@ if (response.data[0].prison == 'จัดการ') {
                                                                           if (response.data.nocheck == 'yes') {
 
                                                                             information.nocheck = true;
-
+                                                                             }
                                                          if (response.data.messages != null) {
                                                            if(response.data.messages.name != null){
 
@@ -695,10 +695,12 @@ if (response.data[0].prison == 'จัดการ') {
                                                        }
 
                                                      }
-                                                   }
-                                                     else {
-location.reload();
-                                                     }
+
+                                                    if (response.data.messages == null && response.data.nocheck != 'yes') {
+                                                      location.reload();
+                                                    }
+
+
 
 
 

@@ -63,7 +63,7 @@ Route::get('/official/editinfo/{info_id}', 'Official\OfficeformController@showed
 Route::post('/official/updateinfo/{info_id}', 'Official\OfficeformController@update');
 
 Route::post('/official/delete/{info_id}', 'Official\OfficeformController@delete');
-
+Route::get('/official/add', 'Official\AddOfficeController@index');
 Route::post('/official/add', 'Official\AddOfficeController@add');
 
 Route::get('/official/officiallist', 'Official\AddOfficeController@readItems');
@@ -71,3 +71,5 @@ Route::get('/official/officiallist', 'Official\AddOfficeController@readItems');
 Route::get('/official/officiallist{official_id}', 'Official\AddOfficeController@showedit');
 Route::post('/officiallist/delete/{official_id}', 'Official\AddOfficeController@delete');
 Route::post('/official/updateofficial/{official_id}', 'Official\AddOfficeController@update');
+
+Route::get('/official/person', 'Official\PersonController@index');
