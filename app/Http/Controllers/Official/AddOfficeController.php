@@ -41,7 +41,7 @@ class AddOfficeController extends Controller
 
 $validator =  Validator::make($request->all(), [
             'name' => 'required|string',
-            'email' => 'required|string|email|max:255',
+            'email' => 'required|string|email|max:255|unique:official,official_Email',
             'password' => 'required|string|min:6|confirmed',
             'password_confirmation' => 'required'
               ]);
@@ -141,8 +141,17 @@ public function showedit($id)
   return response()->json($official);
 }
 
-public function delete($id)
+public function delete(Request $request,$id)
 {
+  $time =Carbon::now('Asia/Bangkok');
+  \App\log::insert([
+  'official_ID' => $request->id,
+  'table_log' => 'official',
+  'project_log' => $id,
+  'Log_Event' => 'ลบ',
+  'Log_IP'  => \Request::ip(),
+  'Log_Time'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
+  ]);
 
 \App\official::where('official_ID', '=', $id)->delete();
 
@@ -155,6 +164,96 @@ return response()->json($info);
 
 
 }
+
+public function update(Request $request,$id)
+{
+  $validator =  Validator::make($request->all(), [
+              'name' => 'required|string',
+              'email' => 'required|string|email|max:255',
+              'password' => 'required|string|min:6|confirmed',
+              'password_confirmation' => 'required'
+                ]);
+
+                if($validator->fails()){
+
+                      return[
+                      'messages' => $validator->errors()->messages()
+                      ];
+                    }else {
+
+                      if (!$request->info && !$request->product && !$request->hotnews && !$request->activity && !$request->prison) {
+
+                        return[
+                        'nocheck' => 'yes'
+                        ];
+                      }
+
+                      if ($request->info) {
+                      $request->info = 'จัดการ';
+                    }else {
+                      $request->info = '-';
+                    } if ($request->product) {
+                      $request->product = 'จัดการ';
+                      }else {
+                        $request->product = '-';
+                      }
+                       if ($request->hotnews) {
+                      $request->hotnews = 'จัดการ';
+                      }else {
+                        $request->hotnews = '-';
+                      }  if ($request->activity) {
+                      $request->activity = 'จัดการ';
+                      }else {
+                        $request->activity = '-';
+                      }  if ($request->prison) {
+                      $request->prison = 'จัดการ';
+                    }else {
+                      $request->prison = '-';
+                    }
+
+
+                    $time =Carbon::now('Asia/Bangkok');
+                    \App\log::insert([
+                    'official_ID' => $request->id,
+                    'table_log' => 'official',
+                    'project_log' => $id,
+                    'Log_Event' => 'แก้ไข',
+                    'Log_IP'  => \Request::ip(),
+                    'Log_Time'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
+                    ]);
+
+                          $logid =  \App\log::where([
+                              ['official_ID', '=', $request->id],
+                              ])->max('Log_ID');
+
+
+
+
+                              \App\official::where('official_ID',$id)
+                                          ->update([
+                                            'Log_ID' => $logid,
+                                            'official_Name' => $request->name,
+                                            'official_Email'  => $request->email,
+                                            'official_Role' => 'user',
+                                            'info'  => $request->info,
+                                            'product'  =>  $request->product,
+                                            'hotnews'  => $request->hotnews,
+                                            'activity'  => $request->activity,
+                                            'prison'  => $request->prison,
+                                            'official_Password' =>$request->password,
+                                            'offcreated_at' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "" ,
+                                            'offupdated_at' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
+                                          ]);
+
+
+
+
+
+                    }
+
+
+}
+
     public function index()
     {
       return view('official.officialadd');

@@ -11,23 +11,7 @@
                                  <div class="card-header card text-center bg-info"> ภาพแบรน์เนอร์ </div>
 
                    <div class="card-header card ">
-                  <div class="row">
-                    <div class="col-md-6">
-                    <p> ชื่อ : {{ session('nameoffice')}} ฝ่าย : {{session('cottonoffice')}} </p>
-                    </div>
-                    <div class="col-md-6 text-right">
-                      <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#formedit">
-                  แก้ไขข้อมูลส่วนตัว
-                  </button>
-                      <button type="button" class="btn btn-danger" onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();">
-                  ออกจากระบบ
-                  </button>
-                  <form id="#logout-form" action="/official/logout" method="POST" style="display: none;">
-                      @csrf
-                  </form>
-                    </div>
-                  </div>
+
 
 
                    </div>
@@ -322,7 +306,7 @@
 
                               <!--Card image-->
                               <div class="view gradient-card-header blue-gradient">
-                                <div class="card-header card text-center bg-warning"> กำหนดสิทธ์ผู้ใช้ </div>
+                                <div class="card-header card text-center bg-warning"> แก้ไขสิทธ์ผู้ใช้ </div>
 
                               </div>
                               <!--/Card image-->
@@ -332,31 +316,31 @@
                                 <div class="form-group row">
                             <label for="User_Tel" class="col-md-7 col-form-label text-md-left">จัดการภาพแบรน์เนอร์ :</label>
                             <div class="col-md-4 ">
-                            <p class="form-control onoff"><input type="checkbox" v-model="info" value="จัดการ" id="checkboxID"><label for="checkboxID"></label></p>
+                            <p class="form-control onoff"><input type="checkbox" v-model="infoedit" value="จัดการ" id="checkboxID6"><label for="checkboxID6"></label></p>
                             </div>
                               </div>
                               <div class="form-group row">
                               <label for="User_Tel" class="col-md-7 col-form-label text-md-left">จัดการสินค้าวิชาชีพ :</label>
                               <div class="col-md-4 ">
-                              <p class="form-control onoff"><input type="checkbox" value="จัดการ" v-model="product" id="checkboxID2"><label for="checkboxID2"></label></p>
+                              <p class="form-control onoff"><input type="checkbox" value="จัดการ" v-model="productedit" id="checkboxID7"><label for="checkboxID7"></label></p>
                               </div>
                               </div>
                               <div class="form-group row">
                                          <label for="User_Tel" class="col-md-7 col-form-label text-md-left">จัดการข่าวประชาสัมพันธ์ :</label>
                                          <div class="col-md-4 ">
-                                     <p class="form-control onoff"><input type="checkbox" v-model="hotnews" value="จัดการ" id="checkboxID3"><label for="checkboxID3"></label></p>
+                                     <p class="form-control onoff"><input type="checkbox" v-model="hotnewsedit" value="จัดการ" id="checkboxID8"><label for="checkboxID8"></label></p>
                                          </div>
                                      </div>
                               <div class="form-group row">
                                        <label for="User_Tel" class="col-md-7 col-form-label text-md-left">จัดการข่าวกิจกรรม :</label>
                                        <div class="col-md-4 ">
-                              <p class="form-control onoff"><input type="checkbox" v-model="activity" value="จัดการ" id="checkboxID4"><label for="checkboxID4"></label></p>
+                              <p class="form-control onoff"><input type="checkbox" v-model="activityedit" value="จัดการ" id="checkboxID9"><label for="checkboxID9"></label></p>
                                        </div>
                                    </div>
                               <div class="form-group row">
                                    <label for="User_Tel" class="col-md-7 col-form-label text-md-left">จัดการข้อมูลผู้ต้องขัง :</label>
                                    <div class="col-md-4 ">
-                               <p class="form-control onoff"><input type="checkbox" v-model="prison" value="จัดการ" id="checkboxID5"><label for="checkboxID5"></label></p>
+                               <p class="form-control onoff"><input type="checkbox" v-model="prisonedit" value="จัดการ" id="checkboxID10"><label for="checkboxID10"></label></p>
                                    </div>
                                </div>
                                <div class="alert alert-danger text-center" role="alert" v-if="nocheck">
@@ -473,6 +457,11 @@
                           'hotnews':[],
                           'activity':[],
                           'prison':[],
+                          'infoedit':[],
+                          'productedit':[],
+                          'hotnewsedit':[],
+                          'activityedit':[],
+                          'prisonedit':[],
                           'id_edit':'',
                           'password_confirmationedit':'',
                           'password_confirmationerror':'',
@@ -602,7 +591,7 @@ information.passworderror = false;
                 }
 
                   }else {
-
+location.reload();
                   }
 
 
@@ -625,11 +614,7 @@ information.passworderror = false;
                                information.password_confirmationerror = false;
                              },
                     editItem: function(item) {
-                      information.activity = '';
-                    information.hotnews = '';
-                    information.info = '';
-                    information.product = '';
-                    information.prison = '';
+
                       information.nameerror = false;
                       information.nocheck = false;
                       information.emailerror = false;
@@ -649,47 +634,71 @@ information.passworderror = false;
                     information.password_confirmationedit = response.data[0].official_Password;
 
 if (response.data[0].activity == 'จัดการ') {
-  information.activity = 'จัดการ';
+  information.activityedit = 'จัดการ';
 }
 if (response.data[0].hotnews == 'จัดการ') {
-information.hotnews = 'จัดการ';
+information.hotnewsedit = 'จัดการ';
 
 }
 if (response.data[0].info == 'จัดการ') {
-information.info = 'จัดการ';
+information.infoedit = 'จัดการ';
 
 }
 if (response.data[0].product == 'จัดการ') {
-  information.product = 'จัดการ';
+  information.productedit = 'จัดการ';
 }
 if (response.data[0].prison == 'จัดการ') {
-  information.prison = 'จัดการ';
+  information.prisonedit = 'จัดการ';
 }
                   $("#editofficial").modal('show');
                          								})
      },
                           updateItem: function() {
 
-                                     var info_id =	this.id_edit;
+                                     var official_id =	this.id_edit;
 
-                                     var link = "http://project3.test/official/updateinfo/" + info_id;
+                                     var link = "http://project3.test/official/updateofficial/" + official_id;
                                      axios.post(link, {
                                        id: this.id,
                                        name: this.nameedit,
-                                       fileoffice: this.image,
+                                       email:this.emailedit,
+                                       password:this.passwordedit,
+                                       password_confirmation:this.password_confirmationedit,
+                                       info: this.infoedit,
+                                       product: this.productedit,
+                                       hotnews: this.hotnewsedit,
+                                       activity: this.activityedit,
+                                       prison: this.prisonedit,
                                      }).then(function (response) {
-                                       if (response.data.messages != null) {
-                                         if(response.data.messages.name != null){
-                                       information.xxerror = true;
-                                       information.xxerror = response.data.messages.name[0];
-                                 }
-                                 if(response.data.messages.fileoffice != null){
-                                
-                                information.fileofficeerror = response.data.messages.fileoffice[0];
-                                                             }
-                                }else {
-                                location.reload();
-                                }
+
+                                                                          if (response.data.nocheck == 'yes') {
+
+                                                                            information.nocheck = true;
+
+                                                         if (response.data.messages != null) {
+                                                           if(response.data.messages.name != null){
+
+                                                         information.nameerror = true;
+                                                         information.nameerror = response.data.messages.name[0];
+
+                                                           }
+                                                           if(response.data.messages.email != null){
+                                                         information.emailerror = true;
+                                                         information.emailerror = response.data.messages.email[0];
+                                                           }
+                                                           if(response.data.messages.password != null){
+                                                         information.passworderror = true;
+                                                         information.passworderror = response.data.messages.password[0];
+                                                           }if(response.data.messages.password_confirmation != null){
+                                                         information.password_confirmationerror = true;
+                                                         information.password_confirmationerror = response.data.messages.password_confirmation[0];
+                                                       }
+
+                                                     }
+                                                   }
+                                                     else {
+location.reload();
+                                                     }
 
 
 
@@ -719,7 +728,7 @@ if (response.data[0].prison == 'จัดการ') {
 
                                             axios.post('/officiallist/delete/' + official_id, {
                                               official_id: item.official_ID,
-
+                                              id: information.id,
                                             }).then(function (response) {
                                               information.items = response.data;
                                               $("#official").modal('hide');

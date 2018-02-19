@@ -175,10 +175,11 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
-  @if (session('role') != 'user')
+  @if (session('role') == '0')
 
                         <li><a class="nav-link" href="/official/addoffice">เพิ่มข้อมูลเจ้าหน้าที่</a></li>
   @endif
+                        <li><a class="nav-link" href="/official/addoffice">เพิ่มข้อมูลผู้ต้องขัง</a></li>
                         <li><a class="nav-link" href="/official">จัดการภาพแบรน์เนอร์</a></li>
                         @if (session('nameoffice'))
 

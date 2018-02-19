@@ -232,8 +232,18 @@ if ($request->fileoffice) {
      }
 
 
-     public function delete($id)
+     public function delete(Request $request,$id)
      {
+
+       $time =Carbon::now('Asia/Bangkok');
+         \App\log::insert([
+         'official_ID' => $request->id,
+         'table_log' => 'official',
+         'project_log' => $id,
+         'Log_Event' => 'ลบ',
+         'Log_IP'  => \Request::ip(),
+         'Log_Time'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
+         ]);
 
      \App\info::where('Info_ID', '=', $id)->delete();
 

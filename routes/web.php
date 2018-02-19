@@ -70,3 +70,4 @@ Route::get('/official/officiallist', 'Official\AddOfficeController@readItems');
 
 Route::get('/official/officiallist{official_id}', 'Official\AddOfficeController@showedit');
 Route::post('/officiallist/delete/{official_id}', 'Official\AddOfficeController@delete');
+Route::post('/official/updateofficial/{official_id}', 'Official\AddOfficeController@update');

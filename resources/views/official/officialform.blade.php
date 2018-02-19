@@ -10,23 +10,6 @@
                <div class="card-header card text-center bg-info"> จัดการภาพแบรน์เนอร์ </div>
 
  <div class="card-header card ">
-<div class="row">
-  <div class="col-md-6">
-  <p> ชื่อ : {{ session('nameoffice')}} ฝ่าย : {{session('cottonoffice')}} </p>
-  </div>
-  <div class="col-md-6 text-right">
-    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#formedit">
-แก้ไขข้อมูลส่วนตัว
-</button>
-    <button type="button" class="btn btn-danger" onclick="event.preventDefault();
-                  document.getElementById('logout-form').submit();">
-ออกจากระบบ
-</button>
-<form id="logout-form" action="/official/logout" method="POST" style="display: none;">
-    @csrf
-</form>
-  </div>
-</div>
 
 
  </div>
@@ -571,7 +554,7 @@ $("#editofficial").modal('show');
                   },
                   deleteItem: function(item) {
 
-                      if (item.official_ID == information.id) {
+                      if (item.official_ID == information.id || information.id == '1') {
                         swal({
                   title: 'คุณแน่ใจ !',
                   text: 'คุณจะไม่สามารถกู้คืนไฟล์ที่ลบนี้ได้',
@@ -587,11 +570,12 @@ $("#editofficial").modal('show');
 
 
                   }).then(function () {
+
                           var info_id =	item.Info_ID;
 
                           axios.post('/official/delete/' + info_id, {
                             info_id: item.Info_ID,
-
+                            id: information.id,
                           }).then(function (response) {
                             information.items = response.data;
                             $("#official").modal('hide');
