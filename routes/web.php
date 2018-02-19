@@ -83,8 +83,8 @@ Route::post('/person/updateinfo/{Person_ID}', 'Official\PersonController@update'
 Route::post('/person/delete/{Person_ID}', 'Official\PersonController@delete');
 
 Route::get('/official/hotnews', 'Official\HotnewController@index');
-Route::get('/official/hotnewslist', 'Official\PersonController@readItems');
-Route::post('/official/hotnews/add', 'Official\PersonController@insert');
-Route::get('/hotnews/edit{Person_ID}', 'Official\PersonController@showedit');
-Route::post('/hotnews/updateinfo/{Person_ID}', 'Official\PersonController@update');
-Route::post('/hotnews/delete/{Person_ID}', 'Official\PersonController@delete');
+Route::get('/official/hotnewslist', 'Official\HotnewController@readItems');
+Route::post('/official/hotnews/add', 'Official\HotnewController@insert');
+Route::get('/hotnews/edit{Person_ID}', 'Official\HotnewController@showedit');
+Route::post('/hotnews/updateinfo/{Person_ID}', 'Official\HotnewController@update');
+Route::post('/hotnews/delete/{Person_ID}', 'Official\HotnewController@delete');

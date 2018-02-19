@@ -122,6 +122,7 @@
             <div v-bind:class="{'form-group':detailerror , 'form-control label text-danger is-invalid':detailerror }">
               <label for="inputMessage">รายละเอียดข่าว</label>
             <textarea class="form-control" rows="5" id="detail" placeholder="ใส่รายละเอียดข่าว" v-model="detail"></textarea>
+
               <span class="text-danger" v-if="detailerror">
                 <strong>@{{detailerror }}</strong>
               </span>
@@ -157,7 +158,7 @@
 
                        <div v-bind:class="{'form-group':datefirsterror , 'form-control label text-danger is-invalid':datefirsterror }">
                                      <label for="inputMessage">วันที่เริ่มต้น</label>
-                                   <input id="inputdatepicker" class="datepicker" data-date-format="mm/dd/yyyy" v-model="datefirst">
+                                   <input id="datefirst" class="datepicker" data-date-format="mm/dd/yyyy" v-model="datefirst">
                                      <span class="text-danger" v-if="datefirsterror">
                                          <strong>@{{ datefirsterror }}</strong>
                                      </span>
@@ -167,7 +168,7 @@
                                  </div>
                                  <div v-bind:class="{'form-group':datelasterror , 'form-control label text-danger is-invalid':datelasterror }">
                                                <label for="inputMessage">วันที่สิ้นสุด</label>
-                                             <input id="inputdatepicker" class="datepicker" data-date-format="mm/dd/yyyy" v-model="datelast">
+                                             <input id="datelast" class="datepicker" data-date-format="mm/dd/yyyy" v-model="datelast">
                                                <span class="text-danger" v-if="datelasterror">
                                                    <strong>@{{ datelasterror }}</strong>
                                                </span>
@@ -419,8 +420,8 @@ var information =  new Vue({
         'nameimage':'',
         'showimg':'',
         'id_edit':'',
-        'datefirst':'',
-        'datelast':'',
+        'datefirst':[],
+        'datelast':[],
         'buttonedit':true,
         'buttonedit2':true,
         'inputedit':'true',
@@ -437,6 +438,9 @@ var information =  new Vue({
     mounted: function mounted() {
 
  	    this.getVueItems(this.current_page);
+      $("#inputdatepicker").datepicker().on(
+     "changeDate", () => {this.startDate = $('#datefirst').val()}
+ );
 
  	  },
 		computed: {
@@ -507,13 +511,16 @@ var information =  new Vue({
            },
            insert: function () {
 
-
+this.datefirst = $('#datefirst').val()
+this.datelast = $('#datelast').val()
              axios.defaults.headers.post['formData'] = 'multipart/form-data';
-             axios.post('http://project3.test/official/testza', {
+             axios.post('http://project3.test/official/hotnews/add', {
                  id: this.id,
                  name: this.name,
-
                  fileoffice: this.image,
+                 detail : this.detail,
+                 datefirst : this.datefirst,
+                 datelast : this.datelast,
 
                }).then(function (response) {
 if (response.data.messages != null) {

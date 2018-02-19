@@ -42,6 +42,9 @@ public $timestamps = false;
 
      public function insert(Request $request)
      {
+       dd($request);
+       $request->detail= str_replace("\n", "", "$request->detail");
+
 
     $validator =  Validator::make($request->all(), [
          'id' => 'required|string',
