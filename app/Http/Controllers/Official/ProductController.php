@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use Carbon\Carbon;
 use Intervention\Image\ImageManager ;
 
-class HotnewController extends Controller
+class ProductController extends Controller
 {
     /**
      * Create a new controller instance.

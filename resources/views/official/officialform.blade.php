@@ -462,7 +462,6 @@ var information =  new Vue({
              axios.post('http://project3.test/official/testza', {
                  id: this.id,
                  name: this.name,
-
                  fileoffice: this.image,
 
                }).then(function (response) {

@@ -46,18 +46,18 @@
                <thead>
                  <tr>
                    <th>ชื่อผู้ทำ</th>
-                   <th>ชื่อรูปภาพ</th>
+                   <th>ชื่อข่าวประชาสัมพันธ์</th>
                    <th>วันที่อัพเดทล่าสุด</th>
                    <th>ตัวอย่างรูปภาพ</th>
-                   <th>จัดการ</th>
+                   <th>วันสิ้นสุด</th>
                  </tr>
                </thead>
                <tr v-for="item in paginatedUsers">
                  <td>@{{ item.official_Name }}</td>
-                 <td>@{{ item.Info_Name }}</td>
-                 <td>@{{ item.Infoupdated_at }}</td>
-                 <td><img :src="'{{asset('images')}}/' + item.Info_Img" height="42" width="42"/></td>
-
+                 <td>@{{ item.Hotnews_Name }}</td>
+                 <td>@{{ item.hotupdated_at }}</td>
+                 <td><img :src="'{{asset('hotnew')}}/' + item.Hotnews_img" height="42" width="42"/></td>
+                  <td>@{{ item.datelast }}</td>
            <td >
 
               <button  type="button"  v-on:click="editItem(item)" class="btn btn-warning"><i class="material-icons">แก้ไข</i></button>&nbsp;&nbsp;&nbsp;
@@ -216,7 +216,7 @@
      <div class="modal-dialog modal-lg" role="document">
        <div class="modal-content">
          <div class="modal-header  text-center">
-           <h5 class="modal-title text-center" id="exampleModalLabel">แก้ไขข้อมูลภาพแบรน์เนอร์</h5>
+           <h5 class="modal-title text-center" id="exampleModalLabel">แก้ไขข้อมูลข่าวประชาสัมพันธ์</h5>
            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
              <span aria-hidden="true">&times;</span>
            </button>
@@ -238,11 +238,19 @@
 
 
              <div v-bind:class="{'form-group':nameerror , 'form-control label text-danger is-invalid':nameerror }">
-                           <label for="inputMessage">ชื่อรูปภาพ</label>
-                           <input type="text" class="form-control"  id="name" placeholder="ใส่ชื่อ"  v-model="nameedit" :disabled ="inputedit == 'false'"/>
+                           <label for="inputMessage">ชื่อข่าวประชาสัมพันธ์</label>
+                           <input type="text" class="form-control"  id="name" placeholder="ใส่ชื่อ" v-model="nameedit" :disabled ="inputedit == 'false'"/>
                            <span class="text-danger" v-if="nameerror">
                                <strong>@{{ nameerror }}</strong>
                            </span>
+                       </div>
+                       <div v-bind:class="{'form-group':detailerror , 'form-control label text-danger is-invalid':detailerror }">
+                         <label for="inputMessage">รายละเอียดข่าว</label>
+                       <textarea class="form-control" rows="5" id="detail" placeholder="ใส่รายละเอียดข่าว" v-model="detailedit" :disabled ="inputedit == 'false'"></textarea>
+
+                         <span class="text-danger" v-if="detailerror">
+                           <strong>@{{detailerror }}</strong>
+                         </span>
                        </div>
 
   <div class="card-body" >
@@ -250,6 +258,8 @@
 
 
   </div>
+
+
 
                  <div class="form-group">
                    <div v-bind:class="{'form-group':fileofficeerror , 'form-control label text-danger is-invalid':fileofficeerror }">
@@ -271,7 +281,23 @@
                        <div class="form-group row">
 
                        </div>
+                       <div v-bind:class="{'form-group':datefirsterror , 'form-control label text-danger is-invalid':datefirsterror }">
+                                     <label for="inputMessage">วันที่เริ่มต้น</label>
+                                   <input id="datefirst" class="datepicker" data-date-format="mm/dd/yyyy" v-model="datefirstedit" :disabled ="inputedit == 'false'">
+                                     <span class="text-danger" v-if="datefirsterror">
+                                         <strong>@{{ datefirsterror }}</strong>
+                                     </span>
+                                 </div>
+                                 <div class="form-group row">
 
+                                 </div>
+                                 <div v-bind:class="{'form-group':datelasterror , 'form-control label text-danger is-invalid':datelasterror }">
+                                               <label for="inputMessage">วันที่สิ้นสุด</label>
+                                             <input id="datelast" class="datepicker" data-date-format="mm/dd/yyyy" v-model="datelastedit" :disabled ="inputedit == 'false'">
+                                               <span class="text-danger" v-if="datelasterror">
+                                                   <strong>@{{ datelasterror }}</strong>
+                                               </span>
+                                           </div>
                      </div>
 
                      </div>
@@ -290,7 +316,7 @@
                <!--Card content-->
                <div class="card-body text-center" >
 
-          <img :src="'{{asset('images')}}/' + imageedit" height="400" width="320" id='img-upload2'/>
+          <img :src="'{{asset('hotnew')}}/' + imageedit" height="400" width="320" id='img-upload2'/>
                </div>
 
                </div>
@@ -427,6 +453,9 @@ var information =  new Vue({
         'inputedit':'true',
         'datefirsterror':'',
         'datelasterror':'',
+        'datefirstedit':'',
+        'datelastedit':'',
+        'detailedit':'',
 
         'items': [],
         'pagination': [],
@@ -467,8 +496,9 @@ var information =  new Vue({
 
                 return this.items.filter(item => {
 
-                    	return item.Info_Name.indexOf(this.searchKey.toLowerCase()) > -1
-                      || item.Infoupdated_at.indexOf(this.searchKey.toLowerCase()) > -1
+                    	return item.Hotnews_Name.indexOf(this.searchKey.toLowerCase()) > -1
+                      || item.hotupdated_at.indexOf(this.searchKey.toLowerCase()) > -1
+                      || item.datelast.indexOf(this.searchKey.toLowerCase()) > -1
                       || item.official_Name.toLowerCase().indexOf(this.searchKey.toLowerCase()) > -1
 
                  })
@@ -480,7 +510,7 @@ var information =  new Vue({
 					 }
 	},
     methods: {getVueItems: function getVueItems(page) {
- 	      axios.get('/official/testza?page=' + page).then(function (response) {
+ 	      axios.get('/official/hotnewslist?page=' + page).then(function (response) {
 
  	        information.items = response.data;
 
@@ -523,6 +553,7 @@ this.datelast = $('#datelast').val()
                  datelast : this.datelast,
 
                }).then(function (response) {
+
 if (response.data.messages != null) {
   if(response.data.messages.name != null){
 information.nameerror = true;
@@ -531,6 +562,18 @@ information.nameerror = response.data.messages.name[0];
   if(response.data.messages.fileoffice != null){
 information.fileofficeerror = true;
 information.fileofficeerror = response.data.messages.fileoffice[0];
+  }
+  if(response.data.messages.datefirst != null){
+information.datefirsterror = true;
+information.datefirsterror = response.data.messages.datefirst[0];
+  }
+  if(response.data.messages.datelast != null){
+information.datelasterror = true;
+information.datelasterror = response.data.messages.datelast[0];
+  }
+  if(response.data.messages.detail != null){
+  information.detailerror = true;
+  information.detailerror = response.data.messages.detail[0];
   }
 }else {
   location.reload();
@@ -545,25 +588,36 @@ information.fileofficeerror = response.data.messages.fileoffice[0];
              information.nameerror = false;
            },
   editItem: function(item) {
+    information.datefirsterror = false;
+    information.datelasterror = false;
+    information.detailerror = false;
              information.fileofficeerror = false;
              information.nameerror = false;
 
-       								var info_id =	item.Info_ID;
+       								var Hotnews_ID =	item.Hotnews_ID;
 
-       								var link = "http://project3.test/official/editinfo/" + info_id;
+       								var link = "http://project3.test/hotnews/edit" + Hotnews_ID;
        								axios.get(link, {
        								}).then(function (response) {
+
+
 if (response.data[0].official_ID == information.id) {
-  information.id_edit = response.data[0].Info_ID;
-  information.nameedit = response.data[0].Info_Name;
-  information.imageedit = response.data[0].Info_Img;
-  information.showimg = response.data[0].Info_Img;
+  information.id_edit = response.data[0].Hotnews_ID;
+  information.nameedit = response.data[0].Hotnews_Name;
+  information.datefirstedit = response.data[0].datefirst;
+  information.datelastedit = response.data[0].datelast;
+  information.detailedit = response.data[0].Hotnews_detail;
+  information.imageedit = response.data[0].Hotnews_img;
+  information.showimg = response.data[0].Hotnews_img;
 $("#editofficial").modal('show');
 }else {
-  information.id_edit = response.data[0].Info_ID;
-  information.nameedit = response.data[0].Info_Name;
-  information.imageedit = response.data[0].Info_Img;
-  information.showimg = response.data[0].Info_Img;
+  information.id_edit = response.data[0].Hotnews_ID;
+  information.nameedit = response.data[0].Hotnews_Name;
+  information.datefirstedit = response.data[0].datefirst;
+  information.datelastedit = response.data[0].datelast;
+  information.detailedit = response.data[0].Hotnews_detail;
+  information.imageedit = response.data[0].Hotnews_img;
+  information.showimg = response.data[0].Hotnews_img;
   information.buttonedit = false ;
   information.buttonedit2 = false;
   information.inputedit = 'false';
@@ -582,23 +636,39 @@ $("#editofficial").modal('show');
        							        },
         updateItem: function() {
 
-                   var info_id =	this.id_edit;
+                   var Hotnews_ID =	this.id_edit;
 
-                   var link = "http://project3.test/official/updateinfo/" + info_id;
+                   var link = "http://project3.test/hotnews/update/" + Hotnews_ID;
                    axios.post(link, {
                      id: this.id,
                      name: this.nameedit,
                      fileoffice: this.image,
+                     detail : this.detailedit,
+                     datefirst : this.datefirstedit,
+                     datelast : this.datelastedit,
+
                    }).then(function (response) {
                      if (response.data.messages != null) {
                        if(response.data.messages.name != null){
                      information.nameerror = true;
                      information.nameerror = response.data.messages.name[0];
-               }
-               if(response.data.messages.fileoffice != null){
-              information.fileofficeerror = true;
-              information.fileofficeerror = response.data.messages.fileoffice[0];
-                                           }
+                       }
+                       if(response.data.messages.fileoffice != null){
+                     information.fileofficeerror = true;
+                     information.fileofficeerror = response.data.messages.fileoffice[0];
+                       }
+                       if(response.data.messages.datefirst != null){
+                     information.datefirsterror = true;
+                     information.datefirsterror = response.data.messages.datefirst[0];
+                       }
+                       if(response.data.messages.datelast != null){
+                     information.datelasterror = true;
+                     information.datelasterror = response.data.messages.datelast[0];
+                       }
+                       if(response.data.messages.detail != null){
+                       information.detailerror = true;
+                       information.detailerror = response.data.messages.detail[0];
+                       }
               }else {
               location.reload();
               }
@@ -628,10 +698,10 @@ $("#editofficial").modal('show');
 
                   }).then(function () {
 
-                          var info_id =	item.Info_ID;
+                          var Hotnews_ID =	item.Hotnews_ID;
 
-                          axios.post('/official/delete/' + info_id, {
-                            info_id: item.Info_ID,
+                          axios.post('/hotnews/delete' + Hotnews_ID, {
+                          
                             id: information.id,
                           }).then(function (response) {
                             information.items = response.data;

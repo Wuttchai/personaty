@@ -85,6 +85,14 @@ Route::post('/person/delete/{Person_ID}', 'Official\PersonController@delete');
 Route::get('/official/hotnews', 'Official\HotnewController@index');
 Route::get('/official/hotnewslist', 'Official\HotnewController@readItems');
 Route::post('/official/hotnews/add', 'Official\HotnewController@insert');
-Route::get('/hotnews/edit{Person_ID}', 'Official\HotnewController@showedit');
-Route::post('/hotnews/updateinfo/{Person_ID}', 'Official\HotnewController@update');
-Route::post('/hotnews/delete/{Person_ID}', 'Official\HotnewController@delete');
+Route::get('/hotnews/edit{Hotnews_ID}', 'Official\HotnewController@showedit');
+Route::post('/hotnews/update/{Hotnews_ID}', 'Official\HotnewController@update');
+Route::post('/hotnews/delete{Hotnews_ID}', 'Official\HotnewController@delete');
+
+
+Route::get('/official/product', 'Official\ProductController@index');
+Route::get('/official/productlist', 'Official\ProductController@readItems');
+Route::post('/official/product/add', 'Official\ProductController@insert');
+Route::get('/product/edit{Hotnews_ID}', 'Official\ProductController@showedit');
+Route::post('/product/update/{Hotnews_ID}', 'Official\ProductController@update');
+Route::post('/product/delete{Hotnews_ID}', 'Official\ProductController@delete');
