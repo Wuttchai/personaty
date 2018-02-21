@@ -11,11 +11,13 @@
     <title> เจ้าหน้าที่ </title>
 
     <!-- Styles -->
+<link href="/css/bootstrap-multiselect.css" rel="stylesheet">
 <link href="/css/app.css" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
 <link href="/css/bootstrap-datepicker.css" rel="stylesheet" />
-    <link rel="stylesheet" href="{{ asset('css/sweetalert2.min.css') }}">
+<link rel="stylesheet" href="{{ asset('css/sweetalert2.min.css') }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css">
 <style media="screen">
 .loader {
   border: 16px solid #f3f3f3;
@@ -177,10 +179,11 @@
                         <!-- Authentication Links -->
   @if (session('role') == '0')
 
-                        <li><a class="nav-link" href="/official/addoffice">เพิ่มข้อมูลเจ้าหน้าที่</a></li>
+                        <li><a class="nav-link" href="/official/addoffice">จัดการข้อมูลเจ้าหน้าที่</a></li>
   @endif
+                        <li><a class="nav-link" href="/official/product">จัดการสินค้าวิชาชีพ</a></li>
                         <li><a class="nav-link" href="/official/hotnews">จัดการข่าวประชาสัมพันธ์</a></li>
-                        <li><a class="nav-link" href="/official/person">เพิ่มข้อมูลผู้ต้องขัง</a></li>
+                        <li><a class="nav-link" href="/official/person">จัดการข้อมูลผู้ต้องขัง</a></li>
                         <li><a class="nav-link" href="/official">จัดการภาพแบรน์เนอร์</a></li>
                         @if (session('nameoffice'))
 
@@ -212,17 +215,16 @@
         </main>
     </div>
     <script src="/js/app.js" charset="utf-8"></script>
-
+<script src="/js/bootstrap-multiselect.js" charset="utf-8"></script>
   <script src="https://vuejs.org/js/vue.js"></script>
 <script src="{{ asset('js/sweetalert2.min.js') }}"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
 <script src="/js/bootstrap-datepicker-custom.js"></script>
 <script src="/js/bootstrap-datepicker.th.min.js" charset="UTF-8"></script>
-
       @stack('scripts')
 </body>
 </html>

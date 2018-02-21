@@ -7,7 +7,7 @@
 
        <div class="col-md-12" id="dsds">
            <div class="card card-default ">
-               <div class="card-header card text-center bg-info"> จัดการข่าวประชาสัมพันธ์ </div>
+               <div class="card-header card text-center bg-info"> จัดการสินค้าวิชาชีพ </div>
 
  <div class="card-header card ">
 
@@ -34,7 +34,9 @@
 	                     <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
 	                   </div>
 	                 </div>
+
 </div>
+
  </div>
  <br>
  <div class="row">
@@ -113,20 +115,56 @@
 
 
              <div v-bind:class="{'form-group':nameerror , 'form-control label text-danger is-invalid':nameerror }">
-                           <label for="inputMessage">ชื่อข่าวประชาสัมพันธ์</label>
-                           <input type="text" class="form-control"  id="name" placeholder="ใส่ชื่อ" v-model="name"/>
+                           <label for="inputMessage">ชื่อสินค้า</label>
+                           <input type="text" class="form-control"  id="name" placeholder="ใสชื่อสินค้า" v-model="name"/>
                            <span class="text-danger" v-if="nameerror">
                                <strong>@{{ nameerror }}</strong>
                            </span>
                        </div>
             <div v-bind:class="{'form-group':detailerror , 'form-control label text-danger is-invalid':detailerror }">
-              <label for="inputMessage">รายละเอียดข่าว</label>
+              <label for="inputMessage">รายละเอียดสินค้า</label>
             <textarea class="form-control" rows="5" id="detail" placeholder="ใส่รายละเอียดข่าว" v-model="detail"></textarea>
 
               <span class="text-danger" v-if="detailerror">
                 <strong>@{{detailerror }}</strong>
               </span>
             </div>
+
+<div v-bind:class="{'form-group':typeerror , 'form-control label text-danger is-invalid':typeerror }">
+                                    <label for="inputMessage">ประเภทสินค้า</label>
+<br>
+                                    <select id="demo" class="form-control" multiple="multiple" >
+                                            <option value="เบเกอรี่">เบเกอรี่</option>
+                                            <option value="เฟอนิเจอร์">เฟอนิเจอร์</option>
+                                            <option value="อุปกรณ์">อุปกรณ์</option>
+                                            <option value="เทคโนโลยี">เทคโนโลยี</option>
+                                        </select>
+
+                                        <span class="text-danger" v-if="typeerror">
+                                          <div class="form-group row">
+
+                                          </div>
+                                            <strong>@{{ typeerror }}</strong>
+                                        </span>
+                                      </div>
+                                      <div class="form-group row">
+
+                                      </div>
+        <div v-bind:class="{'form-group':moneyerror , 'form-control label text-danger is-invalid':moneyerror }">
+                      <label for="inputMessage">ราคาสินค้า</label>
+                      <input type="text" class="form-control"  id="money" placeholder="ใส่ราคาสินค้า" v-model="money"/>
+                      <span class="text-danger" v-if="moneyerror">
+                          <strong>@{{ moneyerror }}</strong>
+                      </span>
+                  </div>
+                  <div v-bind:class="{'form-group':counterror , 'form-control label text-danger is-invalid':counterror }">
+                                <label for="inputMessage">จำนวนสินค้า</label>
+                                <input type="text" class="form-control"  id="money" placeholder="ใส่จำนวนสินค้า" v-model="count"/>
+                                <span class="text-danger" v-if="counterror">
+                                    <strong>@{{ counterror }}</strong>
+                                </span>
+                            </div>
+
 
 
 <div class="card-body" >
@@ -156,23 +194,11 @@
 
                        </div>
 
-                       <div v-bind:class="{'form-group':datefirsterror , 'form-control label text-danger is-invalid':datefirsterror }">
-                                     <label for="inputMessage">วันที่เริ่มต้น</label>
-                                   <input id="datefirst" class="datepicker" data-date-format="mm/dd/yyyy" v-model="datefirst">
-                                     <span class="text-danger" v-if="datefirsterror">
-                                         <strong>@{{ datefirsterror }}</strong>
-                                     </span>
-                                 </div>
+
                                  <div class="form-group row">
 
                                  </div>
-                                 <div v-bind:class="{'form-group':datelasterror , 'form-control label text-danger is-invalid':datelasterror }">
-                                               <label for="inputMessage">วันที่สิ้นสุด</label>
-                                             <input id="datelast" class="datepicker" data-date-format="mm/dd/yyyy" v-model="datelast">
-                                               <span class="text-danger" v-if="datelasterror">
-                                                   <strong>@{{ datelasterror }}</strong>
-                                               </span>
-                                           </div>
+
                      </div>
 
                      </div>
@@ -281,13 +307,7 @@
                        <div class="form-group row">
 
                        </div>
-                       <div v-bind:class="{'form-group':datefirsterror , 'form-control label text-danger is-invalid':datefirsterror }">
-                                     <label for="inputMessage">วันที่เริ่มต้น</label>
-                                   <input id="datefirst" class="datepicker" data-date-format="mm/dd/yyyy" v-model="datefirstedit" :disabled ="inputedit == 'false'">
-                                     <span class="text-danger" v-if="datefirsterror">
-                                         <strong>@{{ datefirsterror }}</strong>
-                                     </span>
-                                 </div>
+
                                  <div class="form-group row">
 
                                  </div>
@@ -347,29 +367,18 @@
 @endsection
 
 @push('scripts')
+
 <script>
-
-
-$(document).ready(function () {
-    $('.datepicker').datepicker({
-        format: 'dd/mm/yyyy',
-        todayBtn: true,
-        language: 'th',
-        thaiyear: true
-    }).datepicker("setDate", "0");
-    $('.datepicker2').datepicker({
-        format: 'dd/mm/yyyy',
-        todayBtn: true,
-        language: 'th',
-        thaiyear: true
-    }).datepicker();
-});
-
 
 document.getElementById("loader").style.display = "none";
 document.getElementById("dsds").style.display = "block";
 document.getElementById("text").style.display = "none";
 $(document).ready( function() {
+  $('#demo').multiselect({
+              buttonWidth: '300px',
+              dropcenter: true
+          });
+
 
     	$(document).on('change', '.btn-file :file', function() {
 		var input = $(this),
@@ -434,7 +443,7 @@ var information =  new Vue({
         'id'  :'<?php echo Session::get('idoffice'); ?>',
         'name': '',
         'nameedit': '',
-        'startDate':'',
+        'moneyerror':'',
         'detail':'',
         'detailerror':'',
         'imageedit': '',
@@ -446,16 +455,21 @@ var information =  new Vue({
         'nameimage':'',
         'showimg':'',
         'id_edit':'',
-        'datefirst':[],
+        'money':'',
         'datelast':[],
         'buttonedit':true,
         'buttonedit2':true,
         'inputedit':'true',
-        'datefirsterror':'',
+        'typeerror':'',
+        'country':[],
+      'count':'',
+      'counterror':'',
+
         'datelasterror':'',
-        'datefirstedit':'',
+
         'datelastedit':'',
         'detailedit':'',
+
 
         'items': [],
         'pagination': [],
@@ -467,9 +481,7 @@ var information =  new Vue({
     mounted: function mounted() {
 
  	    this.getVueItems(this.current_page);
-      $("#inputdatepicker").datepicker().on(
-     "changeDate", () => {this.startDate = $('#datefirst').val()}
- );
+
 
  	  },
 		computed: {
@@ -511,11 +523,7 @@ var information =  new Vue({
 	},
     methods: {getVueItems: function getVueItems(page) {
  	      axios.get('/official/hotnewslist?page=' + page).then(function (response) {
-
  	        information.items = response.data;
-
-
-
  	      });
  	    },
 			setPage: function(pageNumber){
@@ -541,19 +549,20 @@ var information =  new Vue({
            },
            insert: function () {
 
-this.datefirst = $('#datefirst').val()
-this.datelast = $('#datelast').val()
+
+this.country = $('#demo').val();
+
              axios.defaults.headers.post['formData'] = 'multipart/form-data';
-             axios.post('http://project3.test/official/hotnews/add', {
+             axios.post('http://project3.test/official/product/add', {
                  id: this.id,
                  name: this.name,
                  fileoffice: this.image,
                  detail : this.detail,
-                 datefirst : this.datefirst,
-                 datelast : this.datelast,
+                 type: this.country,
+                 money: this.money,
+                 count: this.count
 
                }).then(function (response) {
-
 if (response.data.messages != null) {
   if(response.data.messages.name != null){
 information.nameerror = true;
@@ -563,13 +572,17 @@ information.nameerror = response.data.messages.name[0];
 information.fileofficeerror = true;
 information.fileofficeerror = response.data.messages.fileoffice[0];
   }
-  if(response.data.messages.datefirst != null){
-information.datefirsterror = true;
-information.datefirsterror = response.data.messages.datefirst[0];
+  if(response.data.messages.type != null){
+    information.typeerror = true;
+    information.typeerror = response.data.messages.type[0];
   }
-  if(response.data.messages.datelast != null){
-information.datelasterror = true;
-information.datelasterror = response.data.messages.datelast[0];
+  if(response.data.messages.count != null){
+    information.counterror = true;
+    information.counterror = response.data.messages.count[0];
+  }
+  if(response.data.messages.money != null){
+    information.moneyerror = true;
+    information.moneyerror = response.data.messages.money[0];
   }
   if(response.data.messages.detail != null){
   information.detailerror = true;
@@ -585,14 +598,14 @@ information.datelasterror = response.data.messages.datelast[0];
            },
    cleardata: function () {
              information.fileofficeerror = false;
+             information.detailerror = false;
              information.nameerror = false;
-              information.datefirsterror= false;
-              information.datelasterror= false;
-              information.detailerror= false;
+            information.typeerror = false;
+            information.counterror = false;
+            information.moneyerror = false;
            },
   editItem: function(item) {
-    information.datefirsterror = false;
-    information.datelasterror = false;
+
     information.detailerror = false;
              information.fileofficeerror = false;
              information.nameerror = false;
@@ -607,8 +620,7 @@ information.datelasterror = response.data.messages.datelast[0];
 if (response.data[0].official_ID == information.id) {
   information.id_edit = response.data[0].Hotnews_ID;
   information.nameedit = response.data[0].Hotnews_Name;
-  information.datefirstedit = response.data[0].datefirst;
-  information.datelastedit = response.data[0].datelast;
+
   information.detailedit = response.data[0].Hotnews_detail;
   information.imageedit = response.data[0].Hotnews_img;
   information.showimg = response.data[0].Hotnews_img;
@@ -616,8 +628,7 @@ $("#editofficial").modal('show');
 }else {
   information.id_edit = response.data[0].Hotnews_ID;
   information.nameedit = response.data[0].Hotnews_Name;
-  information.datefirstedit = response.data[0].datefirst;
-  information.datelastedit = response.data[0].datelast;
+
   information.detailedit = response.data[0].Hotnews_detail;
   information.imageedit = response.data[0].Hotnews_img;
   information.showimg = response.data[0].Hotnews_img;
@@ -647,8 +658,7 @@ $("#editofficial").modal('show');
                      name: this.nameedit,
                      fileoffice: this.image,
                      detail : this.detailedit,
-                     datefirst : this.datefirstedit,
-                     datelast : this.datelastedit,
+
 
                    }).then(function (response) {
                      if (response.data.messages != null) {
@@ -660,9 +670,8 @@ $("#editofficial").modal('show');
                      information.fileofficeerror = true;
                      information.fileofficeerror = response.data.messages.fileoffice[0];
                        }
-                       if(response.data.messages.datefirst != null){
-                     information.datefirsterror = true;
-                     information.datefirsterror = response.data.messages.datefirst[0];
+                       if(response.data.messages != null){
+
                        }
                        if(response.data.messages.datelast != null){
                      information.datelasterror = true;

@@ -39,11 +39,8 @@ public $timestamps = false;
      	}
 
 
-
      public function insert(Request $request)
      {
-
-       $request->detail= str_replace("\n", "", "$request->detail");
 
 
     $validator =  Validator::make($request->all(), [
@@ -51,8 +48,9 @@ public $timestamps = false;
          'name' => 'required|string',
         'fileoffice' => 'required|image64:jpeg,jpg,png',
         'detail' => 'required|string',
-        'datefirst' => 'required|string',
-        'datelast' => 'required|string',
+        'type' => 'required',
+        'money' => 'required|numeric',
+        'count' => 'required|numeric',
 
            ]);
 
@@ -62,7 +60,30 @@ public $timestamps = false;
                  'messages' => $validator->errors()->messages()
                  ];
                }else {
+                 $test1 = '';
+                 $test2 = '';
+                 $test3 = '';
+                 $test4 = '';
 
+                 foreach ($request->type as $key => $someVar) {
+
+                      if ($someVar == 'เบเกอรี่') {
+                        $test1 = 'เบเกอรี่';
+                      }
+                      if ($someVar == 'เฟอนิเจอร์') {
+                        $test2 = 'เฟอนิเจอร์';
+                      }
+                      if ($someVar == 'อุปกรณ์') {
+                        $test3 = 'อุปกรณ์';
+                      }
+                      if ($someVar == 'เทคโนโลยี') {
+                        $test4 = 'เทคโนโลยี';
+                      }
+                 }
+                $type =  $test1 . "," . $test2 . "," .$test3. "," .$test4 ;
+
+
+                 $request->detail= str_replace("\n", "", "$request->detail");
 
 
 
@@ -74,7 +95,7 @@ public $timestamps = false;
 $time =Carbon::now('Asia/Bangkok');
     \App\log::insert([
       'official_ID' => $request->id,
-      'table_log' => 'hotnews',
+      'table_log' => 'product',
       'project_log' => '0',
       'Log_Event' => 'เพิ่ม',
       'Log_IP'  => \Request::ip(),
@@ -87,19 +108,21 @@ $time =Carbon::now('Asia/Bangkok');
 
 
 
-                \App\hotnews::insert([
+
+                \App\product::insert([
                               'Log_ID' => $logid,
-                              'Hotnews_Name' => $request->name,
-                              'Hotnews_detail' => $request->detail,
-                              'Hotnews_img'  => $fileName,
-                              'datefirst' => $request->datefirst,
-                              'datelast' => $request->datelast,
-                              'hotcreated_at' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "" ,
-                              'hotupdated_at' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
+                              'Pro_Name' => $request->name,
+                              'Pro_Detail' => $request->detail,
+                              'Pro_img'  => $fileName,
+                              'Pro_Type' => $type,
+                              'Pro_Count' => $request->count,
+                              'Pro_Price' => $request->money,
+                              'procreated_at' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "" ,
+                              'proupdated_at' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
                             ]);
-                $projectlog =  \App\hotnews::where([
+                $projectlog =  \App\product::where([
                                 ['Log_ID', '=', $logid],
-                                ])->max('Hotnews_ID');
+                                ])->max('Pro_ID');
 
                 \App\log::where('Log_ID',$logid)
                                       ->update([
@@ -279,7 +302,7 @@ if ($request->fileoffice) {
     public function index()
     {
 
-      return view('official.officialhotnew');
+      return view('official.officialproduct');
 
     }
 
