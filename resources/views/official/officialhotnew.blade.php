@@ -50,6 +50,7 @@
                    <th>วันที่อัพเดทล่าสุด</th>
                    <th>ตัวอย่างรูปภาพ</th>
                    <th>วันสิ้นสุด</th>
+                   <th>การจัดการ</th>
                  </tr>
                </thead>
                <tr v-for="item in paginatedUsers">
@@ -91,7 +92,7 @@
      <div class="modal-dialog modal-lg" role="document">
        <div class="modal-content">
          <div class="modal-header  text-center">
-           <h5 class="modal-title text-center" id="exampleModalLabel">เพิ่มข้อมูลภาพแบรน์เนอร์</h5>
+           <h5 class="modal-title text-center" id="exampleModalLabel">เพิ่มข้อมูลข่าวประชาสัมพันธ์</h5>
            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
              <span aria-hidden="true">&times;</span>
            </button>

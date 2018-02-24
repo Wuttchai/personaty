@@ -8,7 +8,7 @@
 
                          <div class="col-md-12" id="dsds">
                              <div class="card card-default ">
-                                 <div class="card-header card text-center bg-info"> ภาพแบรน์เนอร์ </div>
+                                 <div class="card-header card text-center bg-info">จัดการข้อมูลเจ้าหน้าที่</div>
 
                    <div class="card-header card ">
 
@@ -51,9 +51,9 @@
                                      <th>จ.ภาพแบรน์เนอร์</th>
                                      <th>จ.สินค้าวิชาชีพ</th>
                                      <th>จ.ข่าวประชาสัมพันธ์</th>
-                                     <th>จ.ข่าวกิจกรรม</th>
+                                     <th>จ.ข้อมูลเจ้าหน้าที่</th>
                                      <th>จ.ข้อมูลผู้ต้องขัง</th>
-                                     <th>จัดการ</th>
+                                     <th>การจัดการ</th>
                                    </tr>
                                  </thead>
                                  <tr v-for="item in paginatedUsers">
@@ -195,7 +195,7 @@
                                             </div>
                                         </div>
                                  <div class="form-group row">
-                                          <label for="User_Tel" class="col-md-7 col-form-label text-md-left">จัดการข่าวกิจกรรม :</label>
+                                          <label for="User_Tel" class="col-md-7 col-form-label text-md-left">จัดการข้อมูลเจ้าหน้าที่ :</label>
                                           <div class="col-md-4 ">
                                  <p class="form-control onoff"><input type="checkbox" v-model="activity" value="จัดการ" id="checkboxID4"><label for="checkboxID4"></label></p>
                                           </div>
@@ -332,7 +332,7 @@
                                          </div>
                                      </div>
                               <div class="form-group row">
-                                       <label for="User_Tel" class="col-md-7 col-form-label text-md-left">จัดการข่าวกิจกรรม :</label>
+                                       <label for="User_Tel" class="col-md-7 col-form-label text-md-left">จัดการข้อมูลเจ้าหน้าที :</label>
                                        <div class="col-md-4 ">
                               <p class="form-control onoff"><input type="checkbox" v-model="activityedit" value="จัดการ" id="checkboxID9"><label for="checkboxID9"></label></p>
                                        </div>

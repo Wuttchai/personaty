@@ -7,7 +7,7 @@
 
        <div class="col-md-12" id="dsds">
            <div class="card card-default ">
-               <div class="card-header card text-center bg-info"> จัดการสินค้าวิชาชีพ </div>
+               <div class="card-header card text-center bg-info"> จัดการข้อมูลสินค้าวิชาชีพ </div>
 
  <div class="card-header card ">
 
@@ -48,18 +48,26 @@
                <thead>
                  <tr>
                    <th>ชื่อผู้ทำ</th>
-                   <th>ชื่อข่าวประชาสัมพันธ์</th>
-                   <th>วันที่อัพเดทล่าสุด</th>
+                   <th>ชื่อสินค้า</th>
+                   <th>จำนวนสินค้า</th>
+
                    <th>ตัวอย่างรูปภาพ</th>
-                   <th>วันสิ้นสุด</th>
+                   <th>ราคาสินค้า</th>
+                   <th>วันที่อัพเดทล่าสุด</th>
+                   <th>การจัดการ</th>
                  </tr>
                </thead>
+
+
+
+
                <tr v-for="item in paginatedUsers">
                  <td>@{{ item.official_Name }}</td>
-                 <td>@{{ item.Hotnews_Name }}</td>
-                 <td>@{{ item.hotupdated_at }}</td>
-                 <td><img :src="'{{asset('hotnew')}}/' + item.Hotnews_img" height="42" width="42"/></td>
-                  <td>@{{ item.datelast }}</td>
+                 <td>@{{ item.Pro_Name }}</td>
+                 <td>@{{ item.Pro_Price }}</td>
+                 <td><img :src="'{{asset('product')}}/' + item.Pro_img" height="42" width="42"/></td>
+                 <td>@{{ item.Pro_Count }}</td>
+                 <td>@{{ item.proupdated_at }}</td>
            <td >
 
               <button  type="button"  v-on:click="editItem(item)" class="btn btn-warning"><i class="material-icons">แก้ไข</i></button>&nbsp;&nbsp;&nbsp;
@@ -93,7 +101,7 @@
      <div class="modal-dialog modal-lg" role="document">
        <div class="modal-content">
          <div class="modal-header  text-center">
-           <h5 class="modal-title text-center" id="exampleModalLabel">เพิ่มข้อมูลภาพแบรน์เนอร์</h5>
+           <h5 class="modal-title text-center" id="exampleModalLabel">เพิ่มข้อมูลสินค้าวิชาชีพ</h5>
            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
              <span aria-hidden="true">&times;</span>
            </button>
@@ -133,11 +141,11 @@
 <div v-bind:class="{'form-group':typeerror , 'form-control label text-danger is-invalid':typeerror }">
                                     <label for="inputMessage">ประเภทสินค้า</label>
 <br>
-                                    <select id="demo" class="form-control" multiple="multiple" >
+                            <select id="demo" class="form-control" v-model="type">
                                             <option value="เบเกอรี่">เบเกอรี่</option>
                                             <option value="เฟอนิเจอร์">เฟอนิเจอร์</option>
-                                            <option value="อุปกรณ์">อุปกรณ์</option>
-                                            <option value="เทคโนโลยี">เทคโนโลยี</option>
+                                            <option value="ของฝาก">ของฝาก</option>
+                                            <option value="ศาลพระภูมิ">ศาลพระภูมิ</option>
                                         </select>
 
                                         <span class="text-danger" v-if="typeerror">
@@ -242,7 +250,7 @@
      <div class="modal-dialog modal-lg" role="document">
        <div class="modal-content">
          <div class="modal-header  text-center">
-           <h5 class="modal-title text-center" id="exampleModalLabel">แก้ไขข้อมูลข่าวประชาสัมพันธ์</h5>
+           <h5 class="modal-title text-center" id="exampleModalLabel">แก้ไขข้อมูลสินค้าวิชาชีพ</h5>
            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
              <span aria-hidden="true">&times;</span>
            </button>
@@ -264,21 +272,54 @@
 
 
              <div v-bind:class="{'form-group':nameerror , 'form-control label text-danger is-invalid':nameerror }">
-                           <label for="inputMessage">ชื่อข่าวประชาสัมพันธ์</label>
+                           <label for="inputMessage">ชื่อสินค้า</label>
                            <input type="text" class="form-control"  id="name" placeholder="ใส่ชื่อ" v-model="nameedit" :disabled ="inputedit == 'false'"/>
                            <span class="text-danger" v-if="nameerror">
                                <strong>@{{ nameerror }}</strong>
                            </span>
                        </div>
                        <div v-bind:class="{'form-group':detailerror , 'form-control label text-danger is-invalid':detailerror }">
-                         <label for="inputMessage">รายละเอียดข่าว</label>
+                         <label for="inputMessage">รายละเอียดสินค้า</label>
                        <textarea class="form-control" rows="5" id="detail" placeholder="ใส่รายละเอียดข่าว" v-model="detailedit" :disabled ="inputedit == 'false'"></textarea>
 
                          <span class="text-danger" v-if="detailerror">
                            <strong>@{{detailerror }}</strong>
                          </span>
                        </div>
+                       <div v-bind:class="{'form-group':typeerror , 'form-control label text-danger is-invalid':typeerror }">
+                                                           <label for="inputMessage">ประเภทสินค้า</label>
+                       <br>
+                                                   <select id="demo" class="form-control" v-model="typeedit">
+                                                                   <option value="เบเกอรี่">เบเกอรี่</option>
+                                                                   <option value="เฟอนิเจอร์">เฟอนิเจอร์</option>
+                                                                   <option value="ของฝาก">ของฝาก</option>
+                                                                   <option value="ศาลพระภูมิ">ศาลพระภูมิ</option>
+                                                               </select>
 
+                                                               <span class="text-danger" v-if="typeerror">
+                                                                 <div class="form-group row">
+
+                                                                 </div>
+                                                                   <strong>@{{ typeerror }}</strong>
+                                                               </span>
+                                                             </div>
+                                                             <div class="form-group row">
+
+                                                             </div>
+                               <div v-bind:class="{'form-group':moneyerror , 'form-control label text-danger is-invalid':moneyerror }">
+                                             <label for="inputMessage">ราคาสินค้า</label>
+                                             <input type="text" class="form-control"  id="money" placeholder="ใส่ราคาสินค้า" v-model="moneyedit"/>
+                                             <span class="text-danger" v-if="moneyerror">
+                                                 <strong>@{{ moneyerror }}</strong>
+                                             </span>
+                                         </div>
+                                         <div v-bind:class="{'form-group':counterror , 'form-control label text-danger is-invalid':counterror }">
+                                                       <label for="inputMessage">จำนวนสินค้า</label>
+                                                       <input type="text" class="form-control"  id="money" placeholder="ใส่จำนวนสินค้า" v-model="countedit"/>
+                                                       <span class="text-danger" v-if="counterror">
+                                                           <strong>@{{ counterror }}</strong>
+                                                       </span>
+                                                   </div>
   <div class="card-body" >
 
 
@@ -311,13 +352,7 @@
                                  <div class="form-group row">
 
                                  </div>
-                                 <div v-bind:class="{'form-group':datelasterror , 'form-control label text-danger is-invalid':datelasterror }">
-                                               <label for="inputMessage">วันที่สิ้นสุด</label>
-                                             <input id="datelast" class="datepicker" data-date-format="mm/dd/yyyy" v-model="datelastedit" :disabled ="inputedit == 'false'">
-                                               <span class="text-danger" v-if="datelasterror">
-                                                   <strong>@{{ datelasterror }}</strong>
-                                               </span>
-                                           </div>
+
                      </div>
 
                      </div>
@@ -336,7 +371,7 @@
                <!--Card content-->
                <div class="card-body text-center" >
 
-          <img :src="'{{asset('hotnew')}}/' + imageedit" height="400" width="320" id='img-upload2'/>
+          <img :src="'{{asset('product')}}/' + imageedit" height="400" width="320" id='img-upload2'/>
                </div>
 
                </div>
@@ -374,10 +409,7 @@ document.getElementById("loader").style.display = "none";
 document.getElementById("dsds").style.display = "block";
 document.getElementById("text").style.display = "none";
 $(document).ready( function() {
-  $('#demo').multiselect({
-              buttonWidth: '300px',
-              dropcenter: true
-          });
+
 
 
     	$(document).on('change', '.btn-file :file', function() {
@@ -446,7 +478,7 @@ var information =  new Vue({
         'moneyerror':'',
         'detail':'',
         'detailerror':'',
-        'imageedit': '',
+
         'fileoffice':'',
         'image' :'',
         'nameerror':'',
@@ -456,14 +488,16 @@ var information =  new Vue({
         'showimg':'',
         'id_edit':'',
         'money':'',
-        'datelast':[],
+        'typeedit':'',
         'buttonedit':true,
         'buttonedit2':true,
         'inputedit':'true',
         'typeerror':'',
-        'country':[],
-      'count':'',
-      'counterror':'',
+        'type':'',
+        'moneyedit':'',
+        'count':'',
+        'counterror':'',
+        'countedit':'',
 
         'datelasterror':'',
 
@@ -508,9 +542,10 @@ var information =  new Vue({
 
                 return this.items.filter(item => {
 
-                    	return item.Hotnews_Name.indexOf(this.searchKey.toLowerCase()) > -1
-                      || item.hotupdated_at.indexOf(this.searchKey.toLowerCase()) > -1
-                      || item.datelast.indexOf(this.searchKey.toLowerCase()) > -1
+                    	return item.Pro_Name.indexOf(this.searchKey.toLowerCase()) > -1
+                      || item.proupdated_at.indexOf(this.searchKey.toLowerCase()) > -1
+                      || item.Pro_Price.indexOf(this.searchKey.toLowerCase()) > -1
+                      || item.Pro_Count.indexOf(this.searchKey.toLowerCase()) > -1
                       || item.official_Name.toLowerCase().indexOf(this.searchKey.toLowerCase()) > -1
 
                  })
@@ -522,7 +557,7 @@ var information =  new Vue({
 					 }
 	},
     methods: {getVueItems: function getVueItems(page) {
- 	      axios.get('/official/hotnewslist?page=' + page).then(function (response) {
+ 	      axios.get('/official/productlist?page=' + page).then(function (response) {
  	        information.items = response.data;
  	      });
  	    },
@@ -549,16 +584,13 @@ var information =  new Vue({
            },
            insert: function () {
 
-
-this.country = $('#demo').val();
-
              axios.defaults.headers.post['formData'] = 'multipart/form-data';
              axios.post('http://project3.test/official/product/add', {
                  id: this.id,
                  name: this.name,
                  fileoffice: this.image,
                  detail : this.detail,
-                 type: this.country,
+                 type: this.type,
                  money: this.money,
                  count: this.count
 
@@ -605,33 +637,40 @@ information.fileofficeerror = response.data.messages.fileoffice[0];
             information.moneyerror = false;
            },
   editItem: function(item) {
-
+    information.fileofficeerror = false;
     information.detailerror = false;
-             information.fileofficeerror = false;
-             information.nameerror = false;
+    information.nameerror = false;
+   information.typeerror = false;
+   information.counterror = false;
+   information.moneyerror = false
+       								var Pro_ID =	item.Pro_ID;
 
-       								var Hotnews_ID =	item.Hotnews_ID;
-
-       								var link = "http://project3.test/hotnews/edit" + Hotnews_ID;
+       								var link = "http://project3.test/product/edit" + Pro_ID;
        								axios.get(link, {
        								}).then(function (response) {
 
 
-if (response.data[0].official_ID == information.id) {
-  information.id_edit = response.data[0].Hotnews_ID;
-  information.nameedit = response.data[0].Hotnews_Name;
 
-  information.detailedit = response.data[0].Hotnews_detail;
-  information.imageedit = response.data[0].Hotnews_img;
-  information.showimg = response.data[0].Hotnews_img;
+if (response.data[0].official_ID == information.id) {
+  information.id_edit = response.data[0].Pro_ID;
+  information.nameedit = response.data[0].Pro_Name;
+  information.detailedit = response.data[0].Pro_Detail;
+  information.imageedit = response.data[0].Pro_img;
+  information.showimg = response.data[0].Pro_img;
+information.typeedit = response.data[0].Pro_Type;
+information.moneyedit = response.data[0].Pro_Count;
+information.countedit = response.data[0].Pro_Price;
+
 $("#editofficial").modal('show');
 }else {
-  information.id_edit = response.data[0].Hotnews_ID;
-  information.nameedit = response.data[0].Hotnews_Name;
-
-  information.detailedit = response.data[0].Hotnews_detail;
-  information.imageedit = response.data[0].Hotnews_img;
-  information.showimg = response.data[0].Hotnews_img;
+  information.id_edit = response.data[0].Pro_ID;
+  information.nameedit = response.data[0].Pro_Name;
+  information.detailedit = response.data[0].Pro_Detail;
+  information.imageedit = response.data[0].Pro_img;
+  information.showimg = response.data[0].Pro_img;
+information.typeedit = response.data[0].Pro_Type;
+information.moneyedit = response.data[0].Pro_Count;
+information.countedit = response.data[0].Pro_Price;
   information.buttonedit = false ;
   information.buttonedit2 = false;
   information.inputedit = 'false';
@@ -650,16 +689,17 @@ $("#editofficial").modal('show');
        							        },
         updateItem: function() {
 
-                   var Hotnews_ID =	this.id_edit;
+                   var Pro_ID =	this.id_edit;
 
-                   var link = "http://project3.test/hotnews/update/" + Hotnews_ID;
+                   var link = "http://project3.test/product/update/" + Pro_ID;
                    axios.post(link, {
                      id: this.id,
                      name: this.nameedit,
                      fileoffice: this.image,
                      detail : this.detailedit,
-
-
+                     type: this.typeedit,
+                     money: this.moneyedit,
+                     count: this.countedit
                    }).then(function (response) {
                      if (response.data.messages != null) {
                        if(response.data.messages.name != null){
@@ -670,17 +710,23 @@ $("#editofficial").modal('show');
                      information.fileofficeerror = true;
                      information.fileofficeerror = response.data.messages.fileoffice[0];
                        }
-                       if(response.data.messages != null){
-
-                       }
-                       if(response.data.messages.datelast != null){
-                     information.datelasterror = true;
-                     information.datelasterror = response.data.messages.datelast[0];
-                       }
                        if(response.data.messages.detail != null){
                        information.detailerror = true;
                        information.detailerror = response.data.messages.detail[0];
                        }
+                       if(response.data.messages.type != null){
+                         information.typeerror = true;
+                         information.typeerror = response.data.messages.type[0];
+                       }
+                       if(response.data.messages.count != null){
+                         information.counterror = true;
+                         information.counterror = response.data.messages.count[0];
+                       }
+                       if(response.data.messages.money != null){
+                         information.moneyerror = true;
+                         information.moneyerror = response.data.messages.money[0];
+                       }
+
               }else {
               location.reload();
               }
@@ -710,9 +756,9 @@ $("#editofficial").modal('show');
 
                   }).then(function () {
 
-                          var Hotnews_ID =	item.Hotnews_ID;
+                          var Pro_ID =	item.Pro_ID;
 
-                          axios.post('/hotnews/delete' + Hotnews_ID, {
+                          axios.post('/product/delete' + Pro_ID, {
 
                             id: information.id,
                           }).then(function (response) {

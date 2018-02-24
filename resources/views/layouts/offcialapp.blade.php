@@ -180,11 +180,29 @@
   @if (session('role') == '0')
 
                         <li><a class="nav-link" href="/official/addoffice">จัดการข้อมูลเจ้าหน้าที่</a></li>
-  @endif
                         <li><a class="nav-link" href="/official/product">จัดการสินค้าวิชาชีพ</a></li>
                         <li><a class="nav-link" href="/official/hotnews">จัดการข่าวประชาสัมพันธ์</a></li>
                         <li><a class="nav-link" href="/official/person">จัดการข้อมูลผู้ต้องขัง</a></li>
                         <li><a class="nav-link" href="/official">จัดการภาพแบรน์เนอร์</a></li>
+  @endif
+@if (session('info') == 'จัดการ')
+<li><a class="nav-link" href="/official">จัดการภาพแบรน์เนอร์</a></li>
+@endif
+@if (session('product') == 'จัดการ')
+<li><a class="nav-link" href="/official/product">จัดการสินค้าวิชาชีพ</a></li>
+@endif
+@if (session('hotnews') == 'จัดการ')
+<li><a class="nav-link" href="/official/hotnews">จัดการข่าวประชาสัมพันธ์</a></li>
+@endif
+@if (session('activity') == 'จัดการ')
+<li><a class="nav-link" href="/official/addoffice">จัดการข้อมูลเจ้าหน้าที่</a></li>
+@endif
+@if (session('prison') == 'จัดการ')
+<li><a class="nav-link" href="/official/product">จัดการสินค้าวิชาชีพ</a></li>
+@endif
+
+
+
                         @if (session('nameoffice'))
 
                         <li class="nav-item dropdown">

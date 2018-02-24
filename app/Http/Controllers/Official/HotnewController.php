@@ -186,7 +186,7 @@ if ($request->fileoffice) {
                           'Hotnews_img'  => $fileName,
                           'datefirst' => $request->datefirst,
                           'datelast' => $request->datelast,
-                          'hotcreated_at' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "" ,
+                          
                           'hotupdated_at' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
                         ]);
 
@@ -237,7 +237,7 @@ if ($request->fileoffice) {
                           'Hotnews_detail' => $request->detail,
                           'datefirst' => $request->datefirst,
                           'datelast' => $request->datelast,
-                          'hotcreated_at' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "" ,
+
                           'hotupdated_at' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
                         ]);
 

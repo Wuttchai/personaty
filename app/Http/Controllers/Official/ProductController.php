@@ -29,9 +29,9 @@ class ProductController extends Controller
 public $timestamps = false;
 
      public function readItems() {
-       $info = \App\hotnews::join('log','hotnews.Log_ID','=','log.Log_ID')
+       $info = \App\product::join('log','product.Log_ID','=','log.Log_ID')
                    ->join('official', 'official.official_ID', '=', 'log.official_ID')
-                   ->select('official.official_Name', 'hotnews.Hotnews_Name', 'hotnews.hotupdated_at','hotnews.Hotnews_img','hotnews.datelast','hotnews.Hotnews_ID')
+                   ->select('official.official_Name','product.Pro_Name', 'product.Pro_Price', 'product.Pro_img','product.Pro_Count','product.proupdated_at','product.Pro_ID')
                    ->get();
 
 
@@ -41,7 +41,6 @@ public $timestamps = false;
 
      public function insert(Request $request)
      {
-
 
     $validator =  Validator::make($request->all(), [
          'id' => 'required|string',
@@ -60,27 +59,6 @@ public $timestamps = false;
                  'messages' => $validator->errors()->messages()
                  ];
                }else {
-                 $test1 = '';
-                 $test2 = '';
-                 $test3 = '';
-                 $test4 = '';
-
-                 foreach ($request->type as $key => $someVar) {
-
-                      if ($someVar == 'เบเกอรี่') {
-                        $test1 = 'เบเกอรี่';
-                      }
-                      if ($someVar == 'เฟอนิเจอร์') {
-                        $test2 = 'เฟอนิเจอร์';
-                      }
-                      if ($someVar == 'อุปกรณ์') {
-                        $test3 = 'อุปกรณ์';
-                      }
-                      if ($someVar == 'เทคโนโลยี') {
-                        $test4 = 'เทคโนโลยี';
-                      }
-                 }
-                $type =  $test1 . "," . $test2 . "," .$test3. "," .$test4 ;
 
 
                  $request->detail= str_replace("\n", "", "$request->detail");
@@ -89,7 +67,7 @@ public $timestamps = false;
 
                  $imageData = $request->get('fileoffice');
        $fileName = Carbon::now()->timestamp . '_' . uniqid() . '.' . explode('/', explode(':', substr($imageData, 0, strpos($imageData, ';')))[1])[1];
-     \Image::make($imageData)->save(public_path('hotnew/').$fileName);
+     \Image::make($imageData)->save(public_path('product/').$fileName);
 
 
 $time =Carbon::now('Asia/Bangkok');
@@ -114,7 +92,7 @@ $time =Carbon::now('Asia/Bangkok');
                               'Pro_Name' => $request->name,
                               'Pro_Detail' => $request->detail,
                               'Pro_img'  => $fileName,
-                              'Pro_Type' => $type,
+                              'Pro_Type' => $request->type,
                               'Pro_Count' => $request->count,
                               'Pro_Price' => $request->money,
                               'procreated_at' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "" ,
@@ -143,12 +121,11 @@ $time =Carbon::now('Asia/Bangkok');
      }
      public function showedit($id) {
 
-       $infoedit = \App\hotnews::join('log','hotnews.Log_ID','=','log.Log_ID')
+       $infoedit = \App\product::join('log','product.Log_ID','=','log.Log_ID')
                    ->join('official', 'official.official_ID', '=', 'log.official_ID')
-                   ->select('official.official_ID', 'hotnews.Hotnews_Name','hotnews.Hotnews_img','hotnews.Hotnews_detail','hotnews.Hotnews_ID','hotnews.datelast','hotnews.datefirst')
-                   ->where('hotnews.Hotnews_ID','=' ,$id)
+                   ->select('official.official_ID', 'product.Pro_Name','product.Pro_img','product.Pro_Detail','product.Pro_ID','product.Pro_Type','product.Pro_Count','product.Pro_Price')
+                   ->where('product.Pro_ID','=' ,$id)
                    ->get();
-
         return response()->json($infoedit);
       }
 
@@ -163,8 +140,9 @@ if ($request->fileoffice) {
     'name' => 'required|string',
    'fileoffice' => 'required|image64:jpeg,jpg,png',
    'detail' => 'required|string',
-   'datefirst' => 'required|string',
-   'datelast' => 'required|string',
+   'type' => 'required',
+   'money' => 'required|numeric',
+   'count' => 'required|numeric',
   ]);
   if($Validator->errors()->messages() != null){
     return[
@@ -177,7 +155,7 @@ if ($request->fileoffice) {
 
   $imageData = $request->get('fileoffice');
  $fileName = Carbon::now()->timestamp . '_' . uniqid() . '.' . explode('/', explode(':', substr($imageData, 0, strpos($imageData, ';')))[1])[1];
- \Image::make($imageData)->save(public_path('hotnew/').$fileName);
+ \Image::make($imageData)->save(public_path('product/').$fileName);
 
 
 //-------------
@@ -188,7 +166,7 @@ if ($request->fileoffice) {
             $time =Carbon::now('Asia/Bangkok');
                 \App\log::insert([
                   'official_ID' => $request->id,
-                  'table_log' => 'info',
+                  'table_log' => 'product',
                   'project_log' => $id,
                   'Log_Event' => 'แก้ไข',
                   'Log_IP'  => \Request::ip(),
@@ -201,16 +179,16 @@ if ($request->fileoffice) {
 
 
 
-            \App\hotnews::where('Hotnews_ID',$id)
+            \App\product::where('Pro_ID',$id)
                         ->update([
                           'Log_ID' => $logid,
-                          'Hotnews_Name' => $request->name,
-                          'Hotnews_detail' => $request->detail,
-                          'Hotnews_img'  => $fileName,
-                          'datefirst' => $request->datefirst,
-                          'datelast' => $request->datelast,
-                          'hotcreated_at' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "" ,
-                          'hotupdated_at' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
+                          'Pro_Name' => $request->name,
+                          'Pro_Detail' => $request->detail,
+                          'Pro_img'  => $fileName,
+                          'Pro_Type' => $request->type,
+                          'Pro_Count' => $request->count,
+                          'Pro_Price' => $request->money,
+                          'proupdated_at' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
                         ]);
 
 
@@ -222,12 +200,14 @@ if ($request->fileoffice) {
 
 
 }else {
+  
   $Validator = Validator::make($request->all(),[
     'id' => 'required|string',
     'name' => 'required|string',
    'detail' => 'required|string',
-   'datefirst' => 'required|string',
-   'datelast' => 'required|string',
+   'type' => 'required',
+   'money' => 'required|numeric',
+   'count' => 'required|numeric',
   ]);
 
   if($Validator->errors()->messages() != null){
@@ -240,7 +220,7 @@ if ($request->fileoffice) {
             $time =Carbon::now('Asia/Bangkok');
                 \App\log::insert([
                   'official_ID' => $request->id,
-                  'table_log' => 'hotnews',
+                  'table_log' => 'product',
                   'project_log' => $id,
                   'Log_Event' => 'แก้ไข',
                   'Log_IP'  => \Request::ip(),
@@ -253,15 +233,15 @@ if ($request->fileoffice) {
 
 
 
-            \App\hotnews::where('Hotnews_ID',$id)
+            \App\product::where('Pro_ID',$id)
                         ->update([
                           'Log_ID' => $logid,
-                          'Hotnews_Name' => $request->name,
-                          'Hotnews_detail' => $request->detail,
-                          'datefirst' => $request->datefirst,
-                          'datelast' => $request->datelast,
-                          'hotcreated_at' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "" ,
-                          'hotupdated_at' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
+                          'Pro_Name' => $request->name,
+                          'Pro_Detail' => $request->detail,
+                          'Pro_Type' => $request->type,
+                          'Pro_Count' => $request->count,
+                          'Pro_Price' => $request->money,
+                          'proupdated_at' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
                         ]);
 
 
@@ -278,18 +258,18 @@ if ($request->fileoffice) {
        $time =Carbon::now('Asia/Bangkok');
          \App\log::insert([
          'official_ID' => $request->id,
-         'table_log' => 'hotnews',
+         'table_log' => 'product',
          'project_log' => $id,
          'Log_Event' => 'ลบ',
          'Log_IP'  => \Request::ip(),
          'Log_Time'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
          ]);
 
-     \App\hotnews::where('Hotnews_ID', '=', $id)->delete();
+     \App\product::where('Pro_ID', '=', $id)->delete();
 
-     $info = \App\hotnews::join('log','hotnews.Log_ID','=','log.Log_ID')
+     $info = \App\product::join('log','product.Log_ID','=','log.Log_ID')
                  ->join('official', 'official.official_ID', '=', 'log.official_ID')
-                 ->select('official.official_Name', 'hotnews.Hotnews_Name', 'hotnews.hotupdated_at','hotnews.Hotnews_img','hotnews.datelast','hotnews.Hotnews_ID')
+                 ->select('official.official_Name','product.Pro_Name', 'product.Pro_Price', 'product.Pro_img','product.Pro_Count','product.proupdated_at','product.Pro_ID')
                  ->get();
 
 

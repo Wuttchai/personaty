@@ -62,13 +62,33 @@ if (!Session::get("login")) {
             ]);
 
 }
-
+Session::put("info",$official[0]['info']);
+Session::put("product",$official[0]['product']);
+Session::put("hotnews",$official[0]['hotnews']);
+Session::put("activity",$official[0]['activity']);
+Session::put("prison",$official[0]['prison']);
 Session::put("login", 'yes');
 Session::put("idoffice", $official[0]['official_ID']);
 Session::put("nameoffice", $official[0]['official_Name']);
 Session::put("role", $official[0]['official_Role']);
 
-  return view('official.officialform');
+
+
+if ($official[0]['info'] == 'จัดการ') {
+return view('official.officialform');
+}
+if ($official[0]['product'] == 'จัดการ') {
+return view('official.officialproduct');
+}
+if ($official[0]['hotnews'] == 'จัดการ') {
+return view('official.officialhotnew');
+}
+if ($official[0]['activity'] == 'จัดการ') {
+return view('official.officialadd');
+}
+if ($official[0]['prison'] == 'จัดการ') {
+return view('official.officialperson');
+}
 }
 
 

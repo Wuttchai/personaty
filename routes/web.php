@@ -47,7 +47,12 @@ Route::post('/official/logout', function () {
   Session::forget('login');
   Session::forget('idoffice');
     Session::forget('nameoffice');
-    Session::forget('cottonoffice');
+Session::forget('info');
+Session::forget('product');
+Session::forget('hotnews');
+Session::forget('activity');
+Session::forget('prison');
+
   return view('official.official', [
       'erx' => '',
     ]);
@@ -93,6 +98,6 @@ Route::post('/hotnews/delete{Hotnews_ID}', 'Official\HotnewController@delete');
 Route::get('/official/product', 'Official\ProductController@index');
 Route::get('/official/productlist', 'Official\ProductController@readItems');
 Route::post('/official/product/add', 'Official\ProductController@insert');
-Route::get('/product/edit{Hotnews_ID}', 'Official\ProductController@showedit');
-Route::post('/product/update/{Hotnews_ID}', 'Official\ProductController@update');
-Route::post('/product/delete{Hotnews_ID}', 'Official\ProductController@delete');
+Route::get('/product/edit{Pro_ID}', 'Official\ProductController@showedit');
+Route::post('/product/update/{Pro_ID}', 'Official\ProductController@update');
+Route::post('/product/delete{Pro_ID}', 'Official\ProductController@delete');
