@@ -8,14 +8,15 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>person</title>
 
     <!-- Styles -->
-<link href="/css/app.css" rel="stylesheet">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="//cdn.datatables.net/v/bs/dt-1.10.13/datatables.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
+    <link rel="stylesheet" href="{{ asset('css/testboot.css') }}">
     <link rel="stylesheet" href="{{ asset('css/sweetalert2.min.css') }}">
+    <link rel="stylesheet" href="fonts/thsarabunnew.css" />
+
+
 <style media="screen">
 .loader {
   border: 16px solid #f3f3f3;
@@ -66,64 +67,63 @@
 </style>
 </head>
 <body>
-    <div>
-        <nav class="navbar navbar-expand-md navbar-light navbar-laravel ">
+    <div class="container" id="app">
+      <nav class="navbar navbar-inverse navbar-fixed-top" >
+        <div class="container">
+          <div class="navbar-header" style="padding: 5px;">
+              <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+              </button>
 
-            <div class="container" id="app">
-                <a class="navbar-brand" href="{{ url('/home') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+              <a class="icon-bar" href="http://disputebills.com"><img src="https://upload.wikimedia.org/wikipedia/th/f/f5/%E0%B8%95%E0%B8%A3%E0%B8%B2%E0%B8%81%E0%B8%A3%E0%B8%A1%E0%B8%A3%E0%B8%B2%E0%B8%8A%E0%B8%97%E0%B8%B1%E0%B8%93%E0%B8%91%E0%B9%8C.png" height="90" alt="Dispute Bills"> </a>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-                      <li><a class="nav-link" href="/officialapp">สำหรับเจ้าหน้าที่</a></li>
-</ul>
+          </div>
+          <!-- Collection of nav links, forms, and other content for toggling -->
+          <div id="navbarCollapse" class="collapse navbar-collapse" style="margin-top: 20px;">
+              <ul class="nav navbar-nav" style="margin-left: 80px;">
+                  <li class="active"><a href="#"><h4>หน้าแรก</h4></a></li>
+                <li><a class="nav-link" href="/officialapp"><h4>สำหรับเจ้าหน้าที่</h4></a></li>
 
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            <li><a class="nav-link" href="{{ route('login') }}">Login</a></li>
-                            <li><a class="nav-link" href="{{ route('register') }}">Register</a></li>
-                        @else
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    {{ Auth::user()->User_Name }} <span class="caret"></span>
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        Logout
-                                    </a>
+              </ul>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
-            </div>
-        </nav>
+              <ul class="nav navbar-nav navbar-right">
+                @guest
+                    <li><a class="nav-link" href="{{ route('login') }}"><h4>เข้าสู่ระบบ</h4></a></li>
+                    <li><a class="nav-link" href="{{ route('register') }}"><h4>สมัครสมาชิก</h4></a></li>
+                    @else
+    <li class="dropdown">
+        <a data-toggle="dropdown" class="dropdown-toggle" href="#"><h4>{{ Auth::user()->User_Name }} <b class="caret"></b> </h4></a>
+        <ul class="dropdown-menu">
+            <li><a href="#">ข้อมูลส่วนตัว</a></li>
+            <li><a href="#" onclick="event.preventDefault();
+                          document.getElementById('logout-form').submit();">Logout</a></li>
 
-        <main class="py-4">
+                          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                              @csrf
+                          </form>
+        </ul>
+    </li>
+
+
+                      @endguest
+              </ul>
+          </div>
+      </nav>
+
+<div class="container">
+
             @yield('content')
-        </main>
-    </div>
-    <script src="/js/app.js" charset="utf-8"></script>
 
-  <script src="https://vuejs.org/js/vue.js"></script>
+    </div>
+  </div>
+<script src="/js/app.js" charset="utf-8"></script>
+<script src="https://vuejs.org/js/vue.js"></script>
 <script src="{{ asset('js/sweetalert2.min.js') }}"></script>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<script src="//cdn.datatables.net/v/bs/dt-1.10.13/datatables.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
       @stack('scripts')
 </body>

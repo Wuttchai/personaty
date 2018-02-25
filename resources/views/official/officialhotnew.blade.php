@@ -597,7 +597,9 @@ information.datelasterror = response.data.messages.datelast[0];
     information.detailerror = false;
              information.fileofficeerror = false;
              information.nameerror = false;
-
+             information.buttonedit = true;
+             information.buttonedit2 = true;
+             information.inputedit = 'true';
        								var Hotnews_ID =	item.Hotnews_ID;
 
        								var link = "http://project3.test/hotnews/edit" + Hotnews_ID;

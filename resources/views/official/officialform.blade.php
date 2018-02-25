@@ -489,7 +489,9 @@ information.fileofficeerror = response.data.messages.fileoffice[0];
   editItem: function(item) {
              information.fileofficeerror = false;
              information.nameerror = false;
-
+             information.buttonedit = true;
+             information.buttonedit2 = true;
+             information.inputedit = 'true';
        								var info_id =	item.Info_ID;
 
        								var link = "http://project3.test/official/editinfo/" + info_id;

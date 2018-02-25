@@ -16,12 +16,28 @@ class OfficialLoginController extends Controller
      * @return void
      */
 
-
+  
     /**
      * Show the application dashboard.
      *
      * @return \Illuminate\Http\Response
      */
+     public function logout()
+     {
+       Session::forget('login');
+       Session::forget('idoffice');
+       Session::forget('nameoffice');
+       Session::forget('info');
+       Session::forget('product');
+       Session::forget('hotnews');
+       Session::forget('activity');
+       Session::forget('prison');
+
+       return view('official.official', [
+           'erx' => '',
+         ]);
+
+     }
     public function login(Request $request)
     {
 

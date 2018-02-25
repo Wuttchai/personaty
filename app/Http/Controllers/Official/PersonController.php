@@ -65,9 +65,9 @@ public $timestamps = false;
 $time =Carbon::now('Asia/Bangkok');
     \App\log::insert([
       'official_ID' => $request->id,
-      'table_log' => 'person_count',
+      'table_log' => 'ข้อมูลผู้ต้องขัง',
       'project_log' => '0',
-      'Log_Event' => 'เพิ่ม',
+      'Log_Event' => 'เพิ่มข้อมูล',
       'Log_IP'  => \Request::ip(),
       'Log_Time'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
 ]);
@@ -145,9 +145,9 @@ $time =Carbon::now('Asia/Bangkok');
             $time =Carbon::now('Asia/Bangkok');
                 \App\log::insert([
                   'official_ID' => $request->id,
-                  'table_log' => 'person_count',
+                  'table_log' => 'ข้อมูลผู้ต้องขัง',
                   'project_log' => '0',
-                  'Log_Event' => 'แก้ไข',
+                  'Log_Event' => 'แก้ไขข้อมูล',
                   'Log_IP'  => \Request::ip(),
                   'Log_Time'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
             ]);
@@ -191,9 +191,9 @@ $time =Carbon::now('Asia/Bangkok');
        $time =Carbon::now('Asia/Bangkok');
          \App\log::insert([
          'official_ID' => $request->id,
-         'table_log' => 'person_count',
+         'table_log' => 'ข้อมูลผู้ต้องขัง',
          'project_log' => $id,
-         'Log_Event' => 'ลบ',
+         'Log_Event' => 'ลบข้อมูล',
          'Log_IP'  => \Request::ip(),
          'Log_Time'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
          ]);

@@ -17,7 +17,7 @@ class Ckloginoffice
     public function handle($request, Closure $next)
     {
         if (!Session::get('login')) {
-          return redirect('/official');
+          return redirect('/official/login');
         }
         return $next($request);
     }

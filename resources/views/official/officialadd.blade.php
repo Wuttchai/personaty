@@ -614,7 +614,11 @@ if (response.data.messages == null && response.data.nocheck != 'yes') {
                                information.password_confirmationerror = false;
                              },
                     editItem: function(item) {
-
+                      information.activityedit = '';
+                     information.hotnewsedit = '';
+                     information.infoedit = '';
+                     information.productedit = '';
+                     information.prisonedit = '';
                       information.nameerror = false;
                       information.nocheck = false;
                       information.emailerror = false;
@@ -625,7 +629,6 @@ if (response.data.messages == null && response.data.nocheck != 'yes') {
                          								var link = "http://project3.test/official/officiallist" + official_id;
                          								axios.get(link, {
                          								}).then(function (response) {
-
 
                     information.id_edit = response.data[0].official_ID;
                     information.nameedit = response.data[0].official_Name;

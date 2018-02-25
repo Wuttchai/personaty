@@ -73,9 +73,9 @@ public $timestamps = false;
 $time =Carbon::now('Asia/Bangkok');
     \App\log::insert([
       'official_ID' => $request->id,
-      'table_log' => 'product',
+      'table_log' => 'ข้อมูลสินค้าวิชาชีพ',
       'project_log' => '0',
-      'Log_Event' => 'เพิ่ม',
+      'Log_Event' => 'เพิ่มข้อมูล',
       'Log_IP'  => \Request::ip(),
       'Log_Time'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
 ]);
@@ -166,9 +166,9 @@ if ($request->fileoffice) {
             $time =Carbon::now('Asia/Bangkok');
                 \App\log::insert([
                   'official_ID' => $request->id,
-                  'table_log' => 'product',
+                  'table_log' => 'ข้อมูลสินค้าวิชาชีพ',
                   'project_log' => $id,
-                  'Log_Event' => 'แก้ไข',
+                  'Log_Event' => 'แก้ไขข้อมูล',
                   'Log_IP'  => \Request::ip(),
                   'Log_Time'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
             ]);
@@ -200,7 +200,7 @@ if ($request->fileoffice) {
 
 
 }else {
-  
+
   $Validator = Validator::make($request->all(),[
     'id' => 'required|string',
     'name' => 'required|string',
@@ -220,9 +220,9 @@ if ($request->fileoffice) {
             $time =Carbon::now('Asia/Bangkok');
                 \App\log::insert([
                   'official_ID' => $request->id,
-                  'table_log' => 'product',
+                  'table_log' => 'ข้อมูลสินค้าวิชาชีพ',
                   'project_log' => $id,
-                  'Log_Event' => 'แก้ไข',
+                  'Log_Event' => 'แก้ไขข้อมูล',
                   'Log_IP'  => \Request::ip(),
                   'Log_Time'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
             ]);
@@ -258,9 +258,9 @@ if ($request->fileoffice) {
        $time =Carbon::now('Asia/Bangkok');
          \App\log::insert([
          'official_ID' => $request->id,
-         'table_log' => 'product',
+         'table_log' => 'ข้อมูลสินค้าวิชาชีพ',
          'project_log' => $id,
-         'Log_Event' => 'ลบ',
+         'Log_Event' => 'ลบข้อมูล',
          'Log_IP'  => \Request::ip(),
          'Log_Time'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
          ]);

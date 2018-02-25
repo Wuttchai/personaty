@@ -17,6 +17,7 @@ Route::get('/', function () {
 Route::get('/ww', function () {
     return view('welcome');
 });
+
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/official', function () {
@@ -31,7 +32,9 @@ Route::get('/official', function () {
 });
 Route::get('/officialapp', function () {
 
-    return view('layouts.offcialapp');
+    return view('official.official', [
+        'erx' => '',
+      ]);
   });
 
 Route::get('/official/login', function () {
@@ -58,7 +61,8 @@ Session::forget('prison');
     ]);
 });
 Route::get('/official/addoffice', 'Official\AddOfficeController@index');
-
+Route::post('/official/logfile', 'Official\AddOfficeController@logfile');
+Route::get('/official/logfile', 'Official\AddOfficeController@logfile');
 Route::post('/official/login', 'Official\OfficialLoginController@login');
 Route::get('/official/officialform', 'Official\OfficeformController@index');
 
