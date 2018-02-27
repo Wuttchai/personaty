@@ -11,7 +11,8 @@
     <title>person</title>
 
     <!-- Styles -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+
     <link rel="stylesheet" href="{{ asset('css/testboot.css') }}">
     <link rel="stylesheet" href="{{ asset('css/sweetalert2.min.css') }}">
     <link rel="stylesheet" href="fonts/thsarabunnew.css" />
@@ -70,7 +71,7 @@
     <div class="container" id="app">
       <nav class="navbar navbar-inverse navbar-fixed-top" >
         <div class="container">
-          <div class="navbar-header" style="padding: 5px;">
+          <div class="navbar-header" style="padding: 1px;">
               <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
                   <span class="sr-only">Toggle navigation</span>
                   <span class="icon-bar"></span>
@@ -78,24 +79,28 @@
                   <span class="icon-bar"></span>
               </button>
 
-              <a class="icon-bar" href="http://disputebills.com"><img src="https://upload.wikimedia.org/wikipedia/th/f/f5/%E0%B8%95%E0%B8%A3%E0%B8%B2%E0%B8%81%E0%B8%A3%E0%B8%A1%E0%B8%A3%E0%B8%B2%E0%B8%8A%E0%B8%97%E0%B8%B1%E0%B8%93%E0%B8%91%E0%B9%8C.png" height="90" alt="Dispute Bills"> </a>
+              <a class="icon-bar" href="/home"><img src="https://upload.wikimedia.org/wikipedia/th/f/f5/%E0%B8%95%E0%B8%A3%E0%B8%B2%E0%B8%81%E0%B8%A3%E0%B8%A1%E0%B8%A3%E0%B8%B2%E0%B8%8A%E0%B8%97%E0%B8%B1%E0%B8%93%E0%B8%91%E0%B9%8C.png" height="90" alt="Dispute Bills"> </a>
 
           </div>
           <!-- Collection of nav links, forms, and other content for toggling -->
-          <div id="navbarCollapse" class="collapse navbar-collapse" style="margin-top: 20px;">
+          <div id="navbarCollapse" class="collapse navbar-collapse" style="margin-top: 18px;">
               <ul class="nav navbar-nav" style="margin-left: 80px;">
-                  <li class="active"><a href="#"><h4>หน้าแรก</h4></a></li>
-                <li><a class="nav-link" href="/officialapp"><h4>สำหรับเจ้าหน้าที่</h4></a></li>
+                  <li class="active"><a href="/home"><h5>หน้าแรก</h5></a></li>
+                  <li><a class="nav-link" href="/officialapp"><h5>เกี่ยวกับเรือนจำ</h5></a></li>
+                  <li><a class="nav-link" href="/officialapp"><h5>กิจกรรมเเละประกาศ</h5></a></li>
+                  <li><a class="nav-link" href="/officialapp"><h5>เอกสารที่เผยแพร่</h5></a></li>
+                  <li><a class="nav-link" href="/Product"><h5>สินค้าวิชาชีพ</h5></a></li>
+
 
               </ul>
 
               <ul class="nav navbar-nav navbar-right">
                 @guest
-                    <li><a class="nav-link" href="{{ route('login') }}"><h4>เข้าสู่ระบบ</h4></a></li>
-                    <li><a class="nav-link" href="{{ route('register') }}"><h4>สมัครสมาชิก</h4></a></li>
+                    <li><a class="nav-link" href="{{ route('login') }}"><h5>เข้าสู่ระบบ</h5></a></li>
+                    <li><a class="nav-link" href="{{ route('register') }}"><h5>สมัครสมาชิก</h5></a></li>
                     @else
     <li class="dropdown">
-        <a data-toggle="dropdown" class="dropdown-toggle" href="#"><h4>{{ Auth::user()->User_Name }} <b class="caret"></b> </h4></a>
+        <a data-toggle="dropdown" class="dropdown-toggle" href="#"><h5>{{ Auth::user()->User_Name }} <b class="caret"></b> </h5></a>
         <ul class="dropdown-menu">
             <li><a href="#">ข้อมูลส่วนตัว</a></li>
             <li><a href="#" onclick="event.preventDefault();
@@ -119,6 +124,100 @@
 
     </div>
   </div>
+
+  <footer class="panel-footer">
+      <div class="container">
+
+        <div class="row">
+          <div class="col-md-3">
+            <h4>เกี่ยวกับ เรือนจำ</h4>
+            <ul class="contact">
+                      <li><p><a href="http://www.dop.go.th/th/aboutus/1"class="text-dark">ประวัติความเป็นมา</a></p></li>
+                      <li><p><a href="http://www.dop.go.th/th/aboutus/2"class="text-dark">วิสัยทัศน์และพันธกิจ</a></p></li>
+                      <li><p><a href="http://www.dop.go.th/th/aboutus/3"class="text-dark">โครงสร้างหน่วยงาน</a></p></li>
+                      <li><p><a href="http://www.dop.go.th/th/aboutus/4"class="text-dark">ทำเนียบผู้บริหาร</a></p></li>
+                      <li><p><a href="http://www.dop.go.th/th/aboutus/5"class="text-dark">ยุทธศาสตร์</a></p></li>
+                      <li><p><a href="http://www.dop.go.th/th/aboutus/6"class="text-dark">ภารกิจหน้าที่</a></p></li>
+                      <li><p><a href="/officialapp"class="text-dark">สำหรับเจ้าหน้าที่</a></p></li>
+
+
+              <li><p><a href="http://www.dop.go.th/th/organization"class="text-dark">หน่วยงานภายใน</a></p></li>
+            </ul>
+
+          </div>
+          <div class="col-md-3">
+            <h4>เอกสารเผยแพร่</h4>
+            <ul class="contact">
+                      <li><p><a href="http://www.dop.go.th/th/organization/1" class="text-dark">สำนักงานเลขานุการกรม</a></p></li>
+                      <li><p><a href="http://www.dop.go.th/th/organization/7" class="text-dark">กองยุทธศาสตร์และแผนงาน</a></p></li>
+                      <li><p><a href="http://www.dop.go.th/th/organization/2" class="text-dark">กองส่งเสริมสวัสดิการและคุ้มครองสิทธิผู้สูงอายุ</a></p></li>
+                      <li><p><a href="http://www.dop.go.th/th/organization/3" class="text-dark">กองส่งเสริมศักยภาพผูัสูงอายุ</a></p></li>
+                      <li><p><a href="http://www.dop.go.th/th/organization/4" class="text-dark">กองบริหารกองทุนผู้สูงอายุ</a></p></li>
+                      <li><p><a href="http://www.dop.go.th/th/organization/5" class="text-dark">กลุ่มพัฒนาระบบบริหาร</a></p></li>
+                      <li><p><a href="http://www.dop.go.th/th/organization/6" class="text-dark">กลุ่มตรวจสอบภายใน</a></p></li>
+                    </ul>
+          </div>
+
+          <div class="col-md-3">
+            <h4>คลังความรู้</h4>
+            <ul class="contact">
+                  <li><p>
+            <a href="http://www.dop.go.th/th/know/1" class="text-dark">สถิติผู้สูงอายุ</a>
+          </p></li>
+                  <li><p>
+            <a href="http://www.dop.go.th/th/know/2" class="text-dark">สถานการณ์ผู้สูงอายุ</a>
+          </p></li>
+                  <li><p>
+            <a href="http://www.dop.go.th/th/know/3" class="text-dark">บทความ</a>
+          </p></li>
+                  <li><p>
+            <a href="http://www.dop.go.th/th/know/4" class="text-dark">ผลงานวิชาการ</a>
+          </p></li>
+                  <li><p>
+            <a href="http://www.dop.go.th/th/know/5" class="text-dark">เอกสารเผยแพร่/สื่อสิ่งพิมพ์</a>
+          </p></li>
+                  <li><p>
+            <a href="http://www.dop.go.th/th/know/7" class="text-dark">เทคโนโลยีสารสนเทศ</a>
+          </p></li>
+                  <li><p>
+            <a href="http://www.dop.go.th/th/know/6" class="text-dark">สื่อมัลติมีเดีย</a>
+          </p></li>
+                    </ul>
+
+
+
+          </div>
+          <div class="col-md-3">
+              <h4>บริการ</h4>
+                          <ul class="contact">
+                            <li>
+                              <p><a href="http://www.dop.go.th/th/formdownload" class="text-dark">ดาวน์โหลดเอกสาร/แบบฟอร์ม</a></p>
+                            </li>
+
+                            <li><p>
+                              <a href="http://www.dop.go.th/th/topic" class="text-dark">ถามตอบ (Q&amp;A)</a>
+                            </p></li>
+                            <li><p>
+                              <a href="http://www.dop.go.th/th/faq" class="text-dark">คำถามที่พบบ่อย (FAQ)</a></p>
+                            </li>
+                            <li>
+                              <p><a href="http://www.dop.go.th/th/formcomplaint" class="text-dark">ร้องเรียน</a></p>
+                            </li>
+
+                            <li>
+                              <p><a href="http://www.dop.go.th/th/weblink" class="text-dark">เว็บลิงค์</a></p>
+                            </li>
+                            <li>
+                              <p><a href="http://www.dop.go.th/th/rss" class="text-dark">ระบบกระจายข่าว (RSS)</a></p>
+                            </li>
+                            <li>
+                              <p><a href="http://www.dop.go.th/th/search" class="text-dark">ค้นหา</a></p>
+                            </li>
+                          </ul>
+
+          </div>
+        </div>
+
 <script src="/js/app.js" charset="utf-8"></script>
 <script src="https://vuejs.org/js/vue.js"></script>
 <script src="{{ asset('js/sweetalert2.min.js') }}"></script>

@@ -46,7 +46,7 @@ public $timestamps = false;
     $validator =  Validator::make($request->all(), [
          'id' => 'required|string',
          'name' => 'required|string',
-        'fileoffice' => 'required|image64:jpeg,jpg,png'
+        'fileoffice' => 'required|image64:jpeg,jpg,png|img_min_size:1100,400'
 
            ]);
 
@@ -61,9 +61,9 @@ public $timestamps = false;
 
 
                  $imageData = $request->get('fileoffice');
-       $fileName = Carbon::now()->timestamp . '_' . uniqid() . '.' . explode('/', explode(':', substr($imageData, 0, strpos($imageData, ';')))[1])[1];
-     \Image::make($imageData)->save(public_path('images/').$fileName);
 
+       $fileName = Carbon::now()->timestamp . '_' . uniqid() . '.' . explode('/', explode(':', substr($imageData, 0, strpos($imageData, ';')))[1])[1];
+     \Image::make($imageData)->resize(1169, 487)->save(public_path('images/').$fileName);
 
 $time =Carbon::now('Asia/Bangkok');
     \App\log::insert([
