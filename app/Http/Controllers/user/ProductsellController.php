@@ -51,6 +51,22 @@ Cart::add($request->id, $product[0]->Pro_Name, $request->quantity, $product[0]->
 
     public function index()
     {
+
+
+      if (isset($_GET['type'])) {
+        $product = \App\product::select('Pro_ID', 'Pro_Name','Pro_img', 'Pro_Price', 'Pro_Type','Pro_Count')
+                    ->orderBy('proupdated_at', 'desc')
+                    ->where('Pro_Type', '=', $_GET['type'])
+                    ->limit(4)
+                    ->get();
+
+        
+
+        return view('user.product',[
+          'products' => $product
+        ]);
+      }
+
       if (isset($_GET['q'])) {
 $keyword = $_GET['q'];
         $product = \App\product::select('Pro_ID', 'Pro_Name','Pro_img', 'Pro_Price', 'Pro_Type','Pro_Count')
@@ -77,5 +93,6 @@ $qtv = $product[0]->Pro_Count;
         'products' => $product
       ]);
 
-    }
+  }
+
 }

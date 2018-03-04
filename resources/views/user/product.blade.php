@@ -46,8 +46,10 @@
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">ประเภทสินค้า <b class="caret"></b></a>
 
         <ul class="dropdown-menu" >
-          <li><a href="#">เฟอนิเจอร์</a></li>
-          <li><a href="ProductAyutaya">ของฝาก</a></li>
+          <li><a href="/ProductAyutaya?type=เฟอนิเจอร์">เฟอนิเจอร์</a></li>
+          <li><a href="/ProductAyutaya?type=ของฝาก">ของฝาก</a></li>
+          <li class="divider"></li>
+          <li><a href="/ProductAyutaya">ค่าเริ่มต้น</a></li>
 
         </ul>
 
@@ -74,7 +76,7 @@
           <li><a href="#">ต่ำกว่า 1000</a></li>
             <li><a href="#">สูงกว่า 1000</a></li>
           <li class="divider"></li>
-          <li><a href="#">คืนค่า</a></li>
+          <li><a href="#">ค่าเริ่มต้น</a></li>
         </ul>
       </li>
 
@@ -233,7 +235,7 @@ var information =  new Vue({
         'id'  :'',
         'quantity' :1,
         'cars' : false,
-        'seach' : <?php if (Session::get('search')== null ) {echo 'true';}else {echo 'false';} ?>,
+        'seach' : <?php if (Session::get('search') == 'ค้นหา' || Session::get('search') == null ) {echo 'true';}else {echo 'false';} ?>,
         'cancelsearch' :<?php if (Session::get('search')!='ค้นหา' && Session::get('search')!= null ) {echo 'true';}else {echo 'false';} ?>,
 
 
