@@ -105,5 +105,7 @@ Route::post('/product/update/{Pro_ID}', 'Official\ProductController@update');
 Route::post('/product/delete{Pro_ID}', 'Official\ProductController@delete');
 
 
+
 Route::get('/ProductAyutaya', 'user\ProductsellController@index');
 Route::post('/Productaddcars', 'user\ProductsellController@addcars');
+Route::post('/Productdeletecars', 'user\ProductsellController@deletecars');
