@@ -127,7 +127,7 @@ if ($request->fileoffice) {
   $Validator = Validator::make($request->all(),[
     'id' => 'required|string',
     'name' => 'required|string',
-   'fileoffice' => 'required|image64:jpeg,jpg,png'
+   'fileoffice' => 'required|image64:jpeg,jpg,png|img_min_size:1100,400'
   ]);
   if($Validator->errors()->messages() != null){
     return[
@@ -138,9 +138,10 @@ if ($request->fileoffice) {
 
 
 
+
   $imageData = $request->get('fileoffice');
  $fileName = Carbon::now()->timestamp . '_' . uniqid() . '.' . explode('/', explode(':', substr($imageData, 0, strpos($imageData, ';')))[1])[1];
- \Image::make($imageData)->save(public_path('images/').$fileName);
+ \Image::make($imageData)->resize(1169, 487)->save(public_path('images/').$fileName);
 
 
 //-------------

@@ -49,10 +49,9 @@
                  <tr>
                    <th>ชื่อผู้ทำ</th>
                    <th>ชื่อสินค้า</th>
-                   <th>จำนวนสินค้า</th>
-
-                   <th>ตัวอย่างรูปภาพ</th>
                    <th>ราคาสินค้า</th>
+                   <th>จำนวนสินค้า</th>
+                   <th>ตัวอย่างรูปภาพ</th>
                    <th>วันที่อัพเดทล่าสุด</th>
                    <th>การจัดการ</th>
                  </tr>
@@ -65,8 +64,8 @@
                  <td>@{{ item.official_Name }}</td>
                  <td>@{{ item.Pro_Name }}</td>
                  <td>@{{ item.Pro_Price }}</td>
-                 <td><img :src="'{{asset('product')}}/' + item.Pro_img" height="42" width="42"/></td>
                  <td>@{{ item.Pro_Count }}</td>
+                 <td><img :src="'{{asset('product')}}/' + item.Pro_img" height="42" width="42"/></td>
                  <td>@{{ item.proupdated_at }}</td>
            <td >
 
@@ -583,7 +582,12 @@ var information =  new Vue({
                reader.readAsDataURL(file);
            },
            insert: function () {
-
+             information.nameerror = false;
+             information.fileofficeerror = false;
+             information.detailerror = false;
+             information.typeerror = false;
+             information.counterror = false;
+             information.moneyerror = false;
              axios.defaults.headers.post['formData'] = 'multipart/form-data';
              axios.post('http://project3.test/official/product/add', {
                  id: this.id,
@@ -661,8 +665,8 @@ if (response.data[0].official_ID == information.id) {
   information.imageedit = response.data[0].Pro_img;
   information.showimg = response.data[0].Pro_img;
 information.typeedit = response.data[0].Pro_Type;
-information.moneyedit = response.data[0].Pro_Count;
-information.countedit = response.data[0].Pro_Price;
+information.moneyedit = response.data[0].Pro_Price;
+information.countedit = response.data[0].Pro_Count;
 
 $("#editofficial").modal('show');
 }else {
@@ -672,8 +676,8 @@ $("#editofficial").modal('show');
   information.imageedit = response.data[0].Pro_img;
   information.showimg = response.data[0].Pro_img;
 information.typeedit = response.data[0].Pro_Type;
-information.moneyedit = response.data[0].Pro_Count;
-information.countedit = response.data[0].Pro_Price;
+information.moneyedit = response.data[0].Pro_Price;
+information.countedit = response.data[0].Pro_Count;
   information.buttonedit = false ;
   information.buttonedit2 = false;
   information.inputedit = 'false';
@@ -691,7 +695,12 @@ information.countedit = response.data[0].Pro_Price;
 
        							        },
         updateItem: function() {
-
+          information.nameerror = false;
+          information.fileofficeerror = false;
+          information.detailerror = false;
+          information.typeerror = false;
+          information.counterror = false;
+          information.moneyerror = false;
                    var Pro_ID =	this.id_edit;
 
                    var link = "http://project3.test/product/update/" + Pro_ID;

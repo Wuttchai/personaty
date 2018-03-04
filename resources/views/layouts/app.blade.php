@@ -11,11 +11,14 @@
     <title>person</title>
 
     <!-- Styles -->
+    <!-- Font Awesome -->
+
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
 
     <link rel="stylesheet" href="{{ asset('css/testboot.css') }}">
     <link rel="stylesheet" href="{{ asset('css/sweetalert2.min.css') }}">
-    <link rel="stylesheet" href="fonts/thsarabunnew.css" />
+    <link rel="stylesheet" href="{{ asset('fonts/thsarabunnew.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/sweetalert2.min.css') }}">
 
 
 <style media="screen">
@@ -68,8 +71,8 @@
 </style>
 </head>
 <body>
-    <div class="container" id="app">
-      <nav class="navbar navbar-inverse navbar-fixed-top" >
+    <div class="container">
+      <nav class="navbar navbar-inverse navbar-fixed-top"  id="app">
         <div class="container">
           <div class="navbar-header" style="padding: 1px;">
               <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
@@ -85,11 +88,11 @@
           <!-- Collection of nav links, forms, and other content for toggling -->
           <div id="navbarCollapse" class="collapse navbar-collapse" style="margin-top: 18px;">
               <ul class="nav navbar-nav" style="margin-left: 80px;">
-                  <li class="active"><a href="/home"><h5>หน้าแรก</h5></a></li>
+                  <li class="<?php echo  Session::get('tabmanu'); ?>"><a href="/home"><h5>หน้าแรก</h5></a></li>
                   <li><a class="nav-link" href="/officialapp"><h5>เกี่ยวกับเรือนจำ</h5></a></li>
                   <li><a class="nav-link" href="/officialapp"><h5>กิจกรรมเเละประกาศ</h5></a></li>
                   <li><a class="nav-link" href="/officialapp"><h5>เอกสารที่เผยแพร่</h5></a></li>
-                  <li><a class="nav-link" href="/Product"><h5>สินค้าวิชาชีพ</h5></a></li>
+                  <li class="<?php echo  Session::get('tabmanu1'); ?>"><a class="nav-link" href="/ProductAyutaya"><h5>สินค้าวิชาชีพ</h5></a></li>
 
 
               </ul>
@@ -214,6 +217,13 @@
                               <p><a href="http://www.dop.go.th/th/search" class="text-dark">ค้นหา</a></p>
                             </li>
                           </ul>
+</footer>
+<footer class="panel-footer ">
+      <div class="container">
+        <p class="m-0 text-center text-danger">Copyright &copy; PersonAyutaya Website 2018</p>
+      </div>
+      <!-- /.container -->
+    </footer>
 
           </div>
         </div>
@@ -223,7 +233,7 @@
 <script src="{{ asset('js/sweetalert2.min.js') }}"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+  <script src="{{ asset('js/sweetalert2.min.js') }}"></script>
       @stack('scripts')
 </body>
 </html>

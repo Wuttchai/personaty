@@ -103,3 +103,7 @@ Route::post('/official/product/add', 'Official\ProductController@insert');
 Route::get('/product/edit{Pro_ID}', 'Official\ProductController@showedit');
 Route::post('/product/update/{Pro_ID}', 'Official\ProductController@update');
 Route::post('/product/delete{Pro_ID}', 'Official\ProductController@delete');
+
+
+Route::get('/ProductAyutaya', 'user\ProductsellController@index');
+Route::post('/Productaddcars', 'user\ProductsellController@addcars');
