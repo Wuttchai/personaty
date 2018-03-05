@@ -37,11 +37,21 @@ public $qtv = 0 ;
 
 
 
-Cart::add($request->id, $product[0]->Pro_Name, $request->quantity, $product[0]->Pro_Price);
+$cartItem = Cart::add($request->id, $product[0]->Pro_Name, $request->quantity, $product[0]->Pro_Price);
+
 
 
      }
+     public function confrim(Request $request)
+     {
+$num =0;
+     foreach(Cart::content() as $quan) {
 
+       $id[$num] = $quan->id;
+       $num ++;
+}
+dd($id);
+     }
      public function deletecars(Request $request)
      {
        Cart::remove($request->id);
@@ -51,8 +61,48 @@ Cart::add($request->id, $product[0]->Pro_Name, $request->quantity, $product[0]->
 
     public function index()
     {
+if (isset($_GET['price'])) {
+if ($_GET['price'] == 'one') {
+  $product = \App\product::select('Pro_ID', 'Pro_Name','Pro_img', 'Pro_Price', 'Pro_Type','Pro_Count')
+              ->where('Pro_Price', '<', 1000)
+              ->limit(4)
+              ->get();
+              return view('user.product',[
+                'products' => $product
+              ]);
+}
+if ($_GET['price'] == 'two') {
+  $product = \App\product::select('Pro_ID', 'Pro_Name','Pro_img', 'Pro_Price', 'Pro_Type','Pro_Count')
+              ->where('Pro_Price', '>=', 1000)
+              ->limit(4)
+              ->get();
+              return view('user.product',[
+                'products' => $product
+              ]);
+}
+if ($_GET['price'] == 'ASC') {
+  $product = \App\product::select('Pro_ID', 'Pro_Name','Pro_img', 'Pro_Price', 'Pro_Type','Pro_Count')
+              ->orderBy('Pro_Price', 'asc')
+
+              ->limit(4)
+              ->get();
+              return view('user.product',[
+                'products' => $product
+              ]);
+}
+if ($_GET['price'] == 'DESC') {
+  $product = \App\product::select('Pro_ID', 'Pro_Name','Pro_img', 'Pro_Price', 'Pro_Type','Pro_Count')
+              ->orderBy('Pro_Price', 'desc')
+              ->limit(4)
+              ->get();
+              return view('user.product',[
+                'products' => $product
+              ]);
+}
 
 
+
+}
       if (isset($_GET['type'])) {
         $product = \App\product::select('Pro_ID', 'Pro_Name','Pro_img', 'Pro_Price', 'Pro_Type','Pro_Count')
                     ->orderBy('proupdated_at', 'desc')
@@ -60,7 +110,7 @@ Cart::add($request->id, $product[0]->Pro_Name, $request->quantity, $product[0]->
                     ->limit(4)
                     ->get();
 
-        
+
 
         return view('user.product',[
           'products' => $product

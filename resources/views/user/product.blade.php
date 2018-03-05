@@ -66,17 +66,21 @@
         </form>
     </div>
     <ul class="nav navbar-nav navbar-right">
-   <li><a ><span  v-on:click="showcars()" class="glyphicon glyphicon-shopping-cart" style="font-size:20px;"></span></a></li>
+
+   <li><a ><span  v-on:click="showcars()" class="glyphicon glyphicon-shopping-cart" style="font-size:20px;"></span>  <span class="badge badge-notify ">{{ Cart::content()->count() }}</span></a></li>
+
+
+
 
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">กรองราคาสินค้า <b class="caret"></b></a>
         <ul class="dropdown-menu">
-          <li><a href="#">ถูกไปหาเเพง</a></li>
-          <li><a href="#">เเพงไปหาถูก</a></li>
-          <li><a href="#">ต่ำกว่า 1000</a></li>
-            <li><a href="#">สูงกว่า 1000</a></li>
+          <li><a href="/ProductAyutaya?price=ASC">ถูกไปหาเเพง</a></li>
+          <li><a href="/ProductAyutaya?price=DESC">เเพงไปหาถูก</a></li>
+          <li><a href="/ProductAyutaya?price=one">ต่ำกว่า 1000</a></li>
+            <li><a href="/ProductAyutaya?price=two">สูงกว่า 1000</a></li>
           <li class="divider"></li>
-          <li><a href="#">ค่าเริ่มต้น</a></li>
+          <li><a href="/ProductAyutaya">ค่าเริ่มต้น</a></li>
         </ul>
       </li>
 
@@ -86,7 +90,7 @@
 
 
 
-@if (Cart::content() != null)
+@if (Cart::content() != null  && Cart::content() != "[]")
 <div class="col-lg-2" >
 </div>
 <div class="col-lg-8" v-if="cars">
@@ -104,7 +108,7 @@
             </tr>
           </thead>
           <tbody>
-<?php $num =1; ?>
+<?php $num =0; ?>
 
           @foreach (Cart::content() as $key1 => $product)
 
@@ -117,9 +121,9 @@
               &nbsp;&nbsp; <button  type="button"  class="btn btn-danger" v-on:click="deletecars('<?php echo $key1 ?>')"><i class="glyphicon glyphicon-trash" aria-hidden="true"></i></button>
                </td>
             </tr>
+
 <?php $num ++; ?>
              @endforeach
-
           </tbody>
           <tfoot>
              		<tr>
@@ -140,7 +144,9 @@
              	</tfoot>
         </table>
         <div class="col-lg-12 text-center">
-        <form action="" method="POST" class="side-by-side">
+
+          <form class="navbar-form"  action="/cart/confrim" method="POST" >
+		
                               {!! csrf_field() !!}
                               <input type="submit" class="btn btn-success btn-sm " value="ยืนยันการซื้อ">
                           </form>

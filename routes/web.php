@@ -112,3 +112,4 @@ Route::post('/Productaddcars', 'user\ProductsellController@addcars');
 Route::post('/Productdeletecars', 'user\ProductsellController@deletecars');
 
 Route::get('/Product/type1', 'user\ProductsellController@type1');
+Route::POST('/cart/confrim', 'user\ProductsellController@confrim');
