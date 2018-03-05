@@ -146,7 +146,7 @@
         <div class="col-lg-12 text-center">
 
           <form class="navbar-form"  action="/cart/confrim" method="POST" >
-		
+
                               {!! csrf_field() !!}
                               <input type="submit" class="btn btn-success btn-sm " value="ยืนยันการซื้อ">
                           </form>
