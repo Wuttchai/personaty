@@ -12,6 +12,6 @@ class sell_detail extends Model
   public $timestamps = false;
 
   public $fillable = [
-      'Det_ID', 'Pro_ID', 'Det_Num','Det_total'
+      'Det_ID','Prosell_ID', 'Pro_ID', 'Det_Num','Det_total'
   ];
 }

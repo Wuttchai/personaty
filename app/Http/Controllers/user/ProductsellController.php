@@ -18,7 +18,7 @@ class ProductsellController extends Controller
      */
      public function __construct()
      {
-  $this->middleware('auth');
+
      }
 
     /**
@@ -42,37 +42,7 @@ $cartItem = Cart::add($request->id, $product[0]->Pro_Name, $request->quantity, $
 
 
      }
-     public function confrim(Request $request)
-     {
 
-$num =0;
-$Quantity = 0;
-$totalPirce =0;
-     foreach(Cart::content() as $carcon) {
-
-       \App\sell_detail::insert([
-                     'Pro_ID' => $carcon->id,
-                     'Det_Num'  => $carcon->qty,
-                     'Det_total' => $carcon->qty * $carcon->price
-                     ]);
-       $num ++;
-       $Quantity += $carcon->qty;
-       $totalPirce += $carcon->qty * $carcon->price;
-}
-$time =Carbon::now('Asia/Bangkok');
-
-\App\product_sell::insert([
-              'User_Name' => Auth::user()->User_ID,
-              'Prosell_Quantity' => $Quantity,
-              'Prosell_totalPirce'  => $totalPirce,
-              'Prosell_send' => '',
-              'Prosell_creat'=>   "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
-              ]);
-
-
-
-
-     }
      public function deletecars(Request $request)
      {
        Cart::remove($request->id);
@@ -152,7 +122,8 @@ $keyword = $_GET['q'];
           'products' => $product
         ]);
       }
-
+      $time =Carbon::now('Asia/Bangkok');
+      Session::put("date","" . $time->day. "/" . $time->month . "/" . $time->year . "");
       Session::forget('tabmanu');
       Session::put("tabmanu1","active");
       Session::put("search","ค้นหา");

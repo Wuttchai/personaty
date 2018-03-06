@@ -12,6 +12,6 @@ class product_sell extends Model
   public $timestamps = false;
 
   public $fillable = [
-      'User_Name', 'Prosell_Quantity', 'Prosell_totalPirce','Prosell_send','Prosell_creat'
+      'Prosell_ID','User_Name', 'Prosell_Quantity', 'Prosell_totalPirce','Prosell_send','Prosell_creat'
   ];
 }

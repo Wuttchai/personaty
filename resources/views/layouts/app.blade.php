@@ -14,6 +14,7 @@
     <!-- Font Awesome -->
 
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+    <link href="https://adminlte.io/themes/AdminLTE/dist/css/AdminLTE.min.css" rel="stylesheet">
 
     <link rel="stylesheet" href="{{ asset('css/testboot.css') }}">
     <link rel="stylesheet" href="{{ asset('css/sweetalert2.min.css') }}">

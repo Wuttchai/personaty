@@ -102,21 +102,22 @@
             <tr>
               <th scope="col">ลำดับ</th>
               <th>ชื่อสินค้า</th>
-              <th>ราคาสินค้า</th>
               <th>จำนวนสินค้า</th>
+              <th>ราคาสินค้า</th>
               <th>การจัดการ</th>
             </tr>
           </thead>
           <tbody>
-<?php $num =0; ?>
+<?php $num =1; ?>
 
           @foreach (Cart::content() as $key1 => $product)
 
             <tr>
               <th scope="row">&nbsp;&nbsp;&nbsp;{{ $num }}</th>
               <td>{{ $product->name }}</td>
-              <td>&nbsp;{{ $product->price }} บาท</td>
               <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ $product->qty }} ชิ้น</td>
+              <td>&nbsp;{{ $product->price }} บาท</td>
+
               <td>
               &nbsp;&nbsp; <button  type="button"  class="btn btn-danger" v-on:click="deletecars('<?php echo $key1 ?>')"><i class="glyphicon glyphicon-trash" aria-hidden="true"></i></button>
                </td>
@@ -145,7 +146,7 @@
         </table>
         <div class="col-lg-12 text-center">
 
-          <form class="navbar-form"  action="/cart/confrim" method="POST" >
+          <form class="navbar-form"  action="/cart/confrimadd" method="POST" >
 
                               {!! csrf_field() !!}
                               <input type="submit" class="btn btn-success btn-sm " value="ยืนยันการซื้อ">
