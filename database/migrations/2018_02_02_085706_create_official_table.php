@@ -21,7 +21,7 @@ class CreateofficialTable extends Migration
           $table->string('official_cotton');
           $table->string('official_Password');
 
-          
+
           $table->string('info');
           $table->string('product');
           $table->string('hotnews');
@@ -41,6 +41,6 @@ class CreateofficialTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_sell');
+        Schema::dropIfExists('official');
     }
 }
