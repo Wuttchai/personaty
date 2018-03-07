@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDepartmentTable extends Migration
+class CreateSellDetailTable extends Migration
 {
     /**
      * Run the migrations.
@@ -19,7 +19,7 @@ class CreateDepartmentTable extends Migration
             $table->integer('Pro_ID');
             $table->integer('Dept_Num');
             $table->integer('Det_total');
-          
+
         });
     }
 
