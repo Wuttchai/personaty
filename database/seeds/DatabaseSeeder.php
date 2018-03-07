@@ -9,6 +9,7 @@ class DatabaseSeeder extends Seeder
      *
      * @return void
      */
+
     public function run()
     {
       App\official::create([
@@ -16,8 +17,13 @@ class DatabaseSeeder extends Seeder
                         'official_Name' => 'Admin',
                         'official_Email' => 'admin@admin.com',
                         'official_Role' => '0',
-                        'official_cotton' =>'0',
+                        'official_cotton' => '0',
                         'official_Password' => '123456',
+                        'info' => 'จัดการ',
+                        'product' => 'จัดการ',
+                        'hotnews' => 'จัดการ',
+                        'activity' => 'จัดการ',
+                        'prison' => 'จัดการ',
 
                       ]);
     }
