@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
                         'official_Name' => 'Admin',
                         'official_Email' => 'admin@admin.com',
                         'official_Role' => '0',
-                        'Log_ID'=>'0',
+                        
                         'official_Password' => '123456',
 
                       ]);
