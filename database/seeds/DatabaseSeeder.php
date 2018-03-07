@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-
+use Carbon\Carbon;
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -12,6 +12,7 @@ class DatabaseSeeder extends Seeder
 
     public function run()
     {
+      $time =Carbon::now('Asia/Bangkok');
       App\official::create([
 
                         'official_Name' => 'Admin',
@@ -24,7 +25,8 @@ class DatabaseSeeder extends Seeder
                         'hotnews' => 'จัดการ',
                         'activity' => 'จัดการ',
                         'prison' => 'จัดการ',
-
+                        'offcreated_at' => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
+                        'offupdated_at' => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
                       ]);
     }
 }
