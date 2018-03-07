@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSellDetailTable extends Migration
+class CreateDepartmentTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,11 +14,12 @@ class CreateSellDetailTable extends Migration
     public function up()
     {
         Schema::create('sell_detail', function (Blueprint $table) {
-            $table->increments('Det_ID');
+            $table->increments('Dept_ID');
+              $table->integer('Prosell_ID');
             $table->integer('Pro_ID');
-            $table->integer('Det_price');
-            $table->integer('Det_Num');
-            
+            $table->integer('Dept_Num');
+            $table->integer('Det_total');
+          
         });
     }
 
@@ -29,6 +30,6 @@ class CreateSellDetailTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sell_detail');
+        Schema::dropIfExists('department');
     }
 }

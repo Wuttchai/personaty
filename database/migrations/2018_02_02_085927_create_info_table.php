@@ -18,8 +18,8 @@ class CreateInfoTable extends Migration
             $table->integer('Log_ID');
             $table->string('Info_Name');
             $table->string('Info_Img');
-
-            $table->timestamps();
+            $table->dateTime('Infocreated_at');
+            $table->dateTime('Infoupdated_at');
         });
     }
 

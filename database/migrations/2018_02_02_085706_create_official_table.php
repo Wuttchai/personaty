@@ -15,13 +15,21 @@ class CreateofficialTable extends Migration
     {
         Schema::create('official', function (Blueprint $table) {
           $table->increments('official_ID');
-          $table->string('official_Name');
+          $table->string('official_Name')->unique();
           $table->string('official_Email')->unique();
           $table->string('official_Role');
           $table->string('official_cotton');
           $table->string('official_Password');
-          $table->rememberToken();
-          $table->timestamps();
+
+          
+          $table->string('info');
+          $table->string('product');
+          $table->string('hotnews');
+          $table->string('activity');
+          $table->string('prison');
+
+          $table->dateTime('offcreated_at');
+          $table->dateTime('offupdated_at');
 
         });
     }
