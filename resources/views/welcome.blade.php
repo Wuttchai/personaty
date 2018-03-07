@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>Capture Web camera image using WebcamJS and PHP - Theonlytutorials.com</title>
+	<title>WebcamJS Test Page</title>
 	<style type="text/css">
 		body { font-family: Helvetica, sans-serif; }
 		h2, h3 { margin-top:0; }
@@ -15,19 +15,19 @@
 <body>
 	<div id="results">Your captured image will appear here...</div>
 
-	<h1>Capture Web camera image using WebcamJS and PHP - Theonlytutorials.com</h1>
-	<h3>Demonstrates simple 600x460 capture &amp; display</h3>
+	<h1>WebcamJS Test Page</h1>
+	<h3>Demonstrates simple 320x240 capture &amp; display</h3>
 
 	<div id="my_camera"></div>
 
 	<!-- First, include the Webcam.js JavaScript Library -->
-	<script type="text/javascript" src="webcam.js"></script>
 
+<script src="{{ asset('js/text.js') }}"></script>
 	<!-- Configure a few settings and attach camera -->
 	<script language="JavaScript">
 		Webcam.set({
-			width: 600,
-			height: 460,
+			width: 320,
+			height: 240,
 			image_format: 'jpeg',
 			jpeg_quality: 90
 		});
@@ -45,13 +45,9 @@
 			// take snapshot and get image data
 			Webcam.snap( function(data_uri) {
 				// display results in page
-
-
-				Webcam.upload( data_uri, 'saveimage.php', function(code, text) {
-					document.getElementById('results').innerHTML =
+				document.getElementById('results').innerHTML =
 					'<h2>Here is your image:</h2>' +
-					'<img src="'+text+'"/>';
-				} );
+					'<img src="'+data_uri+'"/>';
 			} );
 		}
 	</script>

@@ -146,7 +146,7 @@
         </table>
         <div class="col-lg-12 text-center">
 
-          <form class="navbar-form"  action="/cart/confrimadd" method="POST" >
+          <form class="navbar-form"  action="/cart/confrimadd" method="get" >
 
                               {!! csrf_field() !!}
                               <input type="submit" class="btn btn-success btn-sm " value="ยืนยันการซื้อ">

@@ -77,17 +77,7 @@
                 <!-- Table row -->
                 <div class="row">
                   <div class="col-xs-12 table-responsive">
-                    <h1>test 1 (capture attr)</h1>
-    <input type="file" capture="camera" accept="image/*">
-
-    <h1>test 2 (capture in acc)</h1>
-    <input type="file" accept="image/*;capture=camera">
-
-    <h1>test 3 (capture bool)</h1>
-    <input type="file" accept="image/*" capture>
-
-    <h1>test 4 (capture bool, video)</h1>
-    <input type="file" accept="video/*" capture>
+              
 
                     <table class="table table-striped">
                       <thead>
