@@ -13,12 +13,12 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
       $time =Carbon::now('Asia/Bangkok');
-  
 
 
-                      App\official::create([
 
-                                        'official_ID' => '6',
+                      App\log::create([
+
+                                      
                                         'table_log' => 'official',
                                         'project_log' => '0',
                                         'Log_Event' => 'เข้าสู่ระบบ',
