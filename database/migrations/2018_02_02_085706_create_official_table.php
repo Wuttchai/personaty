@@ -20,14 +20,11 @@ class CreateofficialTable extends Migration
           $table->string('official_Role');
           $table->string('official_cotton');
           $table->string('official_Password');
-
-
           $table->string('info');
           $table->string('product');
           $table->string('hotnews');
           $table->string('activity');
           $table->string('prison');
-
           $table->dateTime('offcreated_at');
           $table->dateTime('offupdated_at');
 

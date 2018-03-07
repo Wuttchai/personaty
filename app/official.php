@@ -9,6 +9,7 @@ class official extends Model
 {
 
   protected $table = 'official';
+  protected $primaryKey = 'official_ID';
 public $timestamps = false;
   public $fillable = [
       'official_ID', 'official_Name', 'official_Email','official_Role','info','product','hotnews','activity	','prison',
