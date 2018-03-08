@@ -125,6 +125,7 @@ $keyword = $_GET['q'];
       $time =Carbon::now('Asia/Bangkok');
       Session::put("date","" . $time->day. "/" . $time->month . "/" . $time->year . "");
       Session::forget('tabmanu');
+      Session::forget('tabmanu2');
       Session::put("tabmanu1","active");
       Session::put("search","ค้นหา");
       $product = \App\product::select('Pro_ID', 'Pro_Name','Pro_img', 'Pro_Price', 'Pro_Type','Pro_Count')

@@ -24,6 +24,7 @@ class HomeController extends Controller
     public function index()
     {
       Session::forget('tabmanu1');
+      Session::forget('tabmanu2');
       Session::put("tabmanu","active");
       $info = \App\info::select('Info_ID', 'Info_Name', 'Info_Img')
                   ->orderBy('infoupdated_at', 'desc')->limit(5)->get();

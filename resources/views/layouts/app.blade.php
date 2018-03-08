@@ -94,7 +94,7 @@
                   <li><a class="nav-link" href="/officialapp"><h5>กิจกรรมเเละประกาศ</h5></a></li>
                   <li><a class="nav-link" href="/officialapp"><h5>เอกสารที่เผยแพร่</h5></a></li>
                   <li class="<?php echo  Session::get('tabmanu1'); ?>"><a class="nav-link" href="/ProductAyutaya"><h5>สินค้าวิชาชีพ</h5></a></li>
-
+                  <li class="<?php echo  Session::get('tabmanu2'); ?>"><a class="nav-link" href="/webboard"><h5>กระทู้สอบถาม</h5></a></li>
 
               </ul>
 

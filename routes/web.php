@@ -119,3 +119,5 @@ Route::get('/invoice-print', function () {
 
     return view('user.carsprint');
   });
+
+  Route::get('/webboard', 'user\WebboardController@index');
