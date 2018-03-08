@@ -15,7 +15,7 @@ class CreatePersonCountTable extends Migration
     {
         Schema::create('person_count', function (Blueprint $table) {
             $table->increments('Person_ID');
-            $table->integer('Log_ID');
+            $table->integer('Log_ID')->unsigned();
             $table->integer('Person_Num');
             $table->string('Person_Type');
             $table->dateTime('percreated_at');

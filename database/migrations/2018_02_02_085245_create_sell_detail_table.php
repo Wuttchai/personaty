@@ -15,8 +15,8 @@ class CreateSellDetailTable extends Migration
     {
         Schema::create('sell_detail', function (Blueprint $table) {
             $table->increments('Dept_ID');
-              $table->integer('Prosell_ID');
-            $table->integer('Pro_ID');
+              $table->integer('Prosell_ID')->unsigned();
+            $table->integer('Pro_ID')->unsigned();
             $table->integer('Dept_Num');
             $table->integer('Det_total');
 

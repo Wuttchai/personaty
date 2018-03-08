@@ -15,7 +15,7 @@ class CreateProductSellTable extends Migration
     {
         Schema::create('product_Sell', function (Blueprint $table) {
             $table->increments('Prosell_ID');
-            $table->integer('User_ID');
+            $table->integer('User_ID')->unsigned();
             $table->integer('Prosell_Quantity');
             $table->integer('Prosell_totalPirce');
             $table->string('Prosell_send');

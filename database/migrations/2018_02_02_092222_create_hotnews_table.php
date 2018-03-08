@@ -15,13 +15,13 @@ class CreateHotnewsTable extends Migration
     {
         Schema::create('hotnews', function (Blueprint $table) {
             $table->increments('Hotnews_ID');
-            $table->integer('Log_ID');
+            $table->integer('Log_ID')->unsigned();
             $table->string('Hotnews_name');
             $table->string('Hotnews_detail');
             $table->string('Hotnews_img');
             $table->string('datefirst');
             $table->string('datelast');
-        
+
             $table->dateTime('hotcreated_at');
             $table->dateTime('hotupdated_at');
 
