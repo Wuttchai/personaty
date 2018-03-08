@@ -60,7 +60,7 @@
         <div class="input-group ">
             <input type="text" class="form-control" placeholder="<?php echo  Session::get('search'); ?>" name="q">
             <div class="input-group-btn ">
-                <button class="btn btn-default" type="submit" ><i v-if="seach" class="glyphicon glyphicon-search"></i> <i v-if="cancelsearch" class="glyphicon glyphicon-remove"></i></button>
+                <button class="btn btn-danger btn-outline" type="submit" ><i v-if="seach" class="glyphicon glyphicon-search"></i> <i v-if="cancelsearch" class="glyphicon glyphicon-remove"></i></button>
             </div>
         </div>
         </form>

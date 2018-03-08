@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Session;
 class HomeController extends Controller
@@ -31,7 +31,8 @@ class HomeController extends Controller
 
       $hotnew = \App\hotnews::select('Hotnews_ID', 'Hotnews_Name','Hotnews_img', 'Hotnews_detail', 'datefirst', 'datelast')
                   ->orderBy('datelast', 'desc')->limit(3)->get();
-
+                  $time =Carbon::now('Asia/Bangkok');
+  Session::put("date","" . $time->day. "/" . $time->month . "/" . $time->year . "");
         return view('home',[
           'infos' => $info,
           'hotnews' => $hotnew

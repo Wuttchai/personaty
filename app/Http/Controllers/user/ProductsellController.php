@@ -123,7 +123,7 @@ $keyword = $_GET['q'];
         ]);
       }
       $time =Carbon::now('Asia/Bangkok');
-      Session::put("date","" . $time->day. "/" . $time->month . "/" . $time->year . "");
+    
       Session::forget('tabmanu');
       Session::forget('tabmanu2');
       Session::put("tabmanu1","active");

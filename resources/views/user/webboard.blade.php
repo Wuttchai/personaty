@@ -43,11 +43,11 @@
 
 
         <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">ประเภทสินค้า <b class="caret"></b></a>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">หมวดหมู่กระทู้ <b class="caret"></b></a>
 
         <ul class="dropdown-menu" >
-          <li><a href="/ProductAyutaya?type=เฟอนิเจอร์">เฟอนิเจอร์</a></li>
-          <li><a href="/ProductAyutaya?type=ของฝาก">ของฝาก</a></li>
+          <li><a href="/ProductAyutaya?type=การเยี่ยม">การเยี่ยมผู้ต้องขัง</a></li>
+          <li><a href="/ProductAyutaya?type=ของฝาก">การเตรียมเอกสาร</a></li>
           <li class="divider"></li>
           <li><a href="/ProductAyutaya">ค่าเริ่มต้น</a></li>
 
@@ -60,32 +60,30 @@
         <div class="input-group ">
             <input type="text" class="form-control" placeholder="<?php echo  Session::get('search'); ?>" name="q">
             <div class="input-group-btn ">
-                <button class="btn btn-default" type="submit" ><i v-if="seach" class="glyphicon glyphicon-search"></i> <i v-if="cancelsearch" class="glyphicon glyphicon-remove"></i></button>
+                  <button class="btn btn-danger btn-outline" type="submit" ><i v-if="seach" class="glyphicon glyphicon-search"></i> <i v-if="cancelsearch" class="glyphicon glyphicon-remove"></i></button>
             </div>
         </div>
         </form>
         </div>
         <ul class="nav navbar-nav navbar-right">
 
-        <li><a ><span  v-on:click="showcars()" class="glyphicon glyphicon-shopping-cart" style="font-size:20px;"></span>  <span class="badge badge-notify ">{{ Cart::content()->count() }}</span></a></li>
 
 
-
-
-        <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">กรองราคาสินค้า <b class="caret"></b></a>
-        <ul class="dropdown-menu">
-          <li><a href="/ProductAyutaya?price=ASC">ถูกไปหาเเพง</a></li>
-          <li><a href="/ProductAyutaya?price=DESC">เเพงไปหาถูก</a></li>
-          <li><a href="/ProductAyutaya?price=one">ต่ำกว่า 1000</a></li>
-            <li><a href="/ProductAyutaya?price=two">สูงกว่า 1000</a></li>
-          <li class="divider"></li>
-          <li><a href="/ProductAyutaya">ค่าเริ่มต้น</a></li>
+<div class="col-sm-6 col-md-6 text-right">
+<form class="navbar-form" role="search"  method="GET">
+<div class="input-group ">
+  <a><button type="button" class="btn btn-danger btn-outline" v-on:click="open()">ตั้งกระทู้
+</button></a>
+</div>
+</form>
+</div>
         </ul>
-        </li>
 
-        </ul>
-        </div><!-- /.navbar-collapse -->
+
+
+
+
+      </div><!-- /.navbar-collapse -->
         </nav>
           <div class="col-sm-4">
   <div class="panel panel-default">
@@ -117,6 +115,37 @@ Panel content
 </div><!-- /panel-body -->
 </div><!-- /panel panel-default -->
 </div>
+
+<div class="modal fade" id="formwebboard" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">ตั้งกระทู้สอบถาม (วันที่:{{ Session::get('date') }})</h5>
+
+
+        <button type="button" class="close btn-danger btn-outline" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">หัวข้อกระทู้:</label>
+            <input type="text" class="form-control" id="recipient-name">
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">รายละเอียดกระทู้:</label>
+            <textarea class="form-control" id="message-text"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
+        <button type="button" class="btn btn-primary">บันทึกข้อมูล</button>
+      </div>
+    </div>
+  </div>
+</div>
         </div>
         <!-- /.col-lg-12 -->
 
@@ -142,9 +171,8 @@ document.getElementById("loader").style.display = "none";
 var information =  new Vue({
     el: '#information',
     data: {
-        'id'  :'',
-        'quantity' :1,
-        'cars' : false,
+
+        'status' : '<?php echo Auth::check(); ?>',
         'seach' : <?php if (Session::get('search') == 'ค้นหา' || Session::get('search') == null ) {echo 'true';}else {echo 'false';} ?>,
         'cancelsearch' :<?php if (Session::get('search')!='ค้นหา' && Session::get('search')!= null ) {echo 'true';}else {echo 'false';} ?>,
 
@@ -158,108 +186,25 @@ var information =  new Vue({
     methods: {
 
 
-           addcars: function (event) {
 
 
-    swal({
-title: 'คุณแน่ใจ !',
-text: 'คุณต้องการเพิ่มลงตร้าใช่ไหม',
+           open: function () {
+
+
+if (information.status =='1') {
+$("#formwebboard").modal('show');
+}else {
+  swal({
+title: 'คุณไม่มีสิทธิ์ในการตั้งกระทู้ !',
+text: 'กรุณาเข้าสู่ระบบเพื่อตั้งกระทู้',
 type: 'warning',
-showCancelButton: true,
 confirmButtonColor: '#3085d6',
-cancelButtonColor: '#d33',
 confirmButtonText: 'ยืนยัน',
-cancelButtonText : 'ยกเลิก',
 closeOnConfirm: false
+})
+}
 
 
-
-
-}).then(function (e) {
-
-
-
-      axios.post('http://project3.test/Productaddcars', {
-         id : event,
-        quantity : information.quantity,
-      }).then(function (response) {
-
-location.reload();
-         });
-      swal(
-        'ถูกเพิ่มเเล้ว !',
-        'สินค้าของคุณถูกเพิ่มแล้ว.',
-        'success'
-      )
-
-    }, function (dismiss) {
-
-      // dismiss can be 'cancel', 'overlay',
-      // 'close', and 'timer'
-      if (dismiss === 'cancel') {
-        swal(
-          'ยกเลิกเเล้ว',
-          'ไฟล์ที่คุณเลือกปลอดภัย :)',
-          'error'
-        )
-      }
-    })
-           },
-
-
-           deletecars: function (event) {
-
-                 swal({
-             title: 'คุณแน่ใจ !',
-             text: 'คุณต้องการเพิ่มลงตร้าใช่ไหม',
-             type: 'warning',
-             showCancelButton: true,
-             confirmButtonColor: '#3085d6',
-             cancelButtonColor: '#d33',
-             confirmButtonText: 'ยืนยัน',
-             cancelButtonText : 'ยกเลิก',
-             closeOnConfirm: false
-
-
-
-
-             }).then(function (e) {
-
-
-               axios.post('http://project3.test/Productdeletecars', {
-                  id : event,
-
-               }).then(function (response) {
-
-  location.reload();
-                  });
-
-                   swal(
-                     'ถูกเพิ่มเเล้ว !',
-                     'สินค้าของคุณถูกเพิ่มแล้ว.',
-                     'success'
-                   )
-
-                 }, function (dismiss) {
-
-                   // dismiss can be 'cancel', 'overlay',
-                   // 'close', and 'timer'
-                   if (dismiss === 'cancel') {
-                     swal(
-                       'ยกเลิกเเล้ว',
-                       'ไฟล์ที่คุณเลือกปลอดภัย :)',
-                       'error'
-                     )
-                   }
-                 })
-
-           },
-           showcars: function () {
-             if (this.cars == true) {
-               this.cars = false;
-             }else {
-               this.cars = true;
-             }
 
            },
 
