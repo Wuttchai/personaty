@@ -25,7 +25,7 @@
       			</div>
       		</div>
           <!-- /.row -->
-          <nav class="navbar navbar-default fixed-top-2" role="navigation">
+          <nav class="navbar navbar-default fixed-top-2" role="navigation" style="border-color:red">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -46,8 +46,9 @@
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">หมวดหมู่กระทู้ <b class="caret"></b></a>
 
         <ul class="dropdown-menu" >
-          <li><a href="/ProductAyutaya?type=การเยี่ยม">การเยี่ยมผู้ต้องขัง</a></li>
-          <li><a href="/ProductAyutaya?type=ของฝาก">การเตรียมเอกสาร</a></li>
+          <li><a href="/ProductAyutaya?type=การเยี่ยมผู้ต้องขัง">การเยี่ยมผู้ต้องขัง</a></li>
+          <li><a href="/ProductAyutaya?type=การซื้อสินค้า">การซื้อสินค้า</a></li>
+          <li><a href="/ProductAyutaya?type=การเตรียมเอกสาร">การเตรียมเอกสาร</a></li>
           <li class="divider"></li>
           <li><a href="/ProductAyutaya">ค่าเริ่มต้น</a></li>
 
@@ -58,7 +59,7 @@
         <div class="col-sm-6 col-md-6 text-right">
         <form class="navbar-form" role="search"  method="GET">
         <div class="input-group ">
-            <input type="text" class="form-control" placeholder="<?php echo  Session::get('search'); ?>" name="q">
+            <input type="text" class="form-control" style="border-color:red" placeholder="<?php echo  Session::get('search'); ?>" name="q">
             <div class="input-group-btn ">
                   <button class="btn btn-danger btn-outline" type="submit" ><i v-if="seach" class="glyphicon glyphicon-search"></i> <i v-if="cancelsearch" class="glyphicon glyphicon-remove"></i></button>
             </div>
@@ -85,36 +86,49 @@
 
       </div><!-- /.navbar-collapse -->
         </nav>
-          <div class="col-sm-4">
+
+    @foreach ($question as $user)
+          <div class="col-md-6">
   <div class="panel panel-default">
   <div class="panel-heading">
-  <strong>myusername</strong> <span class="text-muted">commented 5 days ago</span>
+  <strong>{{ $user->ques_name }}</strong> <span class="text-muted">commented 5 days ago</span>
   </div>
-  <div class="panel-body">
-  Panel content
+
+  <div class="panel-body " style="word-break:break-all; height: 100px;">
+    <?php
+$string = strip_tags($user->ques_detail);
+
+if (strlen($string) >= 80) {
+
+    // truncate string
+    $stringCut = iconv_substr($string, 0, 80, "UTF-8");
+
+}else {
+  $stringCut = $user->ques_detail;
+
+}
+
+      ?>
+      <div class="col-md-12 ">
+{{ $stringCut }}
+</div>
+<div class="col-md-2 pull-right" style="bottom:-6px;">
+<a><button type="button" class="btn btn-danger btn-outline" v-on:click="open()">ตั้งกระทู้
+</button></a>
+</div>
   </div><!-- /panel-body -->
+
   </div><!-- /panel panel-default -->
   </div>
-  <div class="col-sm-4">
-<div class="panel panel-default">
-<div class="panel-heading">
-<strong>myusername</strong> <span class="text-muted">commented 5 days ago</span>
+    @endforeach
+
+      <div class="col-sm-12">
+{{ $question->links() }}
 </div>
-<div class="panel-body">
-Panel content
-</div><!-- /panel-body -->
-</div><!-- /panel panel-default -->
-</div>
-  <div class="col-sm-4 ">
-<div class="panel panel-default">
-<div class="panel-heading">
-<strong>myusername</strong> <span class="text-muted">commented 5 days ago</span>
-</div>
-<div class="panel-body">
-Panel content
-</div><!-- /panel-body -->
-</div><!-- /panel panel-default -->
-</div>
+
+
+
+
 
 <div class="modal fade" id="formwebboard" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -130,18 +144,56 @@ Panel content
       <div class="modal-body">
         <form>
           <div class="form-group">
-            <label for="recipient-name" class="col-form-label">หัวข้อกระทู้:</label>
-            <input type="text" class="form-control" id="recipient-name">
+
+
+
           </div>
-          <div class="form-group">
+          <div v-bind:class="{'form-group':headqestionerror , 'has-error has-feedback':headqestionerror }">
+
+                        <label for="recipient-name" class="col-form-label">หัวข้อกระทู้:</label>
+                        <input type="text" class="form-control" v-model="headqestion"   >
+                        <span class="glyphicon glyphicon-remove form-control-feedback" v-if="headqestionerror"></span>
+                        <span class="text-errors" v-if="headqestionerror">
+                            <strong><h5>@{{ headqestionerror }}</h5></strong>
+                        </span>
+                    </div>
+<br>
+
+
+
+
+
+          <div v-bind:class="{'form-group':textqestionerror , 'has-error has-feedback':textqestionerror }">
+
             <label for="message-text" class="col-form-label">รายละเอียดกระทู้:</label>
-            <textarea class="form-control" id="message-text"></textarea>
-          </div>
+            <textarea class="form-control" v-model="textqestion" ></textarea>
+                        <span class="glyphicon glyphicon-remove form-control-feedback" v-if="textqestionerror"></span>
+                        <span class="text-errors" v-if="headqestionerror">
+                            <strong><h5>@{{ textqestionerror }}</h5></strong>
+                        </span>
+                    </div>
+<br>
+
+
+                    <div v-bind:class="{'form-group':typeerror , 'has-error has-feedback':typeerror }">
+
+                      <label for="sel1">หมวดหมู่กระทู้:</label>
+                      <select class="form-control" v-model="type">
+                        <option>การเยี่ยมผู้ต้องขัง</option>
+                        <option>การซื้อสินค้า</option>
+                        <option>การเตรียมเอกสาร</option>
+                      </select>
+
+                                  <span class="text-errors" v-if="typeerror">
+                                      <strong><h5>@{{ typeerror }}</h5></strong>
+                                  </span>
+                              </div>
+
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
-        <button type="button" class="btn btn-primary">บันทึกข้อมูล</button>
+        <button type="button" class="btn btn-primary" v-on:click="insert()" >บันทึกข้อมูล</button>
       </div>
     </div>
   </div>
@@ -175,7 +227,12 @@ var information =  new Vue({
         'status' : '<?php echo Auth::check(); ?>',
         'seach' : <?php if (Session::get('search') == 'ค้นหา' || Session::get('search') == null ) {echo 'true';}else {echo 'false';} ?>,
         'cancelsearch' :<?php if (Session::get('search')!='ค้นหา' && Session::get('search')!= null ) {echo 'true';}else {echo 'false';} ?>,
-
+        'headqestion' :'',
+        'textqestion' :[],
+        'headqestionerror':'',
+        'textqestionerror':'',
+        'type':'',
+        'typeerror':'',
 
 
     },
@@ -189,14 +246,15 @@ var information =  new Vue({
 
 
            open: function () {
-
-
+             this.headqestionerror = false;
+             this.textqestionerror = false;
+             this.typeerror = false;
 if (information.status =='1') {
 $("#formwebboard").modal('show');
 }else {
   swal({
-title: 'คุณไม่มีสิทธิ์ในการตั้งกระทู้ !',
-text: 'กรุณาเข้าสู่ระบบเพื่อตั้งกระทู้',
+title: 'กรุณาเข้าสู่ระบบเพื่อตั้งกระทู้ !',
+text: 'คุณต้องสมัครสมาชิกเพื่อเข้าสู่ระบบ',
 type: 'warning',
 confirmButtonColor: '#3085d6',
 confirmButtonText: 'ยืนยัน',
@@ -207,6 +265,35 @@ closeOnConfirm: false
 
 
            },
+           insert: function () {
+             this.headqestionerror = false;
+             this.textqestionerror = false;
+             this.typeerror = false;
+axios.post('http://project3.test/insert/question', {
+    headqestion: this.headqestion,
+    textqestion: this.textqestion,
+    type: this.type,
+
+  }).then(function (response) {
+if (response.data.messages != null) {
+if(response.data.messages.headqestion != null){
+information.headqestionerror = true;
+information.headqestionerror = response.data.messages.headqestion[0];
+}
+if(response.data.messages.textqestion != null){
+information.textqestionerror = true;
+information.textqestionerror = response.data.messages.textqestion[0];
+}
+if(response.data.messages.type != null){
+information.typeerror = true;
+information.typeerror = response.data.messages.type[0];
+}
+}else {
+location.reload();
+}
+
+    });
+            },
 
     }
   })

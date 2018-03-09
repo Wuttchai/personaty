@@ -17,7 +17,7 @@ class User extends Authenticatable
      protected $table = 'users';
 
     protected $fillable = [
-        'User_Name', 'email','User_Address','User_Tel','password'
+        'User_ID','User_Name', 'email','User_Address','User_Tel','password'
     ];
 protected $primaryKey = 'User_ID';
     /**

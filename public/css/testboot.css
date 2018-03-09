@@ -6825,3 +6825,18 @@ left : -5px;
       color: #fff;
   }
 /*# sourceMappingURL=bootstrap.css.map */
+
+
+.text-errors
+{
+color: #dc3545;
+}
+.pull-qestion {
+  position: absolute;
+    
+  padding-right: 15px;
+  padding-left: 0;
+  text-align: right;
+  border-right: 5px solid #eee;
+  border-left: 0;
+}

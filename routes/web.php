@@ -121,3 +121,4 @@ Route::get('/invoice-print', function () {
   });
 
   Route::get('/webboard', 'user\WebboardController@index');
+  Route::post('/insert/question', 'user\WebboardController@addqes');

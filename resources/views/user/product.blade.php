@@ -25,7 +25,7 @@
       			</div>
       		</div>
 
-          <nav class="navbar navbar-default fixed-top-2" role="navigation">
+          <nav class="navbar navbar-default fixed-top-2" role="navigation" style="border-color:red">
   <!-- Brand and toggle get grouped for better mobile display -->
   <div class="navbar-header">
     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -38,8 +38,8 @@
   </div>
 
   <!-- Collect the nav links, forms, and other content for toggling -->
-  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-    <ul class="nav navbar-nav">
+  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" >
+    <ul class="nav navbar-nav" >
 
 
       <li class="dropdown">
@@ -58,7 +58,7 @@
     <div class="col-sm-6 col-md-6 text-right">
         <form class="navbar-form" role="search"  method="GET">
         <div class="input-group ">
-            <input type="text" class="form-control" placeholder="<?php echo  Session::get('search'); ?>" name="q">
+            <input type="text" class="form-control " style="border-color:red" placeholder="<?php echo  Session::get('search'); ?>" name="q">
             <div class="input-group-btn ">
                 <button class="btn btn-danger btn-outline" type="submit" ><i v-if="seach" class="glyphicon glyphicon-search"></i> <i v-if="cancelsearch" class="glyphicon glyphicon-remove"></i></button>
             </div>
