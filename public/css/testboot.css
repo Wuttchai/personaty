@@ -6833,10 +6833,16 @@ color: #dc3545;
 }
 .pull-qestion {
   position: absolute;
-    
+
   padding-right: 15px;
   padding-left: 0;
   text-align: right;
   border-right: 5px solid #eee;
   border-left: 0;
 }
+.badge-notify2{
+  background:red;
+position:relative;
+top: -15px;
+left : -4px;
+  }

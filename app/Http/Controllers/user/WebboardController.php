@@ -7,7 +7,7 @@ use Session;
 use Illuminate\Support\Facades\Validator;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
-
+use DB;
 class WebboardController extends Controller
 {
     /**
@@ -56,8 +56,45 @@ $validator =  Validator::make($request->all(), [
 }
      }
 
-     public function deletecars(Request $request)
+     public function showcomment($id)
      {
+
+       $comment = \App\question::join('users','question.User_ID','=','users.User_ID')
+                   ->select('question.ques_id', 'question.ques_name','question.ques_detail', 'question.ques_date', 'question.ques_type','users.User_Name')
+                   ->where('question.ques_id','=' ,$id)
+                   ->get();
+
+                   $commentdetail = \App\questiondetail::join('users','users.User_ID','=','questiondetail.User_ID')
+
+                               ->select('questiondetail.quesde_id', 'users.User_Name','questiondetail.quesde_detail', 'questiondetail.quesde_date')
+                               ->where('questiondetail.ques_id','=' ,$id)
+                               ->paginate(5);
+
+
+return view('user.comment',[
+'comment' => $comment,
+'commentdetail' => $commentdetail
+]);
+
+     }
+     public function store(Request $request)
+     {
+
+       $validator =  Validator::make($request->all(), [
+           'message' => 'required|string',
+              ])->validate();
+
+       $time =Carbon::now('Asia/Bangkok');
+           \App\questiondetail::insert([
+             'User_ID' => Auth::user()->User_ID,
+             'ques_id' => $request->id,
+             'quesde_detail' => $request->message,
+             'quesde_date'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
+       ]);
+
+
+
+                               return redirect()->route('showcomment', ['id' => $request->id]);
 
 
 
@@ -71,7 +108,9 @@ $validator =  Validator::make($request->all(), [
 
 
       $question = \App\question::join('users','question.User_ID','=','users.User_ID')
-                  ->select('question.ques_id', 'question.ques_name','question.ques_detail', 'question.ques_date', 'question.ques_type','users.User_Name')
+                  ->join('questiondetail','questiondetail.ques_id','=','question.ques_id')
+                  ->select('question.ques_id', 'question.ques_name','question.ques_detail', 'question.ques_date', 'question.ques_type','users.User_Name',DB::raw('count(questiondetail.quesde_id) as user_count'))
+                  ->GROUPBY('question.ques_id')
                   ->orderBy('ques_date', 'asc')->paginate(8);
 
 

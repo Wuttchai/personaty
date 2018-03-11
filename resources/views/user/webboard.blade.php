@@ -43,7 +43,7 @@
 
 
         <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">หมวดหมู่กระทู้ <b class="caret"></b></a>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">เรียงตาม <b class="caret"></b></a>
 
         <ul class="dropdown-menu" >
           <li><a href="/ProductAyutaya?type=การเยี่ยมผู้ต้องขัง">การเยี่ยมผู้ต้องขัง</a></li>
@@ -88,20 +88,24 @@
         </nav>
 
     @foreach ($question as $user)
+
           <div class="col-md-6">
-  <div class="panel panel-default">
-  <div class="panel-heading">
-  <strong>{{ $user->ques_name }}</strong> <span class="text-muted">commented 5 days ago</span>
+  <div class="panel panel-default "><a href="question/comment/<?php echo $user->ques_id ?>" class="text-dark">
+
+
+
+  <div class="panel-heading" style="word-break:break-all; " >
+  <strong>{{ $user->ques_name }}</strong> <span class="glyphicon glyphicon-calendar text-muted pull-right">{{ $user->ques_date }}</span>
   </div>
 
   <div class="panel-body " style="word-break:break-all; height: 100px;">
     <?php
 $string = strip_tags($user->ques_detail);
 
-if (strlen($string) >= 80) {
+if (strlen($string) >= 68) {
 
     // truncate string
-    $stringCut = iconv_substr($string, 0, 80, "UTF-8");
+    $stringCut = iconv_substr($string, 0, 68, "UTF-8");
 
 }else {
   $stringCut = $user->ques_detail;
@@ -112,14 +116,21 @@ if (strlen($string) >= 80) {
       <div class="col-md-12 ">
 {{ $stringCut }}
 </div>
-<div class="col-md-2 pull-right" style="bottom:-6px;">
-<a><button type="button" class="btn btn-danger btn-outline" v-on:click="open()">ตั้งกระทู้
-</button></a>
-</div>
-  </div><!-- /panel-body -->
 
-  </div><!-- /panel panel-default -->
+  </div><!-- /panel-body -->
+<div class="panel-footer text-right" >
+  <a ><span  v-on:click="showcomment(<?php echo $user->ques_id ?>)" class="glyphicon glyphicon-comment" style="font-size:20px;"></span>  <span class="badge badge-notify2 ">{{ $user->user_count }}</span></a>
+
+
+
+
+      @csrf
+
+
+</div>
+</a></div><!-- /panel panel-default -->
   </div>
+
     @endforeach
 
       <div class="col-sm-12">
@@ -198,15 +209,15 @@ if (strlen($string) >= 80) {
     </div>
   </div>
 </div>
-        </div>
-        <!-- /.col-lg-12 -->
 
+
+
+           <!-- /.col -->
+
+        <!-- /.col-lg-12 -->
       </div>
       <!-- /.row -->
-
     </div>
-
-
        </div>
 
 <br>
@@ -265,6 +276,39 @@ closeOnConfirm: false
 
 
            },
+           showcomment: function (event) {
+$("#exampleModal2").modal('show');
+             var question_ID =	event;
+
+              var link = "http://project3.test/question/comment" + question_ID;
+              axios.get(link, {
+              }).then(function (response) {
+
+console.log(response.data);
+
+
+
+              })
+
+
+           },
+           addcomment: function (event) {
+
+             var question_ID =	event;
+
+              var link = "http://project3.test/question/comment" + question_ID;
+              axios.post(link, {
+              }).then(function (response) {
+
+          console.log(response.data);
+
+          $("#exampleModal2").modal('show');
+
+              })
+
+
+           },
+
            insert: function () {
              this.headqestionerror = false;
              this.textqestionerror = false;

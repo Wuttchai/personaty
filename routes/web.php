@@ -122,3 +122,6 @@ Route::get('/invoice-print', function () {
 
   Route::get('/webboard', 'user\WebboardController@index');
   Route::post('/insert/question', 'user\WebboardController@addqes');
+  Route::get('/question/comment/{id}', 'user\WebboardController@showcomment')->name('showcomment');
+  Route::post('/question/addcomment/', 'user\WebboardController@store')->name('addcomment');
+  Route::get('/question/addcomment/eiei', 'user\WebboardController@showcomment');
