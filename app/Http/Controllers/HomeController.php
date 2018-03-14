@@ -27,7 +27,7 @@ class HomeController extends Controller
       Session::forget('tabmanu2');
       Session::put("tabmanu","active");
       $info = \App\info::select('Info_ID', 'Info_Name', 'Info_Img')
-                  ->orderBy('infoupdated_at', 'desc')->limit(5)->get();
+                  ->orderBy('info.Infoupdated_at', 'desc')->limit(5)->get();
 
       $hotnew = \App\hotnews::select('Hotnews_ID', 'Hotnews_Name','Hotnews_img', 'Hotnews_detail', 'datefirst', 'datelast')
                   ->orderBy('datelast', 'desc')->limit(3)->get();
