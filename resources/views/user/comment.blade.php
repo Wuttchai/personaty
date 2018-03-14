@@ -192,7 +192,7 @@ closeOnConfirm: false
 $("#exampleModal2").modal('show');
              var question_ID =	event;
 
-              var link = "http://project3.test/question/comment" + question_ID;
+              var link = "/question/comment" + question_ID;
               axios.get(link, {
               }).then(function (response) {
 
@@ -208,7 +208,7 @@ console.log(response.data);
 
              var question_ID =	event;
 
-              var link = "http://project3.test/question/comment" + question_ID;
+              var link = "/question/comment" + question_ID;
               axios.post(link, {
               }).then(function (response) {
 
@@ -225,7 +225,7 @@ console.log(response.data);
              this.headqestionerror = false;
              this.textqestionerror = false;
              this.typeerror = false;
-axios.post('http://project3.test/insert/question', {
+axios.post('/insert/question', {
     headqestion: this.headqestion,
     textqestion: this.textqestion,
     type: this.type,

@@ -89,7 +89,7 @@
 
 <!---model 2------------------------------------------>
 
-   
+
 
 
 
@@ -267,7 +267,7 @@ var information =  new Vue({
 
 
              axios.defaults.headers.post['formData'] = 'multipart/form-data';
-             axios.post('http://project3.test/official/testza', {
+             axios.post('/official/testza', {
                  id: this.id,
                  name: this.name,
                  fileoffice: this.image,
@@ -302,7 +302,7 @@ information.fileofficeerror = response.data.messages.fileoffice[0];
              information.inputedit = 'true';
        								var info_id =	item.Info_ID;
 
-       								var link = "http://project3.test/official/editinfo/" + info_id;
+       								var link = "/official/editinfo/" + info_id;
        								axios.get(link, {
        								}).then(function (response) {
 if (response.data[0].official_ID == information.id) {
@@ -336,7 +336,7 @@ $("#editofficial").modal('show');
 
                    var info_id =	this.id_edit;
 
-                   var link = "http://project3.test/official/updateinfo/" + info_id;
+                   var link = "/official/updateinfo/" + info_id;
                    axios.post(link, {
                      id: this.id,
                      name: this.nameedit,

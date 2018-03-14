@@ -589,7 +589,7 @@ var information =  new Vue({
              information.counterror = false;
              information.moneyerror = false;
              axios.defaults.headers.post['formData'] = 'multipart/form-data';
-             axios.post('http://project3.test/official/product/add', {
+             axios.post('/official/product/add', {
                  id: this.id,
                  name: this.name,
                  fileoffice: this.image,
@@ -652,7 +652,7 @@ information.fileofficeerror = response.data.messages.fileoffice[0];
    information.inputedit = 'true';
        								var Pro_ID =	item.Pro_ID;
 
-       								var link = "http://project3.test/product/edit" + Pro_ID;
+       								var link = "/product/edit" + Pro_ID;
        								axios.get(link, {
        								}).then(function (response) {
 
@@ -703,7 +703,7 @@ information.countedit = response.data[0].Pro_Count;
           information.moneyerror = false;
                    var Pro_ID =	this.id_edit;
 
-                   var link = "http://project3.test/product/update/" + Pro_ID;
+                   var link = "/product/update/" + Pro_ID;
                    axios.post(link, {
                      id: this.id,
                      name: this.nameedit,

@@ -329,7 +329,7 @@ console.log(information.items.Person_Num);
 
 
              axios.defaults.headers.post['formData'] = 'multipart/form-data';
-             axios.post('http://project3.test/official/person/add', {
+             axios.post('/official/person/add', {
                  id: this.id,
                  name: this.name,
                  count: this.count,
@@ -362,7 +362,7 @@ information.counterror = response.data.messages.count[0];
 
        								var Person_ID =	item.Person_ID;
 
-       								var link = "http://project3.test/person/edit" + Person_ID;
+       								var link = "/person/edit" + Person_ID;
        								axios.get(link, {
        								}).then(function (response) {
 
@@ -385,7 +385,7 @@ $("#editofficial").modal('show');
 
                    var Person_ID =	this.id_edit;
 
-                   var link = "http://project3.test/person/updateinfo/" + Person_ID;
+                   var link = "/person/updateinfo/" + Person_ID;
                    axios.post(link, {
                      id: this.id,
                      name: this.nameedit,

@@ -545,7 +545,7 @@ var information =  new Vue({
 this.datefirst = $('#datefirst').val()
 this.datelast = $('#datelast').val()
              axios.defaults.headers.post['formData'] = 'multipart/form-data';
-             axios.post('http://project3.test/official/hotnews/add', {
+             axios.post('/official/hotnews/add', {
                  id: this.id,
                  name: this.name,
                  fileoffice: this.image,
@@ -602,7 +602,7 @@ information.datelasterror = response.data.messages.datelast[0];
              information.inputedit = 'true';
        								var Hotnews_ID =	item.Hotnews_ID;
 
-       								var link = "http://project3.test/hotnews/edit" + Hotnews_ID;
+       								var link = "/hotnews/edit" + Hotnews_ID;
        								axios.get(link, {
        								}).then(function (response) {
 
@@ -644,7 +644,7 @@ $("#editofficial").modal('show');
 
                    var Hotnews_ID =	this.id_edit;
 
-                   var link = "http://project3.test/hotnews/update/" + Hotnews_ID;
+                   var link = "/hotnews/update/" + Hotnews_ID;
                    axios.post(link, {
                      id: this.id,
                      name: this.nameedit,

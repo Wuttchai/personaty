@@ -407,7 +407,7 @@ closeOnConfirm: false
 
 
 
-      axios.post('http://project3.test/Productaddcars', {
+      axios.post('/Productaddcars', {
          id : event,
         quantity : information.quantity,
       }).then(function (response) {
@@ -454,7 +454,7 @@ location.reload();
              }).then(function (e) {
 
 
-               axios.post('http://project3.test/Productdeletecars', {
+               axios.post('/Productdeletecars', {
                   id : event,
 
                }).then(function (response) {

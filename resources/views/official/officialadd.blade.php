@@ -553,7 +553,7 @@ information.nocheck = false;
 information.emailerror = false;
 information.passworderror = false;
 
-                               axios.post('http://project3.test/official/add', {
+                               axios.post('/official/add', {
                                    id: this.id,
                                    name: this.name,
                                    email:this.email,
@@ -626,7 +626,7 @@ if (response.data.messages == null && response.data.nocheck != 'yes') {
 
                          								var official_id =	item.official_ID;
 
-                         								var link = "http://project3.test/official/officiallist" + official_id;
+                         								var link = "/official/officiallist" + official_id;
                          								axios.get(link, {
                          								}).then(function (response) {
 
@@ -660,7 +660,7 @@ if (response.data[0].prison == 'จัดการ') {
 
                                      var official_id =	this.id_edit;
 
-                                     var link = "http://project3.test/official/updateofficial/" + official_id;
+                                     var link = "/official/updateofficial/" + official_id;
                                      axios.post(link, {
                                        id: this.id,
                                        name: this.nameedit,
