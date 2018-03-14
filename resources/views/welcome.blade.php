@@ -28,6 +28,9 @@
 
 	<script src="{{ asset('js/text.js') }}"></script>
 	<script language="JavaScript">
+
+document.getElementById("results").style.display = "none";
+
 	Webcam.set({
 		width: 320,
 		height: 240,
@@ -42,8 +45,10 @@
 				console.log(data_uri);
 				// display results in page
 				document.getElementById('results').innerHTML =
-					'<h2>Here is your image:</h2>' +
+
 					'<img src="'+data_uri+'"/>';
+					document.getElementById("results").style.display = "block";
+
 			} );
 		}
 	</script>
