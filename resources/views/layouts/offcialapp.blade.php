@@ -182,14 +182,7 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
-  @if (session('role') == '0')
 
-                        <li><a class="nav-link" href="/official/addoffice">จัดการข้อมูลเจ้าหน้าที่</a></li>
-                        <li><a class="nav-link" href="/official/product">จัดการสินค้าวิชาชีพ</a></li>
-                        <li><a class="nav-link" href="/official/hotnews">จัดการข่าวประชาสัมพันธ์</a></li>
-                        <li><a class="nav-link" href="/official/person">จัดการข้อมูลผู้ต้องขัง</a></li>
-                        <li><a class="nav-link" href="/official">จัดการภาพแบรน์เนอร์</a></li>
-  @endif
 @if (session('info') == 'จัดการ')
 <li><a class="nav-link" href="/official">จัดการภาพแบรน์เนอร์</a></li>
 @endif
