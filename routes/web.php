@@ -11,7 +11,9 @@
 |
 */
 Auth::routes();
-
+Route::get('/phpinfo', function() {
+    return phpinfo();
+});
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/ww', function () {
     return view('welcome');
