@@ -82,6 +82,10 @@ return view('user.detailcars',[
 ]);
 }public function insertimg(Request $request, $id)
      {
+       $validator =  Validator::make($request->all(), [
+           'imgInp' => 'required|image|img_min_size:100,100',
+              ])->validate();
+
        $time =Carbon::now('Asia/Bangkok');
 
         $imageName =   $time->day. '-' .$id . '.' .  $request->file('imgInp')->getClientOriginalExtension();
@@ -100,7 +104,7 @@ return view('user.detailcars',[
                        ->where('User_ID','=' ,Auth::user()->User_ID)
                        ->paginate(10);
 
-
+dd("xxx");
 foreach(Cart::content() as $carcon) {
 
   Cart::remove($carcon->rowId);

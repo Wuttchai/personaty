@@ -25,8 +25,8 @@ class CreateofficialTable extends Migration
           $table->string('hotnews');
           $table->string('activity');
           $table->string('prison');
-          $table->dateTime('offcreated_at');
-          $table->dateTime('offupdated_at');
+          $table->string('offcreated_at');
+          $table->string('offupdated_at');
 
         });
     }

@@ -22,8 +22,8 @@ class CreateHotnewsTable extends Migration
             $table->string('datefirst');
             $table->string('datelast');
 
-            $table->dateTime('hotcreated_at');
-            $table->dateTime('hotupdated_at');
+            $table->string('hotcreated_at');
+            $table->string('hotupdated_at');
 
         });
     }

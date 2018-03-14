@@ -21,7 +21,7 @@
 	<div id="my_camera"></div>
 
 	<form>
-		<input type=button value="Take Snapshot" onClick="take_snapshot()">
+		<input type=button value="ถ่ายภาพ" onClick="take_snapshot()">
 	</form>
 
 

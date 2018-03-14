@@ -19,8 +19,9 @@ class CreateProductSellTable extends Migration
             $table->integer('Prosell_Quantity');
             $table->integer('Prosell_totalPirce');
             $table->string('Prosell_send');
-            $table->dateTime('Prosell_creat');
-
+            $table->string('Prosell_img');
+            $table->string('Prosell_creat');
+            $table->string('Prosell_orderdate');
         });
     }
 

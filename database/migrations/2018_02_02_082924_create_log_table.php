@@ -20,7 +20,7 @@ class CreateLogTable extends Migration
             $table->integer('project_log');
             $table->string('Log_Event');
             $table->string('Log_IP');
-            $table->dateTime('Log_Time');
+            $table->string('Log_Time');
         });
     }
 

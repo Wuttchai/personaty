@@ -175,7 +175,7 @@
                    <hr>
                  </div>
                </div>
-               <ul class="nav  nav-pills nav-justified ">
+               <ul class="nav  nav-pills nav-justified">
                   <li class="active"><a data-toggle="tab" href="#menu1" class="text-dark">เลือกจากไฟล์</a></li>
                   <li><a data-toggle="tab" href="#home" class="text-dark">ถ่ายภาพ</a></li>
 
@@ -197,18 +197,19 @@
                 <div class="col-md-6 col-md-offset-3">
 
                           <div class="form-group">
-                              <div v-bind:class="{'form-group':headqestionerror , 'has-error has-feedback':headqestionerror }">
-
+                            <div class="form-group row">
                                           <span class="btn btn-success btn-file" >
-                                              Browse… <input type="file" id="imgInp" name="imgInp" >
+                                              Browse… <input type="file" id="imgInp" name="imgInp" class="form-control{{ $errors->has('imgInp') ? ' is-invalid' : '' }}" >
                                           </span>
                                           <div class="form-group row">
 
                                           </div>
                                              <input type="text" class="form-control" readonly>
-                                          <span class="text-danger" v-if="fileofficeerror">
-                                              <strong>@{{ fileofficeerror }}</strong>
+                                             @if($errors->has('imgInp'))
+                                          <span class="text-errors">
+                                              <strong>{{ $errors->first('imgInp') }}</strong>
                                           </span>
+                                          @endif
                                       </div>
                                 </div>
 
@@ -220,17 +221,30 @@
 
 
                   <div id="home" class="tab-pane fade text-center">
-                    <br>
-                    <h4>เอกสารสำหรับการประกันตัว</h4>
-                    <p>เนื้อหาของเพลงจะทำให้ผู้ที่ได้รับฟังรู้สึกอยากที่จะมอบความรักให้กับคนรัก หรือแม้แต่เวลาคนรักทะเลาะกัน ก็ยังสามารถส่งเพลงนี้เพื่อง้อกันได้เช่นกัน</p>
-                    <button type="button" class="btn btn-default btn-lm btn-danger">
-                              <span class="glyphicon glyphicon-download-alt"></span> ดาวห์โหลด
-                            </button>
-                  </div>
+
+<br>
+                  <div class=" text-center" id="text2">
+
+
+            <div id="results">
+              ตัวอย่างรูป
+                <hr>
+            </div>
+
+
+              </div>
 
 
 
-             </div>
+
+    <input class="btn btn-success btn-file" type=button value="ถ่ายภาพ" onClick="take_snapshot()">
+
+
+
+
+                   </div>
+</div>
+<br>
              <div class="modal-footer">
                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                <button type="submit" class="btn btn-default" >ยันยัน</button>
@@ -251,11 +265,50 @@
 @push('scripts')
 <script>
 
-
-
 document.getElementById("loader").style.display = "none";
 document.getElementById("text").style.display = "none";
+document.getElementById("results").style.display = "none";
+
+Webcam.set({
+  width: 320,
+  height: 240,
+  image_format: 'jpeg',
+  jpeg_quality: 90
+});
+Webcam.attach( '#my_camera' );
+
+  function take_snapshot() {
+    // take snapshot and get image data
+    Webcam.snap( function(data_uri) {
+      console.log(data_uri);
+      // display results in page
+      document.getElementById('results').innerHTML =
+
+        '<img src="'+data_uri+'"/>';
+        document.getElementById("results").style.display = "block";
+this.imgage = data_uri;
+    } );
+  }
+
 $(document).ready( function() {
+  <?php
+  if ($errors->has('imgInp') != null) {
+
+  ?>
+    $("#myModal").modal('show');
+
+  $('.nav-pills a:first').tab('show')
+    <?php
+  }
+  if ($errors->has('imgInp2') != null) {
+  ?>
+
+  $("#myModal").modal('show');
+
+  $('.nav-pills a:last').tab('show')
+  <?php
+  }
+  ?>
     	$(document).on('change', '.btn-file :file', function() {
 		var input = $(this),
 			label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
@@ -322,7 +375,7 @@ var information =  new Vue({
         'cars' : false,
         'seach' : <?php if (Session::get('search') == 'ค้นหา' || Session::get('search') == null ) {echo 'true';}else {echo 'false';} ?>,
         'cancelsearch' :<?php if (Session::get('search')!='ค้นหา' && Session::get('search')!= null ) {echo 'true';}else {echo 'false';} ?>,
-
+        'imgage'  :'',
 
 
     },

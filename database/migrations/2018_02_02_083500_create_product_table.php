@@ -25,8 +25,8 @@ class CreateProductTable extends Migration
             $table->string('Pro_Type');
             $table->string('Pro_img');
             $table->integer('Pro_Count');
-            $table->dateTime('procreated_at');
-            $table->dateTime('proupdated_at');
+            $table->string('procreated_at');
+            $table->string('proupdated_at');
 
         });
     }

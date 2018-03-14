@@ -14,10 +14,10 @@ class CreateSellDetailTable extends Migration
     public function up()
     {
         Schema::create('sell_detail', function (Blueprint $table) {
-            $table->increments('Dept_ID');
-              $table->integer('Prosell_ID')->unsigned();
+            $table->increments('Det_ID');
+            $table->integer('Prosell_ID')->unsigned();
             $table->integer('Pro_ID')->unsigned();
-            $table->integer('Dept_Num');
+            $table->integer('Det_Num');
             $table->integer('Det_total');
 
         });

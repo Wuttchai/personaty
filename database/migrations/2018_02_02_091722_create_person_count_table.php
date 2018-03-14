@@ -18,8 +18,8 @@ class CreatePersonCountTable extends Migration
             $table->integer('Log_ID')->unsigned();
             $table->integer('Person_Num');
             $table->string('Person_Type');
-            $table->dateTime('percreated_at');
-            $table->dateTime('perupdated_at');
+            $table->string('percreated_at');
+            $table->string('perupdated_at');
         });
     }
 

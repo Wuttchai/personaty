@@ -233,7 +233,7 @@
 
           </div>
         </div>
-
+<script src="{{ asset('js/text.js') }}"></script>
 <script src="/js/app.js" charset="utf-8"></script>
 <script src="https://vuejs.org/js/vue.js"></script>
 <script src="{{ asset('js/sweetalert2.min.js') }}"></script>
