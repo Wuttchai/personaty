@@ -13,34 +13,29 @@
 	</style>
 </head>
 <body>
-	<div id="results">Your captured image will appear here...</div>
+	<div id="results">ตัวอย่างรูป</div>
 
-	<h1>WebcamJS Test Page</h1>
-	<h3>Demonstrates simple 320x240 capture &amp; display</h3>
+	<h1>กล้องถ่าย</h1>
+	<h3>ขนาดภาพ 320x240 </h3>
 
 	<div id="my_camera"></div>
 
-	<!-- First, include the Webcam.js JavaScript Library -->
-
-<script src="{{ asset('js/text.js') }}"></script>
-	<!-- Configure a few settings and attach camera -->
-	<script language="JavaScript">
-		Webcam.set({
-			width: 320,
-			height: 240,
-			image_format: 'jpeg',
-			jpeg_quality: 90
-		});
-		Webcam.attach( '#my_camera' );
-	</script>
-
-	<!-- A button for taking snaps -->
 	<form>
 		<input type=button value="Take Snapshot" onClick="take_snapshot()">
 	</form>
 
-	<!-- Code to handle taking the snapshot and displaying it locally -->
+
+
+	<script src="{{ asset('js/text.js') }}"></script>
 	<script language="JavaScript">
+	Webcam.set({
+		width: 320,
+		height: 240,
+		image_format: 'jpeg',
+		jpeg_quality: 90
+	});
+	Webcam.attach( '#my_camera' );
+
 		function take_snapshot() {
 			// take snapshot and get image data
 			Webcam.snap( function(data_uri) {
