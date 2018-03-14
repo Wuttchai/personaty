@@ -49,6 +49,65 @@ $cartItem = Cart::add($request->id, $product[0]->Pro_Name, $request->quantity, $
 
 
      }
+     public function ProductCarOrders()
+     {
+       Session::forget('tabmanu');
+         Session::forget('tabmanu1');
+       Session::forget("tabmanu2");
+       Session::put("tabmanu3","active");
+       $CarOrders = \App\product_sell::select('Prosell_ID', 'Prosell_Quantity','Prosell_totalPirce', 'Prosell_creat')
+                   ->where('User_ID','=' ,Auth::user()->User_ID)
+                   ->paginate(10);
+                   return view('user.detailuser',[
+                     'CarOrders' => $CarOrders
+                   ]);
+     }
+     public function ProductCardetail($id)
+     {
+
+       $Car = \App\product_sell::join('sell_detail','product_sell.Prosell_ID','=','sell_detail.Prosell_ID')
+                   ->join('product','product.Pro_ID','=','sell_detail.Pro_ID')
+                   ->select('product.Pro_Name','sell_detail.Det_Num', 'product.Pro_Price')
+                   ->where('sell_detail.Prosell_ID','=' ,$id)
+                   ->get();
+
+                   $date = \App\product_sell::select('Prosell_ID','Prosell_creat')
+                               ->where('Prosell_ID','=' ,$id)
+                               ->get();
+
+
+return view('user.detailcars',[
+  'Car' => $Car,
+  'date' => $date,
+]);
+}public function insertimg(Request $request, $id)
+     {
+       $time =Carbon::now('Asia/Bangkok');
+
+        $imageName =   $time->day. '-' .$id . '.' .  $request->file('imgInp')->getClientOriginalExtension();
+
+           $request->file('imgInp')->move(
+               base_path() . '/public/images/', $imageName
+           );
+
+           \App\product_sell::where('Prosell_ID',$id)
+                                 ->update([
+                                 'Prosell_img' => $imageName,
+                                 'Prosell_orderdate'=>   "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
+                             ]);
+
+           $CarOrders = \App\product_sell::select('Prosell_ID', 'Prosell_Quantity','Prosell_totalPirce', 'Prosell_creat')
+                       ->where('User_ID','=' ,Auth::user()->User_ID)
+                       ->paginate(10);
+
+
+foreach(Cart::content() as $carcon) {
+
+  Cart::remove($carcon->rowId);
+}
+
+ return redirect()->route('ProductCarOrders', ['CarOrders' => $CarOrders]);
+     }
 
     public function index()
     {
@@ -123,7 +182,7 @@ $keyword = $_GET['q'];
         ]);
       }
       $time =Carbon::now('Asia/Bangkok');
-    
+
       Session::forget('tabmanu');
       Session::forget('tabmanu2');
       Session::put("tabmanu1","active");

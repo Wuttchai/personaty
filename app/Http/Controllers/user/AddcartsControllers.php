@@ -39,6 +39,8 @@ class AddcartsControllers extends Controller
                      'Prosell_Quantity' => 0,
                      'Prosell_totalPirce'  => 0,
                      'Prosell_send' => '',
+                     'Prosell_img' => '',
+                     'Prosell_orderdate' => '',
                      'Prosell_creat'=>   "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
                      ]);
                      $Prosell_ID =  \App\product_sell::where([

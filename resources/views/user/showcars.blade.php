@@ -12,25 +12,14 @@
 
         <!-- /.col-lg-3 -->
 
-        <div class="col-lg-12 ">
+        <div class="col-mg-12 ">
 
-
-
-          <div class="row">
-      			<div class="col-md-6 col-md-offset-3">
-      				<div class="text-center">
-      					<h2>ชำระเงิน</h2>
-      				</div>
-      				<hr>
-      			</div>
-      		</div>
-          <!-- /.row -->
           <section class="invoice">
                 <!-- title row -->
                 <div class="row">
                   <div class="col-xs-12">
                     <h2 class="page-header">
-                      <i class="fa fa-globe"></i> ใบเสร็จสินค้า
+                      <i class="fa fa-globe"></i> ใบสั่งซื้อสินค้า
                       <small class="pull-right">วันที่: {{ Session::get('date') }}</small>
                     </h2>
                   </div>
@@ -76,21 +65,17 @@
 
                 <!-- Table row -->
                 <div class="row">
-                  <div class="col-xs-12 table-responsive">
-
-
-                    <table class="table table-striped">
-                      <thead>
-                      <tr>
-                        <th>ลำดับ</th>
-                        <th>ชื่อสินค้า</th>
-                        <th>จำนวน</th>
-                        <th>ราคาต่อชิ้น</th>
-                        <th>ราคารวม</th>
-
-                      </tr>
-                      </thead>
-                      <tbody>
+                  <table class="table text-center">
+            <thead class="thead-dark ">
+              <tr>
+                <th scope="col">ลำดับ</th>
+                <th scope="col">จำนวน</th>
+                <th scope="col">ราคารวม</th>
+                <th scope="col">วันที่สั่งสินค้า</th>
+                <th scope="col">จัดการ</th>
+              </tr>
+            </thead>
+            <tbody>
 
                         <?php
                         $num =1;
@@ -128,7 +113,7 @@
                   </div>
                   <!-- /.col -->
                   <div class="col-xs-6">
-                    <p class="lead">วันที่ : {{ Session::get('date') }}</p>
+
 
                     <div class="table-responsive">
                       <table class="table">
@@ -136,21 +121,21 @@
                           <th style="width:50%">ราคาสินค้าทั้งหมด :</th>
                           <td>{{ Cart::subtotal() }} บาท</td>
                         </tr>
-                        <tr>
-                          <th>ภาษี :</th>
-                          <td>{{ Cart::tax() }} บาท</td>
-                        </tr>
-                        <tr>
-                          <th>รวมราคาทั้งหมด :</th>
-                          <td>{{ Cart::total() }} บาท</td>
-                        </tr>
+
 
                       </table>
-                    </div>
+
                   </div>
                   <!-- /.col -->
+
                 </div>
                 <!-- /.row -->
+<div class="col-md-6 col-md-offset-3">
+  <div class="alert alert-info alert-dismissible">
+     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+     <strong>แนะนำ!</strong> คุณสามารถตรวจสอบการสั่งซื้อได้ที่ เมนู -> ชื่อ -> ข้อมูลการสั่งซื้อ
+   </div>
+   </div>
 
                 <!-- this row will not appear when printing -->
                 <div class="row no-print">
@@ -158,21 +143,102 @@
           <a href="/ProductAyutaya"  class="btn btn-danger "><i class="fa fa-print"></i> ย้อนกลับ</a>
 </div>
 <div class="col-xs-2">
-           <a href="/invoice-print" target="_blank" class="btn btn-primary pull-right"><i class="fa fa-print"></i> ปริ้นใบสั่งซื้อ</a>
+           <a href="/invoice-print" target="_blank" class="btn btn-primary pull-right"></i> ปริ้นใบสั่งซื้อ</a>
 </div>
 <div class="col-xs-1">
-           <a href="/invoice-print" target="_blank" class="btn btn-success pull-left"><i class="fa fa-print"></i> ยืนยันการสั่งซื้อ</a>
+           <button type="button"  class="btn btn-success pull-left" data-toggle="modal" data-target="#myModal"></i> ยืนยันการสั่งซื้อ</button>
+
 </div>
 
         </div>
       </div>
               </section>
+
         </div>
         <!-- /.col-lg-12 -->
 
       </div>
       <!-- /.row -->
+      <div class="modal fade" id="myModal" role="dialog">
+         <div class="modal-dialog modal-lg">
+           <div class="modal-content">
+             <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal">&times;</button>
+               <h4 class="modal-title">Modal Header</h4>
+             </div>
+             <div class="modal-body">
+               <div class="row">
+                 <div class="col-md-6 col-md-offset-3">
+                   <div class="text-center">
+                     <h2>ใบเสร็จการโอนเงิน</h2>
+                   </div>
+                   <hr>
+                 </div>
+               </div>
+               <ul class="nav  nav-pills nav-justified ">
+                  <li class="active"><a data-toggle="tab" href="#menu1" class="text-dark">เลือกจากไฟล์</a></li>
+                  <li><a data-toggle="tab" href="#home" class="text-dark">ถ่ายภาพ</a></li>
 
+                </ul>
+                <form enctype="multipart/form-data" method="post" action="/insert/Receipt/<?php echo $Prosell_ID ?>">
+        {{ csrf_field() }}
+                <div class="tab-content">
+                  <div id="menu1" class="tab-pane fade in active text-center">
+                    <div class="row">
+                      <div class="col-md-6 col-md-offset-3">
+<br>
+                    <div class=" text-center" id="text">
+
+
+                <img id='img-upload' class="img-rounded"  width="304" height="236" />
+                <hr>
+                </div>
+                </div>
+                <div class="col-md-6 col-md-offset-3">
+
+                          <div class="form-group">
+                              <div v-bind:class="{'form-group':headqestionerror , 'has-error has-feedback':headqestionerror }">
+
+                                          <span class="btn btn-success btn-file" >
+                                              Browse… <input type="file" id="imgInp" name="imgInp" >
+                                          </span>
+                                          <div class="form-group row">
+
+                                          </div>
+                                             <input type="text" class="form-control" readonly>
+                                          <span class="text-danger" v-if="fileofficeerror">
+                                              <strong>@{{ fileofficeerror }}</strong>
+                                          </span>
+                                      </div>
+                                </div>
+
+                              </div>
+                     </div>
+    </div>
+
+
+
+
+                  <div id="home" class="tab-pane fade text-center">
+                    <br>
+                    <h4>เอกสารสำหรับการประกันตัว</h4>
+                    <p>เนื้อหาของเพลงจะทำให้ผู้ที่ได้รับฟังรู้สึกอยากที่จะมอบความรักให้กับคนรัก หรือแม้แต่เวลาคนรักทะเลาะกัน ก็ยังสามารถส่งเพลงนี้เพื่อง้อกันได้เช่นกัน</p>
+                    <button type="button" class="btn btn-default btn-lm btn-danger">
+                              <span class="glyphicon glyphicon-download-alt"></span> ดาวห์โหลด
+                            </button>
+                  </div>
+
+
+
+             </div>
+             <div class="modal-footer">
+               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+               <button type="submit" class="btn btn-default" >ยันยัน</button>
+             </div>
+           </div>
+           </form>
+         </div>
+       </div>
     </div>
 
 
@@ -188,6 +254,65 @@
 
 
 document.getElementById("loader").style.display = "none";
+document.getElementById("text").style.display = "none";
+$(document).ready( function() {
+    	$(document).on('change', '.btn-file :file', function() {
+		var input = $(this),
+			label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+		input.trigger('fileselect', [label]);
+		});
+
+		$('.btn-file :file').on('fileselect', function(event, label) {
+
+		    var input = $(this).parents('.form-group').find(':text'),
+		        log = label;
+
+		    if( input.length ) {
+		        input.val(log);
+		    } else {
+		        if( log ) alert(log);
+		    }
+
+		});
+		function readURL(input) {
+		    if (input.files && input.files[0]) {
+		        var reader = new FileReader();
+
+		        reader.onload = function (e) {
+		            $('#img-upload').attr('src', e.target.result);
+		        }
+
+		        reader.readAsDataURL(input.files[0]);
+            document.getElementById("text").style.display = "block";
+		    }
+		}
+
+		$("#imgInp").change(function(){
+		    readURL(this);
+		});
+
+//test
+
+    function readURL2(input) {
+      if (input.files && input.files[0]) {
+          var reader = new FileReader();
+
+          reader.onload = function (e) {
+              $('#img-upload2').attr('src', e.target.result);
+          }
+
+          reader.readAsDataURL(input.files[0]);
+
+      }
+    }
+
+    $("#imgInp2").change(function(){
+      readURL2(this);
+    });
+
+
+	});
+
 
 var information =  new Vue({
     el: '#information',

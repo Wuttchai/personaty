@@ -11,6 +11,7 @@
 |
 */
 Auth::routes();
+
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/ww', function () {
     return view('welcome');
@@ -125,3 +126,6 @@ Route::get('/invoice-print', function () {
   Route::get('/question/comment/{id}', 'user\WebboardController@showcomment')->name('showcomment');
   Route::post('/question/addcomment/', 'user\WebboardController@store')->name('addcomment');
   Route::get('/question/addcomment/eiei', 'user\WebboardController@showcomment');
+  Route::get('/ProductCardetail/{id}', 'user\ProductsellController@ProductCardetail');
+  Route::get('/ProductCarOrders', 'user\ProductsellController@ProductCarOrders')->name('ProductCarOrders');
+  Route::post('/insert/Receipt/{id}', 'user\ProductsellController@insertimg');

@@ -15,7 +15,7 @@
 
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
     <link href="https://adminlte.io/themes/AdminLTE/dist/css/AdminLTE.min.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
     <link rel="stylesheet" href="{{ asset('css/testboot.css') }}">
     <link rel="stylesheet" href="{{ asset('css/sweetalert2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('fonts/thsarabunnew.css') }}" />
@@ -104,13 +104,18 @@
                     <li><a class="nav-link" href="{{ route('register') }}"><h5>สมัครสมาชิก</h5></a></li>
                     @else
     <li class="dropdown">
-        <a data-toggle="dropdown" class="dropdown-toggle" href="#"><h5>{{ Auth::user()->User_Name }} <b class="caret"></b> </h5></a>
+      <a data-toggle="dropdown" class="dropdown-toggle " href="#"><h5>{{ Auth::user()->User_Name }} <b class="caret"></b> </h5></a>
         <ul class="dropdown-menu">
-            <li><a href="#">ข้อมูลส่วนตัว</a></li>
+            <li class="<?php echo  Session::get('tabmanu3'); ?>"><a href="#" onclick="event.preventDefault();
+                          document.getElementById('product-form').submit();">ข้อมูลการสั่งซื้อสินค้า</a></li>
+
             <li><a href="#" onclick="event.preventDefault();
                           document.getElementById('logout-form').submit();">Logout</a></li>
 
                           <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                              @csrf
+                          </form>
+                          <form id="product-form" action="/ProductCarOrders" method="get" style="display: none;">
                               @csrf
                           </form>
         </ul>

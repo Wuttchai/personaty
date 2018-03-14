@@ -89,7 +89,7 @@
 
     @foreach ($question as $user)
 
-          <div class="col-md-6">
+          <div class="col-md-12">
   <div class="panel panel-default "><a href="question/comment/<?php echo $user->ques_id ?>" class="text-dark">
 
 
@@ -105,7 +105,7 @@ $string = strip_tags($user->ques_detail);
 if (strlen($string) >= 68) {
 
     // truncate string
-    $stringCut = iconv_substr($string, 0, 68, "UTF-8");
+    $stringCut = iconv_substr($string, 0, 200, "UTF-8");
 
 }else {
   $stringCut = $user->ques_detail;

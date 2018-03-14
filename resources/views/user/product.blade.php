@@ -129,19 +129,10 @@
           <tfoot>
              		<tr>
              			<td colspan="3">&nbsp;</td>
-             			<td>Subtotal</td>
-             			<td><?php echo Cart::subtotal(); ?></td>
+             			<td>ราคาสินค้าทั้งหมด :</td>
+             			<td><?php echo Cart::subtotal(); ?> บาท</td>
              		</tr>
-             		<tr>
-             			<td colspan="3">&nbsp;</td>
-             			<td>Tax</td>
-             			<td><?php echo Cart::tax(); ?></td>
-             		</tr>
-             		<tr>
-             			<td colspan="3">&nbsp;</td>
-             			<td>Total</td>
-             			<td><?php echo Cart::total(); ?></td>
-             		</tr>
+
              	</tfoot>
         </table>
         <div class="col-lg-12 text-center">
