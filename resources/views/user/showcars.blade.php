@@ -389,7 +389,7 @@ var information =  new Vue({
 
            insert: function (event) {
 
-
+ console.log(document.getElementById('xxxx').src);
              if (document.getElementById('results').src) {
                console.log("ถ่ายภาพ");
                this.image = document.getElementById('results').src;
