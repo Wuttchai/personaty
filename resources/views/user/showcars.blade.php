@@ -222,25 +222,6 @@
 
                   <div id="home" class="tab-pane fade text-center">
 
-<br>
-                  <div class=" text-center" id="text2">
-
-
-            <div id="results">
-              ตัวอย่างรูป
-                <hr>
-            </div>
-
-
-              </div>
-
-
-
-
-    <input class="btn btn-success btn-file" type=button value="ถ่ายภาพ" onClick="take_snapshot()">
-
-
-
 
                    </div>
 </div>
@@ -254,7 +235,16 @@
          </div>
        </div>
     </div>
+    <div id="results">ตัวอย่างรูป</div>
 
+    <h1>กล้องถ่าย</h1>
+    <h3>ขนาดภาพ 320x240 </h3>
+
+    <div id="my_camera"></div>
+
+    <form>
+      <input type=button value="ถ่ายภาพ" onClick="take_snapshot()">
+    </form>
 
        </div>
 
@@ -271,27 +261,28 @@ document.getElementById("loader").style.display = "none";
 document.getElementById("text").style.display = "none";
 document.getElementById("results").style.display = "none";
 
-Webcam.set({
-  width: 320,
-  height: 240,
-  image_format: 'jpeg',
-  jpeg_quality: 90
-});
+document.getElementById("results").style.display = "none";
 
-Webcam.attach( '#my_camera' );
+	Webcam.set({
+		width: 320,
+		height: 240,
+		image_format: 'jpeg',
+		jpeg_quality: 90
+	});
+	Webcam.attach( '#my_camera' );
 
-  function take_snapshot() {
-    // take snapshot and get image data
-    Webcam.snap( function(data_uri) {
-      console.log(data_uri);
-      // display results in page
-      document.getElementById('results').innerHTML =
+		function take_snapshot() {
+			// take snapshot and get image data
+			Webcam.snap( function(data_uri) {
+				console.log(data_uri);
+				// display results in page
+				document.getElementById('results').innerHTML =
 
-        '<img src="'+data_uri+'"/>';
-        document.getElementById("results").style.display = "block";
-this.imgage = data_uri;
-    } );
-  }
+					'<img src="'+data_uri+'"/>';
+					document.getElementById("results").style.display = "block";
+
+			} );
+		}
 
 $(document).ready( function() {
   <?php
