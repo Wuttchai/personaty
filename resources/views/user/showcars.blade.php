@@ -221,10 +221,13 @@
 
                   <div id="home" class="tab-pane fade text-center">
                     <div class="row">
-                        <div class="col-md-6 pull-center">
+                      <div class="col-md-12 text-center">
+                            <hr>ถ่ายภาพ</hr>
+</div>
+                        <div class="col-md-6 pull-right">
                               <div id="my_camera"></div>
 </div>
-                      <div class="col-md-6 pull-center">
+                      <div class="col-md-6 pull-left">
 
   <div id="results">ตัวอย่างรูป</div>
 
