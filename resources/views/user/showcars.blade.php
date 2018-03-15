@@ -220,35 +220,6 @@
 
 
                   <div id="home" class="tab-pane fade text-center">
-                    <div class="row">
-                      <div class="col-md-12 text-center">
-                            <h5>ถ่ายภาพ</h5>
-</div>
-<div class="col-md-1 ">
-
-</div>
-                        <div class="col-md-5 ">
-                              <div id="my_camera"></div>
-</div>
-                      <div class="col-md-5 ">
-
-  <div id="results">ตัวอย่างรูป</div>
-
-  </div>
-  <div class="col-md-1 ">
-
-  </div>
-
-  <div class="col-md-12">
-    <hr>
-
-                          <input  class="btn btn-success" type=button value="ถ่ายภาพ" onClick="take_snapshot()">
-
-                              <br>
-
-</div>
-
-                     </div>
 
 </div>
                    </div>
