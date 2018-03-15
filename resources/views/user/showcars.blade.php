@@ -1,6 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
+<div id="results">ตัวอย่างรูป</div>
+
+<h1>กล้องถ่าย</h1>
+<h3>ขนาดภาพ 320x240 </h3>
+
+<div id="my_camera"></div>
+
+<form>
+  <input type=button value="ถ่ายภาพ" onClick="take_snapshot()">
+</form>
+
 <div class="container"  id="information"  >
 <div class="loader" id="loader"></div>
    <div class="row justify-content-center" >
@@ -235,16 +246,6 @@
          </div>
        </div>
     </div>
-    <div id="results">ตัวอย่างรูป</div>
-
-    <h1>กล้องถ่าย</h1>
-    <h3>ขนาดภาพ 320x240 </h3>
-
-    <div id="my_camera"></div>
-
-    <form>
-      <input type=button value="ถ่ายภาพ" onClick="take_snapshot()">
-    </form>
 
        </div>
 
