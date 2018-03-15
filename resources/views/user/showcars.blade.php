@@ -232,8 +232,8 @@
                         </form>
 
 
-                </div>
-                <div class="col-md-offset-2">
+
+
 
 
 
