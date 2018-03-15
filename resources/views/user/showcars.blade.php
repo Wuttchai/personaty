@@ -224,10 +224,10 @@
                       <div class="col-md-12 text-center">
                             <h5>ถ่ายภาพ</h5>
 </div>
-                        <div class="col-md-6 pull-right">
+                        <div class="col-md-6 pull-left">
                               <div id="my_camera"></div>
 </div>
-                      <div class="col-md-6 pull-left">
+                      <div class="col-md-6 pull-right">
 
   <div id="results">ตัวอย่างรูป</div>
 
@@ -238,7 +238,6 @@
                           <input  class="btn btn-success" type=button value="ถ่ายภาพ" onClick="take_snapshot()">
                         </form>
                               <br>
-
                               <hr>
 </div>
 
