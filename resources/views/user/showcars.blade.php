@@ -221,22 +221,25 @@
                   <div id="home" class="tab-pane fade text-center">
                     <div class="row">
                       <div class="col-md-6 ">
-          <br>
-          <div class=" text-center" id="text2">
-            <div id="results"></div>
-          <hr>
-          </div>
+                        <h5>กล้องถ่าย</h5>
+
+                        <div id="my_camera"></div>
+
+<button  class="btn btn-default" onClick="take_snapshot()" >ถ่ายภาพ</button>
+
+
+
                 </div>
                 <div class="col-md-6 ">
 
                           <div class="form-group">
                             <div class="form-group row">
-                              <h5>กล้องถ่าย</h5>
 
-                              <div id="my_camera"></div>
-
- <button type="submit" class="btn btn-default" onClick="take_snapshot()" >ถ่ายภาพ</button>
-
+                              <br>
+                              <div class=" text-center" id="text2">
+                                <div id="results"></div>
+                              <hr>
+                              </div>
 
                                       </div>
                                 </div>
