@@ -221,7 +221,8 @@
 
                   <div id="home" class="tab-pane fade text-center">
                     <div class="row">
-                      <div class="col-md-6 pull-right">
+                        <div class="col-md-12 ">
+                      <div class="col-md-offset-1">
 
 
                         <div id="my_camera"></div>
@@ -232,7 +233,7 @@
 
 
                 </div>
-                <div class="col-md-6 pull-left">
+                <div class="col-md-offset-2">
 
 
 
@@ -246,7 +247,7 @@
                               </div>
                      </div>
 
-
+</div>
                    </div>
 </div>
 <br>
