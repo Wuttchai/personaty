@@ -388,7 +388,7 @@ var information =  new Vue({
            },
 
            insert: function (event) {
-let elm = document.getElementById('xxxx');
+let elm = document.getElementById('xxxx').src;
 console.log(elm)
              axios.defaults.headers.post['formData'] = 'multipart/form-data';
 
