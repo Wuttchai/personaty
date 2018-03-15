@@ -227,7 +227,14 @@
 
                         <div id="my_camera"></div>
   <h5 class="text-center" >กล้องถ่ายรูป</h5>
-  <div id="results">ตัวอย่างภาพ</div>
+
+  </div>
+  <div class="col-md-offset-3">
+
+
+  <div id="results">ตัวอย่างรูป</div>
+
+</div>
                         <form>
                           <input  class="btn btn-success" type=button value="ถ่ายภาพ" onClick="take_snapshot()">
                         </form>
@@ -238,7 +245,8 @@
                               <hr>
 
 
-                              </div>
+
+
                      </div>
 
 </div>
@@ -273,7 +281,7 @@
 
 document.getElementById("loader").style.display = "none";
 document.getElementById("text").style.display = "none";
-document.getElementById("text2").style.display = "none";
+document.getElementById("results").style.display = "none";
 
 
 
@@ -286,7 +294,7 @@ function take_snapshot() {
 
       '<img src="'+data_uri+'"/>';
 
-      document.getElementById("text2").style.display = "block";
+      document.getElementById("results").style.display = "block";
   } );
 }
 
