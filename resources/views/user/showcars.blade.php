@@ -391,7 +391,7 @@ var information =  new Vue({
 
 
              if (document.getElementById('xxxx')) {
-
+console.log('xxxx');
                this.image = document.getElementById('xxxx').src;
 
              }
@@ -432,7 +432,7 @@ var information =  new Vue({
            },
            home: function () {
 
-             information.image =' ';
+
 
 
            }
