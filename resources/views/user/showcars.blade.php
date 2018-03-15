@@ -255,11 +255,10 @@
 
 @push('scripts')
 <script src="{{ asset('js/text.js') }}"></script>
-<script>
+<script language="JavaScript">
 
 document.getElementById("loader").style.display = "none";
 document.getElementById("text").style.display = "none";
-document.getElementById("results").style.display = "none";
 
 document.getElementById("results").style.display = "none";
 
