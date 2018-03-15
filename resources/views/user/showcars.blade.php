@@ -220,14 +220,14 @@
 
                   <div id="home" class="tab-pane fade text-center">
                     <div class="row">
-                      <div class="col-md-6 col-md-offset-3">
+                      <div class="col-md-6 ">
           <br>
           <div class=" text-center" id="text2">
             <div id="results"></div>
           <hr>
           </div>
                 </div>
-                <div class="col-md-6 col-md-offset-3">
+                <div class="col-md-6 ">
 
                           <div class="form-group">
                             <div class="form-group row">
@@ -235,9 +235,8 @@
 
                               <div id="my_camera"></div>
 
-                              <form>
-                                <input type=button value="ถ่ายภาพ" onClick="take_snapshot()">
-                              </form>
+ <button type="submit" class="btn btn-default" onClick="take_snapshot()" >ถ่ายภาพ</button>
+
 
                                       </div>
                                 </div>
