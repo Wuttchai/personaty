@@ -296,6 +296,7 @@ function take_snapshot() {
       '<img src="'+data_uri+'"/>';
 
 this.image = data_uri;
+console.log(this.image );
       document.getElementById("results").style.display = "block";
   } );
 }
