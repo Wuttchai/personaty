@@ -268,6 +268,26 @@ document.getElementById("results").style.display = "none";
 
 
 $(document).ready( function() {
+  Webcam.set({
+    width: 320,
+    height: 240,
+    image_format: 'jpeg',
+    jpeg_quality: 90
+  });
+  Webcam.attach( '#my_camera' );
+
+    function take_snapshot() {
+      // take snapshot and get image data
+      Webcam.snap( function(data_uri) {
+        console.log(data_uri);
+        // display results in page
+        document.getElementById('results').innerHTML =
+
+          '<img src="'+data_uri+'"/>';
+          document.getElementById("results").style.display = "block";
+
+      } );
+    }
   <?php
   if ($errors->has('imgInp') != null) {
 
@@ -358,26 +378,7 @@ var information =  new Vue({
     },
 
     computed: {
-      Webcam.set({
-        width: 320,
-        height: 240,
-        image_format: 'jpeg',
-        jpeg_quality: 90
-      });
-      Webcam.attach( '#my_camera' );
 
-        function take_snapshot() {
-          // take snapshot and get image data
-          Webcam.snap( function(data_uri) {
-            console.log(data_uri);
-            // display results in page
-            document.getElementById('results').innerHTML =
-
-              '<img src="'+data_uri+'"/>';
-              document.getElementById("results").style.display = "block";
-
-          } );
-        }
   },
     methods: {
 
