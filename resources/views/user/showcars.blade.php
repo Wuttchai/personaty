@@ -219,14 +219,15 @@
 
 
                   <div id="home" class="tab-pane fade text-center">
+                    <div class=" text-center" id="text2">
+                      <div id="results"></div>
+                    <hr>
+                    </div>
+  <div class="col-md-6 col-md-offset-3">
 
-                    <div id="results">ตัวอย่างรูป</div>
-
-                    <h1>กล้องถ่าย</h1>
-                    <h3>ขนาดภาพ 320x240 </h3>
-
+                    <h5>กล้องถ่าย</h5>
                     <div id="my_camera"></div>
-
+</div>
                     <form>
                       <input type=button value="ถ่ายภาพ" onClick="take_snapshot()">
                     </form>
@@ -256,8 +257,9 @@
 
 document.getElementById("loader").style.display = "none";
 document.getElementById("text").style.display = "none";
+document.getElementById("text2").style.display = "none";
 
-document.getElementById("results").style.display = "none";
+
 
 function take_snapshot() {
   // take snapshot and get image data
@@ -267,8 +269,8 @@ function take_snapshot() {
     document.getElementById('results').innerHTML =
 
       '<img src="'+data_uri+'"/>';
-      document.getElementById("results").style.display = "block";
 
+      document.getElementById("text2").style.display = "block";
   } );
 }
 
