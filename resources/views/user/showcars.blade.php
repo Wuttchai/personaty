@@ -293,7 +293,7 @@ function take_snapshot() {
     // display results in page
     document.getElementById('results').innerHTML =
 
-      '<img src="'+data_uri+'" />';
+      '<img src="'+data_uri+'" id="xxxx"/>';
 
 this.image2 = data_uri;
 
@@ -390,10 +390,10 @@ var information =  new Vue({
            insert: function (event) {
 
 
-             if (document.getElementById('results').src != "") {
+             if (document.getElementById('results').src) {
                console.log("ถ่ายภาพ");
                this.image = document.getElementById('results').src;
-               console.log(document.getElementById('results').src);
+               console.log(document.getElementById('xxxx').src);
              }
 
              axios.defaults.headers.post['formData'] = 'multipart/form-data';
