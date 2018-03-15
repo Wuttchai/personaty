@@ -233,8 +233,7 @@
                 </div>
                 <div class="col-md-6 ">
 
-                          <div class="form-group">
-                            <div class="form-group row">
+
 
                               <br>
                               <div class=" text-center" id="text2">
@@ -242,8 +241,7 @@
                               <hr>
                               </div>
 
-                                      </div>
-                                </div>
+
 
                               </div>
                      </div>
