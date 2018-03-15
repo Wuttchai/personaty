@@ -293,7 +293,7 @@ function take_snapshot() {
     // display results in page
     document.getElementById('results').innerHTML =
 
-      '<img src="'+data_uri+'" slot="header"  />';
+      '<img src="'+data_uri+'" id="xxxx"/>';
 
 this.image2 = data_uri;
 
@@ -388,8 +388,8 @@ var information =  new Vue({
            },
 
            insert: function (event) {
-
-console.log(this.$slots.header)
+let elm = document.getElementById('xxxx');
+console.log(elm)
              axios.defaults.headers.post['formData'] = 'multipart/form-data';
 
              axios.post('/insert/receipt', {
