@@ -388,8 +388,8 @@ var information =  new Vue({
            },
 
            insert: function (event) {
-
-console.log(this.$refs["myid"])
+let elm = document.getElementById('results');
+console.log(elm)
              axios.defaults.headers.post['formData'] = 'multipart/form-data';
 
              axios.post('/insert/receipt', {
