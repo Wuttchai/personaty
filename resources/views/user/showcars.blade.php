@@ -422,13 +422,11 @@ var information =  new Vue({
            },
 
            manu1: function () {
-console.log("ถ่ายภาพเท่ากับว่าง");
-                document.getElementById("results").src = "";
+
 
            },
            home: function () {
-             console.log("เลือกภาพเท่ากับว่าง");
-          this.image ="";
+          
 
            }
     }
