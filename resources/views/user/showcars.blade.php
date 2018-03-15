@@ -219,18 +219,33 @@
 
 
                   <div id="home" class="tab-pane fade text-center">
-                    <div class=" text-center" id="text2">
-                      <div id="results"></div>
-                    <hr>
-                    </div>
-  <div class="col-md-6 col-md-offset-3">
+                    <div class="row">
+                      <div class="col-md-6 col-md-offset-3">
+          <br>
+          <div class=" text-center" id="text2">
+            <div id="results"></div>
+          <hr>
+          </div>
+                </div>
+                <div class="col-md-6 col-md-offset-3">
 
-                    <h5>กล้องถ่าย</h5>
-                    <div id="my_camera"></div>
-</div>
-                    <form>
-                      <input type=button value="ถ่ายภาพ" onClick="take_snapshot()">
-                    </form>
+                          <div class="form-group">
+                            <div class="form-group row">
+                              <h5>กล้องถ่าย</h5>
+
+                              <div id="my_camera"></div>
+
+                              <form>
+                                <input type=button value="ถ่ายภาพ" onClick="take_snapshot()">
+                              </form>
+
+                                      </div>
+                                </div>
+
+                              </div>
+                     </div>
+
+
                    </div>
 </div>
 <br>
@@ -245,6 +260,11 @@
     </div>
 
        </div>
+
+
+
+
+
 
 <br>
 <br>
