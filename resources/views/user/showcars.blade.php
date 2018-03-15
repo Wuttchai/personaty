@@ -389,7 +389,8 @@ var information =  new Vue({
            insert: function (event) {
 
              axios.defaults.headers.post['formData'] = 'multipart/form-data';
-             axios.post('/insert/Receipt/', {
+
+             axios.post('/insert/receipt', {
                  id: event,
                  fileoffice: this.image,
 
