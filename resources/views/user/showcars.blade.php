@@ -3,21 +3,23 @@
 @section('content')
 
 <div class="container"  id="information"  >
+  <div id="results">ตัวอย่างรูป</div>
+
+  <h1>กล้องถ่าย</h1>
+  <h3>ขนาดภาพ 320x240 </h3>
+
+  <div id="my_camera"></div>
+
+  <form>
+    <input type=button value="ถ่ายภาพ" onClick="take_snapshot()">
+  </form>
+  
 <div class="loader" id="loader"></div>
    <div class="row justify-content-center" >
 
      <div class="container">
 
-       <div id="results">ตัวอย่างรูป</div>
 
-       <h1>กล้องถ่าย</h1>
-       <h3>ขนาดภาพ 320x240 </h3>
-
-       <div id="my_camera"></div>
-
-       <form>
-         <input type=button value="ถ่ายภาพ" onClick="take_snapshot()">
-       </form>
 
 
 
