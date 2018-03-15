@@ -238,13 +238,14 @@
   <div class="col-md-1 ">
 
   </div>
-  <hr>
+
   <div class="col-md-12">
+    <hr>
                         <form>
                           <input  class="btn btn-success" type=button value="ถ่ายภาพ" onClick="take_snapshot()">
                         </form>
                               <br>
-                              <hr>
+
 </div>
 
                      </div>
