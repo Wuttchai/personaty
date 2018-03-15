@@ -221,18 +221,18 @@
 
                   <div id="home" class="tab-pane fade text-center">
                     <div class="row">
-                      <div class="col-md-6 ">
-                        <h5>กล้องถ่าย</h5>
+                      <div class="col-md-6 pull-right">
+
 
                         <div id="my_camera"></div>
-
+  <h5 class="text-center" >กล้องถ่ายรูป</h5>
                         <form>
-                          <input type=button value="ถ่ายภาพ" onClick="take_snapshot()">
+                          <input  class="btn btn-success" type=button value="ถ่ายภาพ" onClick="take_snapshot()">
                         </form>
 
 
                 </div>
-                <div class="col-md-6 ">
+                <div class="col-md-6 pull-left">
 
 
 
@@ -241,8 +241,7 @@
                                 <div id="results"></div>
                               <hr>
                               </div>
-
-
+<h5 class="text-center" >กล้องถ่ายรูป</h5>
 
                               </div>
                      </div>
