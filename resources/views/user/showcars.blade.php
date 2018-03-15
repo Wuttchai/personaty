@@ -391,7 +391,7 @@ var information =  new Vue({
 
 
              if (document.getElementById('xxxx')) {
-
+console.log("ถ่ายภาพ");
                this.image = document.getElementById('xxxx').src;
 
              }
