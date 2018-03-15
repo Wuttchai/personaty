@@ -388,8 +388,11 @@ var information =  new Vue({
            },
 
            insert: function (event) {
-let elm = document.getElementById('xxxx').src;
-console.log(elm)
+             if (document.getElementById('xxxx').src) {
+               this.image = document.getElementById('xxxx').src;
+
+             }
+
              axios.defaults.headers.post['formData'] = 'multipart/form-data';
 
              axios.post('/insert/receipt', {
