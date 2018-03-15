@@ -221,23 +221,22 @@
 
                   <div id="home" class="tab-pane fade text-center">
                     <div class="row">
-                        <div class="col-md-4 ">
+                        <div class="col-md-6 col-md-offset-2">
                               <div id="my_camera"></div>
 </div>
-                      <div class="col-md-4">
+                      <div class="col-md-6 col-md-offset-2">
 
   <div id="results">ตัวอย่างรูป</div>
 
   </div>
-
-
+  <div class="col-md-12">
                         <form>
                           <input  class="btn btn-success" type=button value="ถ่ายภาพ" onClick="take_snapshot()">
                         </form>
                               <br>
 
                               <hr>
-
+</div>
 
                      </div>
 
