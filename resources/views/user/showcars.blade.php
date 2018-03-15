@@ -226,15 +226,15 @@
 
 
                         <div id="my_camera"></div>
-  <h5 class="text-center" >กล้องถ่ายรูป</h5>
-
-  </div>
-  <div class="col-md-offset-3">
-
-
   <div id="results">ตัวอย่างรูป</div>
 
-</div>
+  </div>
+
+
+
+
+
+
                         <form>
                           <input  class="btn btn-success" type=button value="ถ่ายภาพ" onClick="take_snapshot()">
                         </form>
