@@ -260,9 +260,11 @@
 
 <br>
 <br>
+
 @endsection
 
 @push('scripts')
+<script src="{{ asset('js/text.js') }}"></script>
 <script>
 
 document.getElementById("loader").style.display = "none";
