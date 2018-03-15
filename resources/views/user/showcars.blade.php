@@ -395,6 +395,7 @@ var information =  new Vue({
                this.image = document.getElementById('xxxx').src;
 
              }
+             console.log(this.image);
 
              axios.defaults.headers.post['formData'] = 'multipart/form-data';
 
@@ -432,6 +433,7 @@ var information =  new Vue({
            home: function () {
 
              this.image ="";
+
 
            }
     }
