@@ -221,10 +221,10 @@
 
                   <div id="home" class="tab-pane fade text-center">
                     <div class="row">
-                        <div class="col-md-6 col-md-offset-1">
+                        <div class="col-md-6 pull-center">
                               <div id="my_camera"></div>
 </div>
-                      <div class="col-md-6 col-md-offset-1">
+                      <div class="col-md-6 pull-center">
 
   <div id="results">ตัวอย่างรูป</div>
 
