@@ -1,18 +1,6 @@
-<!doctype html>
+@extends('layouts.app')
 
-<html lang="en">
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>WebcamJS Test Page</title>
-	<style type="text/css">
-		body { font-family: Helvetica, sans-serif; }
-		h2, h3 { margin-top:0; }
-		form { margin-top: 15px; }
-		form > input { margin-right: 15px; }
-		#results { float:right; margin:20px; padding:20px; border:1px solid; background:#ccc; }
-	</style>
-</head>
-<body>
+@section('content')
 	<div id="results">ตัวอย่างรูป</div>
 
 	<h1>กล้องถ่าย</h1>
@@ -24,7 +12,9 @@
 		<input type=button value="ถ่ายภาพ" onClick="take_snapshot()">
 	</form>
 
+	@endsection
 
+	@push('scripts')
 
 	<script src="{{ asset('js/text.js') }}"></script>
 	<script language="JavaScript">
@@ -52,6 +42,4 @@ document.getElementById("results").style.display = "none";
 			} );
 		}
 	</script>
-
-</body>
-</html>
+@endpush
