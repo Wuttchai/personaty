@@ -393,6 +393,7 @@ var information =  new Vue({
              if (document.getElementById('results').src != "") {
                console.log("ถ่ายภาพ");
                this.image = document.getElementById('results').src;
+               console.log(document.getElementById('results').src);
              }
 
              axios.defaults.headers.post['formData'] = 'multipart/form-data';
