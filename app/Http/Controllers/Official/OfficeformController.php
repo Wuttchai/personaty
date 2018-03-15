@@ -83,9 +83,9 @@ $time =Carbon::now('Asia/Bangkok');
 
                 \App\info::insert([
                               'Log_ID' => $logid,
-                              'Info_Name' => $request->name,
-                              'Info_Img'  => $fileName,
-                              'infocreated_at' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "" ,
+                              'info.Info_Name' => $request->name,
+                              'info.Info_Img'  => $fileName,
+                              'info.infocreated_at' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "" ,
                               'info.Infoupdated_at' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
                             ]);
                 $projectlog =  \App\info::where([
