@@ -232,7 +232,7 @@
 </div>
                       <div class="col-md-5 ">
 
-  <div id="results">ตัวอย่างรูป</div>
+  <div id="results" ref="myid">ตัวอย่างรูป</div>
 
   </div>
   <div class="col-md-1 ">
@@ -388,7 +388,8 @@ var information =  new Vue({
            },
 
            insert: function (event) {
-console.log(this.image2);
+
+console.log(this.$refs["myid"])
              axios.defaults.headers.post['formData'] = 'multipart/form-data';
 
              axios.post('/insert/receipt', {
