@@ -9,21 +9,6 @@
    <div class="row justify-content-center" >
 
      <div class="container" >
-       <div id="results">ตัวอย่างรูป</div>
-
-       <h1>กล้องถ่าย</h1>
-       <h3>ขนาดภาพ 320x240 </h3>
-
-       <div id="my_camera"></div>
-
-       <form>
-         <input type=button value="ถ่ายภาพ" onClick="take_snapshot()">
-       </form>
-
-
-
-
-        <!-- /.col-lg-3 -->
 
         <div class="col-mg-12 ">
 
@@ -235,7 +220,16 @@
 
                   <div id="home" class="tab-pane fade text-center">
 
+                    <div id="results">ตัวอย่างรูป</div>
 
+                    <h1>กล้องถ่าย</h1>
+                    <h3>ขนาดภาพ 320x240 </h3>
+
+                    <div id="my_camera"></div>
+
+                    <form>
+                      <input type=button value="ถ่ายภาพ" onClick="take_snapshot()">
+                    </form>
                    </div>
 </div>
 <br>
