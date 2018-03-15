@@ -293,7 +293,7 @@ function take_snapshot() {
     // display results in page
     document.getElementById('results').innerHTML =
 
-      '<img src="'+data_uri+'" id="xxxx"/>';
+      '<img src="'+data_uri+'" />';
 
 this.image2 = data_uri;
 
@@ -426,7 +426,7 @@ var information =  new Vue({
 
            },
            home: function () {
-          
+
 
            }
     }
