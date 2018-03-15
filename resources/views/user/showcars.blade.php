@@ -224,15 +224,18 @@
                       <div class="col-md-12 text-center">
                             <h5>ถ่ายภาพ</h5>
 </div>
-<div class="col-md-2 ">
-      
+<div class="col-md-1 ">
+
 </div>
-                        <div class="col-md-4 ">
+                        <div class="col-md-5 ">
                               <div id="my_camera"></div>
 </div>
-                      <div class="col-md-6 pull-right">
+                      <div class="col-md-5 ">
 
   <div id="results">ตัวอย่างรูป</div>
+
+  </div>
+  <div class="col-md-1 ">
 
   </div>
   <hr>
