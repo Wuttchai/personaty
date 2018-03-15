@@ -80,23 +80,34 @@ return view('user.detailcars',[
   'Car' => $Car,
   'date' => $date,
 ]);
-}public function insertimg(Request $request, $id)
+}
+public function insertimg(Request $request)
      {
+
        $validator =  Validator::make($request->all(), [
-           'imgInp' => 'required|image|img_min_size:100,100',
-              ])->validate();
+            'id' => 'required',
+           'fileoffice' => 'required|image64:jpeg,jpg,png|img_min_size:100,100',
+              ]);
+
+              if($validator->fails()){
+
+                    return[
+                    'messages' => $validator->errors()->messages()
+                    ];
+                  }else {
+
+                    $imageData = $request->get('fileoffice');
+                   $fileName = Carbon::now()->timestamp . '_' . uniqid() . '.' . explode('/', explode(':', substr($imageData, 0, strpos($imageData, ';')))[1])[1];
+                   \Image::make($imageData)->resize(500, 800)->save(public_path('Receipt/').$fileName);
+
 
        $time =Carbon::now('Asia/Bangkok');
 
-        $imageName =   $time->day. '-' .$id . '.' .  $request->file('imgInp')->getClientOriginalExtension();
 
-           $request->file('imgInp')->move(
-               base_path() . '/public/images/', $imageName
-           );
 
-           \App\product_sell::where('Prosell_ID',$id)
+           \App\product_sell::where('Prosell_ID',$request->id)
                                  ->update([
-                                 'Prosell_img' => $imageName,
+                                 'Prosell_img' => $fileName,
                                  'Prosell_orderdate'=>   "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
                              ]);
 
@@ -104,13 +115,14 @@ return view('user.detailcars',[
                        ->where('User_ID','=' ,Auth::user()->User_ID)
                        ->paginate(10);
 
-dd("xxx");
+
 foreach(Cart::content() as $carcon) {
 
   Cart::remove($carcon->rowId);
 }
 
  return redirect()->route('ProductCarOrders', ['CarOrders' => $CarOrders]);
+}
      }
 
     public function index()

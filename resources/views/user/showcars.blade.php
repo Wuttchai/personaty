@@ -178,8 +178,7 @@
                   <li><a data-toggle="tab" href="#home" class="text-dark">ถ่ายภาพ</a></li>
 
                 </ul>
-                <form enctype="multipart/form-data" method="post" action="/insert/Receipt/<?php echo $Prosell_ID ?>">
-        {{ csrf_field() }}
+
                 <div class="tab-content">
                   <div id="menu1" class="tab-pane fade in active text-center">
                     <div class="row">
@@ -194,22 +193,23 @@
                 </div>
                 <div class="col-md-6 col-md-offset-3">
 
-                          <div class="form-group">
-                            <div class="form-group row">
-                                          <span class="btn btn-success btn-file" >
-                                              Browse… <input type="file" id="imgInp" name="imgInp" class="form-control{{ $errors->has('imgInp') ? ' is-invalid' : '' }}" >
-                                          </span>
-                                          <div class="form-group row">
+                  <div class="form-group">
+                    <div v-bind:class="{'form-group':fileofficeerror , 'form-control label text-danger is-invalid':fileofficeerror }">
 
-                                          </div>
-                                             <input type="text" class="form-control" readonly>
-                                             @if($errors->has('imgInp'))
-                                          <span class="text-errors">
-                                              <strong>{{ $errors->first('imgInp') }}</strong>
-                                          </span>
-                                          @endif
-                                      </div>
-                                </div>
+                                  <span class="btn btn-success btn-file" >
+                                      Browse… <input type="file" id="imgInp" v-on:change="onFileChange">
+                                  </span>
+                                  <div class="form-group row">
+
+                                  </div>
+                                     <input type="text" class="form-control" readonly>
+                                  <span class="text-danger" v-if="fileofficeerror">
+                                      <strong>@{{ fileofficeerror }}</strong>
+                                  </span>
+                              </div>
+
+
+                        </div>
 
                               </div>
                      </div>
@@ -220,6 +220,35 @@
 
 
                   <div id="home" class="tab-pane fade text-center">
+                    <div class="row">
+                      <div class="col-md-12 text-center">
+                            <h5>ถ่ายภาพ</h5>
+</div>
+<div class="col-md-1 ">
+
+</div>
+                        <div class="col-md-5 ">
+                              <div id="my_camera"></div>
+</div>
+                      <div class="col-md-5 ">
+
+  <div id="results">ตัวอย่างรูป</div>
+
+  </div>
+  <div class="col-md-1 ">
+
+  </div>
+
+  <div class="col-md-12">
+    <hr>
+
+                          <input  class="btn btn-success" type=button value="ถ่ายภาพ" onClick="take_snapshot()">
+
+                              <br>
+
+</div>
+
+                     </div>
 
 </div>
                    </div>
@@ -227,10 +256,10 @@
 <br>
              <div class="modal-footer">
                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-               <button type="submit" class="btn btn-default" >ยันยัน</button>
+               <button type="submit" class="btn btn-default" v-on:click="insert(<?php echo $Prosell_ID ?>)" >ยันยัน</button>
              </div>
            </div>
-           </form>
+
          </div>
        </div>
     </div>
@@ -260,12 +289,13 @@ document.getElementById("results").style.display = "none";
 function take_snapshot() {
   // take snapshot and get image data
   Webcam.snap( function(data_uri) {
-    console.log(data_uri);
+
     // display results in page
     document.getElementById('results').innerHTML =
 
       '<img src="'+data_uri+'"/>';
 
+this.image = data_uri;
       document.getElementById("results").style.display = "block";
   } );
 }
@@ -280,24 +310,6 @@ $(document).ready( function() {
   Webcam.attach( '#my_camera' );
 
 
-  <?php
-  if ($errors->has('imgInp') != null) {
-
-  ?>
-    $("#myModal").modal('show');
-
-  $('.nav-pills a:first').tab('show')
-    <?php
-  }
-  if ($errors->has('imgInp2') != null) {
-  ?>
-
-  $("#myModal").modal('show');
-
-  $('.nav-pills a:last').tab('show')
-  <?php
-  }
-  ?>
     	$(document).on('change', '.btn-file :file', function() {
 		var input = $(this),
 			label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
@@ -326,32 +338,13 @@ $(document).ready( function() {
 
 		        reader.readAsDataURL(input.files[0]);
             document.getElementById("text").style.display = "block";
+
 		    }
 		}
 
 		$("#imgInp").change(function(){
 		    readURL(this);
 		});
-
-//test
-
-    function readURL2(input) {
-      if (input.files && input.files[0]) {
-          var reader = new FileReader();
-
-          reader.onload = function (e) {
-              $('#img-upload2').attr('src', e.target.result);
-          }
-
-          reader.readAsDataURL(input.files[0]);
-
-      }
-    }
-
-    $("#imgInp2").change(function(){
-      readURL2(this);
-    });
-
 
 	});
 
@@ -364,7 +357,8 @@ var information =  new Vue({
         'cars' : false,
         'seach' : <?php if (Session::get('search') == 'ค้นหา' || Session::get('search') == null ) {echo 'true';}else {echo 'false';} ?>,
         'cancelsearch' :<?php if (Session::get('search')!='ค้นหา' && Session::get('search')!= null ) {echo 'true';}else {echo 'false';} ?>,
-        'imgage'  :'',
+        'image'  :'',
+        'fileofficeerror':'',
 
 
     },
@@ -375,110 +369,49 @@ var information =  new Vue({
     methods: {
 
 
-           addcars: function (event) {
+      onFileChange(e) {
+               let files = e.target.files || e.dataTransfer.files;
+               if (!files.length)
+                   return;
+               this.createImage(files[0]);
+           },
+           createImage(file) {
+               let reader = new FileReader();
+               let vm = this;
+               reader.onload = (e) => {
+                   vm.image = e.target.result;
+               };
+               reader.readAsDataURL(file);
 
-
-    swal({
-title: 'คุณแน่ใจ !',
-text: 'คุณต้องการเพิ่มลงตร้าใช่ไหม',
-type: 'warning',
-showCancelButton: true,
-confirmButtonColor: '#3085d6',
-cancelButtonColor: '#d33',
-confirmButtonText: 'ยืนยัน',
-cancelButtonText : 'ยกเลิก',
-closeOnConfirm: false
-
-
-
-
-}).then(function (e) {
-
-
-
-      axios.post('/Productaddcars', {
-         id : event,
-        quantity : information.quantity,
-      }).then(function (response) {
-
-location.reload();
-         });
-      swal(
-        'ถูกเพิ่มเเล้ว !',
-        'สินค้าของคุณถูกเพิ่มแล้ว.',
-        'success'
-      )
-
-    }, function (dismiss) {
-
-      // dismiss can be 'cancel', 'overlay',
-      // 'close', and 'timer'
-      if (dismiss === 'cancel') {
-        swal(
-          'ยกเลิกเเล้ว',
-          'ไฟล์ที่คุณเลือกปลอดภัย :)',
-          'error'
-        )
-      }
-    })
            },
 
+           insert: function (event) {
 
-           deletecars: function (event) {
-
-                 swal({
-             title: 'คุณแน่ใจ !',
-             text: 'คุณต้องการเพิ่มลงตร้าใช่ไหม',
-             type: 'warning',
-             showCancelButton: true,
-             confirmButtonColor: '#3085d6',
-             cancelButtonColor: '#d33',
-             confirmButtonText: 'ยืนยัน',
-             cancelButtonText : 'ยกเลิก',
-             closeOnConfirm: false
-
-
-
-
-             }).then(function (e) {
-
-
-               axios.post('/Productdeletecars', {
-                  id : event,
+             axios.defaults.headers.post['formData'] = 'multipart/form-data';
+             axios.post('/insert/Receipt', {
+                 id: event,
+                 fileoffice: this.image,
 
                }).then(function (response) {
+          if (response.data.messages != null) {
 
-  location.reload();
-                  });
+          if(response.data.messages.fileoffice != null){
+          information.fileofficeerror = true;
+          information.fileofficeerror = response.data.messages.fileoffice[0];
+          }
+          }else {
+          location.reload();
+          }
 
-                   swal(
-                     'ถูกเพิ่มเเล้ว !',
-                     'สินค้าของคุณถูกเพิ่มแล้ว.',
-                     'success'
-                   )
 
-                 }, function (dismiss) {
 
-                   // dismiss can be 'cancel', 'overlay',
-                   // 'close', and 'timer'
-                   if (dismiss === 'cancel') {
-                     swal(
-                       'ยกเลิกเเล้ว',
-                       'ไฟล์ที่คุณเลือกปลอดภัย :)',
-                       'error'
-                     )
-                   }
-                 })
+
+                 });
+
 
            },
-           showcars: function () {
-             if (this.cars == true) {
-               this.cars = false;
-             }else {
-               this.cars = true;
-             }
 
-           },
+
 
     }
   })
