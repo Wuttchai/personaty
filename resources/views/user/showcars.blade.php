@@ -174,8 +174,8 @@
                  </div>
                </div>
                <ul class="nav  nav-pills nav-justified">
-                  <li class="active"><a data-toggle="tab" href="#menu1" class="text-dark">เลือกจากไฟล์</a></li>
-                  <li><a data-toggle="tab" href="#home" class="text-dark">ถ่ายภาพ</a></li>
+                  <li class="active"><a data-toggle="tab" href="#menu1" class="text-dark" v-on:click="manu1()">เลือกจากไฟล์</a></li>
+                  <li><a data-toggle="tab" href="#home" class="text-dark" v-on:click="home()">ถ่ายภาพ</a></li>
 
                 </ul>
 
@@ -388,9 +388,11 @@ var information =  new Vue({
            },
 
            insert: function (event) {
-             if (document.getElementById('xxxx').src) {
-               this.image = document.getElementById('xxxx').src;
 
+
+             if (document.getElementById('results').src != "") {
+               console.log("ถ่ายภาพ");
+               this.image = document.getElementById('results').src;
              }
 
              axios.defaults.headers.post['formData'] = 'multipart/form-data';
@@ -418,8 +420,16 @@ var information =  new Vue({
 
            },
 
+           manu1: function () {
+console.log("ถ่ายภาพเท่ากับว่าง");
+                document.getElementById("results").src = "";
 
+           },
+           home: function () {
+             console.log("เลือกภาพเท่ากับว่าง");
+          this.image ="";
 
+           }
     }
   })
 </script>
