@@ -83,7 +83,7 @@ return view('user.detailcars',[
 }
 public function insertimg(Request $request)
      {
-
+dd($request);
        $validator =  Validator::make($request->all(), [
             'id' => 'required',
            'fileoffice' => 'required|image64:jpeg,jpg,png|img_min_size:100,100',
