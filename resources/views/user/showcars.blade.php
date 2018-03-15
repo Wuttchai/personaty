@@ -391,9 +391,9 @@ var information =  new Vue({
 
 
              if (document.getElementById('xxxx')) {
-               console.log("ถ่ายภาพ");
+
                this.image = document.getElementById('xxxx').src;
-              
+
              }
 
              axios.defaults.headers.post['formData'] = 'multipart/form-data';
@@ -423,10 +423,15 @@ var information =  new Vue({
 
            manu1: function () {
 
+             if (document.getElementById('xxxx')) {
 
+               document.getElementById('xxxx').src = "";
+
+             }
            },
            home: function () {
 
+             this.image ="";
 
            }
     }
