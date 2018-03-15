@@ -295,8 +295,8 @@ function take_snapshot() {
 
       '<img src="'+data_uri+'"/>';
 
-this.image = data_uri;
-console.log(this.image );
+this.image2 = data_uri;
+
       document.getElementById("results").style.display = "block";
   } );
 }
@@ -360,6 +360,7 @@ var information =  new Vue({
         'cancelsearch' :<?php if (Session::get('search')!='ค้นหา' && Session::get('search')!= null ) {echo 'true';}else {echo 'false';} ?>,
         'image'  :'',
         'fileofficeerror':'',
+        'image2':'',
 
 
     },
@@ -387,7 +388,7 @@ var information =  new Vue({
            },
 
            insert: function (event) {
-console.log(this.image);
+console.log(this.image2);
              axios.defaults.headers.post['formData'] = 'multipart/form-data';
 
              axios.post('/insert/receipt', {
