@@ -432,7 +432,7 @@ var information =  new Vue({
            },
            home: function () {
 
-             this.image ="";
+             information.image =' ';
 
 
            }
