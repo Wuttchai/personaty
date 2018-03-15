@@ -222,7 +222,7 @@
                   <div id="home" class="tab-pane fade text-center">
                     <div class="row">
                       <div class="col-md-12 text-center">
-                            <hr>ถ่ายภาพ</hr>
+                            <h5>ถ่ายภาพ</h5>
 </div>
                         <div class="col-md-6 pull-right">
                               <div id="my_camera"></div>
@@ -232,7 +232,7 @@
   <div id="results">ตัวอย่างรูป</div>
 
   </div>
-  <br>
+  <hr>
   <div class="col-md-12">
                         <form>
                           <input  class="btn btn-success" type=button value="ถ่ายภาพ" onClick="take_snapshot()">
