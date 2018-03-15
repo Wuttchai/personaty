@@ -224,7 +224,7 @@
                       <div class="col-md-12 text-center">
                             <h5>ถ่ายภาพ</h5>
 </div>
-                        <div class="col-md-6 ">
+                        <div class="col-md-6 col-md-offset-1">
                               <div id="my_camera"></div>
 </div>
                       <div class="col-md-6 pull-right">
