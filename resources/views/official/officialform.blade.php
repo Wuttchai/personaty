@@ -55,7 +55,7 @@
                <tr v-for="item in paginatedUsers">
                  <td>@{{ item.official_Name }}</td>
                  <td>@{{ item.Info_Name }}</td>
-                 <td>@{{ item.Infoupdated_at }}</td>
+                 <td>@{{ item.Info_up }}</td>
                  <td><img :src="'{{asset('images')}}/' + item.Info_Img" height="42" width="42"/></td>
 
            <td >

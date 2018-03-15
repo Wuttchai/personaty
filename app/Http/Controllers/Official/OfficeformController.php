@@ -170,7 +170,7 @@ if ($request->fileoffice) {
                           'Log_ID' => $logid,
                           'Info_Name' => $request->name,
                           'Info_Img'  => $fileName,
-                          'Infoupdated_at' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
+                          'Info_up' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
                         ]);
 
 
@@ -217,7 +217,7 @@ if ($request->fileoffice) {
                         ->update([
                           'Log_ID' => $logid,
                           'Info_Name' => $request->name,
-                          'Infoupdated_at' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
+                          'Info_up' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
                         ]);
 
 
@@ -250,7 +250,7 @@ if ($request->fileoffice) {
 
      $info = \App\info::join('log','info.Log_ID','=','log.Log_ID')
                  ->join('official', 'official.official_ID', '=', 'log.official_ID')
-                 ->select('official.official_Name', 'info.Info_Name', 'info.Infoupdated_at','info.Info_Img','info.Info_ID')
+                 ->select('official.official_Name', 'info.Info_Name', 'info.Info_up','info.Info_Img','info.Info_ID')
                  ->get();
 
 
