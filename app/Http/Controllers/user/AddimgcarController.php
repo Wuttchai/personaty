@@ -64,7 +64,7 @@ class AddimgcarController extends Controller
                             ->paginate(10);
 
 
-     
+
 
       return redirect()->route('ProductCarOrders', ['CarOrders' => $CarOrders]);
      }
