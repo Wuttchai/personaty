@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use Carbon\Carbon;
 use \Cart as Cart;
 use Illuminate\Support\Facades\Auth;
-
+use DB;
 class ProductsellController extends Controller
 {
     /**
