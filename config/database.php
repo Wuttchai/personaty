@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'pgsql'),
+    'default' => env('DB_CONNECTION', 'mysql'),
 
     /*
     |--------------------------------------------------------------------------
@@ -55,15 +55,16 @@ return [
         ],
 
         'pgsql' => [
-          'driver' => 'pgsql',
-          'host'     => parse_url(getenv('DATABASE_URL'), PHP_URL_HOST),
-          'database' => substr(parse_url(getenv('DATABASE_URL'), PHP_URL_PATH), 1),
-          'username' => parse_url(getenv('DATABASE_URL'), PHP_URL_USER),
-          'password' => parse_url(getenv('DATABASE_URL'), PHP_URL_PASS),
-          'charset' => 'utf8',
-          'prefix' => '',
-          'schema' => 'public',
-          'sslmode' => 'prefer',
+            'driver' => 'pgsql',
+            'host' => env('DB_HOST', '127.0.0.1'),
+            'port' => env('DB_PORT', '5432'),
+            'database' => env('DB_DATABASE', 'forge'),
+            'username' => env('DB_USERNAME', 'forge'),
+            'password' => env('DB_PASSWORD', ''),
+            'charset' => 'utf8',
+            'prefix' => '',
+            'schema' => 'public',
+            'sslmode' => 'prefer',
         ],
 
         'sqlsrv' => [
