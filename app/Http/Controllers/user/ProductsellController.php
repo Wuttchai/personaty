@@ -60,7 +60,7 @@ $cartItem = Cart::add($request->id, $product[0]->Pro_Name, $request->quantity, $
        $CarOrders = \App\product_sell::select('Prosell_ID', 'Prosell_Quantity','Prosell_totalPirce', 'Prosell_creat')
                    ->where('User_ID','=' ,Auth::user()->User_ID)
                    ->paginate(10);
-$CarOrders->setBaseUrl('https://' . Request::getHttpHost() . '/' . Request::path());
+
                    return view('user.detailuser',[
                      'CarOrders' => $CarOrders
                    ]);
