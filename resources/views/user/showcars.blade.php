@@ -194,7 +194,7 @@
                 <div class="col-md-6 col-md-offset-3">
 
                   <div class="form-group">
-                    <div v-bind:class="{'form-group':fileofficeerror , 'form-control label text-danger is-invalid':fileofficeerror }">
+
 
                                   <span class="btn btn-success btn-file" >
                                       Browse… <input type="file" id="imgInp" v-on:change="onFileChange">
@@ -202,11 +202,9 @@
                                   <div class="form-group row">
 
                                   </div>
-                                     <input type="text" class="form-control" readonly>
-                                  <span class="text-danger" v-if="fileofficeerror">
-                                      <strong>@{{ fileofficeerror }}</strong>
-                                  </span>
-                              </div>
+                                     <input type="text" id="namefile" class="form-control" readonly>
+
+
 
 
                         </div>
@@ -248,10 +246,19 @@
 
 </div>
 
+
+
                      </div>
 
 </div>
                    </div>
+</div>
+<div class="row">
+<div class="col-md-6 col-md-offset-3">
+<div class="alert alert-danger text-center" role="alert" v-if="fileofficeerror">
+<strong>กรุณาตรวจสอบข้อมูล !</strong>   <div >@{{ fileofficeerror }}</div>
+</div>
+</div>
 </div>
 <br>
              <div class="modal-footer">
@@ -360,7 +367,7 @@ var information =  new Vue({
         'cancelsearch' :<?php if (Session::get('search')!='ค้นหา' && Session::get('search')!= null ) {echo 'true';}else {echo 'false';} ?>,
         'image'  :'',
         'fileofficeerror':'',
-        'image2':"",
+
 
 
     },
@@ -388,7 +395,6 @@ var information =  new Vue({
            },
 
            insert: function (event) {
-             console.log(document.getElementById('results').style.cssText);
 
 if (document.getElementById('results').style.cssText == "display: block;") {
 
@@ -396,11 +402,6 @@ if (document.getElementById('results').style.cssText == "display: block;") {
 
 
 }
-
-console.log(this.image);
-
-
-
              axios.defaults.headers.post['formData'] = 'multipart/form-data';
 
              axios.post('/insert/receipt', {
@@ -428,14 +429,17 @@ console.log(this.image);
 
            manu1: function () {
 
-
+  information.fileofficeerror = false;
 document.getElementById('results').style.cssText = "display: none;";
 this.image ="";
-
 
            },
            home: function () {
 
+  information.fileofficeerror = false;
+
+document.getElementById("text").style.display = "none";
+document.getElementById("namefile").value = "";
 this.image ="";
 
 
