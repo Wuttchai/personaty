@@ -388,8 +388,9 @@ var information =  new Vue({
            },
 
            insert: function (event) {
+             console.log(document.getElementById('results').style.cssText);
 
-if (document.getElementById('results').style.cssText = "display: block;") {
+if (document.getElementById('results').style.cssText == "display: block;") {
 
   this.image = document.getElementById('xxxx').src;
 
@@ -427,11 +428,11 @@ console.log(this.image);
 
            manu1: function () {
 
-             if (document.getElementById('xxxx')) {
 
-               document.getElementById('xxxx').src = " ";
+document.getElementById('results').style.cssText = "display: none;";
 
-             }
+
+
            },
            home: function () {
 
