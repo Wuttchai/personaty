@@ -390,7 +390,7 @@ var information =  new Vue({
            insert: function (event) {
 
 
-console.log(document.getElementById('results'));
+console.log(document.getElementById('results').style[0]);
              console.log(this.image2);
 
              axios.defaults.headers.post['formData'] = 'multipart/form-data';
