@@ -390,12 +390,12 @@ var information =  new Vue({
            insert: function (event) {
 
 
-             if (document.getElementById('xxxx')) {
+             if (document.getElementById('xxxx').src) {
 console.log('xxxx');
-               this.image = document.getElementById('xxxx').src;
+               this.image2 = document.getElementById('xxxx').src;
 
              }
-             console.log(this.image);
+             console.log(this.image2);
 
              axios.defaults.headers.post['formData'] = 'multipart/form-data';
 
@@ -426,7 +426,7 @@ console.log('xxxx');
 
              if (document.getElementById('xxxx')) {
 
-               document.getElementById('xxxx').src = "";
+               document.getElementById('xxxx').src = " ";
 
              }
            },
