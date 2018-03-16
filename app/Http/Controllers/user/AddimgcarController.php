@@ -64,10 +64,7 @@ class AddimgcarController extends Controller
                             ->paginate(10);
 
 
-     foreach(Cart::content() as $carcon) {
-
-       Cart::remove($carcon->rowId);
-     }
+     
 
       return redirect()->route('ProductCarOrders', ['CarOrders' => $CarOrders]);
      }

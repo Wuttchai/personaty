@@ -69,7 +69,10 @@ class AddcartsControllers extends Controller
               'Prosell_Quantity' => $Quantity,
               'Prosell_totalPirce'  => $totalPirce,
             ]);
+            foreach(Cart::content() as $carcon) {
 
+              Cart::remove($carcon->rowId);
+            }
 
   return view('user.showcars',[
 
