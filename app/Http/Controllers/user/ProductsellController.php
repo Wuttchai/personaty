@@ -59,7 +59,7 @@ $cartItem = Cart::add($request->id, $product[0]->Pro_Name, $request->quantity, $
        Session::put("tabmanu3","active");
        $CarOrders = \App\product_sell::select('Prosell_ID', 'Prosell_Quantity','Prosell_totalPirce', 'Prosell_creat')
                    ->where('User_ID','=' ,Auth::user()->User_ID)
-                   ->paginate(10);
+                   ->orderBy('product_Sell.Prosell_creat', 'desc')->paginate(10);
 
                    return view('user.detailuser',[
                      'CarOrders' => $CarOrders
@@ -72,7 +72,7 @@ $cartItem = Cart::add($request->id, $product[0]->Pro_Name, $request->quantity, $
                    ->select('Prosell_ID','Prosell_creat','Prosell_orderdate','Prosell_creat','Prosell_img','Prosell_send','Prosell_Quantity')
                    ->where('Prosell_ID','=' ,$id)
                    ->get();
-dd($date);
+
        $Car = DB::table('product_Sell')
                    ->join('sell_detail','product_Sell.Prosell_ID','=','sell_detail.Prosell_ID')
                    ->join('product','product.Pro_ID','=','sell_detail.Pro_ID')

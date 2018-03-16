@@ -32,6 +32,7 @@ class AddimgcarController extends Controller
      public function insertimg(Request $request)
           {
 
+
             $validator =  Validator::make($request->all(), [
                  'id' => 'required',
                 'fileoffice' => 'required|image64:jpeg,jpg,png|img_min_size:100,100',
@@ -46,7 +47,7 @@ class AddimgcarController extends Controller
 
                          $imageData = $request->get('fileoffice');
                         $fileName = Carbon::now()->timestamp . '_' . uniqid() . '.' . explode('/', explode(':', substr($imageData, 0, strpos($imageData, ';')))[1])[1];
-                        \Image::make($imageData)->resize(500, 800)->save(public_path('ProductCardetail/Receipt').$fileName);
+                        \Image::make($imageData)->resize(500, 800)->save(public_path('/ProductCardetail/Receipt/').$fileName);
 
 
             $time =Carbon::now('Asia/Bangkok');
@@ -59,14 +60,15 @@ class AddimgcarController extends Controller
                                       'Prosell_orderdate'=>   "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
                                   ]);
 
-                $CarOrders = \App\product_sell::select('Prosell_ID', 'Prosell_Quantity','Prosell_totalPirce', 'Prosell_creat')
-                            ->where('User_ID','=' ,Auth::user()->User_ID)
-                            ->paginate(10);
+
+                            foreach(Cart::content() as $carcon) {
+
+                              Cart::remove($carcon->rowId);
+                            }
 
 
 
 
-      return redirect()->route('ProductCarOrders', ['CarOrders' => $CarOrders]);
      }
           }
 
