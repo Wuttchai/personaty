@@ -360,7 +360,7 @@ var information =  new Vue({
         'cancelsearch' :<?php if (Session::get('search')!='ค้นหา' && Session::get('search')!= null ) {echo 'true';}else {echo 'false';} ?>,
         'image'  :'',
         'fileofficeerror':'',
-        'image2':'',
+        'image2':"",
 
 
     },
@@ -390,11 +390,7 @@ var information =  new Vue({
            insert: function (event) {
 
 
-             if (document.getElementById('xxxx').src) {
-console.log('xxxx');
-               this.image2 = document.getElementById('xxxx').src;
-
-             }
+console.log(document.getElementById('results'));
              console.log(this.image2);
 
              axios.defaults.headers.post['formData'] = 'multipart/form-data';
