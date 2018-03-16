@@ -68,10 +68,11 @@ $cartItem = Cart::add($request->id, $product[0]->Pro_Name, $request->quantity, $
      public function ProductCardetail($id)
      {
 
-       $date = \App\product_sell::select('Prosell_ID','Prosell_creat','Prosell_orderdate','Prosell_creat','Prosell_img','Prosell_send','Prosell_Quantity')
+       $date = DB::table('product_Sell')
+                   ->select('Prosell_ID','Prosell_creat','Prosell_orderdate','Prosell_creat','Prosell_img','Prosell_send','Prosell_Quantity')
                    ->where('Prosell_ID','=' ,$id)
                    ->get();
-
+dd($date);
        $Car = DB::table('product_Sell')
                    ->join('sell_detail','product_Sell.Prosell_ID','=','sell_detail.Prosell_ID')
                    ->join('product','product.Pro_ID','=','sell_detail.Pro_ID')
