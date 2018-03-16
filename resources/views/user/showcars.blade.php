@@ -430,13 +430,13 @@ console.log(this.image);
 
 
 document.getElementById('results').style.cssText = "display: none;";
-
+this.image ="";
 
 
            },
            home: function () {
 
-
+this.image ="";
 
 
            }
