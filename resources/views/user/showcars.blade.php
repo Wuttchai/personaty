@@ -389,9 +389,16 @@ var information =  new Vue({
 
            insert: function (event) {
 
+if (document.getElementById('results').style.cssText = "display: block;") {
 
-console.log(document.getElementById('results').style.cssText);
-            
+  this.image = document.getElementById('xxxx').src;
+
+
+}
+
+console.log(this.image);
+
+
 
              axios.defaults.headers.post['formData'] = 'multipart/form-data';
 
