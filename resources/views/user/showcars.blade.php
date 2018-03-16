@@ -127,13 +127,20 @@
                   <!-- /.col -->
 
                 </div>
-                <!-- /.row -->
-<div class="col-md-6 col-md-offset-3">
-  <div class="alert alert-info alert-dismissible">
-     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-     <strong>แนะนำ!</strong> คุณสามารถตรวจสอบการสั่งซื้อได้ที่ เมนู -> ชื่อ -> ข้อมูลการสั่งซื้อ
-   </div>
-   </div>
+
+                <div class="col-md-6 col-md-offset-3" >
+                  <div class="alert alert-info alert-dismissible"v-if="guide" >
+                     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                     <strong >แนะนำ!</strong> คุณสามารถตรวจสอบการสั่งซื้อได้ที่ เมนู -> ชื่อ -> ข้อมูลการสั่งซื้อ
+                   </div>
+                   </div>
+                   <div class="col-md-6 col-md-offset-3" v-if="savefile">
+                     <div class="alert alert-success alert-dismissible">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>บันทึกข้อมูล!</strong> คุณได้เพิ่มใบเสร็จโอนเงินเรียบร้อยเเล้ว
+                      </div>
+                      </div>
+
 
                 <!-- this row will not appear when printing -->
                 <div class="row no-print">
@@ -367,7 +374,8 @@ var information =  new Vue({
         'cancelsearch' :<?php if (Session::get('search')!='ค้นหา' && Session::get('search')!= null ) {echo 'true';}else {echo 'false';} ?>,
         'image'  :'',
         'fileofficeerror':'',
-
+        'guide' :true,
+        'savefile':false,
 
 
     },
@@ -395,7 +403,7 @@ var information =  new Vue({
            },
 
            insert: function (event) {
-
+information.fileofficeerror ="";
 if (document.getElementById('results').style.cssText == "display: block;") {
 
   this.image = document.getElementById('xxxx').src;
@@ -416,7 +424,10 @@ if (document.getElementById('results').style.cssText == "display: block;") {
           information.fileofficeerror = response.data.messages.fileoffice[0];
           }
           }else {
-          location.reload();
+          information.guide = false;
+          information.savefile = true;
+
+$("#myModal").modal('hide');
           }
 
 

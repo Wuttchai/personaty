@@ -18,6 +18,7 @@ class ProductsellController extends Controller
      */
      public function __construct()
      {
+       $this->middleware('auth');
 
      }
 
@@ -51,6 +52,7 @@ $cartItem = Cart::add($request->id, $product[0]->Pro_Name, $request->quantity, $
      }
      public function ProductCarOrders()
      {
+
        Session::forget('tabmanu');
          Session::forget('tabmanu1');
        Session::forget("tabmanu2");
@@ -58,6 +60,7 @@ $cartItem = Cart::add($request->id, $product[0]->Pro_Name, $request->quantity, $
        $CarOrders = \App\product_sell::select('Prosell_ID', 'Prosell_Quantity','Prosell_totalPirce', 'Prosell_creat')
                    ->where('User_ID','=' ,Auth::user()->User_ID)
                    ->paginate(10);
+
                    return view('user.detailuser',[
                      'CarOrders' => $CarOrders
                    ]);
@@ -65,13 +68,14 @@ $cartItem = Cart::add($request->id, $product[0]->Pro_Name, $request->quantity, $
      public function ProductCardetail($id)
      {
 
+
        $Car = \App\product_sell::join('sell_detail','product_sell.Prosell_ID','=','sell_detail.Prosell_ID')
                    ->join('product','product.Pro_ID','=','sell_detail.Pro_ID')
                    ->select('product.Pro_Name','sell_detail.Det_Num', 'product.Pro_Price')
                    ->where('sell_detail.Prosell_ID','=' ,$id)
                    ->get();
 
-                   $date = \App\product_sell::select('Prosell_ID','Prosell_creat')
+                   $date = \App\product_sell::select('Prosell_ID','Prosell_creat','Prosell_orderdate','Prosell_creat','Prosell_img','Prosell_send','Prosell_Quantity')
                                ->where('Prosell_ID','=' ,$id)
                                ->get();
 
@@ -81,49 +85,7 @@ return view('user.detailcars',[
   'date' => $date,
 ]);
 }
-public function insertimg(Request $request)
-     {
 
-       $validator =  Validator::make($request->all(), [
-            'id' => 'required',
-           'fileoffice' => 'required|image64:jpeg,jpg,png|img_min_size:100,100',
-              ]);
-
-              if($validator->fails()){
-
-                    return[
-                    'messages' => $validator->errors()->messages()
-                    ];
-                  }else {
-
-                    $imageData = $request->get('fileoffice');
-                   $fileName = Carbon::now()->timestamp . '_' . uniqid() . '.' . explode('/', explode(':', substr($imageData, 0, strpos($imageData, ';')))[1])[1];
-                   \Image::make($imageData)->resize(500, 800)->save(public_path('Receipt/').$fileName);
-
-
-       $time =Carbon::now('Asia/Bangkok');
-
-
-
-           \App\product_sell::where('Prosell_ID',$request->id)
-                                 ->update([
-                                 'Prosell_img' => $fileName,
-                                 'Prosell_orderdate'=>   "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
-                             ]);
-
-           $CarOrders = \App\product_sell::select('Prosell_ID', 'Prosell_Quantity','Prosell_totalPirce', 'Prosell_creat')
-                       ->where('User_ID','=' ,Auth::user()->User_ID)
-                       ->paginate(10);
-
-
-foreach(Cart::content() as $carcon) {
-
-  Cart::remove($carcon->rowId);
-}
-
- return redirect()->route('ProductCarOrders', ['CarOrders' => $CarOrders]);
-}
-     }
 
     public function index()
     {

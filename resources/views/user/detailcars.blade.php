@@ -141,8 +141,32 @@
 
                       </table>
                     </div>
+
+
                   </div>
                   <!-- /.col -->
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">ใบเสร็จการโอนเงิน: วันที่โอนเงิน({{ $date[0]->Prosell_orderdate }}) </h5>
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-center">
+
+<img src=" <?php echo "Receipt/".$date[0]->Prosell_img ?>" class="img-rounded"  width="500" height="350" />
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
                 </div>
                 <!-- /.row -->
 
@@ -155,7 +179,7 @@
            <a href="/invoice-print" target="_blank" class="btn btn-primary pull-right"><i class="fa fa-print"></i> ปริ้นใบสั่งซื้อ</a>
 </div>
 <div class="col-xs-1">
-           <a href="/invoice-print" target="_blank" class="btn btn-success pull-left"><i class="fa fa-print"></i> ยืนยันการสั่งซื้อ</a>
+           <a data-toggle="modal" data-target="#exampleModal" class="btn btn-success pull-left"><i class="fa fa-print"></i>ดูใบเสร็จการโอนเงิน</a>
 </div>
 
         </div>

@@ -454,7 +454,7 @@ var information =  new Vue({
                    vm.image = e.target.result;
                };
                reader.readAsDataURL(file);
-              
+
            },
            insert: function () {
 

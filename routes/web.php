@@ -130,4 +130,5 @@ Route::get('/invoice-print', function () {
   Route::get('/question/addcomment/eiei', 'user\WebboardController@showcomment');
   Route::get('/ProductCardetail/{id}', 'user\ProductsellController@ProductCardetail');
   Route::get('/ProductCarOrders', 'user\ProductsellController@ProductCarOrders')->name('ProductCarOrders');
-  Route::post('/insert/receipt', 'user\ProductsellController@insertimg');
+  Route::post('/insert/receipt', 'user\AddimgcarController@insertimg');
+  Route::get('/insert/receipt', 'user\AddimgcarController@index');

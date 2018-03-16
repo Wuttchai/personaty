@@ -59,5 +59,6 @@ class Kernel extends HttpKernel
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'ckloginoffice' => \App\Http\Middleware\Ckloginoffice::class,
+        'cheackcar' => \App\Http\Middleware\cheackcar::class,
     ];
 }
