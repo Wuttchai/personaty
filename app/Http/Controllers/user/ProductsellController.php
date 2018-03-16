@@ -73,7 +73,7 @@ $cartItem = Cart::add($request->id, $product[0]->Pro_Name, $request->quantity, $
                    ->get();
 
        $Car = DB::table('product_Sell')
-                   ->join('sell_detail','product_sell.Prosell_ID','=','sell_detail.Prosell_ID')
+                   ->join('sell_detail','product_Sell.Prosell_ID','=','sell_detail.Prosell_ID')
                    ->join('product','product.Pro_ID','=','sell_detail.Pro_ID')
                    ->select('product.Pro_Name','sell_detail.Det_Num', 'product.Pro_Price')
                    ->where('sell_detail.Prosell_ID','=' ,$id)
