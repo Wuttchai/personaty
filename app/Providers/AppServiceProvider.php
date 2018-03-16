@@ -13,8 +13,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-    \URL::forceSchema('https');
 
+URL::forceScheme('https');
       Validator::extend('image64', function ($attribute, $value, $parameters, $validator) {
      $type = explode('/', explode(':', substr($value, 0, strpos($value, ';')))[1])[1];
      if (in_array($type, $parameters)) {
