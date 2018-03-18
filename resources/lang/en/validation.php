@@ -53,15 +53,15 @@ return [
     'max'                  => [
         'numeric' => 'The :attribute may not be greater than :max.',
         'file'    => 'The :attribute may not be greater than :max kilobytes.',
-        'string'  => 'The :attribute may not be greater than :max characters.',
+        'string'  => 'กรุณาใส่ข้อความให้สั่นกว่า :max ตัวอักษร.',
         'array'   => 'The :attribute may not have more than :max items.',
     ],
-    'mimes'                => 'The :attribute must be a file of type: :values.',
+    'mimes'                => 'ไฟล์จะต้องเป็นไฟล์ประเภท: :values.',
     'mimetypes'            => 'The :attribute must be a file of type: :values.',
     'min'                  => [
         'numeric' => 'The :attribute must be at least :min.',
         'file'    => 'The :attribute must be at least :min kilobytes.',
-        'string'  => 'กรุณาใส่ข้อความยาวกว่านี้เพื่อสื่อความหมาย',
+        'string'  => 'กรุณาใส่ข้อความให้ยาวกว่า :min ตัวอักษร',
         'array'   => 'The :attribute must have at least :min items.',
     ],
     'not_in'               => 'The selected :attribute is invalid.',

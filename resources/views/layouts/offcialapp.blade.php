@@ -160,6 +160,7 @@
 </style>
 </head>
 <body>
+
     <div>
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel ">
 
@@ -184,7 +185,7 @@
                         <!-- Authentication Links -->
 
 @if (session('info') == 'จัดการ')
-<li><a class="nav-link" href="/official">จัดการภาพแบรน์เนอร์</a></li>
+<li><a class="nav-link" href="/official/officialform">จัดการภาพแบรน์เนอร์</a></li>
 @endif
 @if (session('product') == 'จัดการ')
 <li><a class="nav-link" href="/official/product">จัดการสินค้าวิชาชีพ</a></li>
@@ -196,8 +197,13 @@
 <li><a class="nav-link" href="/official/addoffice">จัดการข้อมูลเจ้าหน้าที่</a></li>
 @endif
 @if (session('prison') == 'จัดการ')
-<li><a class="nav-link" href="/official/product">จัดการสินค้าวิชาชีพ</a></li>
+<li><a class="nav-link" href="/official/person">จัดการข้อมูลผู้ต้องขัง</a></li>
 @endif
+
+<li><a class="nav-link" href="/official/document">จัดการข้อมูลเอกสารเผยแพร่</a></li>
+<li><a class="nav-link" href="/official/productsell">จัดการข้อมูลสั่งซื้อสินค้า</a></li>
+
+
 
 
 
@@ -236,6 +242,7 @@
                         @endif
 
                     </ul>
+
                 </div>
             </div>
         </nav>

@@ -17,7 +17,9 @@ class OfficeformController extends Controller
      */
      public function __construct()
      {
+
          $this->middleware('ckloginoffice');
+
      }
 
     /**
@@ -263,7 +265,8 @@ if ($request->fileoffice) {
     public function index()
     {
 
-      return view('official.officialform');
+
+  return view('official.officialform');
 
     }
 

@@ -144,7 +144,13 @@
                           </form>
   </div>
       </div>
-
+      @if(session('alert'))
+      <?php
+        echo '<script type="text/javascript">';
+        echo 'setTimeout(function () { swal("มีรายการสั่งซื้อสินค้าอยู่!","กรุณาตรวจสอบรายการสั่งซื้อที่เมนูข้อมูลการสั่งซื้อ","error");';
+        echo '}, 1000);</script>';
+      ?>
+      @endif
 </div>
 @endif
 

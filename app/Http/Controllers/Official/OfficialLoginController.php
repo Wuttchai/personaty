@@ -6,24 +6,28 @@ use Illuminate\Http\Request;
 use Session;
 use Illuminate\Support\Facades\Validator;
 use Carbon\Carbon;
-
+use Auth;
 
 class OfficialLoginController extends Controller
 {
+
     /**
      * Create a new controller instance.
      *
      * @return void
      */
 
-  
+
     /**
      * Show the application dashboard.
      *
      * @return \Illuminate\Http\Response
      */
-     public function logout()
+     public function logout(Request $request)
      {
+
+
+
        Session::forget('login');
        Session::forget('idoffice');
        Session::forget('nameoffice');
@@ -33,9 +37,20 @@ class OfficialLoginController extends Controller
        Session::forget('activity');
        Session::forget('prison');
 
-       return view('official.official', [
-           'erx' => '',
-         ]);
+
+       $request->session()->regenerate();
+       $request->session()->forget('login');
+
+
+
+
+       $request->session()->invalidate();
+
+       return redirect('/officialapp');
+
+
+
+
 
      }
     public function login(Request $request)
@@ -46,7 +61,6 @@ class OfficialLoginController extends Controller
           'password' => 'required|string'
 
             ])->validate();
-
 
 
 
@@ -91,19 +105,21 @@ Session::put("role", $official[0]['official_Role']);
 
 
 if ($official[0]['info'] == 'จัดการ') {
-return view('official.officialform');
+  return redirect('/official/add');
 }
 if ($official[0]['product'] == 'จัดการ') {
-return view('official.officialproduct');
+  return redirect('/official/product');
+
 }
 if ($official[0]['hotnews'] == 'จัดการ') {
-return view('official.officialhotnew');
+return redirect('/official/hotnews');
 }
 if ($official[0]['activity'] == 'จัดการ') {
-return view('official.officialadd');
+return redirect('/official/addoffice');
 }
 if ($official[0]['prison'] == 'จัดการ') {
-return view('official.officialperson');
+
+return redirect('/official/person');
 }
 }
 

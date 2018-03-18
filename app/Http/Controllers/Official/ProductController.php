@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use Carbon\Carbon;
 use Intervention\Image\ImageManager ;
 
+
 class ProductController extends Controller
 {
     /**

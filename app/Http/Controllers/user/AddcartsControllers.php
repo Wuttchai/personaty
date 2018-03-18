@@ -31,17 +31,29 @@ class AddcartsControllers extends Controller
 
      public function confrim(Request $request)
      {
-
-
        $time =Carbon::now('Asia/Bangkok');
+       $product = \App\product_sell::select('product_Sell.Prosell_send')
+                  ->where('product_Sell.User_ID','=' , Auth::user()->User_ID)
+                  ->where('product_Sell.Prosell_send','=' ,'x')
+                  ->get();
+
+                  if ($product == '[]') {
+                    return redirect()->back()->with('alert', 'มีการซื้ออยู่!');
+                  }
+
+
+
+if (Session::get('car') != "active") {
+
+
 
        \App\product_sell::insert([
                      'User_ID' => Auth::user()->User_ID,
                      'Prosell_Quantity' => 0,
                      'Prosell_totalPirce'  => 0,
-                     'Prosell_send' => '',
-                     'Prosell_img' => '',
-                     'Prosell_orderdate' => '',
+                     'Prosell_send' => '-',
+                     'Prosell_img' => '-',
+                     'Prosell_orderdate' => '-',
                      'Prosell_creat'=>   "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
                      ]);
                      $Prosell_ID =  \App\product_sell::where([
@@ -68,13 +80,49 @@ class AddcartsControllers extends Controller
             ->update([
               'Prosell_Quantity' => $Quantity,
               'Prosell_totalPirce'  => $totalPirce,
+              'Prosell_creat'=>   "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
             ]);
-          
+            Session::put("car","active");
+            return view('user.showcars',[
 
-  return view('user.showcars',[
+              'Prosell_ID' => $Prosell_ID
+            ]);
+}
+if (Session::get('car') == "active") {
+  $Prosell_ID =  \App\product_sell::where([
+      ['User_ID', '=', Auth::user()->User_ID],
+      ])->max('Prosell_ID');
+  $num =0;
+  $Quantity = 0;
+  $totalPirce =0;
+  foreach(Cart::content() as $carcon) {
 
-    'Prosell_ID' => $Prosell_ID
-  ]);
+    \App\sell_detail::where('Prosell_ID',$Prosell_ID)
+                  ->update([
+                  'Pro_ID' => $carcon->id,
+                  'Det_Num'  => $carcon->qty,
+                  'Det_total' => $carcon->qty * $carcon->price
+                  ]);
+    $num ++;
+    $Quantity += $carcon->qty;
+    $totalPirce += $carcon->qty * $carcon->price;
+ }
+
+ \App\product_sell::where('Prosell_ID',$Prosell_ID)
+         ->update([
+           'Prosell_Quantity' => $Quantity,
+           'Prosell_totalPirce'  => $totalPirce,
+         ]);
+         return view('user.showcars',[
+
+           'Prosell_ID' => $Prosell_ID
+         ]);
+}
+
+
+
+
+
 
      }
 

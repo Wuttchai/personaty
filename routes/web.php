@@ -21,21 +21,10 @@ Route::get('/ww', function () {
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/official', function () {
-  if (session('login') == null) {
-    return view('official.official', [
-        'erx' => '',
-      ]);
-  }else {
-    return view('official.officialform');
-  }
-
-});
+Route::get('/official','Official\OfficeformController@index');
 Route::get('/officialapp', function () {
 
-    return view('official.official', [
-        'erx' => '',
-      ]);
+return redirect('/official/login');
   });
 
 Route::get('/official/login', function () {
@@ -46,41 +35,25 @@ Route::get('/official/login', function () {
   }else {
     return view('official.officialform');
   }
-});
-Route::post('/official/logout', function () {
-  Session::forget('login');
-  Session::forget('idoffice');
-    Session::forget('nameoffice');
-Session::forget('info');
-Session::forget('product');
-Session::forget('hotnews');
-Session::forget('activity');
-Session::forget('prison');
+})->name('officiallogin');
 
-  return view('official.official', [
-      'erx' => '',
-    ]);
-});
+Route::post('/official/logout','Official\OfficialLoginController@logout' );
 Route::get('/official/addoffice', 'Official\AddOfficeController@index');
 Route::post('/official/logfile', 'Official\AddOfficeController@logfile');
 Route::get('/official/logfile', 'Official\AddOfficeController@logfile');
 Route::post('/official/login', 'Official\OfficialLoginController@login');
+
 Route::get('/official/officialform', 'Official\OfficeformController@index');
-
 Route::post('/official/testza', 'Official\OfficeformController@insert');
-
 Route::get('/official/testza', 'Official\OfficeformController@readItems');
-
 Route::get('/official/editinfo/{info_id}', 'Official\OfficeformController@showedit');
-
 Route::post('/official/updateinfo/{info_id}', 'Official\OfficeformController@update');
-
 Route::post('/official/delete/{info_id}', 'Official\OfficeformController@delete');
+
+
 Route::get('/official/add', 'Official\AddOfficeController@index');
 Route::post('/official/add', 'Official\AddOfficeController@add');
-
 Route::get('/official/officiallist', 'Official\AddOfficeController@readItems');
-
 Route::get('/official/officiallist{official_id}', 'Official\AddOfficeController@showedit');
 Route::post('/officiallist/delete/{official_id}', 'Official\AddOfficeController@delete');
 Route::post('/official/updateofficial/{official_id}', 'Official\AddOfficeController@update');
@@ -106,13 +79,32 @@ Route::post('/official/product/add', 'Official\ProductController@insert');
 Route::get('/product/edit{Pro_ID}', 'Official\ProductController@showedit');
 Route::post('/product/update/{Pro_ID}', 'Official\ProductController@update');
 Route::post('/product/delete{Pro_ID}', 'Official\ProductController@delete');
+//document
+Route::get('/official/document', 'Official\DocumentController@index');
+Route::get('/official/documentlist', 'Official\DocumentController@readItems');
+Route::post('/official/document/add', 'Official\DocumentController@insert');
+Route::get('/documentlist/edit{doc_id}', 'Official\DocumentController@showedit');
+Route::post('/document/update/{doc_id}', 'Official\DocumentController@update');
+Route::post('/document/delete{doc_id}', 'Official\DocumentController@delete');
+Route::get('/pdf/view/{id}', 'Official\DocumentController@showpdf');
+//
+
+Route::get('/official/productsell', 'Official\ProductsellControll@index');
+Route::get('/official/productselllist', 'Official\ProductsellControll@readItems');
+Route::post('/emsadd', 'Official\ProductsellControll@insert');
+Route::get('/sell/view/{id}', 'Official\ProductsellControll@showdetail');
+Route::post('/productsell/update/{Hotnews_ID}', 'Official\ProductsellControll@update');
 
 
+Route::post('/productsell/update/{Hotnews_ID}', 'Official\ProductsellControll@update');
+Route::post('/productsell/delete{Hotnews_ID}', 'Official\ProductsellControll@delete');
 
+
+//user
 
 Route::get('/ProductAyutaya', 'user\ProductsellController@index');
 Route::post('/Productaddcars', 'user\ProductsellController@addcars');
-Route::post('/Productdeletecars', 'user\ProductsellController@deletecars');
+Route::post('/Productdeletecars', 'user\ProductsellController@showdetail');
 
 Route::get('/Product/type1', 'user\ProductsellController@type1');
 Route::get('/cart/confrimadd', 'user\AddcartsControllers@confrim');
