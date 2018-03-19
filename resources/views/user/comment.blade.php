@@ -52,6 +52,8 @@
 
 
 @foreach ($commentdetail as $commentdetails)
+@if($commentdetails->quesde_detail != '-')
+
   <div class="col-md-9" >
 <div class="panel panel-default ">
 
@@ -75,7 +77,7 @@
 </div>
 </a></div><!-- /panel panel-default -->
 </div>
-
+@endif
   @endforeach
   <div class="col-sm-12">
   {{ $commentdetail->links() }}

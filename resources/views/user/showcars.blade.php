@@ -66,11 +66,11 @@
                   <table class="table text-center">
             <thead class="thead-dark ">
               <tr>
-                <th scope="col">ลำดับ</th>
-                <th scope="col">จำนวน</th>
-                <th scope="col">ราคารวม</th>
-                <th scope="col">วันที่สั่งสินค้า</th>
-                <th scope="col">จัดการ</th>
+                <th>ลำดับ</th>
+                <th>ชื่อสินค้า</th>
+                <th>จำนวน</th>
+                <th>ราคาต่อชิ้น</th>
+                <th>ราคารวม</th>
               </tr>
             </thead>
             <tbody>
@@ -411,7 +411,6 @@ if (document.getElementById('results').style.cssText == "display: block;") {
 
 }
              axios.defaults.headers.post['formData'] = 'multipart/form-data';
-
              axios.post('/insert/receipt', {
                  id: event,
                  fileoffice: this.image,

@@ -1,114 +1,331 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container"  id="example-4"  >
+
+<div class="container" id="information">
+
+
 <div class="loader" id="loader"></div>
    <div class="row justify-content-center" >
 
-       <div class="col-md-12" id="dsds">
-           <div class="card card-default ">
-               <div class="card-header card text-center bg-info"> จัดการภาพแบรน์เนอร์ </div>
+     <div class="container" >
 
- <div class="card-header card ">
-   <div class="row">
-     <div class="col-md-6 ">
-       <div class="card card-cascade ">
+        <div class="col-mg-12 ">
 
-   <!--Card image-->
-   <div class="view gradient-card-header blue-gradient">
-   <div class="card-header card text-center bg-info"> กรอกข้อมูล </div>
+          <section class="invoice">
+                <!-- title row -->
+                <div class="row">
+                  <div class="col-xs-12">
+                    <h2 class="page-header">
+                      <i class="fa fa-globe"></i> ใบสั่งซื้อสินค้า
+                      <small class="pull-right">วันที่: {{ Session::get('date') }}</small>
+                    </h2>
+                  </div>
+                  <!-- /.col -->
+                </div>
+                <!-- info row -->
+                <div class="row invoice-info">
+                  <div class="col-sm-4 invoice-col">
+                    จาก
+                    <address>
+                      <strong>เรือนจำจังหวัดพระนครศรีอยุธยา.</strong><br>
+                      เลขที่ 123, หมู่ที่ 3<br>
+                      ต.หันตรา, อ.พระนครศรีอยุธยา<br>
 
-   </div>
-   <!--/Card image-->
+                      จังหวัดพระนครศรีอยุธยา, 13000<br>
+                      เบอร์โทร: 035 709 113<br>
 
-   <!--Card content-->
-   <div class="card-body text-center" >
+                    </address>
+                  </div>
+                  <!-- /.col -->
+
+                  <div class="col-sm-4 invoice-col">
+                    ถึง
+                    <address>
+                      <strong>{{ Auth::user()->User_Name }}</strong><br>
+                      {{ Auth::user()->User_Address }}<br>
+                      เบอร์โทร: {{ Auth::user()->User_Tel }}<br>
+                      อีเมลล์: {{ Auth::user()->email }}
+                    </address>
+                  </div>
+                  <!-- /.col -->
+                  <div class="col-sm-4 invoice-col">
+
+                    <address>
+                      <strong>เลขที่ใบเสร็จสินค้า #007612</strong><br><br>
+                        รหัสการสั่งซื้อ: {{ $date[0]->Prosell_ID }}<br>
+                        วันที่ซื้อ: {{ $date[0]->Prosell_creat }}<br>
+                        ชื่อผู้ซื้อ:  {{ Auth::user()->User_Name }}
+                    </address>
+                  </div>
+                  <!-- /.col -->
+                </div>
+                <!-- /.row -->
+
+                <!-- Table row -->
+                <div class="row">
+                  <table class="table text-center">
+            <thead class="thead-dark ">
+              <tr>
+                <th>ลำดับ</th>
+                <th>ชื่อสินค้า</th>
+                <th>จำนวน</th>
+                <th>ราคาต่อชิ้น</th>
+                <th>ราคารวม</th>
+              </tr>
+            </thead>
+            <tbody>
+
+                        <?php
+                        $num =1;
+                        $totalPirce =0;
+                        ?>
+
+                        @foreach ($Car as $product )
+
+                          <tr>
+                            <th scope="row">&nbsp;&nbsp;&nbsp;{{ $num }}</th>
+                            <td>{{ $product->Pro_Name }}</td>
+                            <td>&nbsp;{{ $product->Det_Num }} ชิ้น</td>
+                            <td>&nbsp;{{ $product->Pro_Price }} บาท</td>
+                            <td>&nbsp;{{ $product->Det_Num * $product->Pro_Price }} บาท</td>
+
+                          </tr>
+
+                        <?php
+                        $num ++;
+                        $totalPirce += $product->Det_Num * $product->Pro_Price;
+                        ?>
+                                     @endforeach
+
+                      </tbody>
+                    </table>
+                  </div>
+                  <!-- /.col -->
+                </div>
+                <!-- /.row -->
+
+                <div class="row">
+                  <!-- accepted payments column -->
+                  <div class="col-xs-6">
+
+                  </div>
+                  <!-- /.col -->
+                  <div class="col-xs-6">
 
 
-
-         <div class="form-group">
-           <div v-bind:class="{'form-group':fileofficeerror , 'form-control label text-danger is-invalid':fileofficeerror }">
-
-                         <span class="btn btn-success btn-file" >
-                             Browse… <input type="file" id="imgInp" v-on:change="onFileChange">
-                         </span>
-                         <div class="form-group row">
-
-                         </div>
-                            <input type="text" class="form-control" readonly>
-                         <span class="text-danger" v-if="fileofficeerror">
-                             <strong>@{{ fileofficeerror }}</strong>
-                         </span>
-                     </div>
+                    <div class="table-responsive">
+                      <table class="table">
+                        <tr>
+                          <th style="width:50%">ราคาสินค้าทั้งหมด :</th>
+                          <td>{{ $totalPirce }} บาท</td>
+                        </tr>
 
 
-               </div>
-               <div class="form-group row">
+                      </table>
 
-               </div>
+                  </div>
+                  <!-- /.col -->
 
-             </div>
+                </div>
 
-             </div>
-    </div>
-
-                        <div class="col-md-6" id="text">
-                        <div class="card card-cascade">
-
-       <!--Card image-->
-       <div class="view gradient-card-header blue-gradient">
-         <div class="card-header card text-center bg-info"> ตัวอย่างรูปภาพ </div>
-
-       </div>
-       <!--/Card image-->
-
-       <!--Card content-->
-       <div class="card-body text-center" >
-
-    <img id='img-upload' />
-       </div>
-
-       </div>
-
-   </div>
+                <div class="col-md-6 col-md-offset-3" >
+                  <div class="alert alert-info alert-dismissible"v-if="guide" >
+                     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                     <strong >แนะนำ!</strong> คุณสามารถตรวจสอบการสั่งซื้อได้ที่ เมนู -> ชื่อ -> ข้อมูลการสั่งซื้อ
+                   </div>
+                   </div>
+                   <div class="col-md-6 col-md-offset-3" v-if="savefile">
+                     <div class="alert alert-success alert-dismissible">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>บันทึกข้อมูล!</strong> คุณได้เพิ่มใบเสร็จโอนเงินเรียบร้อยเเล้ว
+                      </div>
+                      </div>
 
 
-                          </div>
-
- </div>
-
-
-               <div class="card-body" >
-
-
-
-               </div>
-
-   <!-- Modal -->
-
-
-<!---model 2------------------------------------------>
-
-
-
-
-
-               </div>
-           </div>
-       </div>
-   </div>
+                <!-- this row will not appear when printing -->
+                <div class="row no-print">
+        <div class="col-xs-9">
+          <a href="/ProductCarOrders"  class="btn btn-danger "><i class="fa fa-print"></i> ย้อนกลับ</a>
+</div>
+<div class="col-xs-2">
+           <a href="/invoice-print" target="_blank" class="btn btn-primary pull-right"></i> ปริ้นใบสั่งซื้อ</a>
+</div>
+<div class="col-xs-1">
+           <button type="button"  class="btn btn-success pull-left" data-toggle="modal" data-target="#myModal"></i> ยืนยันการสั่งซื้อ</button>
 
 </div>
+
+        </div>
+      </div>
+              </section>
+
+        </div>
+        <!-- /.col-lg-12 -->
+
+      </div>
+      <!-- /.row -->
+      <div class="modal fade" id="myModal" role="dialog">
+         <div class="modal-dialog modal-lg">
+           <div class="modal-content">
+             <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal">&times;</button>
+               <h4 class="modal-title">Modal Header</h4>
+             </div>
+             <div class="modal-body">
+               <div class="row">
+                 <div class="col-md-6 col-md-offset-3">
+                   <div class="text-center">
+                     <h2>ใบเสร็จการโอนเงิน</h2>
+                   </div>
+                   <hr>
+                 </div>
+               </div>
+               <ul class="nav  nav-pills nav-justified">
+                  <li class="active"><a data-toggle="tab" href="#menu1" class="text-dark" v-on:click="manu1()">เลือกจากไฟล์</a></li>
+                  <li><a data-toggle="tab" href="#home" class="text-dark" v-on:click="home()">ถ่ายภาพ</a></li>
+
+                </ul>
+
+                <div class="tab-content">
+                  <div id="menu1" class="tab-pane fade in active text-center">
+                    <div class="row">
+                      <div class="col-md-6 col-md-offset-3">
+<br>
+                    <div class=" text-center" id="text">
+
+
+                <img id='img-upload' class="img-rounded"  width="304" height="236" />
+                <hr>
+                </div>
+                </div>
+                <div class="col-md-6 col-md-offset-3">
+
+                  <div class="form-group">
+
+
+                                  <span class="btn btn-success btn-file" >
+                                      Browse… <input type="file" id="imgInp" v-on:change="onFileChange">
+                                  </span>
+                                  <div class="form-group row">
+
+                                  </div>
+                                     <input type="text" id="namefile" class="form-control" readonly>
+
+
+
+
+                        </div>
+
+                              </div>
+                     </div>
+
+    </div>
+
+
+
+
+                  <div id="home" class="tab-pane fade text-center">
+                    <div class="row">
+                      <div class="col-md-12 text-center">
+                            <h5>ถ่ายภาพ</h5>
+</div>
+<div class="col-md-1 ">
+
+</div>
+                        <div class="col-md-5 ">
+                              <div id="my_camera"></div>
+</div>
+                      <div class="col-md-5 ">
+
+  <div id="results" ref="myid">ตัวอย่างรูป</div>
+
+  </div>
+  <div class="col-md-1 ">
+
+  </div>
+
+  <div class="col-md-12">
+    <hr>
+
+                          <input  class="btn btn-success" type=button value="ถ่ายภาพ" onClick="take_snapshot()">
+
+                              <br>
+
+</div>
+
+
+
+                     </div>
+
+</div>
+                   </div>
+</div>
+<div class="row">
+<div class="col-md-6 col-md-offset-3">
+<div class="alert alert-danger text-center" role="alert" v-if="fileofficeerror">
+<strong>กรุณาตรวจสอบข้อมูล !</strong>   <div >@{{ fileofficeerror }}</div>
+</div>
+</div>
+</div>
+<br>
+             <div class="modal-footer">
+               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+               <button type="submit" class="btn btn-default" v-on:click="insert(<?php echo $date[0]->Prosell_ID ?>)" >ยันยัน</button>
+             </div>
+           </div>
+
+         </div>
+       </div>
+    </div>
+
+       </div>
+
+
+
+
+
+
+<br>
+<br>
 
 @endsection
 
 @push('scripts')
-<script>
+<script src="{{ asset('js/text.js') }}"></script>
+<script language="JavaScript">
 
 document.getElementById("loader").style.display = "none";
-document.getElementById("dsds").style.display = "block";
 document.getElementById("text").style.display = "none";
+document.getElementById("results").style.display = "none";
+
+
+
+function take_snapshot() {
+  // take snapshot and get image data
+  Webcam.snap( function(data_uri) {
+
+    // display results in page
+    document.getElementById('results').innerHTML =
+
+      '<img src="'+data_uri+'" id="xxxx"/>';
+
+this.image2 = data_uri;
+
+      document.getElementById("results").style.display = "block";
+  } );
+}
+
 $(document).ready( function() {
+  Webcam.set({
+    width: 320,
+    height: 240,
+    image_format: 'jpeg',
+    jpeg_quality: 90
+  });
+  Webcam.attach( '#my_camera' );
+
+
     	$(document).on('change', '.btn-file :file', function() {
 		var input = $(this),
 			label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
@@ -137,6 +354,7 @@ $(document).ready( function() {
 
 		        reader.readAsDataURL(input.files[0]);
             document.getElementById("text").style.display = "block";
+
 		    }
 		}
 
@@ -144,109 +362,29 @@ $(document).ready( function() {
 		    readURL(this);
 		});
 
-//test
-
-    function readURL2(input) {
-      if (input.files && input.files[0]) {
-          var reader = new FileReader();
-
-          reader.onload = function (e) {
-              $('#img-upload2').attr('src', e.target.result);
-          }
-
-          reader.readAsDataURL(input.files[0]);
-
-      }
-    }
-
-    $("#imgInp2").change(function(){
-      readURL2(this);
-    });
-
-
 	});
 
+
 var information =  new Vue({
-    el: '#example-4',
+    el: '#information',
     data: {
-        'id'  :'<?php echo Session::get('idoffice'); ?>',
-        'name': '',
-        'nameedit': '',
-        'imageedit': '',
-        'fileoffice':'',
-        'image' :'',
-        'nameerror':'',
-        'imageedit':'',
+        'id'  :'',
+        'quantity' :1,
+        'cars' : false,
+        'seach' : <?php if (Session::get('search') == 'ค้นหา' || Session::get('search') == null ) {echo 'true';}else {echo 'false';} ?>,
+        'cancelsearch' :<?php if (Session::get('search')!='ค้นหา' && Session::get('search')!= null ) {echo 'true';}else {echo 'false';} ?>,
+        'image'  :'',
         'fileofficeerror':'',
-        'nameimage':'',
-        'showimg':'',
-        'id_edit':'',
+        'guide' :true,
+        'savefile':false,
 
-        'buttonedit':true,
-        'buttonedit2':true,
-        'inputedit':'true',
-
-        'items': [],
-        'pagination': [],
-        'searchKey': '',
-        'currentPage': 0,
-        'itemsPerPage': 5,
 
     },
-    mounted: function mounted() {
 
- 	    this.getVueItems(this.current_page);
- 	  },
-		computed: {
-			isActived: function() {
-					return this.current_page;
-			},
+    computed: {
 
-
-			totalPage: function(){
-		 if( this.searchKey.trim() == '' ) {
-			 return Math.ceil(this.items.length / this.itemsPerPage)
-		 }
-		 else{
-			 return Math.ceil(this.usersFilteredBySearchKey.length/ this.itemsPerPage);
-		 }
-	 },
-   setPage: function(pageNumber){
-   		this.currentPage = pageNumber;
-
-
-   				    },
-
-          usersFilteredBySearchKey: function () {
-
-                return this.items.filter(item => {
-
-                    	return item.Info_Name.indexOf(this.searchKey.toLowerCase()) > -1
-                      || item.Infoupdated_at.indexOf(this.searchKey.toLowerCase()) > -1
-                      || item.official_Name.toLowerCase().indexOf(this.searchKey.toLowerCase()) > -1
-
-                 })
-             },
-             paginatedUsers: function(list){
-
-             var index = this.currentPage * this.itemsPerPage;
-             return this.usersFilteredBySearchKey.slice(index, index + this.itemsPerPage)
-					 }
-	},
-    methods: {getVueItems: function getVueItems(page) {
- 	      axios.get('/official/testza?page=' + page).then(function (response) {
-
- 	        information.items = response.data;
-
-
-
- 	      });
- 	    },
-			setPage: function(pageNumber){
-		this.currentPage = pageNumber;
-
-
-				    },
+  },
+    methods: {
 
 
       onFileChange(e) {
@@ -262,165 +400,65 @@ var information =  new Vue({
                    vm.image = e.target.result;
                };
                reader.readAsDataURL(file);
+
            },
-           insert: function () {
+
+           insert: function (event) {
+
+information.fileofficeerror ="";
+if (document.getElementById('results').style.cssText == "display: block;") {
+
+  this.image = document.getElementById('xxxx').src;
 
 
+}
              axios.defaults.headers.post['formData'] = 'multipart/form-data';
-             axios.post('/official/testza', {
-                 id: this.id,
-                 name: this.name,
+
+             axios.post('/insert/receiptimg', {
+                 id: event,
                  fileoffice: this.image,
 
                }).then(function (response) {
-if (response.data.messages != null) {
-  if(response.data.messages.name != null){
-information.nameerror = true;
-information.nameerror = response.data.messages.name[0];
-  }
-  if(response.data.messages.fileoffice != null){
-information.fileofficeerror = true;
-information.fileofficeerror = response.data.messages.fileoffice[0];
-  }
-}else {
-  location.reload();
-}
+                console.log("dsds");
+          if (response.data.messages != null) {
+
+          if(response.data.messages.fileoffice != null){
+          information.fileofficeerror = true;
+          information.fileofficeerror = response.data.messages.fileoffice[0];
+          }
+          }else {
+          information.guide = false;
+          information.savefile = true;
+
+
+          }
+
+
+
 
                  });
 
 
            },
-   cleardata: function () {
-             information.fileofficeerror = false;
-             information.nameerror = false;
+
+           manu1: function () {
+
+  information.fileofficeerror = false;
+document.getElementById('results').style.cssText = "display: none;";
+this.image ="";
+
            },
-  editItem: function(item) {
-             information.fileofficeerror = false;
-             information.nameerror = false;
-             information.buttonedit = true;
-             information.buttonedit2 = true;
-             information.inputedit = 'true';
-       								var info_id =	item.Info_ID;
+           home: function () {
 
-       								var link = "/official/editinfo/" + info_id;
-       								axios.get(link, {
-       								}).then(function (response) {
-if (response.data[0].official_ID == information.id) {
-  information.id_edit = response.data[0].Info_ID;
-  information.nameedit = response.data[0].Info_Name;
-  information.imageedit = response.data[0].Info_Img;
-  information.showimg = response.data[0].Info_Img;
-$("#editofficial").modal('show');
-}else {
-  information.id_edit = response.data[0].Info_ID;
-  information.nameedit = response.data[0].Info_Name;
-  information.imageedit = response.data[0].Info_Img;
-  information.showimg = response.data[0].Info_Img;
-  information.buttonedit = false ;
-  information.buttonedit2 = false;
-  information.inputedit = 'false';
-  $("#editofficial").modal('show');
+  information.fileofficeerror = false;
 
-}
+document.getElementById("text").style.display = "none";
+document.getElementById("namefile").value = "";
+this.image ="";
 
 
-
-
-
-
-
-       								})
-
-       							        },
-        updateItem: function() {
-
-                   var info_id =	this.id_edit;
-
-                   var link = "/official/updateinfo/" + info_id;
-                   axios.post(link, {
-                     id: this.id,
-                     name: this.nameedit,
-                     fileoffice: this.image,
-                   }).then(function (response) {
-                     if (response.data.messages != null) {
-                       if(response.data.messages.name != null){
-                     information.nameerror = true;
-                     information.nameerror = response.data.messages.name[0];
-               }
-               if(response.data.messages.fileoffice != null){
-              information.fileofficeerror = true;
-              information.fileofficeerror = response.data.messages.fileoffice[0];
-                                           }
-              }else {
-              location.reload();
-              }
-
-
-
-
-            })
-
-                  },
-                  deleteItem: function(item) {
-
-                      if (item.official_ID == information.id || information.id == '1') {
-                        swal({
-                  title: 'คุณแน่ใจ !',
-                  text: 'คุณจะไม่สามารถกู้คืนไฟล์ที่ลบนี้ได้',
-                  type: 'warning',
-                  showCancelButton: true,
-                  confirmButtonColor: '#3085d6',
-                  cancelButtonColor: '#d33',
-                  confirmButtonText: 'ยืนยัน',
-                  cancelButtonText : 'ยกเลิก',
-                  closeOnConfirm: false
-
-
-
-
-                  }).then(function () {
-
-                          var info_id =	item.Info_ID;
-
-                          axios.post('/official/delete/' + info_id, {
-                            info_id: item.Info_ID,
-                            id: information.id,
-                          }).then(function (response) {
-                            information.items = response.data;
-                            $("#official").modal('hide');
-                          });
-                          swal(
-                            'ถูกลบเเล้ว !',
-                            'ไฟล์ของคุณถูกลบแล้ว.',
-                            'success'
-                          )
-
-                        }, function (dismiss) {
-                          // dismiss can be 'cancel', 'overlay',
-                          // 'close', and 'timer'
-                          if (dismiss === 'cancel') {
-                            swal(
-                              'ยกเลิกเเล้ว',
-                              'ไฟล์ที่คุณเลือกปลอดภัย :)',
-                              'error'
-                            )
-                          }
-                        })
-                    }else {
-                      swal({
-                title: 'คุณไม่มีสิทธิ์ไฟล์นี้ !',
-                text: 'กรุณาตรวจสอบไฟล์ที่ต้องการลบอีกครั้ง',
-                type: 'warning',
-                confirmButtonColor: '#3085d6',
-                confirmButtonText: 'ยืนยัน',
-                closeOnConfirm: false
-                })
-                    }
-    },
+           }
     }
   })
-
-
-
 </script>
 @endpush

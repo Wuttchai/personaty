@@ -30,12 +30,23 @@ class HomeController extends Controller
                   ->orderBy('info.infoupdated_at', 'desc')->limit(5)->get();
 
       $hotnew = \App\hotnews::select('Hotnews_ID', 'hotnews.Hotnews_name','Hotnews_img', 'Hotnews_detail', 'datefirst', 'datelast')
+                  ->where('Hotnews_type','=','ข่าวประชาสัมพันธ์')
                   ->orderBy('datelast', 'desc')->limit(3)->get();
+
                   $time =Carbon::now('Asia/Bangkok');
+
+
+    $hotnew2 = \App\hotnews::select('Hotnews_ID', 'hotnews.Hotnews_name','Hotnews_img', 'Hotnews_detail', 'datefirst', 'datelast')
+          ->where('Hotnews_type','=','ข่าวกิจกรรม')
+          ->orderBy('datelast', 'desc')->limit(3)->get();
+
+
+          $time =Carbon::now('Asia/Bangkok');
   Session::put("date","" . $time->day. "/" . $time->month . "/" . $time->year . "");
         return view('home',[
           'infos' => $info,
-          'hotnews' => $hotnew
+          'hotnews' => $hotnew,
+          'hotnews2' => $hotnew2
         ]);
     }
 }

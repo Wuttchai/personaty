@@ -11,7 +11,7 @@
     <title> เจ้าหน้าที่ </title>
 
     <!-- Styles -->
-<link href="/css/bootstrap-multiselect.css" rel="stylesheet">
+
 <link href="/css/app.css" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
@@ -252,7 +252,7 @@
         </main>
     </div>
     <script src="/js/app.js" charset="utf-8"></script>
-<script src="/js/bootstrap-multiselect.js" charset="utf-8"></script>
+
   <script src="https://vuejs.org/js/vue.js"></script>
 <script src="{{ asset('js/sweetalert2.min.js') }}"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

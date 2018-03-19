@@ -119,7 +119,7 @@ if (strlen($string) >= 68) {
 
   </div><!-- /panel-body -->
 <div class="panel-footer text-right" >
-  <a ><span  v-on:click="showcomment(<?php echo $user->ques_id ?>)" class="glyphicon glyphicon-comment" style="font-size:20px;"></span>  <span class="badge badge-notify2 ">{{ $user->user_count }}</span></a>
+  <a ><span  v-on:click="showcomment(<?php echo $user->ques_id ?>)" class="glyphicon glyphicon-comment" style="font-size:20px;"></span>  <span class="badge badge-notify2 ">{{ $user->user_count-1 }}</span></a>
 
 
 
@@ -179,7 +179,7 @@ if (strlen($string) >= 68) {
             <label for="message-text" class="col-form-label">รายละเอียดกระทู้:</label>
             <textarea class="form-control" v-model="textqestion" ></textarea>
                         <span class="glyphicon glyphicon-remove form-control-feedback" v-if="textqestionerror"></span>
-                        <span class="text-errors" v-if="headqestionerror">
+                        <span class="text-errors" v-if="textqestionerror">
                             <strong><h5>@{{ textqestionerror }}</h5></strong>
                         </span>
                     </div>
@@ -284,7 +284,6 @@ $("#exampleModal2").modal('show');
               axios.get(link, {
               }).then(function (response) {
 
-console.log(response.data);
 
 
 
@@ -310,21 +309,23 @@ console.log(response.data);
            },
 
            insert: function () {
-             this.headqestionerror = false;
-             this.textqestionerror = false;
-             this.typeerror = false;
+             this.headqestionerror = '';
+             this.textqestionerror = '';
+             this.typeerror = '';
 axios.post('http://project3.test/insert/question', {
     headqestion: this.headqestion,
     textqestion: this.textqestion,
     type: this.type,
 
   }).then(function (response) {
+
 if (response.data.messages != null) {
 if(response.data.messages.headqestion != null){
 information.headqestionerror = true;
 information.headqestionerror = response.data.messages.headqestion[0];
 }
 if(response.data.messages.textqestion != null){
+
 information.textqestionerror = true;
 information.textqestionerror = response.data.messages.textqestion[0];
 }

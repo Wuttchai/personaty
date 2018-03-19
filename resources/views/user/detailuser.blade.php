@@ -45,10 +45,17 @@
         <td>{{ $Car->Prosell_totalPirce}} บาท</td>
         <td>{{ $Car->Prosell_creat}}</td>
         <td>
+
+
 @if($num == 1)
-          <button  type="button"  v-on:click="editItem(item)" class="btn btn-warning"><i class="material-icons">ชำระเงิน</i></button>&nbsp;&nbsp;&nbsp;
+<a href="/ProductCarorderdetail/<?php echo $Car->Prosell_ID ?>" clas>  <button  type="button" v-on:click="deleteItem(item)" class="btn btn-warning"><i class="material-icons">โปรดชำระเงิน </i></button></a>
+@else
+<a href="/ProductCardetail/<?php echo $Car->Prosell_ID ?>" clas>  <button  type="button" v-on:click="deleteItem(item)" class="btn btn-danger"><i class="material-icons">รายละเอียด </i></button></a>
 @endif
-        <a href="/ProductCardetail/<?php echo $Car->Prosell_ID ?>" clas>  <button  type="button" v-on:click="deleteItem(item)" class="btn btn-danger"><i class="material-icons">รายละเอียด</i></button></a>
+
+
+
+
 
         </td>
 

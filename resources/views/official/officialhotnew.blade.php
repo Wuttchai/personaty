@@ -7,7 +7,7 @@
 
        <div class="col-md-12" id="dsds">
            <div class="card card-default ">
-               <div class="card-header card text-center bg-info"> จัดการข่าวประชาสัมพันธ์ </div>
+               <div class="card-header card text-center bg-info"> จัดการข่าวประชาสัมพันธ์และข่าวกิจกรรม </div>
 
  <div class="card-header card ">
 
@@ -49,7 +49,7 @@
                    <th>ชื่อข่าวประชาสัมพันธ์</th>
                    <th>วันที่อัพเดทล่าสุด</th>
                    <th>ตัวอย่างรูปภาพ</th>
-                   <th>วันสิ้นสุด</th>
+                   <th>ประเภทข่าว</th>
                    <th>การจัดการ</th>
                  </tr>
                </thead>
@@ -58,7 +58,7 @@
                  <td>@{{ item.Hotnews_Name }}</td>
                  <td>@{{ item.hotupdated_at }}</td>
                  <td><img :src="'{{asset('hotnew')}}/' + item.Hotnews_img" height="42" width="42"/></td>
-                  <td>@{{ item.datelast }}</td>
+                  <td>@{{ item.Hotnews_type }}</td>
            <td >
 
               <button  type="button"  v-on:click="editItem(item)" class="btn btn-warning"><i class="material-icons">แก้ไข</i></button>&nbsp;&nbsp;&nbsp;
@@ -156,7 +156,25 @@
                        <div class="form-group row">
 
                        </div>
+                       <div v-bind:class="{'form-group':typeerror , 'form-control label text-danger is-invalid':typeerror }">
+                                                           <label for="inputMessage">ประเภทข่าว</label>
+                       <br>
+                                                   <select id="demo" class="form-control" v-model="type">
+                                                                   <option value="ข่าวประชาสัมพันธ์">ข่าวประชาสัมพันธ์</option>
+                                                                   <option value="ข่าวกิจกรรม">ข่าวกิจกรรม</option>
 
+                                                               </select>
+
+                                                               <span class="text-danger" v-if="typeerror">
+                                                                 <div class="form-group row">
+
+                                                                 </div>
+                                                                   <strong>@{{ typeerror }}</strong>
+                                                               </span>
+                                                             </div>
+                                                             <div class="form-group row">
+
+                                                             </div>
                        <div v-bind:class="{'form-group':datefirsterror , 'form-control label text-danger is-invalid':datefirsterror }">
                                      <label for="inputMessage">วันที่เริ่มต้น</label>
                                    <input id="datefirst" class="datepicker" data-date-format="mm/dd/yyyy" v-model="datefirst">
@@ -279,6 +297,25 @@
 
 
                        </div>
+                       <div v-bind:class="{'form-group':typeerror , 'form-control label text-danger is-invalid':typeerror }">
+                                                           <label for="inputMessage">ประเภทข่าว</label>
+                       <br>
+                                                   <select id="demo" class="form-control" v-model="typeedit">
+                                                                   <option value="ข่าวประชาสัมพันธ์">ข่าวประชาสัมพันธ์</option>
+                                                                   <option value="ข่าวกิจกรรม">ข่าวกิจกรรม</option>
+
+                                                               </select>
+
+                                                               <span class="text-danger" v-if="typeerror">
+                                                                 <div class="form-group row">
+
+                                                                 </div>
+                                                                   <strong>@{{ typeerror }}</strong>
+                                                               </span>
+                                                             </div>
+                                                             <div class="form-group row">
+
+                                                             </div>
                        <div class="form-group row">
 
                        </div>
@@ -457,7 +494,9 @@ var information =  new Vue({
         'datefirstedit':'',
         'datelastedit':'',
         'detailedit':'',
-
+        'typeerror':'',
+        'type':'',
+        'typeedit':'',
         'items': [],
         'pagination': [],
         'searchKey': '',
@@ -499,7 +538,7 @@ var information =  new Vue({
 
                     	return item.Hotnews_Name.indexOf(this.searchKey.toLowerCase()) > -1
                       || item.hotupdated_at.indexOf(this.searchKey.toLowerCase()) > -1
-                      || item.datelast.indexOf(this.searchKey.toLowerCase()) > -1
+                      || item.Hotnews_type.toLowerCase().indexOf(this.searchKey.toLowerCase()) > -1
                       || item.official_Name.toLowerCase().indexOf(this.searchKey.toLowerCase()) > -1
 
                  })
@@ -555,6 +594,7 @@ this.datelast = $('#datelast').val()
                  name: this.name,
                  fileoffice: this.image,
                  detail : this.detail,
+                  type: this.type,
                  datefirst : this.datefirst,
                  datelast : this.datelast,
 
@@ -568,6 +608,10 @@ information.nameerror = response.data.messages.name[0];
   if(response.data.messages.fileoffice != null){
 information.fileofficeerror = true;
 information.fileofficeerror = response.data.messages.fileoffice[0];
+  }
+  if(response.data.messages.type != null){
+    information.typeerror = true;
+    information.typeerror = response.data.messages.type[0];
   }
   if(response.data.messages.datefirst != null){
 information.datefirsterror = true;
@@ -594,9 +638,11 @@ information.datelasterror = response.data.messages.datelast[0];
              information.nameerror = false;
               information.datefirsterror= false;
               information.datelasterror= false;
+              information.typeerror = false;
               information.detailerror= false;
            },
   editItem: function(item) {
+    information.typeerror = false;
     information.datefirsterror = false;
     information.datelasterror = false;
     information.detailerror = false;
@@ -620,6 +666,7 @@ if (response.data[0].official_ID == information.id) {
   information.detailedit = response.data[0].Hotnews_detail;
   information.imageedit = response.data[0].Hotnews_img;
   information.showimg = response.data[0].Hotnews_img;
+  information.typeedit = response.data[0].Hotnews_type;
 $("#editofficial").modal('show');
 }else {
   information.id_edit = response.data[0].Hotnews_ID;
@@ -629,6 +676,7 @@ $("#editofficial").modal('show');
   information.detailedit = response.data[0].Hotnews_detail;
   information.imageedit = response.data[0].Hotnews_img;
   information.showimg = response.data[0].Hotnews_img;
+  information.typeedit = response.data[0].Hotnews_type;
   information.buttonedit = false ;
   information.buttonedit2 = false;
   information.inputedit = 'false';
@@ -659,6 +707,7 @@ $("#editofficial").modal('show');
                      name: this.nameedit,
                      fileoffice: this.image,
                      detail : this.detailedit,
+                     type: this.typeedit,
                      datefirst : this.datefirstedit,
                      datelast : this.datelastedit,
 
@@ -671,6 +720,10 @@ $("#editofficial").modal('show');
                        if(response.data.messages.fileoffice != null){
                      information.fileofficeerror = true;
                      information.fileofficeerror = response.data.messages.fileoffice[0];
+                       }
+                       if(response.data.messages.type != null){
+                         information.typeerror = true;
+                         information.typeerror = response.data.messages.type[0];
                        }
                        if(response.data.messages.datefirst != null){
                      information.datefirsterror = true;

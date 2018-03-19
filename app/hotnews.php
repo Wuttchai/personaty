@@ -12,6 +12,6 @@ class hotnews extends Model
   public $timestamps = false;
 
   public $fillable = [
-      'Hotnews_ID','Log_ID','Hotnews_Name','Hotnews_detail','Hotnews_img','datefirst','datelast','hotcreated_at','hotupdated_at'
+      'Hotnews_ID','Log_ID','Hotnews_Name','Hotnews_detail','Hotnews_img','datefirst','datelast','hotcreated_at','hotupdated_at','Hotnews_type'
   ];
 }

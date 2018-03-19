@@ -31,7 +31,7 @@ public $timestamps = false;
      public function readItems() {
        $info = \App\hotnews::join('log','hotnews.Log_ID','=','log.Log_ID')
                    ->join('official', 'official.official_ID', '=', 'log.official_ID')
-                   ->select('official.official_Name', 'hotnews.Hotnews_Name', 'hotnews.hotupdated_at','hotnews.Hotnews_img','hotnews.datelast','hotnews.Hotnews_ID')
+                   ->select('official.official_Name', 'hotnews.Hotnews_Name', 'hotnews.hotupdated_at','hotnews.Hotnews_img','hotnews.datelast','hotnews.Hotnews_ID','hotnews.Hotnews_type')
                    ->get();
 
 
@@ -51,8 +51,9 @@ public $timestamps = false;
          'name' => 'required|string',
         'fileoffice' => 'required|image64:jpeg,jpg,png',
         'detail' => 'required|string',
+        'type' => 'required|string',
         'datefirst' => 'required|string',
-        'datelast' => 'required|string',
+        'datelast' => 'string',
 
            ]);
 
@@ -92,6 +93,7 @@ $time =Carbon::now('Asia/Bangkok');
                               'Hotnews_Name' => $request->name,
                               'Hotnews_detail' => $request->detail,
                               'Hotnews_img'  => $fileName,
+                              'Hotnews_type' => $request->type,
                               'datefirst' => $request->datefirst,
                               'datelast' => $request->datelast,
                               'hotcreated_at' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "" ,
@@ -122,7 +124,7 @@ $time =Carbon::now('Asia/Bangkok');
 
        $infoedit = \App\hotnews::join('log','hotnews.Log_ID','=','log.Log_ID')
                    ->join('official', 'official.official_ID', '=', 'log.official_ID')
-                   ->select('official.official_ID', 'hotnews.Hotnews_Name','hotnews.Hotnews_img','hotnews.Hotnews_detail','hotnews.Hotnews_ID','hotnews.datelast','hotnews.datefirst')
+                   ->select('official.official_ID','hotnews.Hotnews_type', 'hotnews.Hotnews_Name','hotnews.Hotnews_img','hotnews.Hotnews_detail','hotnews.Hotnews_ID','hotnews.datelast','hotnews.datefirst')
                    ->where('hotnews.Hotnews_ID','=' ,$id)
                    ->get();
 
@@ -139,9 +141,10 @@ if ($request->fileoffice) {
     'id' => 'required|string',
     'name' => 'required|string',
    'fileoffice' => 'required|image64:jpeg,jpg,png',
+   'type' => 'required|string',
    'detail' => 'required|string',
    'datefirst' => 'required|string',
-   'datelast' => 'required|string',
+   'datelast' => 'string',
   ]);
   if($Validator->errors()->messages() != null){
     return[
@@ -184,6 +187,7 @@ if ($request->fileoffice) {
                           'Hotnews_Name' => $request->name,
                           'Hotnews_detail' => $request->detail,
                           'Hotnews_img'  => $fileName,
+                          'Hotnews_type' => $request->type,
                           'datefirst' => $request->datefirst,
                           'datelast' => $request->datelast,
 
@@ -203,8 +207,9 @@ if ($request->fileoffice) {
     'id' => 'required|string',
     'name' => 'required|string',
    'detail' => 'required|string',
+   'type' => 'required|string',
    'datefirst' => 'required|string',
-   'datelast' => 'required|string',
+   'datelast' => 'string',
   ]);
 
   if($Validator->errors()->messages() != null){
@@ -237,7 +242,7 @@ if ($request->fileoffice) {
                           'Hotnews_detail' => $request->detail,
                           'datefirst' => $request->datefirst,
                           'datelast' => $request->datelast,
-
+                          'Hotnews_type' => $request->type,
                           'hotupdated_at' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
                         ]);
 

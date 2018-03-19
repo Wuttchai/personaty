@@ -48,7 +48,7 @@ public $timestamps = false;
          'name' => 'required|string',
         'fileoffice' => 'required|image64:jpeg,jpg,png|img_min_size:250,200',
         'detail' => 'required|string',
-        'type' => 'required',
+        'type' => 'required|string',
         'money' => 'required|numeric',
         'count' => 'required|numeric',
 

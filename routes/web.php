@@ -93,18 +93,14 @@ Route::get('/official/productsell', 'Official\ProductsellControll@index');
 Route::get('/official/productselllist', 'Official\ProductsellControll@readItems');
 Route::post('/emsadd', 'Official\ProductsellControll@insert');
 Route::get('/sell/view/{id}', 'Official\ProductsellControll@showdetail');
-Route::post('/productsell/update/{Hotnews_ID}', 'Official\ProductsellControll@update');
 
-
-Route::post('/productsell/update/{Hotnews_ID}', 'Official\ProductsellControll@update');
-Route::post('/productsell/delete{Hotnews_ID}', 'Official\ProductsellControll@delete');
 
 
 //user
 
 Route::get('/ProductAyutaya', 'user\ProductsellController@index');
 Route::post('/Productaddcars', 'user\ProductsellController@addcars');
-Route::post('/Productdeletecars', 'user\ProductsellController@showdetail');
+Route::post('/Productdeletecars', 'user\ProductsellController@deletecars');
 
 Route::get('/Product/type1', 'user\ProductsellController@type1');
 Route::get('/cart/confrimadd', 'user\AddcartsControllers@confrim');
@@ -115,6 +111,7 @@ Route::get('/invoice-print', function () {
     return view('user.carsprint');
   });
 
+Route::get('/ProductCarorderdetail/{id}', 'user\ProductsellController@ProductCarorderdetail');
   Route::get('/webboard', 'user\WebboardController@index');
   Route::post('/insert/question', 'user\WebboardController@addqes');
   Route::get('/question/comment/{id}', 'user\WebboardController@showcomment')->name('showcomment');
@@ -124,3 +121,6 @@ Route::get('/invoice-print', function () {
   Route::get('/ProductCarOrders', 'user\ProductsellController@ProductCarOrders')->name('ProductCarOrders');
   Route::post('/insert/receipt', 'user\AddimgcarController@insertimg');
   Route::get('/insert/receipt', 'user\AddimgcarController@index');
+
+  Route::post('/insert/receiptimg', 'user\AddimageController@insertimg');
+  Route::get('/insert/receiptimg', 'user\AddimageController@index');

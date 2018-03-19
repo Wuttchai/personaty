@@ -17,7 +17,7 @@ class WebboardController extends Controller
      */
      public function __construct()
      {
-
+$this->middleware('auth');
      }
 
     /**
@@ -51,6 +51,17 @@ $validator =  Validator::make($request->all(), [
                    'ques_detail' => $request->textqestion,
                    'ques_type' => $request->type,
                    'ques_date'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
+             ]);
+
+             $ques_id =  \App\question::where([
+                 ['User_ID', '=', Auth::user()->User_ID],
+                 ])->max('ques_id');
+
+                 \App\questiondetail::insert([
+                   'User_ID' => Auth::user()->User_ID,
+                   'ques_id' => $ques_id,
+                   'quesde_detail' => '-',
+                   'quesde_date'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
              ]);
 
 }
@@ -111,9 +122,9 @@ return view('user.comment',[
                   ->join('questiondetail','questiondetail.ques_id','=','question.ques_id')
                   ->select('question.ques_id', 'question.ques_name','question.ques_detail', 'question.ques_date', 'question.ques_type','users.User_Name',DB::raw('count(questiondetail.quesde_id) as user_count'))
                   ->GROUPBY('question.ques_id')
-                  ->orderBy('ques_date', 'asc')->paginate(8);
-
-
+                  ->orderBy('ques_date', 'asc')->paginate(5);
+                  $question2 = \App\question::select('question.ques_id', 'question.ques_name','question.ques_detail', 'question.ques_date', 'question.ques_type')
+                            ->get();
 
       return view('user.webboard',[
       'question' => $question

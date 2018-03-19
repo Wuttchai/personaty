@@ -27,7 +27,7 @@
     <div class="item active">
       <img src="<?php echo "images/".$infos[$key]->Info_Img ?>"  style="width:100%;">
       <div class="carousel-caption">
-        <h3>{{ $infos[$key]->Info_Name }}</h3>
+
 
       </div>
     </div>
@@ -36,7 +36,7 @@
         <div class="item">
           <img src=" <?php echo "images/".$infos[$key]->Info_Img ?>"  style="width:100%;">
           <div class="carousel-caption">
-            <h3>{{ $infos[$key]->Info_Name }}</h3>
+
 
           </div>
         </div>
@@ -76,11 +76,16 @@
 
       <div class="col-md-4">
 <a href="#" class="text-dark">
-          <h4>{{ $hotnews[$key1]->Hotnews_Name }}</h4>
-          <p> <span class="glyphicon glyphicon-calendar"></span>{{ $hotnews[$key1]->datefirst }}</p>
+
+
           <img src="<?php echo "hotnew/".$hotnews[$key1]->Hotnews_img ?>" alt="xxx" class="img-thumbnail">
           <br>
           <br>
+            <h4>{{ $hotnews[$key1]->Hotnews_name }}</h4>
+    <p><span class="glyphicon glyphicon-calendar"></span>{{ $hotnews[$key1]->datefirst }}
+    @if($hotnews[$key1]->datelast)
+   - {{ $hotnews[$key1]->datelast }}</p>
+    @endif
           <p>{{ $hotnews[$key1]->Hotnews_detail }}</p>
             </a>
 
@@ -115,20 +120,21 @@
 
 
 <div class="row text-center">
-@foreach ($hotnews as $key1 => $hotnew)
+@foreach ($hotnews2 as $key1 => $hotnew)
 
   <div class="col-md-4">
 <a href="#" class="text-dark">
-      <h4>{{ $hotnews[$key1]->Hotnews_Name }}</h4>
-      <p> <span class="glyphicon glyphicon-calendar"></span>{{ $hotnews[$key1]->datefirst }}</p>
-      <img src="<?php echo "hotnew/".$hotnews[$key1]->Hotnews_img ?>" alt="xxx" class="img-thumbnail">
+
+      <img src="<?php echo "hotnew/".$hotnews2[$key1]->Hotnews_img ?>" alt="xxx" class="img-thumbnail">
       <br>
       <br>
 
-      <p>{{ $hotnews[$key1]->Hotnews_detail }}</p>
-      <div class="ficon">
-        </a>
-      </div>
+      <h4>{{ $hotnews2[$key1]->Hotnews_name }}</h4>
+<p><span class="glyphicon glyphicon-calendar"></span>{{ $hotnews2[$key1]->datefirst }}
+@if($hotnews2[$key1]->datelast)
+- {{ $hotnews2[$key1]->datelast }}</p>
+@endif
+    <p>{{ $hotnews2[$key1]->Hotnews_detail }}</p>
 
   </div>
 @endforeach
