@@ -1,11 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div class="container">
+<div class="bg">
     <div class="row">
+
         <div class="col-sm-6 col-md-4 col-md-offset-4">
-            <h1 class="text-center login-title">เข้าสู่ระบบผู้ใช้งาน</h1>
+
+
             <div class="account-wall">
+              <p class="text-center login-title">เข้าสู่ระบบผู้ใช้งาน</p>
                 <img class="profile-img" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"
                     alt="">
 										<form method="POST" action="{{ route('login') }}" class="form-signin">
@@ -50,6 +55,9 @@
 
         </div>
     </div>
+<br>
+</div>
+<br>
 <br>
 </div>
 

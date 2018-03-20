@@ -102,7 +102,7 @@
     <?php
 $string = strip_tags($user->ques_detail);
 
-if (strlen($string) >= 68) {
+if (strlen($string) >= 200) {
 
     // truncate string
     $stringCut = iconv_substr($string, 0, 200, "UTF-8");

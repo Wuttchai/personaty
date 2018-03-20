@@ -69,8 +69,156 @@
 #img-upload{
     width: 100%;
 }
+
+.glyphicon-lg{font-size:3em}
+.blockquote-box{border-right:5px solid #E6E6E6;margin-bottom:25px}
+.blockquote-box .square{width:100px; margin-right:100px;text-align:center!important;}
+.blockquote-box.blockquote-primary{border-color:#357EBD}
+.blockquote-box.blockquote-primary .square{background-color:#428BCA;color:#FFF}
+.blockquote-box.blockquote-success{border-color:#4CAE4C}
+.blockquote-box.blockquote-success .square{background-color:#5CB85C;color:#FFF}
+.blockquote-box.blockquote-info{border-color:#46B8DA}
+.blockquote-box.blockquote-info .square{background-color:#5BC0DE;color:#FFF}
+.blockquote-box.blockquote-warning{border-color:#EEA236}
+.blockquote-box.blockquote-warning .square{background-color:#F0AD4E;color:#FFF}
+.blockquote-box.blockquote-danger{border-color:#D43F3A}
+.blockquote-box.blockquote-danger .square{background-color:#D9534F;color:#FFF}
+@import url(http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700);
+/* written by riliwan balogun http://www.facebook.com/riliwan.rabo*/
+a.list-group-item {
+    height:auto;
+    min-height:220px;
+}
+.card {
+    font-size: 1em;
+    overflow: hidden;
+    padding: 0;
+    border: none;
+    border-radius: .28571429rem;
+    box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
+}
+
+.card-block {
+    font-size: 1em;
+    position: relative;
+    margin: 0;
+    padding: 1em;
+    border: none;
+    border-top: 1px solid rgba(34, 36, 38, .1);
+    box-shadow: none;
+}
+
+.card-img-top {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.card-title {
+    font-size: 1.28571429em;
+    font-weight: 700;
+    line-height: 1.2857em;
+}
+
+.card-text {
+    clear: both;
+    margin-top: .5em;
+    color: rgba(0, 0, 0, .68);
+}
+
+.card-footer {
+    font-size: 1em;
+    position: static;
+    top: 0;
+    left: 0;
+    max-width: 100%;
+    padding: .75em 1em;
+    color: rgba(0, 0, 0, .4);
+    border-top: 1px solid rgba(0, 0, 0, .05) !important;
+    background: #fff;
+}
+
+.card-inverse .btn {
+    border: 1px solid rgba(0, 0, 0, .05);
+}
+
+.profile {
+    position: absolute;
+    top: -12px;
+    display: inline-block;
+    overflow: hidden;
+    box-sizing: border-box;
+    width: 25px;
+    height: 25px;
+    margin: 0;
+    border: 1px solid #fff;
+    border-radius: 50%;
+}
+
+.profile-avatar {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+}
+
+.profile-inline {
+    position: relative;
+    top: 0;
+    display: inline-block;
+}
+
+.profile-inline ~ .card-title {
+    display: inline-block;
+    margin-left: 4px;
+    vertical-align: top;
+}
+
+.text-bold {
+    font-weight: 700;
+}
+
+.meta {
+    font-size: 1em;
+    color: rgba(0, 0, 0, .4);
+}
+
+.meta a {
+    text-decoration: none;
+    color: rgba(0, 0, 0, .4);
+}
+
+.meta a:hover {
+    color: rgba(0, 0, 0, .87);
+}
+.bg {
+    /* The image used */
+    background-image: url('http://farm3.staticflickr.com/2832/12303719364_c25cecdc28_b.jpg');
+
+    /* Full height */
+    height: 100%;
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700);
+.bg{
+    background: -webkit-linear-gradient(90deg, #FF512F 10%, #DD2476 90%);
+    background: -moz-linear-gradient(90deg, #FF512F 10%, #DD2476 90%);
+    background: -ms-linear-gradient(90deg, #FF512F 10%, #DD2476 90%);
+    background: -o-linear-gradient(90deg, #FF512F 10%, #DD2476 90%);
+    background: linear-gradient(90deg, #FF512F 10%, #DD2476 90%);
+    font-family: 'Open Sans', sans-serif!important;
+    
+}
+
 </style>
 </head>
+
 <body>
     <div class="container">
       <nav class="navbar navbar-inverse navbar-fixed-top"  id="app">
@@ -91,8 +239,14 @@
               <ul class="nav navbar-nav" style="margin-left: 80px;">
                   <li class="<?php echo  Session::get('tabmanu'); ?>"><a href="/home"><h5>หน้าแรก</h5></a></li>
                   <li><a class="nav-link" href="/officialapp"><h5>เกี่ยวกับเรือนจำ</h5></a></li>
-                  <li><a class="nav-link" href="/officialapp"><h5>กิจกรรมเเละประกาศ</h5></a></li>
-                  <li><a class="nav-link" href="/officialapp"><h5>เอกสารที่เผยแพร่</h5></a></li>
+                  <li class="dropdown <?php echo  Session::get('tabmanu3'); ?>" >
+                    <a data-toggle="dropdown" class="dropdown-toggle " href="#"><h5>ข่าวเกี่ยวกับเรื่อนจำ<b class="caret"></b> </h5></a>
+                      <ul class="dropdown-menu">
+                          <li ><a href="/advertise">ข่าวประชาสัมพันธ์</a></li>
+                          <li><a href="/activities">ข่าวกิจกรรม</a></li>
+                      </ul>
+                  </li>
+                  <li class="dropdown <?php echo  Session::get('tabmanu4'); ?>"><a class="nav-link" href="/documentsh"><h5>เอกสารที่เผยแพร่</h5></a></li>
                   <li class="<?php echo  Session::get('tabmanu1'); ?>"><a class="nav-link" href="/ProductAyutaya"><h5>สินค้าวิชาชีพ</h5></a></li>
                   <li class="<?php echo  Session::get('tabmanu2'); ?>"><a class="nav-link" href="/webboard"><h5>กระทู้สอบถาม</h5></a></li>
 

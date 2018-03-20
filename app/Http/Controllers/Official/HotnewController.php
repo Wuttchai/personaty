@@ -49,7 +49,7 @@ public $timestamps = false;
     $validator =  Validator::make($request->all(), [
          'id' => 'required|string',
          'name' => 'required|string',
-        'fileoffice' => 'required|image64:jpeg,jpg,png',
+        'fileoffice' => 'required|image64:jpeg,jpg,png|img_min_size:1300,700',
         'detail' => 'required|string',
         'type' => 'required|string',
         'datefirst' => 'required|string',
@@ -69,7 +69,7 @@ public $timestamps = false;
 
                  $imageData = $request->get('fileoffice');
        $fileName = Carbon::now()->timestamp . '_' . uniqid() . '.' . explode('/', explode(':', substr($imageData, 0, strpos($imageData, ';')))[1])[1];
-     \Image::make($imageData)->save(public_path('hotnew/').$fileName);
+     \Image::make($imageData)->resize(1366, 769)->save(public_path('hotnew/').$fileName);
 
 
 $time =Carbon::now('Asia/Bangkok');
@@ -157,7 +157,7 @@ if ($request->fileoffice) {
 
   $imageData = $request->get('fileoffice');
  $fileName = Carbon::now()->timestamp . '_' . uniqid() . '.' . explode('/', explode(':', substr($imageData, 0, strpos($imageData, ';')))[1])[1];
- \Image::make($imageData)->save(public_path('hotnew/').$fileName);
+ \Image::make($imageData)->resize(1366, 769)->save(public_path('hotnew/').$fileName);
 
 
 //-------------

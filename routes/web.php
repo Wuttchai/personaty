@@ -14,12 +14,20 @@ Auth::routes();
 Route::get('/phpinfo', function() {
     return phpinfo();
 });
+Route::get('/home', 'HomeController@index');
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/ww', function () {
     return view('welcome');
 });
+Route::get('/question/comment/{id}', 'HomeController@showcomment')->name('showcomment');
+Route::get('/product/view/{id}', 'HomeController@productview');
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/webboard', 'HomeController@webbord');
+Route::get('/ProductAyutaya', 'HomeController@Product');
+Route::get('/advertise', 'HomeController@advertise');
+Route::get('/activities', 'HomeController@activities');
+Route::get('/documentsh', 'HomeController@documentsh');
+Route::get('/insert/receipt', 'user\AddimgcarController@index');
 
 Route::get('/official','Official\OfficeformController@index');
 Route::get('/officialapp', function () {
@@ -98,7 +106,7 @@ Route::get('/sell/view/{id}', 'Official\ProductsellControll@showdetail');
 
 //user
 
-Route::get('/ProductAyutaya', 'user\ProductsellController@index');
+
 Route::post('/Productaddcars', 'user\ProductsellController@addcars');
 Route::post('/Productdeletecars', 'user\ProductsellController@deletecars');
 
@@ -112,9 +120,9 @@ Route::get('/invoice-print', function () {
   });
 
 Route::get('/ProductCarorderdetail/{id}', 'user\ProductsellController@ProductCarorderdetail');
-  Route::get('/webboard', 'user\WebboardController@index');
+
   Route::post('/insert/question', 'user\WebboardController@addqes');
-  Route::get('/question/comment/{id}', 'user\WebboardController@showcomment')->name('showcomment');
+
   Route::post('/question/addcomment/', 'user\WebboardController@store')->name('addcomment');
   Route::get('/question/addcomment/eiei', 'user\WebboardController@showcomment');
   Route::get('/ProductCardetail/{id}', 'user\ProductsellController@ProductCardetail');

@@ -165,45 +165,28 @@
  </div>
         @endif
           @foreach ($products as $key1 => $product)
+          <div class="col-md-4">
 
+                <div class="thumbnail">
+                    <br>
+                  <img src="<?php echo "product/".$products[$key1]->Pro_img ?>" style="width:260px; height:146px;" class="img-responsive">
+                  <div class="caption">
+                    <h4 class="pull-right">{{ $products[$key1]->Pro_Price }} บาท</h4>
+                    <h4 ><a href="#" class="text-dark">{{ $products[$key1]->Pro_Name }} </a></h4>
+                    <p>{{ $products[$key1]->Pro_Detail }}</p>
+                  </div>
 
-          <a href="#" class="text-dark">
-
-            <div class="col-lg-3 col-md-6  mb-12 " style="padding: 5px;">
-
-
-
-                <img src="<?php echo "product/".$products[$key1]->Pro_img ?>" alt="xxx" class="img-thumbnail">
-<div class="card h-100">
-<br>
-                <p class="text-center"><?php echo $products[$key1]->Pro_Name ?></p>
-                <div class="row">
-<div class=" col-md-6 ">
-
-<p>{{ $products[$key1]->Pro_Price }} บาท<p>
-</div>
-</a>
-<div class=" col-md-6 text-right">
-  <select   v-model="quantity">
-
-                                        <option v-for="n in <?php echo $products[$key1]->Pro_Count ?>" >@{{ n }}</option>
-
-                                    </select>
-
-<button type="button"  v-on:click="addcars(<?php echo $products[$key1]->Pro_ID ?>)" class="btn btn-default btn-md btn-warning" ><span class="glyphicon glyphicon-shopping-cart"></button>
-
-</div>
-
-</div>
-
-
-</div>
-<div class="card-footer">
-                  <small class="text-dark">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-
+                  <div class="space-ten"></div>
+                  <div class="btn-ground text-right">
+                    <select   v-model="quantity">
+                      <option v-for="n in <?php echo $products[$key1]->Pro_Count ?>" >@{{ n }}</option>
+                      </select>
+                      <button type="button"  v-on:click="addcars(<?php echo $products[$key1]->Pro_ID ?>)" class="btn btn-default btn-md btn-warning" ><span class="glyphicon glyphicon-shopping-cart"></button>
+                      <button type="button"  v-on:click="detail(<?php echo $products[$key1]->Pro_ID ?>)" class="btn btn-primary" ><i class="fa fa-search"></i>รายละเอียด</button>
+                  </div>
+                  <div class="space-ten"></div>
                 </div>
-            </div>
-
+              </div>
       @endforeach
         </div>
         </div>
@@ -216,7 +199,45 @@
       <!-- /.row -->
 
     </div>
+    <div class="modal fade product_view" id="product_view">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <a href="#" data-dismiss="modal" class="class pull-right"><span class="glyphicon glyphicon-remove"></span></a>
+                    <h3 class="modal-title">@{{Pro_Name }}</h3>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6 product_img">
+                            <img :src="'{{asset('product')}}/' +  Pro_img "  class="img-responsive" style="width:425px; height:529px;"/>
+                        </div>
+                        <div class="col-md-6 product_content">
 
+                            <p>รายละเอียดสินค้า : @{{ Pro_Detail }}</p>
+                            <p>ประเภทสินค้า : @{{ Pro_Type }}</p>
+                            <p>จำนวนสินค้า : @{{ Pro_Count }} ชิ้น</p>
+                            <h3 class="cost">ราคาสินค้า : @{{ Pro_Price }} บาท</h3>
+
+
+                            <div class="space-ten"></div>
+                            <div class="btn-ground">
+                                <button type="button" v-on:click="addcars(Pro_ID)" class="btn btn-primary"><span class="glyphicon glyphicon-shopping-cart" ></span> Add To Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row text-center">
+
+
+           <div class="col-md-12 text-center">
+             <div class="ficon">
+                           {{ $products->links() }}
+                         </div>
+           </div>
+       </div>
 
        </div>
    </div>
@@ -241,7 +262,13 @@ var information =  new Vue({
         'cars' : false,
         'seach' : <?php if (Session::get('search') == 'ค้นหา' || Session::get('search') == null ) {echo 'true';}else {echo 'false';} ?>,
         'cancelsearch' :<?php if (Session::get('search')!='ค้นหา' && Session::get('search')!= null ) {echo 'true';}else {echo 'false';} ?>,
-
+        'Pro_Count':'',
+        'Pro_Detail':'',
+        'Pro_ID':'',
+        'Pro_Name':'',
+        'Pro_Price':'',
+        'Pro_Type':'',
+        'Pro_img':'',
 
 
     },
@@ -325,6 +352,8 @@ location.reload();
 
                }).then(function (response) {
 
+
+
   location.reload();
                   });
 
@@ -354,6 +383,28 @@ location.reload();
              }else {
                this.cars = true;
              }
+
+           },
+           detail: function (event) {
+
+             var product_id =	event;
+
+              var link = "/product/view/" + product_id;
+              axios.get(link, {
+              }).then(function (response) {
+
+        information.Pro_Detail = response.data[0].Pro_Detail
+        information.Pro_ID = response.data[0].Pro_ID
+        information.Pro_Name = response.data[0].Pro_Name
+        information.Pro_Price = response.data[0].Pro_Price
+        information.Pro_Type = response.data[0].Pro_Type
+        information.Pro_img = response.data[0].Pro_img
+        information.Pro_Count = response.data[0].Pro_Count
+$("#product_view").modal('show');
+
+
+
+})
 
            },
 

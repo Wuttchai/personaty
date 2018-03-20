@@ -71,39 +71,53 @@
 
 
 
-<div class="row text-center">
+
+<div class="row " >
     @foreach ($hotnews as $key1 => $hotnew)
 
-      <div class="col-md-4">
-<a href="#" class="text-dark">
 
+      <div class="col-md-4" >
+          <div class="card"  >
 
-          <img src="<?php echo "hotnew/".$hotnews[$key1]->Hotnews_img ?>" alt="xxx" class="img-thumbnail">
+                <img src="<?php echo "hotnew/".$hotnews[$key1]->Hotnews_img ?>" style=" height:300px;">
+              <div class="card-block">
+                  <h4 class="card-title">{{ $hotnews[$key1]->Hotnews_name }}</h4>
+
+              </div>
+              <?php
+          $string = strip_tags($hotnews[$key1]->Hotnews_detail);
+
+          if (strlen($string) >= 150) {
+
+              // truncate string
+              $stringCut = iconv_substr($string, 0, 150, "UTF-8");
+
+          }else {
+            $stringCut = $hotnews[$key1]->Hotnews_detail;
+
+          }
+
+                ?>
+              <p class="card-block" style="word-break:break-all; height:100px;">{{ $stringCut }}</p>
+              <div class="card-footer">
+                  <span class="float-right"><span class="glyphicon glyphicon-calendar"></span>{{ $hotnews2[2]->datefirst }}
+                  @if($hotnews2[2]->datelast)
+                 - {{ $hotnews2[2]->datelast }}
+                  @endif</span>
+
+              </div>
+          </div>
           <br>
-          <br>
-            <h4>{{ $hotnews[$key1]->Hotnews_name }}</h4>
-    <p><span class="glyphicon glyphicon-calendar"></span>{{ $hotnews[$key1]->datefirst }}
-    @if($hotnews[$key1]->datelast)
-   - {{ $hotnews[$key1]->datelast }}</p>
-    @endif
-          <p>{{ $hotnews[$key1]->Hotnews_detail }}</p>
-            </a>
-
-
       </div>
+
 @endforeach
   </div>
+  </div>
   <br>
-
-
-
-
 <div class="row text-center">
-
-
         <div class="col-md-12 text-center">
           <div class="ficon">
-                        <a href="#" class="btn btn-danger" role="button">Read more</a>
+                        <a href="/advertise" class="btn btn-danger" role="button">อ่านทั่งหมด</a>
                       </div>
         </div>
     </div>
@@ -119,25 +133,156 @@
 
 
 
-<div class="row text-center">
-@foreach ($hotnews2 as $key1 => $hotnew)
+<div class="row">
 
-  <div class="col-md-4">
-<a href="#" class="text-dark">
+    <div class="col-md-6">
+        <div class="blockquote-box  clearfix">
+            <div class="square pull-left">
+                <img src="<?php echo "hotnew/".$hotnews2[0]->Hotnews_img ?>" style="width:150px; height:120px;">
+            </div>
+            <h4>{{ $hotnews2[0]->Hotnews_name }} </h4><span class="glyphicon glyphicon-calendar"></span>{{ $hotnews2[0]->datefirst }}
+            @if($hotnews2[0]->datelast)
+           - {{ $hotnews2[0]->datelast }}
+            @endif
+            <?php
+        $string = strip_tags($hotnews2[0]->Hotnews_detail);
 
-      <img src="<?php echo "hotnew/".$hotnews2[$key1]->Hotnews_img ?>" alt="xxx" class="img-thumbnail">
-      <br>
-      <br>
+        if (strlen($string) >= 122) {
 
-      <h4>{{ $hotnews2[$key1]->Hotnews_name }}</h4>
-<p><span class="glyphicon glyphicon-calendar"></span>{{ $hotnews2[$key1]->datefirst }}
-@if($hotnews2[$key1]->datelast)
-- {{ $hotnews2[$key1]->datelast }}</p>
-@endif
-    <p>{{ $hotnews2[$key1]->Hotnews_detail }}</p>
+            // truncate string
+            $stringCut = iconv_substr($string, 0, 122, "UTF-8");
 
-  </div>
-@endforeach
+        }else {
+          $stringCut = $hotnews2[0]->Hotnews_detail;
+
+        }
+
+              ?>
+            <p>{{ $stringCut }}</p>
+        </div>
+        <div class="blockquote-box blockquote-primary clearfix">
+          <div class="square pull-left">
+              <img src="<?php echo "hotnew/".$hotnews2[1]->Hotnews_img ?>" style="width:150px; height:120px;">
+          </div>
+          <h4>{{ $hotnews2[1]->Hotnews_name }}</h4><span class="glyphicon glyphicon-calendar"></span>{{ $hotnews2[1]->datefirst }}
+          @if($hotnews2[1]->datelast)
+         - {{ $hotnews2[1]->datelast }}
+          @endif
+          <?php
+      $string = strip_tags($hotnews2[1]->Hotnews_detail);
+
+      if (strlen($string) >= 122) {
+
+          // truncate string
+          $stringCut = iconv_substr($string, 0, 122, "UTF-8");
+
+      }else {
+        $stringCut = $hotnews2[1]->Hotnews_detail;
+
+      }
+
+            ?>
+          <p>{{ $stringCut }}</p>
+        </div>
+        <div class="blockquote-box blockquote-success clearfix">
+          <div class="square pull-left">
+              <img src="<?php echo "hotnew/".$hotnews2[2]->Hotnews_img ?>" style="width:150px; height:120px;">
+          </div>
+          <h4>{{ $hotnews2[2]->Hotnews_name }}</h4><span class="glyphicon glyphicon-calendar"></span>{{ $hotnews2[2]->datefirst }}
+          @if($hotnews2[2]->datelast)
+         - {{ $hotnews2[2]->datelast }}
+          @endif
+          <?php
+      $string = strip_tags($hotnews2[2]->Hotnews_detail);
+
+      if (strlen($string) >= 122) {
+
+          // truncate string
+          $stringCut = iconv_substr($string, 0, 122, "UTF-8");
+
+      }else {
+        $stringCut = $hotnews2[2]->Hotnews_detail;
+
+      }
+
+            ?>
+          <p>{{ $stringCut }}</p>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="blockquote-box blockquote-info clearfix">
+          <div class="square pull-left">
+              <img src="<?php echo "hotnew/".$hotnews2[3]->Hotnews_img ?>" style="width:150px; height:120px;">
+          </div>
+          <h4>{{ $hotnews2[3]->Hotnews_name }}</h4><span class="glyphicon glyphicon-calendar"></span>{{ $hotnews2[3]->datefirst }}
+          @if($hotnews2[3]->datelast)
+         - {{ $hotnews2[3]->datelast }}
+          @endif
+          <?php
+      $string = strip_tags($hotnews2[3]->Hotnews_detail);
+
+      if (strlen($string) >= 122) {
+
+          // truncate string
+          $stringCut = iconv_substr($string, 0, 122, "UTF-8");
+
+      }else {
+        $stringCut = $hotnews2[3]->Hotnews_detail;
+
+      }
+
+            ?>
+          <p>{{ $stringCut }}</p>
+        </div>
+        <div class="blockquote-box blockquote-warning clearfix">
+          <div class="square pull-left">
+              <img src="<?php echo "hotnew/".$hotnews2[4]->Hotnews_img ?>" style="width:150px; height:120px;">
+          </div>
+          <h4>{{ $hotnews2[4]->Hotnews_name }}</h4><span class="glyphicon glyphicon-calendar"></span>{{ $hotnews2[4]->datefirst }}
+          @if($hotnews2[4]->datelast)
+         - {{ $hotnews2[4]->datelast }}
+          @endif
+          <?php
+      $string = strip_tags($hotnews2[4]->Hotnews_detail);
+
+      if (strlen($string) >= 122) {
+
+          // truncate string
+          $stringCut = iconv_substr($string, 0, 122, "UTF-8");
+
+      }else {
+        $stringCut = $hotnews2[4]->Hotnews_detail;
+
+      }
+
+            ?>
+          <p>{{ $stringCut }}</p>
+        </div>
+        <div class="blockquote-box blockquote-danger clearfix">
+          <div class="square pull-left">
+              <img src="<?php echo "hotnew/".$hotnews2[5]->Hotnews_img ?>" style="width:150px; height:120px;">
+          </div>
+          <h4>{{ $hotnews2[5]->Hotnews_name }}</h4><span class="glyphicon glyphicon-calendar"></span>{{ $hotnews2[5]->datefirst }}
+          @if($hotnews2[5]->datelast)
+         - {{ $hotnews2[5]->datelast }}
+          @endif
+          <?php
+      $string = strip_tags($hotnews2[5]->Hotnews_detail);
+
+      if (strlen($string) >= 122) {
+
+          // truncate string
+          $stringCut = iconv_substr($string, 0, 122, "UTF-8");
+
+      }else {
+        $stringCut = $hotnews2[5]->Hotnews_detail;
+
+      }
+
+            ?>
+          <p>{{ $stringCut }}</p>
+        </div>
+    </div>
 </div>
 <br>
 
@@ -149,7 +294,7 @@
 
     <div class="col-md-12 text-center">
       <div class="ficon">
-                    <a href="#" class="btn btn-danger" role="button">Read more</a>
+                    <a href="/activities" class="btn btn-danger" role="button">อ่านทั่งหมด</a>
                   </div>
     </div>
 </div>
@@ -164,50 +309,54 @@
     <hr>
   </div>
 </div>
-<ul class="nav  nav-pills nav-justified ">
-   <li class="active"><a data-toggle="tab" href="#home" class="text-dark">แบบฟอร์มเข้าเยี่ยม</a></li>
-   <li><a data-toggle="tab" href="#menu1" class="text-dark">แบบฟอร์มเข้าเยี่ยมนอกเวลา</a></li>
-   <li><a data-toggle="tab" href="#menu2" class="text-dark">เอกสารสำหรับการประกันตัว</a></li>
-   <li><a data-toggle="tab" href="#menu3" class="text-dark">แบบฟอร์มการขอย้ายผู้ต้องขัง</a></li>
- </ul>
+<div class="box box-danger">
 
- <div class="tab-content">
-   <div id="home" class="tab-pane fade in active text-center">
-     <br>
-     <h4>แบบฟอร์มเข้าเยี่ยม</h4>
-     <br>
-     <p>เนื้อหาของเพลงจะทำให้ผู้ที่ได้รับฟังรู้สึกอยากที่จะมอบความรักให้กับคนรัก หรือแม้แต่เวลาคนรักทะเลาะกัน ก็ยังสามารถส่งเพลงนี้เพื่อง้อกันได้เช่นกัน</p>
-<br>
-     <button type="button" class="btn btn-default btn-lm btn-danger">
-               <span class="glyphicon glyphicon-download-alt"></span> ดาวห์โหลด
-             </button>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <div class="table-responsive">
+                <table class="table no-margin text-center">
+                  <thead>
+                  <tr>
+                    <th>ลำดับ</th>
+                    <th>ชื่อไฟล์</th>
+                    <th>จัดการ</th>
 
-   </div>
-   <div id="menu1" class="tab-pane fade text-center">
-     <br>
-     <h4>เอกสารสำหรับการประกันตัว</h4>
-     <p>เนื้อหาของเพลงจะทำให้ผู้ที่ได้รับฟังรู้สึกอยากที่จะมอบความรักให้กับคนรัก หรือแม้แต่เวลาคนรักทะเลาะกัน ก็ยังสามารถส่งเพลงนี้เพื่อง้อกันได้เช่นกัน</p>
-     <button type="button" class="btn btn-default btn-lm btn-danger">
-               <span class="glyphicon glyphicon-download-alt"></span> ดาวห์โหลด
-             </button>
-   </div>
-   <div id="menu2" class="tab-pane fade text-center">
-     <br>
-     <h4>แบบฟอร์มเข้าเยี่ยม</h4>
-     <p>เนื้อหาของเพลงจะทำให้ผู้ที่ได้รับฟังรู้สึกอยากที่จะมอบความรักให้กับคนรัก หรือแม้แต่เวลาคนรักทะเลาะกัน ก็ยังสามารถส่งเพลงนี้เพื่อง้อกันได้เช่นกัน</p>
-     <button type="button" class="btn btn-default btn-lm btn-danger">
-               <span class="glyphicon glyphicon-download-alt"></span> ดาวห์โหลด
-             </button>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  @foreach($doccument as $key2 => $doccuments)
 
-   </div>
-   <div id="menu3" class="tab-pane fade text-center">
-     <br>
-     <h4>แบบฟอร์มการขอย้ายผู้ต้องขัง</h4>
-     <p>เนื้อหาของเพลงจะทำให้ผู้ที่ได้รับฟังรู้สึกอยากที่จะมอบความรักให้กับคนรัก หรือแม้แต่เวลาคนรักทะเลาะกัน ก็ยังสามารถส่งเพลงนี้เพื่อง้อกันได้เช่นกัน</p>
-     <button type="button" class="btn btn-default btn-lm btn-danger">
-               <span class="glyphicon glyphicon-download-alt"></span> ดาวห์โหลด
-             </button>
-     </div>
+                  <tr>
+                    <td>{{ $key2+1 }}</td>
+                    <td>{{ $doccument[$key2]->doc_file }}</td>
+                    <td><a href="/pdf/view/<?php echo $doccument[$key2]->doc_id ?>" target="_blank" ><button type="button" class="btn btn-default btn-lm btn-warning">
+                              <span class="glyphicon glyphicon glyphicon-file"></span> แสดงตัวอย่าง
+                            </button>
+                            </a>
+
+                       <a href="/pdf/<?php echo $doccument[$key2]->doc_file ?>" target="_blank" download><button type="button" class="btn btn-default btn-lm btn-danger">
+                                 <span class="glyphicon glyphicon-download-alt"></span> ดาวห์โหลด
+                               </button>  </a></td>
+
+                  </tr>
+
+                  @endforeach
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            </div>
+            <div class="row text-center">
+
+
+                <div class="col-md-12 text-center">
+                  <div class="ficon">
+                                <a href="#" class="btn btn-danger" role="button">อ่านทั่งหมด</a>
+                              </div>
+                </div>
+            </div>
+            <br>
+            <br>
  </div>
 
 <br>
