@@ -19,7 +19,7 @@
           <div class="row">
       			<div class="col-md-6 col-md-offset-3">
       				<div class="text-center">
-      					<h2>ความคิดเห็นของกระทู้</h2>
+      					<h2>หัวข้อกระทู้ที่เลือก</h2>
       				</div>
       				<hr>
       			</div>
@@ -28,7 +28,7 @@
 
 
           <div class="col-md-12">
-  <div class="panel panel-default ">
+  <div class="panel panel-danger ">
 
 
   <div class="panel-heading" style="word-break:break-all; " >
@@ -43,23 +43,37 @@
 
   </div><!-- /panel-body -->
 <div class="panel-footer text-right" >
+  <div class="row">
+    <div class="col-md-6 text-left">
+
+    ตั้งกระทู้โดย : {{ $comment[0]->User_Name }}
+    </div>
+
+  </div>
 
 
 </div>
 </a></div><!-- /panel panel-default -->
   </div>
 
-
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <div class="text-center">
+        <h4>ความคิดเห็นของกระทู้</h4>
+      </div>
+      <hr>
+    </div>
+  </div>
 
 @foreach ($commentdetail as $commentdetails)
 @if($commentdetails->quesde_detail != '-')
 
-  <div class="col-md-9" >
-<div class="panel panel-default ">
+  <div class="col-md-12" >
+<div class="panel panel-warning ">
 
 
 <div class="panel-heading" style="word-break:break-all; " >
-<strong>{{ $commentdetails->User_Name }}</strong> <span class="glyphicon glyphicon-calendar text-muted pull-right">{{ $commentdetails->quesde_date }}</span>
+<strong>แสดงความคิดเห็นโดย : {{ $commentdetails->User_Name }}</strong> <span class="glyphicon glyphicon-calendar text-muted pull-right">{{ $commentdetails->quesde_date }}</span>
 </div>
 
 <div class="panel-body " style="word-break:break-all;">
@@ -70,10 +84,7 @@
 
 </div><!-- /panel-body -->
 <div class="panel-footer text-right" >
-  @if (Auth::user())
 
-<a  class="text-warning"><span class="glyphicon glyphicon-send"></span> ตอบกลับ<a>
-  @endif
 </div>
 </a></div><!-- /panel panel-default -->
 </div>

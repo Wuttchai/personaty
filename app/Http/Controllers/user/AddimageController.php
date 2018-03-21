@@ -71,10 +71,54 @@ class AddimageController extends Controller
      }
           }
 
+          public function datailuser()
+          {
+            $user = \App\User::select('User_ID', 'User_Name', 'email', 'User_Address', 'User_Tel', 'User_Tel')
+                       ->where('User_ID','=' , Auth::user()->User_ID)
+                       ->get();
+
+
+        return view('user.infouser',[
+          'user'=>$user
+         ]);
+
+        }
+        public function editdatailuser(Request $request)
+        {
+          if ($request->email == Auth::user()->email) {
+            Validator::make($request->all(), [
+              'User_Name' => 'required|string|max:255',
+              'User_Address' => 'required',
+              'User_Tel'=>'required'
+        ])->validate();
+      }else {
+        Validator::make($request->all(), [
+          'User_Name' => 'required|string|max:255',
+  'email' => 'required|string|email|max:255|unique:users,email',
+  'User_Address' => 'required',
+  'User_Tel'=>'required'
+    ])->validate();
+      }
+
+      \App\User::where('User_ID',Auth::user()->User_ID)
+                  ->update([
+                    'User_Name' => $request->User_Name,
+                    'email' => $request->email,
+                    'User_Address'  => $request->User_Address,
+                    'User_Tel' =>$request->User_Tel
+                  ]);
+
+
+
+
+return redirect()->route('showdatailuser')->with('alert', 'แก้ไขข้อมูลเรียบร้อย!');
+
+
+      }
     public function index()
     {
 
       return redirect('/ProductAyutaya');
-}
+    }
 
 }

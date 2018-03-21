@@ -302,13 +302,20 @@
 
 <hr width=80% size=3>
 <div class="row">
-  <div class="col-md-6 col-md-offset-3">
+  <div class="col-md-6 ">
     <div class="text-center">
       <h2>เอกสารที่เผยแพร่</h2>
     </div>
     <hr>
   </div>
+  <div class="col-md-6 ">
+    <div class="text-center">
+      <h2>วันที่ปิดเข้าเยี่ยม</h2>
+    </div>
+    <hr>
+  </div>
 </div>
+<div class="col-md-6">
 <div class="box box-danger">
 
             <!-- /.box-header -->
@@ -346,14 +353,27 @@
               </div>
             </div>
             </div>
-            <div class="row text-center">
 
 
-                <div class="col-md-12 text-center">
-                  <div class="ficon">
+                  <div class="ficon text-center">
                                 <a href="#" class="btn btn-danger" role="button">อ่านทั่งหมด</a>
                               </div>
                 </div>
+                <div class="col-md-6">
+                <div class="box box-danger">
+
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                              <div class="table-responsive">
+
+                              <div  id='calendar'></div>
+                              </div>
+                            </div>
+                            </div>
+
+
+
+                                </div>
             </div>
             <br>
             <br>
@@ -366,5 +386,27 @@
 
 @endsection
 @push('scripts')
+<script>
 
+  $(document).ready(function() {
+      $('#calendar').fullCalendar({
+        events : [
+              @foreach($tasks as $task)
+              {
+                  title : '{{ $task->cal_name }}',
+                  start : '{{ $task->cal_date }}',
+                  color: 'red',
+
+                  end:     '{{ $task->cal_last }}',
+
+                  url : '/official/calender/detail{{ $task->cal_id }}',
+                  displayEventTime: false
+              },
+              @endforeach
+          ]});
+
+  });
+
+
+</script>
 @endpush

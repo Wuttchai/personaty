@@ -90,7 +90,7 @@
     @foreach ($question as $user)
 
           <div class="col-md-12">
-  <div class="panel panel-default "><a href="question/comment/<?php echo $user->ques_id ?>" class="text-dark">
+  <div class="panel panel-danger "><a href="question/comment/<?php echo $user->ques_id ?>" class="text-dark panel-danger">
 
 
 
@@ -118,14 +118,17 @@ if (strlen($string) >= 200) {
 </div>
 
   </div><!-- /panel-body -->
-<div class="panel-footer text-right" >
-  <a ><span  v-on:click="showcomment(<?php echo $user->ques_id ?>)" class="glyphicon glyphicon-comment" style="font-size:20px;"></span>  <span class="badge badge-notify2 ">{{ $user->user_count-1 }}</span></a>
 
+<div class="panel-footer" >
+  <div class="row">
+    <div class="col-md-6">
+    ตั้งกระทู้โดย : {{ $user->User_Name }}
+    </div>
+    <div class="col-md-6 text-right">
+    <a href="question/comment/<?php echo $user->ques_id ?>"><span class="glyphicon glyphicon-comment" style="font-size:20px;"></span>  <span class="badge badge-notify2 ">{{ $user->user_count-1 }}</span></a>
 
-
-
-      @csrf
-
+    </div>
+  </div>
 
 </div>
 </a></div><!-- /panel panel-default -->

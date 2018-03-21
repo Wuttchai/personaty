@@ -12,7 +12,7 @@
 
     <!-- Styles -->
     <!-- Font Awesome -->
-
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.css' />
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
     <link href="https://adminlte.io/themes/AdminLTE/dist/css/AdminLTE.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
@@ -213,7 +213,9 @@ a.list-group-item {
     background: -o-linear-gradient(90deg, #FF512F 10%, #DD2476 90%);
     background: linear-gradient(90deg, #FF512F 10%, #DD2476 90%);
     font-family: 'Open Sans', sans-serif!important;
-    
+
+}.fc-time{
+   display : none;
 }
 
 </style>
@@ -262,7 +264,8 @@ a.list-group-item {
         <ul class="dropdown-menu">
             <li class="<?php echo  Session::get('tabmanu3'); ?>"><a href="#" onclick="event.preventDefault();
                           document.getElementById('product-form').submit();">ข้อมูลการสั่งซื้อสินค้า</a></li>
-
+            <li><a href="#" onclick="event.preventDefault();
+                          document.getElementById('datailuser-form').submit();">แก้ไขข้อมูลส่วนตัว</a></li>
             <li><a href="#" onclick="event.preventDefault();
                           document.getElementById('logout-form').submit();">Logout</a></li>
 
@@ -270,6 +273,9 @@ a.list-group-item {
                               @csrf
                           </form>
                           <form id="product-form" action="/ProductCarOrders" method="get" style="display: none;">
+                              @csrf
+                          </form>
+                          <form id="datailuser-form" action="/datailuser" method="get" style="display: none;">
                               @csrf
                           </form>
         </ul>
@@ -394,6 +400,8 @@ a.list-group-item {
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="{{ asset('js/sweetalert2.min.js') }}"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.js'></script>
       @stack('scripts')
 </body>
 </html>

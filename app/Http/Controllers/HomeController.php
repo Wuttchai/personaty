@@ -236,8 +236,11 @@ class HomeController extends Controller
           $doccument = \App\doccument::select('doccument.doc_id','doc_name', 'doc_file')
                 ->orderBy('doc_dateup', 'desc')->limit(5)->get();
 
+                $tasks  = \App\calender::select('cal_date','cal_last','cal_name','cal_id')
+                            ->get();
+
   Session::put("date","" . $time->day. "/" . $time->month . "/" . $time->year . "");
-        return view('home',[
+        return view('home',compact('tasks'),[
           'infos' => $info,
           'hotnews' => $hotnew,
           'hotnews2' => $hotnew2,

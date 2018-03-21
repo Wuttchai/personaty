@@ -11,7 +11,7 @@
     <title> เจ้าหน้าที่ </title>
 
     <!-- Styles -->
-
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.css' />
 <link href="/css/app.css" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
@@ -148,7 +148,9 @@
 .onoff input:checked + label:before {
   left: 132px;
 }
-
+.fc-time{
+   display : none;
+}
 
 
 
@@ -202,7 +204,7 @@
 
 <li><a class="nav-link" href="/official/document">จัดการข้อมูลเอกสารเผยแพร่</a></li>
 <li><a class="nav-link" href="/official/productsell">จัดการข้อมูลสั่งซื้อสินค้า</a></li>
-
+<li><a class="nav-link" href="/official/calender">จัดการวันที่เข้าเยี่ยม</a></li>
 
 
 
@@ -275,6 +277,9 @@
 <script src="/js/bootstrap-datepicker-custom.js"></script>
 <script src="/js/bootstrap-datepicker.th.min.js" charset="UTF-8"></script>
 
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.js'></script>
 
       @stack('scripts')
 </body>

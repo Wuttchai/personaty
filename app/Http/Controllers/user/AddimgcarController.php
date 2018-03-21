@@ -72,6 +72,7 @@ class AddimgcarController extends Controller
 
      }
           }
+        
 
     public function index()
     {

@@ -120,9 +120,6 @@ $time =Carbon::now('Asia/Bangkok');
 
      public function update(Request $request,$id)
      {
-
-
-
   $Validator = Validator::make($request->all(),[
     'id' => 'required|string',
     'name' => 'required|string',
@@ -133,14 +130,6 @@ $time =Carbon::now('Asia/Bangkok');
     'messages' => $Validator->errors()->messages()
     ];
   }
-
-
-
-
-//-------------
-
-
-
 
             $time =Carbon::now('Asia/Bangkok');
                 \App\log::insert([
@@ -174,13 +163,6 @@ $time =Carbon::now('Asia/Bangkok');
 
 
   ]);
-
-//------
-
-
-
-
-
 
      }
 

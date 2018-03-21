@@ -21,13 +21,14 @@ Route::get('/ww', function () {
 });
 Route::get('/question/comment/{id}', 'HomeController@showcomment')->name('showcomment');
 Route::get('/product/view/{id}', 'HomeController@productview');
-
+Route::get('/datailuser', 'user\AddimageController@datailuser')->name('showdatailuser');
+Route::post('/edit/datailuser', 'user\AddimageController@editdatailuser');
 Route::get('/webboard', 'HomeController@webbord');
 Route::get('/ProductAyutaya', 'HomeController@Product');
 Route::get('/advertise', 'HomeController@advertise');
 Route::get('/activities', 'HomeController@activities');
 Route::get('/documentsh', 'HomeController@documentsh');
-Route::get('/insert/receipt', 'user\AddimgcarController@index');
+Route::get('/insert/receipt', 'user/AddimgcarController@index');
 
 Route::get('/official','Official\OfficeformController@index');
 Route::get('/officialapp', function () {
@@ -101,12 +102,14 @@ Route::get('/official/productsell', 'Official\ProductsellControll@index');
 Route::get('/official/productselllist', 'Official\ProductsellControll@readItems');
 Route::post('/emsadd', 'Official\ProductsellControll@insert');
 Route::get('/sell/view/{id}', 'Official\ProductsellControll@showdetail');
-
-
-
 //user
-
-
+//calender
+Route::get('/official/calender', 'Official\CalenderController@index')->name('showcalender');
+Route::post('/official/calender/add', 'Official\CalenderController@insert');
+Route::get('/official/calender/detail{id}', 'Official\CalenderController@showedit');
+Route::post('/official/calender/update{id}', 'Official\CalenderController@update');
+Route::post('/official/calender/delete{id}', 'Official\CalenderController@delete');
+//calender
 Route::post('/Productaddcars', 'user\ProductsellController@addcars');
 Route::post('/Productdeletecars', 'user\ProductsellController@deletecars');
 
