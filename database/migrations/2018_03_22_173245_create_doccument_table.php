@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCalenderTable extends Migration
+class CreateDoccumentTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,14 @@ class CreateCalenderTable extends Migration
      */
     public function up()
     {
-        Schema::create('calender', function (Blueprint $table) {
-          $table->increments('cal_id');
+        Schema::create('doccument', function (Blueprint $table) {
+          $table->increments('doc_id');
           $table->integer('Log_ID')->unsigned();
-          $table->string('cal_name');
-          $table->dateTime('cal_last');
-          $table->dateTime('cal_date');          
+          $table->string('doc_name');
+          $table->string('doc_file');
+          $table->string('doc_datecre');
+          $table->string('doc_dateup');
+        
         });
     }
 
@@ -29,6 +31,6 @@ class CreateCalenderTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('calender');
+        Schema::dropIfExists('doccument');
     }
 }
