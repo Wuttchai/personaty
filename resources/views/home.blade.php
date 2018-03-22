@@ -131,7 +131,7 @@
   </div>
 </div>
 
-
+<?php dd($hotnews2); ?>
 @if($hotnews2 != null)
 <div class="row">
 
