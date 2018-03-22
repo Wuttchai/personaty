@@ -159,7 +159,7 @@ class HomeController extends Controller
        Session::put("search","ค้นหา");
        $product = \App\product::select('Pro_ID', 'Pro_Name','Pro_img', 'Pro_Price', 'Pro_Type','Pro_Count','Pro_Detail')
                    ->orderBy('proupdated_at', 'desc')->paginate(6);
-   $qtv = $product[0]->Pro_Count;
+   
 
        return view('user.product',[
          'products' => $product
