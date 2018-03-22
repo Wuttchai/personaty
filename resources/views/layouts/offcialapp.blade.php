@@ -179,34 +179,81 @@
                     <ul class="navbar-nav mr-auto">
 
                       <li><a class="nav-link" href="{{ url('/home') }}"><strong>หน้าแรก</strong></a></li>
+                      <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                             จัดการข้อมูลเว็ปไซต์ <span class="caret"></span>
+                          </a>
+                          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            @if (session('info') == 'จัดการ')
+                            <a class="nav-link" href="/official/officialform">จัดการภาพแบรน์เนอร์</a>
+                            @endif
 
+                            @if (session('hotnews') == 'จัดการ')
+                            <a class="nav-link" href="/official/hotnews">จัดการข่าวประชาสัมพันธ์</a>
+                            @endif
+
+                            @if (session('prison') == 'จัดการ')
+                            <a class="nav-link" href="/official/person">จัดการข้อมูลผู้ต้องขัง</a>
+                            @endif
+                            @if (session('document') == 'จัดการ')
+                            <a class="nav-link" href="/official/document">  จัดการข้อมูลเอกสารเผยแพร่</a>
+                            @endif
+                              @if (session('calender') == 'จัดการ')
+                            <a class="nav-link" href="/official/calender">จัดการวันที่เข้าเยี่ยม </a>
+                            @endif
+                          </div>
+                      </li>
+                        @if (session('product') == 'จัดการ')
+                      <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                             จัดการข้อมูลสินค้าวิชาชีพ <span class="caret"></span>
+                          </a>
+                          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+
+                            <a class="nav-link" href="/official/product">จัดการสินค้าวิชาชีพ</a>
+
+
+                            <a class="nav-link" href="/official/productsell">  จัดการข้อมูลสั่งซื้อสินค้า</a>
+
+                          </div>
+                      </li>
+                        @endif
+                      <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                             รายงานการจัดการ <span class="caret"></span>
+                          </a>
+                          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                            <a class="dropdown-item" href="#"
+                               onclick="event.preventDefault();
+                                             document.getElementById('edit-form').submit();">
+                                รายงานข้อมูลแบบตาราง
+                            </a>
+                            <a class="dropdown-item" href="/official/logfile/graph">
+                                รายงานข้อมูลแบบกราฟ
+                            </a>
+                              @if (session('product') == 'จัดการ')
+                            <a class="dropdown-item" href="/official/logfile/graph/product">
+                                รายงานข้อมูลสต๊อกสินค้า
+                            </a>
+                              @endif
+                              @if (session('product') == 'จัดการ')
+                            <a class="dropdown-item" href="/official/logfile/graph">
+                                รายงานการสั่งซื้อสินค้า
+                            </a>
+                              @endif
+                          </div>
+                      </li>
                     </ul>
+
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
-
-@if (session('info') == 'จัดการ')
-<li><a class="nav-link" href="/official/officialform">จัดการภาพแบรน์เนอร์</a></li>
-@endif
-@if (session('product') == 'จัดการ')
-<li><a class="nav-link" href="/official/product">จัดการสินค้าวิชาชีพ</a></li>
-@endif
-@if (session('hotnews') == 'จัดการ')
-<li><a class="nav-link" href="/official/hotnews">จัดการข่าวประชาสัมพันธ์</a></li>
-@endif
-@if (session('activity') == 'จัดการ')
-<li><a class="nav-link" href="/official/addoffice">จัดการข้อมูลเจ้าหน้าที่</a></li>
-@endif
-@if (session('prison') == 'จัดการ')
-<li><a class="nav-link" href="/official/person">จัดการข้อมูลผู้ต้องขัง</a></li>
-@endif
-
-<li><a class="nav-link" href="/official/document">จัดการข้อมูลเอกสารเผยแพร่</a></li>
-<li><a class="nav-link" href="/official/productsell">จัดการข้อมูลสั่งซื้อสินค้า</a></li>
-<li><a class="nav-link" href="/official/calender">จัดการวันที่เข้าเยี่ยม</a></li>
-
-
+                        @if (session('activity') == 'จัดการ')
+                        <li><a class="nav-link" href="/official/addoffice">จัดการข้อมูลเจ้าหน้าที่</a></li>
+                        @endif
 
 
                         @if (session('nameoffice'))
@@ -216,11 +263,8 @@
                               {{ session('nameoffice') }}<span class="caret"></span>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                              <a class="dropdown-item" href="#"
-                                 onclick="event.preventDefault();
-                                               document.getElementById('edit-form').submit();">
-                                  รายงานข้อมูลการจัดการ
-                              </a>
+
+
                                 <a class="dropdown-item" href="#"
                                    onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();">
@@ -280,7 +324,7 @@
 
 <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.js'></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
       @stack('scripts')
 </body>
 </html>

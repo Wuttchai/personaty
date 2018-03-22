@@ -23,6 +23,16 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+     public function detailhotnew($id)
+     {
+       $hotnew2 = \App\hotnews::select('Hotnews_ID', 'hotnews.Hotnews_name','Hotnews_img', 'Hotnews_detail', 'datefirst', 'datelast')
+             ->where('Hotnews_ID','=',$id)
+             ->get();
+
+    return view('user.showhotnews',[
+      'hotnew' => $hotnew2
+    ]);
+     }
      public function showcomment($id)
      {
 
@@ -158,11 +168,24 @@ class HomeController extends Controller
    }
      public function  documentsh()
      {
+
+
        Session::forget('tabmanu1');
        Session::forget('tabmanu2');
        Session::forget('tabmanu3');
        Session::forget('tabmanu');
        Session::put("tabmanu4","active");
+
+       if (isset($_GET['q'])) {
+         $keyword = $_GET['q'];
+         $doccument = \App\doccument::select('doccument.doc_id','doc_name', 'doc_file')
+              ->where('doc_name','LIKE',"%$keyword%")
+               ->orderBy('doc_dateup', 'desc')->paginate(5);
+           return view('user.documentsh',[
+             'doccument' => $doccument
+
+           ]);
+       }
        $doccument = \App\doccument::select('doccument.doc_id','doc_name', 'doc_file')
              ->orderBy('doc_dateup', 'desc')->paginate(5);
 

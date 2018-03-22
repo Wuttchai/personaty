@@ -161,7 +161,8 @@ return [
         App\Providers\RouteServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
-        Vsmoraes\Pdf\PdfServiceProvider::class,
+        Khill\Lavacharts\Laravel\LavachartsServiceProvider::class,
+        Fx3costa\LaravelChartJs\Providers\ChartjsServiceProvider::class,
 
     ],
 
@@ -214,7 +215,7 @@ return [
         'Image' => Intervention\Image\Facades\Image::class,
         'img_min_size' => Intervention\Image\Facades\img_min_size::class,
         'Cart' => Gloudemans\Shoppingcart\Facades\Cart::class,
-        'PDF' => 'Vsmoraes\Pdf\PdfFacade',
+        'Lava' => Khill\Lavacharts\Laravel\LavachartsFacade::class,
     ],
 
 ];

@@ -53,6 +53,8 @@
                                      <th>จ.ข่าวประชาสัมพันธ์</th>
                                      <th>จ.ข้อมูลเจ้าหน้าที่</th>
                                      <th>จ.ข้อมูลผู้ต้องขัง</th>
+                                     <th>จ.ข้อมูลเอกสาร</th>
+                                     <th>จ.ข้อมูลวันหยุดทำการ</th>
                                      <th>การจัดการ</th>
                                    </tr>
                                  </thead>
@@ -63,6 +65,8 @@
                                    <td>@{{ item.hotnews }}</td>
                                    <td>@{{ item.activity }}</td>
                                    <td>@{{ item.prison }}</td>
+                                   <td>@{{ item.document }}</td>
+                                   <td>@{{ item.calender }}</td>
 
 
                              <td >
@@ -206,6 +210,18 @@
                                   <p class="form-control onoff"><input type="checkbox" v-model="prison" value="จัดการ" id="checkboxID5"><label for="checkboxID5"></label></p>
                                       </div>
                                   </div>
+                                  <div class="form-group row">
+                                       <label for="User_Tel" class="col-md-7 col-form-label text-md-left">จัดการข้อมูลเอกสารเผยแพร่ :</label>
+                                       <div class="col-md-4 ">
+                                   <p class="form-control onoff"><input type="checkbox" v-model="documentper" value="จัดการ" id="checkboxID6"><label for="checkboxID6"></label></p>
+                                       </div>
+                                   </div>
+                                   <div class="form-group row">
+                                        <label for="User_Tel" class="col-md-7 col-form-label text-md-left">จัดการข้อมูลข้อมูลวันหยุดทำการ :</label>
+                                        <div class="col-md-4 ">
+                                    <p class="form-control onoff"><input type="checkbox" v-model="calender" value="จัดการ" id="checkboxID7"><label for="checkboxID7"></label></p>
+                                        </div>
+                                    </div>
                                   <div class="alert alert-danger text-center" role="alert" v-if="nocheck">
                      <strong>คุณไม่ได้กำหนดสิทธ์เจ้าหน้าที่ !</strong>  <br> กรุณากำหนดสิทธ์เจ้าหน้าที่อย่างน้อย1สิทธ์
                      </div>
@@ -343,6 +359,18 @@
                                <p class="form-control onoff"><input type="checkbox" v-model="prisonedit" value="จัดการ" id="checkboxID10"><label for="checkboxID10"></label></p>
                                    </div>
                                </div>
+                               <div class="form-group row">
+                                    <label for="User_Tel" class="col-md-7 col-form-label text-md-left">จัดการข้อมูลเอกสารเผยแพร่ :</label>
+                                    <div class="col-md-4 ">
+                                <p class="form-control onoff"><input type="checkbox" v-model="documentperedit" value="จัดการ" id="checkboxID11"><label for="checkboxID11"></label></p>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                     <label for="User_Tel" class="col-md-7 col-form-label text-md-left">จัดการข้อมูลข้อมูลวันหยุดทำการ :</label>
+                                     <div class="col-md-4 ">
+                                 <p class="form-control onoff"><input type="checkbox" v-model="calenderedit" value="จัดการ" id="checkboxID12"><label for="checkboxID12"></label></p>
+                                     </div>
+                                 </div>
                                <div class="alert alert-danger text-center" role="alert" v-if="nocheck">
                   <strong>คุณไม่ได้กำหนดสิทธ์เจ้าหน้าที่ !</strong>  <br> กรุณากำหนดสิทธ์เจ้าหน้าที่อย่างน้อย1สิทธ์
                   </div>
@@ -462,6 +490,8 @@
                           'hotnewsedit':[],
                           'activityedit':[],
                           'prisonedit':[],
+                          'documentperedit':[],
+                          'calenderedit':[],
                           'id_edit':'',
                           'password_confirmationedit':'',
                           'password_confirmationerror':'',
@@ -553,6 +583,7 @@ information.nocheck = false;
 information.emailerror = false;
 information.passworderror = false;
 
+
                                axios.post('/official/add', {
                                    id: this.id,
                                    name: this.name,
@@ -564,6 +595,8 @@ information.passworderror = false;
                                    hotnews: this.hotnews,
                                    activity: this.activity,
                                    prison: this.prison,
+                                   documentper: this.documentper,
+                                   calender: this.calender,
 
                                  }).then(function (response) {
 
@@ -602,7 +635,7 @@ if (response.data.messages == null && response.data.nocheck != 'yes') {
 
                              },
                      cleardata: function () {
-                       information.activity = '';
+                    information.activity = '';
                      information.hotnews = '';
                      information.info = '';
                      information.product = '';
@@ -613,12 +646,15 @@ if (response.data.messages == null && response.data.nocheck != 'yes') {
                                information.passworderror = false;
                                information.password_confirmationerror = false;
                              },
+
                     editItem: function(item) {
                       information.activityedit = '';
                      information.hotnewsedit = '';
                      information.infoedit = '';
                      information.productedit = '';
                      information.prisonedit = '';
+                     information.calenderedit = '';
+                     information.documentperedit = '';
                       information.nameerror = false;
                       information.nocheck = false;
                       information.emailerror = false;
@@ -653,6 +689,14 @@ if (response.data[0].product == 'จัดการ') {
 if (response.data[0].prison == 'จัดการ') {
   information.prisonedit = 'จัดการ';
 }
+if (response.data[0].calender == 'จัดการ') {
+  information.calenderedit = 'จัดการ';
+}
+if (response.data[0].document == 'จัดการ') {
+  information.documentperedit = 'จัดการ';
+}
+
+
                   $("#editofficial").modal('show');
                          								})
      },
@@ -672,6 +716,8 @@ if (response.data[0].prison == 'จัดการ') {
                                        hotnews: this.hotnewsedit,
                                        activity: this.activityedit,
                                        prison: this.prisonedit,
+                                       documentper: this.documentperedit,
+                                       calender: this.calenderedit,
                                      }).then(function (response) {
 
                                                                           if (response.data.nocheck == 'yes') {

@@ -1,24 +1,19 @@
-@extends('layouts.offcialapp')
+@extends('layouts.app')
 
 @section('content')
 
 
-<h3>Calendar</h3>
-
-<div id='calendar'></div>
+<div class="container">
+	<div class="row">
+		<h2>Stylish Search Box</h2>
+           
+	</div>
+</div>
 
 @endsection
 @push('scripts')
 
 <script>
 
-  $(document).ready(function() {
-      $('#calendar').fullCalendar({
-          defaultDate: '2014-09-12',
-          editable: true,
-          eventLimit: true, // allow "more" link when too many events
-      });
 
-  });
-</script>
 @endpush

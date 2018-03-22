@@ -33,7 +33,7 @@ public $timestamps = false;
      public function readItems() {
        $info = \App\info::join('log','info.Log_ID','=','log.Log_ID')
                    ->join('official', 'official.official_ID', '=', 'log.official_ID')
-                   ->select('official.official_Name', 'info.Info_Name', 'info.Info_up','info.Info_Img','info.Info_ID','official.official_ID')
+                   ->select('official.official_Name', 'info.Info_Name', 'info.infoupdated_at','info.Info_Img','info.Info_ID','official.official_ID')
                    ->get();
 
 

@@ -29,7 +29,7 @@ Route::get('/advertise', 'HomeController@advertise');
 Route::get('/activities', 'HomeController@activities');
 Route::get('/documentsh', 'HomeController@documentsh');
 Route::get('/insert/receipt', 'user/AddimgcarController@index');
-
+Route::get('/hotnews/detail{id}', 'HomeController@detailhotnew');
 Route::get('/official','Official\OfficeformController@index');
 Route::get('/officialapp', function () {
 
@@ -52,6 +52,8 @@ Route::post('/official/logfile', 'Official\AddOfficeController@logfile');
 Route::get('/official/logfile', 'Official\AddOfficeController@logfile');
 Route::post('/official/login', 'Official\OfficialLoginController@login');
 
+Route::get('/graph/product', 'Official\AddOfficeController@graphproduct');
+Route::get('/official/logfile/graph', 'Official\AddOfficeController@graph');
 Route::get('/official/officialform', 'Official\OfficeformController@index');
 Route::post('/official/testza', 'Official\OfficeformController@insert');
 Route::get('/official/testza', 'Official\OfficeformController@readItems');

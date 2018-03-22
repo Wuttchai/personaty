@@ -79,7 +79,7 @@
       <div class="col-md-4" >
           <div class="card"  >
 
-                <img src="<?php echo "hotnew/".$hotnews[$key1]->Hotnews_img ?>" style=" height:300px;">
+          <a href="/hotnews/detail{{ $hotnews[$key1]->Hotnews_ID }}" class="text-dark">  <img src="<?php echo "hotnew/".$hotnews[$key1]->Hotnews_img ?>" style=" height:300px;">
               <div class="card-block">
                   <h4 class="card-title">{{ $hotnews[$key1]->Hotnews_name }}</h4>
 
@@ -109,7 +109,7 @@
           </div>
           <br>
       </div>
-
+</a>
 @endforeach
   </div>
   </div>
@@ -356,7 +356,7 @@
 
 
                   <div class="ficon text-center">
-                                <a href="#" class="btn btn-danger" role="button">อ่านทั่งหมด</a>
+                                <a href="/documentsh" class="btn btn-danger" role="button">อ่านทั่งหมด</a>
                               </div>
                 </div>
                 <div class="col-md-6">
@@ -396,10 +396,7 @@
                   title : '{{ $task->cal_name }}',
                   start : '{{ $task->cal_date }}',
                   color: 'red',
-
                   end:     '{{ $task->cal_last }}',
-
-                  url : '/official/calender/detail{{ $task->cal_id }}',
                   displayEventTime: false
               },
               @endforeach

@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Session;
 use Illuminate\Support\Facades\Validator;
 use Carbon\Carbon;
-
+use Khill\Lavacharts\Lavacharts;
 
 class AddOfficeController extends Controller
 {
@@ -26,9 +26,76 @@ class AddOfficeController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+public function graphproduct() {
 
+  $acs = \App\doccument:: select("doc_id")
+    ->where('doc_datecre','>',Carbon::now()->startOfMonth())
+    ->count();
+
+      $doccument = \App\doccument::count();
+      $info = \App\info::count();
+      $person_count = \App\person::count();
+      $product = \App\product::count();
+      $calender = \App\calender::count();
+      $Hotnews_type1 = \App\hotnews:: select("Hotnews_type")->where('Hotnews_type','ข่าวประชาสัมพันธ์')->count();
+      $Hotnews_type2 = \App\hotnews:: select("Hotnews_type")->where('Hotnews_type','ข่าวกิจกรรม')->count();
+
+
+      $chartjs = app()->chartjs
+           ->name('barChartTest')
+           ->type('doughnut')
+           ->size(['width' => 200  , 'height' => 100])
+           ->labels(['เอกสารที่เผยแพร่','ภาพแบรน์เนอร์','จำนวนผู้ต้องขัง','สินค้าวิชาชีพ','ข่าวประชาสัมพันธ์','ข่าวกิจกรรม','ข้อมูลวันหยุด'])
+
+         ->datasets([
+             [
+                 'backgroundColor' => ['#FF6384', '#36A2EB','#147a00','#efff00','#1d3461','#463359','#cc6600'],
+                 'hoverBackgroundColor' => ['#FF6384', '#36A2EB','#147a00','#efff00','#1d3461','#463359','#cc6600'],
+                 'data' => [$doccument, $info, $person_count, $product, $Hotnews_type1, $Hotnews_type2, $calender]
+             ]
+         ])
+         ->options([]);
+
+
+
+     return view('official.loggraph', compact('chartjs'));
+ }
+public function graph() {
+//now
+  $acs = \App\doccument:: select("doc_id")
+    ->where('doc_datecre','>',Carbon::now()->startOfMonth())
+    ->count();
+//
+      $doccument = \App\doccument::count();
+      $info = \App\info::count();
+      $person_count = \App\person::count();
+      $product = \App\product::count();
+      $calender = \App\calender::count();
+      $Hotnews_type1 = \App\hotnews:: select("Hotnews_type")->where('Hotnews_type','ข่าวประชาสัมพันธ์')->count();
+      $Hotnews_type2 = \App\hotnews:: select("Hotnews_type")->where('Hotnews_type','ข่าวกิจกรรม')->count();
+
+
+      $chartjs = app()->chartjs
+           ->name('barChartTest')
+           ->type('doughnut')
+           ->size(['width' => 200  , 'height' => 100])
+           ->labels(['เอกสารที่เผยแพร่','ภาพแบรน์เนอร์','จำนวนผู้ต้องขัง','สินค้าวิชาชีพ','ข่าวประชาสัมพันธ์','ข่าวกิจกรรม','ข้อมูลวันหยุด'])
+
+         ->datasets([
+             [
+                 'backgroundColor' => ['#FF6384', '#36A2EB','#147a00','#efff00','#1d3461','#463359','#cc6600'],
+                 'hoverBackgroundColor' => ['#FF6384', '#36A2EB','#147a00','#efff00','#1d3461','#463359','#cc6600'],
+                 'data' => [$doccument, $info, $person_count, $product, $Hotnews_type1, $Hotnews_type2, $calender]
+             ]
+         ])
+         ->options([]);
+
+
+
+     return view('official.loggraph', compact('chartjs'));
+ }
      public function readItems() {
-       $info = \App\official::select('official_ID', 'official_Name', 'info','product','hotnews','activity','prison')
+       $info = \App\official::select('official_ID', 'official_Name', 'info','product','hotnews','activity','prison','document','calender')
                    ->get();
 
 
@@ -53,7 +120,7 @@ $validator =  Validator::make($request->all(), [
                     ];
                   }else {
 
-                    if (!$request->info && !$request->product && !$request->hotnews && !$request->activity && !$request->prison) {
+                    if (!$request->info && !$request->product && !$request->hotnews && !$request->activity && !$request->prison && !$request->documentper && !$request->calender) {
 
                       return[
                       'nocheck' => 'yes'
@@ -81,7 +148,15 @@ $validator =  Validator::make($request->all(), [
                     $request->prison = 'จัดการ';
                   }else {
                     $request->prison = '-';
-                  }
+                  }if ($request->documentper) {
+                 $request->documentper = 'จัดการ';
+               }else {
+                 $request->documentper = '-';
+               }if ($request->calender) {
+              $request->calender = 'จัดการ';
+            }else {
+              $request->calender = '-';
+            }
 
 
              $time =Carbon::now('Asia/Bangkok');
@@ -112,6 +187,8 @@ $validator =  Validator::make($request->all(), [
                                  'hotnews'  => $request->hotnews,
                                  'activity'  => $request->activity,
                                  'prison'  => $request->prison,
+                                 'document'  => $request->documentper,
+                                 'calender'  => $request->calender,
                                  'official_Password' =>$request->password,
                                  'offcreated_at' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "" ,
                                  'offupdated_at' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
@@ -135,7 +212,7 @@ $validator =  Validator::make($request->all(), [
 
 public function showedit($id)
 {
-  $official = \App\official::select('official_ID', 'official_Name','official_Password','official_Email', 'info','product','hotnews','activity','prison')
+  $official = \App\official::select('official_ID', 'official_Name','official_Password','official_Email', 'info','product','hotnews','activity','prison','document','calender')
               ->where('official_ID','=' ,$id)
               ->get();
 
@@ -182,7 +259,8 @@ public function update(Request $request,$id)
                       ];
                     }else {
 
-                      if (!$request->info && !$request->product && !$request->hotnews && !$request->activity && !$request->prison) {
+
+                      if (!$request->info && !$request->product && !$request->hotnews && !$request->activity && !$request->prison && !$request->calender && !$request->documentper) {
 
                         return[
                         'nocheck' => 'yes'
@@ -210,7 +288,16 @@ public function update(Request $request,$id)
                       $request->prison = 'จัดการ';
                     }else {
                       $request->prison = '-';
-                    }
+                    }if ($request->documentper) {
+                   $request->documentper = 'จัดการ';
+                 }else {
+                   $request->documentper = '-';
+                 }if ($request->calender) {
+                $request->calender = 'จัดการ';
+              }else {
+                $request->calender = '-';
+              }
+
 
 
                     $time =Carbon::now('Asia/Bangkok');
@@ -241,6 +328,8 @@ public function update(Request $request,$id)
                                             'hotnews'  => $request->hotnews,
                                             'activity'  => $request->activity,
                                             'prison'  => $request->prison,
+                                            'document'  => $request->documentper,
+                                            'calender'  => $request->calender,
                                             'official_Password' =>$request->password,
                                             'offcreated_at' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "" ,
                                             'offupdated_at' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""

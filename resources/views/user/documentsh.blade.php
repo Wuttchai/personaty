@@ -16,7 +16,29 @@
     </div>
     <hr>
   </div>
+  <div class="col-md-12 col-md-offset-3">
+    <form  role="search"  method="GET">
+
+  <div id="custom-search-input">
+                   <div class="input-group col-md-6 text-center">
+                       <input type="text" class="  search-query form-control" placeholder="Search" name="q"/>
+                       <span class="input-group-btn">
+                           <button class="btn btn-danger" type="button">
+                               <span class=" glyphicon glyphicon-search"></span>
+                           </button>
+                       </span>
+                   </div>
+               </div>
+               </form>
+               <br>
 </div>
+</div>
+
+@if($doccument->total() == 0)
+<div class="alert alert-danger text-center" role="alert">
+<strong>ไม่มีชื่อเอกสาร !</strong>   กรุณาตรวจสอบข้อมูลที่กรอกอีกครั้ง
+</div>
+@else
 <div class="box box-danger">
 
             <!-- /.box-header -->
@@ -66,7 +88,7 @@
                </div>
 
 
-
+@endif
 
 
 
