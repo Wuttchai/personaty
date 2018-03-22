@@ -19,6 +19,7 @@ class CreateHotnewsTable extends Migration
             $table->string('Hotnews_name');
             $table->string('Hotnews_detail');
             $table->string('Hotnews_img');
+            $table->string('Hotnews_type');
             $table->string('datefirst');
             $table->string('datelast');
             $table->string('hotcreated_at');
