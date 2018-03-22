@@ -132,8 +132,159 @@
 </div>
 
 
+@if($hotnews2 != null)
+<div class="row">
 
+    <div class="col-md-6">
+        <div class="blockquote-box  clearfix">
+            <div class="square pull-left">
+                <img src="<?php echo "hotnew/".$hotnews2[0]->Hotnews_img ?>" style="width:150px; height:120px;">
+            </div>
+            <h4>{{ $hotnews2[0]->Hotnews_name }} </h4><span class="glyphicon glyphicon-calendar"></span>{{ $hotnews2[0]->datefirst }}
+            @if($hotnews2[0]->datelast)
+           - {{ $hotnews2[0]->datelast }}
+            @endif
+            <?php
+        $string = strip_tags($hotnews2[0]->Hotnews_detail);
 
+        if (strlen($string) >= 122) {
+
+            // truncate string
+            $stringCut = iconv_substr($string, 0, 122, "UTF-8");
+
+        }else {
+          $stringCut = $hotnews2[0]->Hotnews_detail;
+
+        }
+
+              ?>
+            <p>{{ $stringCut }}</p>
+        </div>
+        <div class="blockquote-box blockquote-primary clearfix">
+          <div class="square pull-left">
+              <img src="<?php echo "hotnew/".$hotnews2[1]->Hotnews_img ?>" style="width:150px; height:120px;">
+          </div>
+          <h4>{{ $hotnews2[1]->Hotnews_name }}</h4><span class="glyphicon glyphicon-calendar"></span>{{ $hotnews2[1]->datefirst }}
+          @if($hotnews2[1]->datelast)
+         - {{ $hotnews2[1]->datelast }}
+          @endif
+          <?php
+      $string = strip_tags($hotnews2[1]->Hotnews_detail);
+
+      if (strlen($string) >= 122) {
+
+          // truncate string
+          $stringCut = iconv_substr($string, 0, 122, "UTF-8");
+
+      }else {
+        $stringCut = $hotnews2[1]->Hotnews_detail;
+
+      }
+
+            ?>
+          <p>{{ $stringCut }}</p>
+        </div>
+        <div class="blockquote-box blockquote-success clearfix">
+          <div class="square pull-left">
+              <img src="<?php echo "hotnew/".$hotnews2[2]->Hotnews_img ?>" style="width:150px; height:120px;">
+          </div>
+          <h4>{{ $hotnews2[2]->Hotnews_name }}</h4><span class="glyphicon glyphicon-calendar"></span>{{ $hotnews2[2]->datefirst }}
+          @if($hotnews2[2]->datelast)
+         - {{ $hotnews2[2]->datelast }}
+          @endif
+          <?php
+      $string = strip_tags($hotnews2[2]->Hotnews_detail);
+
+      if (strlen($string) >= 122) {
+
+          // truncate string
+          $stringCut = iconv_substr($string, 0, 122, "UTF-8");
+
+      }else {
+        $stringCut = $hotnews2[2]->Hotnews_detail;
+
+      }
+
+            ?>
+          <p>{{ $stringCut }}</p>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="blockquote-box blockquote-info clearfix">
+          <div class="square pull-left">
+              <img src="<?php echo "hotnew/".$hotnews2[3]->Hotnews_img ?>" style="width:150px; height:120px;">
+          </div>
+          <h4>{{ $hotnews2[3]->Hotnews_name }}</h4><span class="glyphicon glyphicon-calendar"></span>{{ $hotnews2[3]->datefirst }}
+          @if($hotnews2[3]->datelast)
+         - {{ $hotnews2[3]->datelast }}
+          @endif
+          <?php
+      $string = strip_tags($hotnews2[3]->Hotnews_detail);
+
+      if (strlen($string) >= 122) {
+
+          // truncate string
+          $stringCut = iconv_substr($string, 0, 122, "UTF-8");
+
+      }else {
+        $stringCut = $hotnews2[3]->Hotnews_detail;
+
+      }
+
+            ?>
+          <p>{{ $stringCut }}</p>
+        </div>
+        <div class="blockquote-box blockquote-warning clearfix">
+          <div class="square pull-left">
+              <img src="<?php echo "hotnew/".$hotnews2[4]->Hotnews_img ?>" style="width:150px; height:120px;">
+          </div>
+          <h4>{{ $hotnews2[4]->Hotnews_name }}</h4><span class="glyphicon glyphicon-calendar"></span>{{ $hotnews2[4]->datefirst }}
+          @if($hotnews2[4]->datelast)
+         - {{ $hotnews2[4]->datelast }}
+          @endif
+          <?php
+      $string = strip_tags($hotnews2[4]->Hotnews_detail);
+
+      if (strlen($string) >= 122) {
+
+          // truncate string
+          $stringCut = iconv_substr($string, 0, 122, "UTF-8");
+
+      }else {
+        $stringCut = $hotnews2[4]->Hotnews_detail;
+
+      }
+
+            ?>
+          <p>{{ $stringCut }}</p>
+        </div>
+        <div class="blockquote-box blockquote-danger clearfix">
+          <div class="square pull-left">
+              <img src="<?php echo "hotnew/".$hotnews2[5]->Hotnews_img ?>" style="width:150px; height:120px;">
+          </div>
+          <h4>{{ $hotnews2[5]->Hotnews_name }}</h4><span class="glyphicon glyphicon-calendar"></span>{{ $hotnews2[5]->datefirst }}
+          @if($hotnews2[5]->datelast)
+         - {{ $hotnews2[5]->datelast }}
+          @endif
+          <?php
+      $string = strip_tags($hotnews2[5]->Hotnews_detail);
+
+      if (strlen($string) >= 122) {
+
+          // truncate string
+          $stringCut = iconv_substr($string, 0, 122, "UTF-8");
+
+      }else {
+        $stringCut = $hotnews2[5]->Hotnews_detail;
+
+      }
+
+            ?>
+          <p>{{ $stringCut }}</p>
+        </div>
+    </div>
+</div>
+@endif
 <br>
 
 
