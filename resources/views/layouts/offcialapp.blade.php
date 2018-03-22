@@ -179,6 +179,7 @@
                     <ul class="navbar-nav mr-auto">
 
                       <li><a class="nav-link" href="{{ url('/home') }}"><strong>หน้าแรก</strong></a></li>
+                        @if (session('idoffice'))
                       <li class="nav-item dropdown">
                           <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                              จัดการข้อมูลเว็ปไซต์ <span class="caret"></span>
@@ -203,6 +204,7 @@
                             @endif
                           </div>
                       </li>
+                      @endif
                         @if (session('product') == 'จัดการ')
                       <li class="nav-item dropdown">
                           <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -219,6 +221,7 @@
                           </div>
                       </li>
                         @endif
+                        @if (session('idoffice'))
                       <li class="nav-item dropdown">
                           <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                              รายงานการจัดการ <span class="caret"></span>
@@ -245,6 +248,7 @@
                               @endif
                           </div>
                       </li>
+                      @endif
                     </ul>
 
 
