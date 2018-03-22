@@ -131,8 +131,8 @@
   </div>
 </div>
 
-<?php dd($hotnews2); ?>
-@if($hotnews2 != null)
+
+@if($hotnews2 != '[]')
 <div class="row">
 
     <div class="col-md-6">
