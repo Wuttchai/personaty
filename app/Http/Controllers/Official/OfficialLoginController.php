@@ -92,11 +92,15 @@ if (!Session::get("login")) {
             ]);
 
 }
+
+
 Session::put("info",$official[0]['info']);
 Session::put("product",$official[0]['product']);
 Session::put("hotnews",$official[0]['hotnews']);
 Session::put("activity",$official[0]['activity']);
 Session::put("prison",$official[0]['prison']);
+Session::put("document",$official[0]['document']);
+Session::put("calender",$official[0]['calender']);
 Session::put("login", 'yes');
 Session::put("idoffice", $official[0]['official_ID']);
 Session::put("nameoffice", $official[0]['official_Name']);
@@ -120,6 +124,14 @@ return redirect('/official/addoffice');
 if ($official[0]['prison'] == 'จัดการ') {
 
 return redirect('/official/person');
+}
+if ($official[0]['document'] == 'จัดการ') {
+
+return redirect('/official/document');
+}
+if ($official[0]['calender'] == 'จัดการ') {
+
+return redirect('/official/calender');
 }
 }
 
