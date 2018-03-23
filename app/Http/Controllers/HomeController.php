@@ -262,6 +262,7 @@ class HomeController extends Controller
                 $tasks  = \App\calender::select('cal_date','cal_last','cal_name','cal_id')
                             ->get();
 
+dd($info,$hotnew,$hotnew2,$doccument);
   Session::put("date","" . $time->day. "/" . $time->month . "/" . $time->year . "");
         return view('home',compact('tasks'),[
           'infos' => $info,
