@@ -268,7 +268,7 @@ var information =  new Vue({
              this.typeerror = false;
 if (information.status =='1' && information.status2 =='yes') {
   swal({
-title: 'กรุณาอย่าเข้าสู่ระบบสองระบบ !',
+title: 'คุณกำลังเข้าสู่ระบบสองระบบ !',
 text: 'หากคุณต้องการใช้สิทธ์เจ้าหน้าที่กรุณาออกจากระบบผู้ใช้',
 type: 'warning',
 confirmButtonColor: '#3085d6',

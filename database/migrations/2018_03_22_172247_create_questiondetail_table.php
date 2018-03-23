@@ -17,9 +17,10 @@ class CreateQuestiondetailTable extends Migration
           $table->increments('quesde_id');
           $table->integer('User_ID')->unsigned();
           $table->integer('ques_id')->unsigned();
+          $table->integer('official_ID')->unsigned();
           $table->string('quesde_detail');
           $table->string('quesde_date');
-        
+
         });
     }
 

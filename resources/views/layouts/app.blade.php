@@ -283,7 +283,7 @@ a.list-group-item {
                   <li class="<?php echo  Session::get('tabmanu'); ?>"><a href="/home"><h5>หน้าแรก</h5></a></li>
                   <li><a class="nav-link" href="/officialapp"><h5>เกี่ยวกับเรือนจำ</h5></a></li>
                   <li class="dropdown <?php echo  Session::get('tabmanu3'); ?>" >
-                    <a data-toggle="dropdown" class="dropdown-toggle " href="#"><h5>ข่าวเกี่ยวกับเรื่อนจำ<b class="caret"></b> </h5></a>
+                    <a data-toggle="dropdown" class="dropdown-toggle " href="#"><h5>ข่าวเกี่ยวกับเรือนจำ<b class="caret"></b> </h5></a>
                       <ul class="dropdown-menu">
                           <li ><a href="/advertise">ข่าวประชาสัมพันธ์</a></li>
                           <li><a href="/activities">ข่าวกิจกรรม</a></li>

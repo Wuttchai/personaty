@@ -43,26 +43,51 @@ $validator =  Validator::make($request->all(), [
              'messages' => $validator->errors()->messages()
              ];
            }else {
+$time =Carbon::now('Asia/Bangkok');
+if (Session::get('login') == 'yes') {
 
-             $time =Carbon::now('Asia/Bangkok');
-                 \App\question::insert([
-                   'User_ID' => Auth::user()->User_ID,
-                   'ques_name' => $request->headqestion,
-                   'ques_detail' => $request->textqestion,
-                   'ques_type' => $request->type,
-                   'ques_date'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
-             ]);
+      \App\question::insert([
+        'User_ID' => '-',
+        'official_ID' => Session::get('idoffice'),
+        'ques_name' => $request->headqestion,
+        'ques_detail' => $request->textqestion,
+        'ques_type' => $request->type,
+        'ques_date'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
+  ]);
+  $ques_id =  \App\question::where([
+      ['User_ID', '=', Auth::user()->User_ID],
+      ])->max('ques_id');
 
-             $ques_id =  \App\question::where([
-                 ['User_ID', '=', Auth::user()->User_ID],
-                 ])->max('ques_id');
+      \App\questiondetail::insert([
+        'User_ID' => Auth::user()->User_ID,
+        'ques_id' => $ques_id,
+        'quesde_detail' => '-',
+        'quesde_date'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
+  ]);
+}else {
+                  \App\question::insert([
+                    'User_ID' => Auth::user()->User_ID,
+                    'official_ID' =>'-',
+                    'ques_name' => $request->headqestion,
+                    'ques_detail' => $request->textqestion,
+                    'ques_type' => $request->type,
+                    'ques_date'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
+              ]);
 
-                 \App\questiondetail::insert([
-                   'User_ID' => Auth::user()->User_ID,
-                   'ques_id' => $ques_id,
-                   'quesde_detail' => '-',
-                   'quesde_date'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
-             ]);
+              $ques_id =  \App\question::where([
+                  ['User_ID', '=', Auth::user()->User_ID],
+                  ])->max('ques_id');
+
+                  \App\questiondetail::insert([
+                    'User_ID' => Auth::user()->User_ID,
+                    'ques_id' => $ques_id,
+                    'quesde_detail' => '-',
+                    'quesde_date'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
+              ]);
+}
+
+
+
 
 }
      }
@@ -76,13 +101,25 @@ $validator =  Validator::make($request->all(), [
               ])->validate();
 
        $time =Carbon::now('Asia/Bangkok');
-           \App\questiondetail::insert([
-             'User_ID' => Auth::user()->User_ID,
-             'ques_id' => $request->id,
-             'quesde_detail' => $request->message,
-             'quesde_date'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
-       ]);
 
+       if (Session::get('login') == 'yes') {
+         \App\questiondetail::insert([
+           'User_ID' => '-',
+           'official_ID' => Session::get('idoffice'),
+           'ques_id' => $request->id,
+           'quesde_detail' => $request->message,
+           'quesde_date'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
+     ]);
+
+       }else {
+         \App\questiondetail::insert([
+           'User_ID' => Auth::user()->User_ID,
+           'official_ID' => '-',
+           'ques_id' => $request->id,
+           'quesde_detail' => $request->message,
+           'quesde_date'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
+     ]);
+       }
 
 
                                return redirect()->route('showcomment', ['id' => $request->id]);
