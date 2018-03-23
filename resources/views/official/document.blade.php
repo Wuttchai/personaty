@@ -385,7 +385,7 @@ var information =  new Vue({
         'datefirstedit':'',
         'datelastedit':'',
         'detailedit':'',
-
+        'buttoninsert':true,
         'items': [],
         'pagination': [],
         'searchKey': '',
@@ -574,7 +574,7 @@ $("#editofficial").modal('show');
                      information.fileofficeerror = true;
                      information.fileofficeerror = response.data.messages.fileoffice[0];
                        }else if (response.data[0] == 'true' && response.data[1] == 'ชื่อไฟล์มีขนาดยาวเกินไป') {
-                         information.buttonedit = true;                        
+                         information.buttonedit = true;
                          information.fileofficeerror = true;
                          information.fileofficeerror = response.data[1];
                        }
