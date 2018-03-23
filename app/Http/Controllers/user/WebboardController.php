@@ -17,7 +17,7 @@ class WebboardController extends Controller
      */
      public function __construct()
      {
-$this->middleware('auth');
+
      }
 
     /**
@@ -67,7 +67,7 @@ $validator =  Validator::make($request->all(), [
 }
      }
 
-  
+
      public function store(Request $request)
      {
 

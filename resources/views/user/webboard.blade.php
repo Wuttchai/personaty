@@ -240,6 +240,7 @@ var information =  new Vue({
     data: {
 
         'status' : '<?php echo Auth::check(); ?>',
+        'status2' : '<?php echo Session::get('login'); ?>',
         'seach' : <?php if (Session::get('search') == 'ค้นหา' || Session::get('search') == null ) {echo 'true';}else {echo 'false';} ?>,
         'cancelsearch' :<?php if (Session::get('search')!='ค้นหา' && Session::get('search')!= null ) {echo 'true';}else {echo 'false';} ?>,
         'headqestion' :'',
@@ -265,18 +266,30 @@ var information =  new Vue({
              this.headqestionerror = false;
              this.textqestionerror = false;
              this.typeerror = false;
-if (information.status =='1') {
-$("#formwebboard").modal('show');
-}else {
+if (information.status =='1' && information.status2 =='yes') {
   swal({
-title: 'กรุณาเข้าสู่ระบบเพื่อตั้งกระทู้ !',
-text: 'คุณต้องสมัครสมาชิกเพื่อเข้าสู่ระบบ',
+title: 'กรุณาอย่าเข้าสู่ระบบสองระบบ !',
+text: 'หากคุณต้องการใช้สิทธ์เจ้าหน้าที่กรุณาออกจากระบบผู้ใช้',
 type: 'warning',
 confirmButtonColor: '#3085d6',
 confirmButtonText: 'ยืนยัน',
 closeOnConfirm: false
 })
+}else {
+  if (information.status =='1' || information.status2 =='yes') {
+  $("#formwebboard").modal('show');
+  }else {
+    swal({
+  title: 'กรุณาเข้าสู่ระบบเพื่อตั้งกระทู้ !',
+  text: 'คุณต้องสมัครสมาชิกเพื่อเข้าสู่ระบบ',
+  type: 'warning',
+  confirmButtonColor: '#3085d6',
+  confirmButtonText: 'ยืนยัน',
+  closeOnConfirm: false
+  })
+  }
 }
+
 
 
 
@@ -304,7 +317,7 @@ $("#exampleModal2").modal('show');
               axios.post(link, {
               }).then(function (response) {
 
-          console.log(response.data);
+
 
           $("#exampleModal2").modal('show');
 
