@@ -100,9 +100,9 @@
                 ?>
               <p class="card-block" style="word-break:break-all; height:100px;">{{ $stringCut }}</p>
               <div class="card-footer">
-                  <span class="float-right"><span class="glyphicon glyphicon-calendar"></span>{{ $hotnews2[2]->datefirst }}
-                  @if($hotnews2[2]->datelast)
-                 - {{ $hotnews2[2]->datelast }}
+                  <span class="float-right"><span class="glyphicon glyphicon-calendar"></span>{{ $hotnews[$key1]->datefirst }}
+                  @if($hotnews[$key1]->datelast)
+                 - {{ $hotnews[$key1]->datelast }}
                   @endif</span>
 
               </div>
