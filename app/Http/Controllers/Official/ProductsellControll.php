@@ -30,7 +30,7 @@ class ProductsellControll extends Controller
 public $timestamps = false;
 
      public function readItems() {
-       $xxx = \App\product_Sell::join('users','product_Sell.User_ID','=','users.User_ID')
+       $xxx = \App\product_sell::join('users','product_Sell.User_ID','=','users.User_ID')
                    ->select('users.User_Name', 'product_Sell.Prosell_Quantity', 'product_Sell.Prosell_totalPirce','product_Sell.Prosell_orderdate','product_Sell.Prosell_ID','product_Sell.Prosell_send')
                    ->where('Prosell_orderdate','!=','')
                    ->get();
@@ -74,7 +74,7 @@ if ($request->status == 'delete') {
   ]);
 
 
-                      \App\product_Sell::where('Prosell_ID',$request->id)
+                      \App\product_sell::where('Prosell_ID',$request->id)
                                   ->update([
                                     'Prosell_send' => $request->quantity,
                                   ]);
@@ -123,7 +123,7 @@ $time =Carbon::now('Asia/Bangkok');
 ]);
 
 
-                    \App\product_Sell::where('Prosell_ID',$request->id)
+                    \App\product_sell::where('Prosell_ID',$request->id)
                                 ->update([
                                   'Prosell_send' => $request->quantity,
                                 ]);
