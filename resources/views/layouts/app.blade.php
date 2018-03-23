@@ -12,9 +12,10 @@
 
     <!-- Styles -->
     <!-- Font Awesome -->
-    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.css' />
+
+    <link rel="stylesheet" href="{{ asset('css/fullcalendar.min.css') }}">
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
-    <link href="https://adminlte.io/themes/AdminLTE/dist/css/AdminLTE.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/AdminLTE.min.css') }}">  
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
     <link rel="stylesheet" href="{{ asset('css/testboot.css') }}">
     <link rel="stylesheet" href="{{ asset('css/sweetalert2.min.css') }}">
@@ -442,7 +443,7 @@ a.list-group-item {
   <script src="{{ asset('js/sweetalert2.min.js') }}"></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js'></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.js'></script>
-  
+
       @stack('scripts')
 </body>
 </html>
