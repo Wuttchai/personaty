@@ -207,7 +207,7 @@ if (strlen($string) >= 200) {
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
-        <button type="button" class="btn btn-primary" v-on:click="insert()" >บันทึกข้อมูล</button>
+        <button type="button" class="btn btn-primary" v-if="btninsert" v-on:click="insert()" >บันทึกข้อมูล</button>
       </div>
     </div>
   </div>
@@ -221,6 +221,7 @@ if (strlen($string) >= 200) {
       </div>
       <!-- /.row -->
     </div>
+       </div>
        </div>
 
 <br>
@@ -247,6 +248,7 @@ var information =  new Vue({
         'textqestionerror':'',
         'type':'',
         'typeerror':'',
+        'btninsert':true,
 
 
     },
@@ -312,6 +314,7 @@ $("#exampleModal2").modal('show');
            },
 
            insert: function () {
+             information.btninsert = false;
              this.headqestionerror = '';
              this.textqestionerror = '';
              this.typeerror = '';
@@ -336,6 +339,7 @@ if(response.data.messages.type != null){
 information.typeerror = true;
 information.typeerror = response.data.messages.type[0];
 }
+information.btninsert=true;
 }else {
 location.reload();
 }
