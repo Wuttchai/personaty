@@ -150,7 +150,7 @@
          </div>
          <div class="modal-footer">
            <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
-           <button type="button" class="btn btn-primary"   v-on:click="insert()">บันทึกข้อมูล</button>
+           <button type="button" class="btn btn-primary"  v-if="buttoninsert" v-on:click="insert()">บันทึกข้อมูล</button>
          </div>
        </div>
      </div>
@@ -224,7 +224,7 @@
          </div>
          <div class="modal-footer">
            <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
-           <button type="button" class="btn btn-warning"   v-on:click="updateItem()">บันทึก</button>
+           <button type="button" class="btn btn-warning"  v-if="buttonedit"  v-on:click="updateItem()">บันทึก</button>
          </div>
        </div>
      </div>
@@ -260,8 +260,9 @@ var information =  new Vue({
         'nameerror':'',
         'id_edit':'',
         'total' : [],
-
-
+        'buttoninsert':false,
+        'buttonedit':true,
+        'buttoninsert':true,
 
         'items': [],
         'pagination': [],
@@ -314,7 +315,6 @@ var information =  new Vue({
 
  	        information.items = response.data;
           information.total =+ response.data[0];
-console.log(information.items.Person_Num);
 
  	      });
  	    },
@@ -327,7 +327,8 @@ console.log(information.items.Person_Num);
 
            insert: function () {
 
-
+            information.buttonedit=false;
+             information.buttoninsert=false;
              axios.defaults.headers.post['formData'] = 'multipart/form-data';
              axios.post('/official/person/add', {
                  id: this.id,
@@ -344,6 +345,7 @@ information.nameerror = response.data.messages.name[0];
 information.counterror = true;
 information.counterror = response.data.messages.count[0];
   }
+  information.buttoninsert=true;
 }else {
   location.reload();
 }
@@ -382,7 +384,7 @@ $("#editofficial").modal('show');
 
        							        },
         updateItem: function() {
-
+information.buttonedit=false;
                    var Person_ID =	this.id_edit;
 
                    var link = "/person/updateinfo/" + Person_ID;
@@ -400,6 +402,7 @@ $("#editofficial").modal('show');
                      information.counterror = true;
                      information.counterror = response.data.messages.count[0];
                        }
+                       information.buttonedit=true;
                      }else {
                        location.reload();
                      }

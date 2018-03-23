@@ -174,7 +174,7 @@
          </div>
          <div class="modal-footer">
            <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
-           <button type="button" class="btn btn-primary"   v-on:click="insert()">บันทึกข้อมูล</button>
+           <button type="button" class="btn btn-primary"  v-if="buttoninsert"  v-on:click="insert()">บันทึกข้อมูล</button>
          </div>
        </div>
      </div>
@@ -468,6 +468,7 @@ var information =  new Vue({
                reader.readAsDataURL(file);
            },
            insert: function () {
+             information.buttoninsert = false;
              information.nameerror = false;
              information.fileofficeerror = false;
 const config = { headers: { 'Content-Type': 'multipart/form-data' } };
@@ -492,9 +493,9 @@ information.nameerror = response.data.messages.name[0];
 information.fileofficeerror = true;
 information.fileofficeerror = response.data.messages.fileoffice[0];
   }
-
+information.buttoninsert = true;
 }else if (response.data[0] == 'true' && response.data[1] == 'ชื่อไฟล์มีขนาดยาวเกินไป') {
-
+information.buttoninsert = true;
   information.fileofficeerror = true;
   information.fileofficeerror = response.data[1];
 }
@@ -548,6 +549,7 @@ $("#editofficial").modal('show');
 
        							        },
         updateItem: function() {
+          information.buttonedit = false;
           information.nameerror = false;
           information.fileofficeerror = false;
           const config = { headers: { 'Content-Type': 'multipart/form-data' } };
@@ -572,11 +574,11 @@ $("#editofficial").modal('show');
                      information.fileofficeerror = true;
                      information.fileofficeerror = response.data.messages.fileoffice[0];
                        }else if (response.data[0] == 'true' && response.data[1] == 'ชื่อไฟล์มีขนาดยาวเกินไป') {
-                         console.log(response.data[1])
+                         information.buttonedit = true;                        
                          information.fileofficeerror = true;
                          information.fileofficeerror = response.data[1];
                        }
-
+information.buttonedit = true;
               }else {
               location.reload();
               }

@@ -178,7 +178,7 @@
          </div>
          <div class="modal-footer">
            <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
-           <button type="button" class="btn btn-primary"   v-on:click="insert()">บันทึกข้อมูล</button>
+           <button type="button" class="btn btn-primary"  v-if="buttoninsert"  v-on:click="insert()">บันทึกข้อมูล</button>
          </div>
        </div>
      </div>
@@ -373,7 +373,7 @@ var information =  new Vue({
         'nameimage':'',
         'showimg':'',
         'id_edit':'',
-
+        'buttoninsert':true,
         'buttonedit':true,
         'buttonedit2':true,
         'inputedit':'true',
@@ -458,7 +458,7 @@ var information =  new Vue({
            },
            insert: function () {
 
-
+information.buttoninsert=false;
              axios.defaults.headers.post['formData'] = 'multipart/form-data';
              axios.post('/official/testza', {
                  id: this.id,
@@ -475,6 +475,7 @@ information.nameerror = response.data.messages.name[0];
 information.fileofficeerror = true;
 information.fileofficeerror = response.data.messages.fileoffice[0];
   }
+  information.buttoninsert=true;
 }else {
   location.reload();
 }
@@ -526,7 +527,7 @@ $("#editofficial").modal('show');
 
        							        },
         updateItem: function() {
-
+                  information.buttonedit = false;
                    var info_id =	this.id_edit;
 
                    var link = "/official/updateinfo/" + info_id;
@@ -543,7 +544,8 @@ $("#editofficial").modal('show');
                if(response.data.messages.fileoffice != null){
               information.fileofficeerror = true;
               information.fileofficeerror = response.data.messages.fileoffice[0];
-                                           }
+              }
+              information.buttonedit = true;
               }else {
               location.reload();
               }

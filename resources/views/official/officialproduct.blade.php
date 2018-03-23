@@ -625,6 +625,7 @@ information.fileofficeerror = response.data.messages.fileoffice[0];
   information.detailerror = true;
   information.detailerror = response.data.messages.detail[0];
   }
+  information.buttoninsert = true;
 }else {
   location.reload();
 }
@@ -696,6 +697,7 @@ information.countedit = response.data[0].Pro_Count;
 
        							        },
         updateItem: function() {
+          information.buttonedit = false;
           information.nameerror = false;
           information.fileofficeerror = false;
           information.detailerror = false;
@@ -739,7 +741,7 @@ information.countedit = response.data[0].Pro_Count;
                          information.moneyerror = true;
                          information.moneyerror = response.data.messages.money[0];
                        }
-
+information.buttonedit = true;
               }else {
               location.reload();
               }

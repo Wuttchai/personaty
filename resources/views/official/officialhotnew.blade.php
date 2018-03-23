@@ -223,7 +223,7 @@
          </div>
          <div class="modal-footer">
            <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
-           <button type="button" class="btn btn-primary"   v-on:click="insert()">บันทึกข้อมูล</button>
+           <button type="button" class="btn btn-primary"  v-if="buttoninsert" v-on:click="insert()">บันทึกข้อมูล</button>
          </div>
        </div>
      </div>
@@ -502,7 +502,7 @@ var information =  new Vue({
         'searchKey': '',
         'currentPage': 0,
         'itemsPerPage': 5,
-
+        'buttoninsert':true,
     },
     mounted: function mounted() {
 
@@ -580,6 +580,7 @@ var information =  new Vue({
                reader.readAsDataURL(file);
            },
            insert: function () {
+             information.buttoninsert = false;
              information.nameerror = false;
              information.fileofficeerror = false;
              information.datefirsterror = false;
@@ -625,6 +626,7 @@ information.datelasterror = response.data.messages.datelast[0];
   information.detailerror = true;
   information.detailerror = response.data.messages.detail[0];
   }
+  information.buttoninsert = true;
 }else {
   location.reload();
 }
@@ -694,6 +696,7 @@ $("#editofficial").modal('show');
 
        							        },
         updateItem: function() {
+          information.buttonedit = false;
           information.nameerror = false;
           information.fileofficeerror = false;
           information.datefirsterror = false;
@@ -737,6 +740,7 @@ $("#editofficial").modal('show');
                        information.detailerror = true;
                        information.detailerror = response.data.messages.detail[0];
                        }
+                       information.buttonedit = true;
               }else {
               location.reload();
               }

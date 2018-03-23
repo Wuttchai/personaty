@@ -200,7 +200,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" v-on:click="addcars({{ $date[0]->Prosell_ID }})">บันทึก</button>
+        <button type="button" class="btn btn-primary" v-if="buttoninsert" v-on:click="addcars({{ $date[0]->Prosell_ID }})">บันทึก</button>
       </div>
     </div>
 
@@ -253,6 +253,7 @@ var information =  new Vue({
         'id'  :'',
         'name'      :'',
         'nameerror' :'',
+        'buttoninsert':true,
 
 
     },
@@ -264,6 +265,7 @@ var information =  new Vue({
 
 
            addcars: function (event) {
+             information.buttoninsert = false ;
              information.nameerror = false ;
              axios.post('/emsadd', {
                 id : event,
@@ -274,9 +276,9 @@ if (response.data.messages != null) {
 information.nameerror = true;
 information.nameerror = response.data.messages.quantity[0];
   }
-
+information.buttoninsert = true ;
 }else if (response.data[0] == 'true') {
-
+  information.buttoninsert = true ;
   information.nameerror = true;
   information.nameerror = response.data[1];
 }else {

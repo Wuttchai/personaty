@@ -239,7 +239,7 @@
                            </div>
                            <div class="modal-footer">
                              <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
-                             <button type="button" class="btn btn-primary"   v-on:click="insert()">บันทึกข้อมูล</button>
+                             <button type="button" class="btn btn-primary"  v-if="buttoninsert"  v-on:click="insert()">บันทึกข้อมูล</button>
                            </div>
                          </div>
                        </div>
@@ -500,7 +500,7 @@
                           'buttonedit':true,
                           'buttonedit2':true,
                           'inputedit':'true',
-
+                          'buttoninsert' = 'true',
                           'items': [],
                           'pagination': [],
                           'searchKey': '',
@@ -579,7 +579,7 @@
                                  reader.readAsDataURL(file);
                              },
                              insert: function () {
-
+information.buttoninsert =false;
 information.nameerror = false;
 information.nocheck = false;
 information.emailerror = false;
@@ -603,7 +603,7 @@ information.passworderror = false;
                                  }).then(function (response) {
 
                                    if (response.data.nocheck == 'yes') {
-
+                                     information.buttoninsert =true;
                                      information.nocheck = true;
 }
                   if (response.data.messages != null) {
@@ -624,6 +624,7 @@ information.passworderror = false;
                   information.password_confirmationerror = true;
                   information.password_confirmationerror = response.data.messages.password_confirmation[0];
                 }
+                information.buttoninsert =true;
 }
 if (response.data.messages == null && response.data.nocheck != 'yes') {
   location.reload();
@@ -703,7 +704,7 @@ if (response.data[0].document == 'จัดการ') {
                          								})
      },
                           updateItem: function() {
-
+information.buttonedit =false;
                                      var official_id =	this.id_edit;
 
                                      var link = "/official/updateofficial/" + official_id;
@@ -744,7 +745,7 @@ if (response.data[0].document == 'จัดการ') {
                                                          information.password_confirmationerror = true;
                                                          information.password_confirmationerror = response.data.messages.password_confirmation[0];
                                                        }
-
+information.buttonedit =true;
                                                      }
 
                                                     if (response.data.messages == null && response.data.nocheck != 'yes') {
