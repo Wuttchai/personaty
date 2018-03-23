@@ -315,7 +315,7 @@ $("#exampleModal2").modal('show');
              this.headqestionerror = '';
              this.textqestionerror = '';
              this.typeerror = '';
-axios.post('http://project3.test/insert/question', {
+axios.post('/insert/question', {
     headqestion: this.headqestion,
     textqestion: this.textqestion,
     type: this.type,
