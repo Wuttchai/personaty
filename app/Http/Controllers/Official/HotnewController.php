@@ -46,9 +46,10 @@ public $timestamps = false;
        $request->detail= str_replace("\n", "", "$request->detail");
 
 
+
     $validator =  Validator::make($request->all(), [
          'id' => 'required|string',
-         'name' => 'required|string',
+         'name' => 'required|string|unique:hotnews,Hotnews_name',
         'fileoffice' => 'required|image64:jpeg,jpg,png|img_min_size:1300,700',
         'detail' => 'required|string',
         'type' => 'required|string',
@@ -90,7 +91,7 @@ $time =Carbon::now('Asia/Bangkok');
 
                 \App\hotnews::insert([
                               'Log_ID' => $logid,
-                              'Hotnews_Name' => $request->name,
+                              'Hotnews_name' => $request->name,
                               'Hotnews_detail' => $request->detail,
                               'Hotnews_img'  => $fileName,
                               'Hotnews_type' => $request->type,
@@ -124,7 +125,7 @@ $time =Carbon::now('Asia/Bangkok');
 
        $infoedit = \App\hotnews::join('log','hotnews.Log_ID','=','log.Log_ID')
                    ->join('official', 'official.official_ID', '=', 'log.official_ID')
-                   ->select('official.official_ID','hotnews.Hotnews_type', 'hotnews.Hotnews_Name','hotnews.Hotnews_img','hotnews.Hotnews_detail','hotnews.Hotnews_ID','hotnews.datelast','hotnews.datefirst')
+                   ->select('official.official_ID','hotnews.Hotnews_type', 'hotnews.Hotnews_name','hotnews.Hotnews_img','hotnews.Hotnews_detail','hotnews.Hotnews_ID','hotnews.datelast','hotnews.datefirst')
                    ->where('hotnews.Hotnews_ID','=' ,$id)
                    ->get();
 
@@ -184,7 +185,7 @@ if ($request->fileoffice) {
             \App\hotnews::where('Hotnews_ID',$id)
                         ->update([
                           'Log_ID' => $logid,
-                          'Hotnews_Name' => $request->name,
+                          'Hotnews_name' => $request->name,
                           'Hotnews_detail' => $request->detail,
                           'Hotnews_img'  => $fileName,
                           'Hotnews_type' => $request->type,
@@ -238,7 +239,7 @@ if ($request->fileoffice) {
             \App\hotnews::where('Hotnews_ID',$id)
                         ->update([
                           'Log_ID' => $logid,
-                          'Hotnews_Name' => $request->name,
+                          'Hotnews_name' => $request->name,
                           'Hotnews_detail' => $request->detail,
                           'datefirst' => $request->datefirst,
                           'datelast' => $request->datelast,
@@ -271,7 +272,7 @@ if ($request->fileoffice) {
 
      $info = \App\hotnews::join('log','hotnews.Log_ID','=','log.Log_ID')
                  ->join('official', 'official.official_ID', '=', 'log.official_ID')
-                 ->select('official.official_Name', 'hotnews.Hotnews_Name', 'hotnews.hotupdated_at','hotnews.Hotnews_img','hotnews.datelast','hotnews.Hotnews_ID')
+                 ->select('official.official_Name', 'hotnews.Hotnews_name', 'hotnews.hotupdated_at','hotnews.Hotnews_img','hotnews.datelast','hotnews.Hotnews_ID')
                  ->get();
 
 
