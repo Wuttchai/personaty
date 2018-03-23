@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="{{ asset('css/testboot.css') }}">
     <link rel="stylesheet" href="{{ asset('css/sweetalert2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('fonts/thsarabunnew.css') }}" />
-    
+
 
 
 <style media="screen">
@@ -436,7 +436,7 @@ a.list-group-item {
         </div>
 
 <script src="/js/app.js" charset="utf-8"></script>
-<script src="https://vuejs.org/js/vue.js"></script>
+
 <script src="{{ asset('js/sweetalert2.min.js') }}"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
