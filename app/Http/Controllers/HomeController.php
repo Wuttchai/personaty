@@ -71,11 +71,14 @@ class HomeController extends Controller
        Session::put("tabmanu2","active");
 
 
-       $question = \App\question::join('users','question.User_ID','=','users.User_ID')
-                   ->join('questiondetail','questiondetail.ques_id','=','question.ques_id')
-                   ->select('question.ques_id', 'question.ques_name','question.ques_detail', 'question.ques_date','users.User_Name',DB::raw('count(questiondetail.quesde_id) as user_count'), 'question.ques_type')
-                   ->GROUPBY('question.ques_id')
-                   ->orderBy('ques_date', 'desc')->paginate(5);
+$question = \App\question::join('users','question.User_ID','=','users.User_ID')
+->join('questiondetail','questiondetail.ques_id','=','question.ques_id')
+->select('question.ques_id',DB::raw('count(questiondetail.quesde_id) as user_count'), 'question.ques_name','question.ques_detail', 'question.ques_date','users.User_Name', 'question.ques_type')
+->GROUPBY('question.ques_id')
+->orderBy('ques_date', 'desc')->paginate(5);
+
+
+
                    $question2 = \App\question::select('question.ques_id', 'question.ques_name','question.ques_detail', 'question.ques_date', 'question.ques_type')
                              ->get();
 
