@@ -237,7 +237,7 @@
          </div>
          <div class="modal-footer">
            <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
-           <button type="button" class="btn btn-primary"   v-on:click="insert()">บันทึกข้อมูล</button>
+           <button type="button" class="btn btn-primary" v-if="buttoninsert"  v-on:click="insert()">บันทึกข้อมูล</button>
          </div>
        </div>
      </div>
@@ -497,7 +497,7 @@ var information =  new Vue({
         'count':'',
         'counterror':'',
         'countedit':'',
-
+        'buttoninsert':true,
         'datelasterror':'',
 
         'datelastedit':'',
@@ -582,6 +582,7 @@ var information =  new Vue({
                reader.readAsDataURL(file);
            },
            insert: function () {
+             information.buttoninsert = false;
              information.nameerror = false;
              information.fileofficeerror = false;
              information.detailerror = false;
