@@ -491,7 +491,7 @@
                           'activityedit':[],
                           'prisonedit':[],
                           'documentperedit':[],
-                          'documentper':''[],
+                          'documentper':[],
                           'calender':[],
                           'calenderedit':[],
                           'id_edit':'',
