@@ -159,7 +159,7 @@ class HomeController extends Controller
        Session::put("search","ค้นหา");
        $product = \App\product::select('Pro_ID', 'Pro_Name','Pro_img', 'Pro_Price', 'Pro_Type','Pro_Count','Pro_Detail')
                    ->orderBy('proupdated_at', 'desc')->paginate(6);
-   
+
 
        return view('user.product',[
          'products' => $product
@@ -204,7 +204,7 @@ class HomeController extends Controller
 
       $hotnew = \App\hotnews::select('Hotnews_ID', 'hotnews.Hotnews_name','Hotnews_img', 'Hotnews_detail', 'datefirst', 'datelast')
                   ->where('Hotnews_type','=','ข่าวประชาสัมพันธ์')
-                  ->orderBy('datelast', 'desc')->paginate(5);
+                  ->orderBy('hotnews.hotupdated_at', 'desc ')->paginate(5);
 
                   $time =Carbon::now('Asia/Bangkok');
 
@@ -223,7 +223,7 @@ class HomeController extends Controller
 
       $hotnew = \App\hotnews::select('Hotnews_ID', 'hotnews.Hotnews_name','Hotnews_img', 'Hotnews_detail', 'datefirst', 'datelast')
                   ->where('Hotnews_type','=','ข่าวกิจกรรม')
-                  ->orderBy('datelast', 'desc')->paginate(5);
+                  ->orderBy('hotnews.hotupdated_at', 'desc ')->paginate(5);
 
                   $time =Carbon::now('Asia/Bangkok');
 
@@ -247,17 +247,17 @@ class HomeController extends Controller
 
       $hotnew = \App\hotnews::select('Hotnews_ID', 'hotnews.Hotnews_name','Hotnews_img', 'Hotnews_detail', 'datefirst', 'datelast')
                   ->where('Hotnews_type','=','ข่าวประชาสัมพันธ์')
-                  ->orderBy('datelast', 'desc')->limit(3)->get();
+                  ->orderBy('hotnews.hotupdated_at', 'desc ')->limit(3)->get();
 
                   $time =Carbon::now('Asia/Bangkok');
 
 
     $hotnew2 = \App\hotnews::select('Hotnews_ID', 'hotnews.Hotnews_name','Hotnews_img', 'Hotnews_detail', 'datefirst', 'datelast')
           ->where('Hotnews_type','=','ข่าวกิจกรรม')
-          ->orderBy('datelast', 'desc')->limit(6)->get();
+          ->orderBy('hotnews.hotupdated_at', 'desc ')->limit(6)->get();
 
           $doccument = \App\doccument::select('doccument.doc_id','doc_name', 'doc_file')
-                ->orderBy('doc_dateup', 'desc')->limit(5)->get();
+                ->orderBy('hotnews.hotupdated_at', 'desc ')->limit(5)->get();
 
                 $tasks  = \App\calender::select('cal_date','cal_last','cal_name','cal_id')
                             ->get();

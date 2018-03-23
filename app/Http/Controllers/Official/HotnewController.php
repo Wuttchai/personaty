@@ -32,7 +32,7 @@ public $timestamps = false;
        $info = \App\hotnews::join('log','hotnews.Log_ID','=','log.Log_ID')
                    ->join('official', 'official.official_ID', '=', 'log.official_ID')
                    ->select('official.official_Name', 'hotnews.Hotnews_Name', 'hotnews.hotupdated_at','hotnews.Hotnews_img','hotnews.datelast','hotnews.Hotnews_ID','hotnews.Hotnews_type')
-                   ->get();
+                   ->orderBy('hotnews.hotupdated_at', 'desc')->get();
 
 
      		return response()->json($info);
