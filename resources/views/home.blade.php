@@ -72,6 +72,7 @@
 
 
 <div class="row " >
+  @if($hotnews != '[]')
     @foreach ($hotnews as $key1 => $hotnew)
 
 
@@ -110,6 +111,7 @@
       </div>
 </a>
 @endforeach
+@endif
   </div>
   </div>
   <br>
@@ -331,6 +333,7 @@
                   </tr>
                   </thead>
                   <tbody>
+                    @if($doccument != '[]')
                   @foreach($doccument as $key2 => $doccuments)
 
                   <tr>
@@ -348,6 +351,7 @@
                   </tr>
 
                   @endforeach
+                  @endif
                   </tbody>
                 </table>
               </div>
