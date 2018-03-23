@@ -19,7 +19,8 @@
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
     <link rel="stylesheet" href="{{ asset('css/testboot.css') }}">
     <link rel="stylesheet" href="{{ asset('css/sweetalert2.min.css') }}">
-  
+    <link rel="stylesheet" href="{{ asset('fonts/thsarabunnew.css') }}" />
+    
 
 
 <style media="screen">
