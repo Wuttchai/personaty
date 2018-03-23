@@ -257,7 +257,7 @@ class HomeController extends Controller
           ->orderBy('hotnews.hotupdated_at', 'desc ')->limit(6)->get();
 
           $doccument = \App\doccument::select('doccument.doc_id','doc_name', 'doc_file')
-                ->orderBy('hotnews.hotupdated_at', 'desc ')->limit(5)->get();
+                ->orderBy('doccument.doc_dateup', 'desc ')->limit(5)->get();
 
                 $tasks  = \App\calender::select('cal_date','cal_last','cal_name','cal_id')
                             ->get();
