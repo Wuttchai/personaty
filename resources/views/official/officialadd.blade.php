@@ -500,7 +500,7 @@
                           'buttonedit':true,
                           'buttonedit2':true,
                           'inputedit':'true',
-                          'buttoninsert' = true,
+                          'buttoninsert' : true,
                           'items': [],
                           'pagination': [],
                           'searchKey': '',
