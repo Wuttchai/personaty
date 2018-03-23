@@ -536,7 +536,7 @@ var information =  new Vue({
 
                 return this.items.filter(item => {
 
-                    	return item.Hotnews_Name.indexOf(this.searchKey.toLowerCase()) > -1
+                    	return item.Hotnews_name.indexOf(this.searchKey.toLowerCase()) > -1
                       || item.hotupdated_at.indexOf(this.searchKey.toLowerCase()) > -1
                       || item.Hotnews_type.toLowerCase().indexOf(this.searchKey.toLowerCase()) > -1
                       || item.official_Name.toLowerCase().indexOf(this.searchKey.toLowerCase()) > -1
