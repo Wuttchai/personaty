@@ -6,7 +6,7 @@
    <div class="row justify-content-center" >
 
        <div class="col-md-12" id="dsds">
-           <div class="card card-default ">
+           <div class="card card-default " >
                <div class="card-header card text-center bg-info"> จัดการข่าวประชาสัมพันธ์และข่าวกิจกรรม </div>
 
  <div class="card-header card ">
@@ -43,7 +43,8 @@
 
 
 
-     <table class="table text-center">
+     <table class="table text-center" style="word-break:break-all;">
+     
     <thead >
                  <tr>
                    <th scope="col">ชื่อผู้ทำ</th>
