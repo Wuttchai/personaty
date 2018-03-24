@@ -5,6 +5,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Session;
 use DB;
+use \Cart as Cart;
 class HomeController extends Controller
 
 {
@@ -29,7 +30,7 @@ class HomeController extends Controller
 
 
      }
-     
+
      public function addcars(Request $request)
      {
   $product = \App\product::select('Pro_ID', 'Pro_Name', 'Pro_Price')
