@@ -53,7 +53,7 @@ return [
     */
 
     'url' => env('APP_URL', 'http://localhost'),
-    'url' => 'https://prisonayuthaya.herokuapp.com',
+    
     /*
     |--------------------------------------------------------------------------
     | Application Timezone
