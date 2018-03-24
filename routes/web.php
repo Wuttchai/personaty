@@ -112,8 +112,8 @@ Route::get('/official/calender/detail{id}', 'Official\CalenderController@showedi
 Route::post('/official/calender/update{id}', 'Official\CalenderController@update');
 Route::post('/official/calender/delete{id}', 'Official\CalenderController@delete');
 //calender
-Route::post('/Productaddcars', 'user\HomeController@addcars');
-Route::post('/Productdeletecars', 'user\HomeController@deletecars');
+Route::post('/Productaddcars', 'HomeController@addcars');
+Route::post('/Productdeletecars', 'HomeController@deletecars');
 
 Route::get('/Product/type1', 'user\ProductsellController@type1');
 Route::get('/cart/confrimadd', 'user\AddcartsControllers@confrim');
