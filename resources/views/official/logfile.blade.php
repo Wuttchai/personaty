@@ -4,65 +4,76 @@
 <div class="container"  id="example-3"  >
 <div class="loader" id="loader"></div>
    <div class="row justify-content-center" >
-     <div class="col-md-10" id="dsds">
-         <div class="card card-default ">
-             <div class="card-header card text-center bg-warning">รายงานข้อมูลการจัดการ</div>
+     <div class="card card-default ">
+         <div class="card-header card text-center bg-info">จัดการข้อมูลเจ้าหน้าที่</div>
 
-           </div>
+<div class="card-header card ">
+
+
+
 </div>
-           <br>
-            <br>
-             <br>
-             <div class="row">
-               <div class="col-md-10" style="overflow-x:auto;">
 
 
-     <table id="example" class="display nowrap" cellspacing="0" width="120%">
-         <thead>
-             <tr>
-               <th>ชื่อผู้จัดการ</th>
-               <th>ข้อมูลที่จัดการ</th>
-               <th>รหัสโปรเจค</th>
-               <th>การจัดการ</th>
-               <th>ที่อยู่ไอพี</th>
-               <th>เวลาที่จัดการ</th>
-             </tr>
-         </thead>
-         <tfoot>
-             <tr>
-                 <th>ชื่อผู้จัดการ</th>
-                 <th>ข้อมูลที่จัดการ</th>
-                 <th>รหัสโปรเจค</th>
-                 <th>การจัดการ</th>
-                 <th>ที่อยู่ไอพี</th>
-                 <th>เวลาที่จัดการ</th>
-             </tr>
-         </tfoot>
-         <tbody>
+         <div class="card-body" >
+
+<div class="row">
+<div class="col-md-12" style="overflow-x:auto;">
 
 
 
 
-
-             @foreach($logfile as $value)
-                             <tr >
-                               <td>{{$value->official_Name}}</td>
-                               <td>{{$value->table_log}}</td>
-                               <td>{{$value->project_log}}</td>
-                               <td>{{$value->Log_Event}}</td>
-                               <td>{{$value->Log_IP}}</td>
-                               <td>{{$value->Log_Time}}</td>
-                             </tr>
-                             @endforeach
+  <table id="example" class="display nowrap" cellspacing="0" width="120%">
+      <thead>
+          <tr>
+            <th>ชื่อผู้จัดการ</th>
+            <th>ข้อมูลที่จัดการ</th>
+            <th>รหัสโปรเจค</th>
+            <th>การจัดการ</th>
+            <th>ที่อยู่ไอพี</th>
+            <th>เวลาที่จัดการ</th>
+          </tr>
+      </thead>
+      <tfoot>
+          <tr>
+              <th>ชื่อผู้จัดการ</th>
+              <th>ข้อมูลที่จัดการ</th>
+              <th>รหัสโปรเจค</th>
+              <th>การจัดการ</th>
+              <th>ที่อยู่ไอพี</th>
+              <th>เวลาที่จัดการ</th>
+          </tr>
+      </tfoot>
+      <tbody>
 
 
 
 
 
-         </tbody>
-     </table>
-   </div>
- </div>
+          @foreach($logfile as $value)
+                          <tr >
+                            <td>{{$value->official_Name}}</td>
+                            <td>{{$value->table_log}}</td>
+                            <td>{{$value->project_log}}</td>
+                            <td>{{$value->Log_Event}}</td>
+                            <td>{{$value->Log_IP}}</td>
+                            <td>{{$value->Log_Time}}</td>
+                          </tr>
+                          @endforeach
+
+
+
+
+
+      </tbody>
+  </table>
+
+
+
+
+
+                      </div>
+                     </div>
+         </div>
        </div>
    </div>
 
