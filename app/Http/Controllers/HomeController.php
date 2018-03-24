@@ -23,6 +23,26 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+     public function deletecars(Request $request)
+     {
+       Cart::remove($request->id);
+
+
+     }
+     
+     public function addcars(Request $request)
+     {
+  $product = \App\product::select('Pro_ID', 'Pro_Name', 'Pro_Price')
+             ->where('Pro_ID','=' , $request->id)
+             ->get();
+
+
+
+$cartItem = Cart::add($request->id, $product[0]->Pro_Name, $request->quantity, $product[0]->Pro_Price);
+
+
+
+     }
      public function detailhotnew($id)
      {
        $hotnew2 = \App\hotnews::select('Hotnews_ID', 'hotnews.Hotnews_name','Hotnews_img', 'Hotnews_detail', 'datefirst', 'datelast')

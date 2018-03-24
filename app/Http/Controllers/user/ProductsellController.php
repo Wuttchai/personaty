@@ -18,7 +18,7 @@ class ProductsellController extends Controller
      */
      public function __construct()
      {
-
+$this->middleware('auth');
 
      }
 
@@ -29,26 +29,9 @@ class ProductsellController extends Controller
      */
 public $qtv = 0 ;
 
-     public function addcars(Request $request)
-     {
-  $product = \App\product::select('Pro_ID', 'Pro_Name', 'Pro_Price')
-             ->where('Pro_ID','=' , $request->id)
-             ->get();
 
 
-
-$cartItem = Cart::add($request->id, $product[0]->Pro_Name, $request->quantity, $product[0]->Pro_Price);
-
-
-
-     }
-
-     public function deletecars(Request $request)
-     {
-       Cart::remove($request->id);
-
-
-     }
+    
      public function ProductCarOrders()
      {
 
