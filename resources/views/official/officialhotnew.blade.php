@@ -43,8 +43,8 @@
 
 
 
-     <table class="table text-center" style="word-break:break-all;">
-     
+     <table class="table text-center" >
+
     <thead >
                  <tr>
                    <th scope="col">ชื่อผู้ทำ</th>
