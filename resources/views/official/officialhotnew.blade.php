@@ -37,20 +37,21 @@
 </div>
  </div>
  <br>
+
  <div class="row">
    <div class="col-md-12">
 
 
 
-                                <table class="table table-borderless text-center" id="table">
-               <thead>
+     <table class="table text-center">
+    <thead >
                  <tr>
-                   <th>ชื่อผู้ทำ</th>
-                   <th>ชื่อข่าวประชาสัมพันธ์</th>
-                   <th>วันที่อัพเดทล่าสุด</th>
-                   <th>ตัวอย่างรูปภาพ</th>
-                   <th>ประเภทข่าว</th>
-                   <th>การจัดการ</th>
+                   <th scope="col">ชื่อผู้ทำ</th>
+                   <th scope="col">ชื่อข่าวประชาสัมพันธ์</th>
+                   <th scope="col">วันที่อัพเดทล่าสุด</th>
+                   <th scope="col">ตัวอย่างรูปภาพ</th>
+                   <th scope="col">ประเภทข่าว</th>
+                   <th scope="col">การจัดการ</th>
                  </tr>
                </thead>
                <tr v-for="item in paginatedUsers">
