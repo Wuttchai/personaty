@@ -34,7 +34,7 @@ class AddcartsControllers extends Controller
        $time =Carbon::now('Asia/Bangkok');
        $product = \App\product_sell::select('product_Sell.Prosell_img')
                   ->where('product_Sell.User_ID','=' , Auth::user()->User_ID)
-                  ->where('product_Sell.Prosell_img','=' ,'')
+                  ->where('product_Sell.Prosell_img','!=' ,'')
                   ->get();
                 dd($product);
                   if ($product != '[]') {
