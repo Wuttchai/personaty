@@ -117,7 +117,7 @@ Route::post('/Productdeletecars', 'user\ProductsellController@deletecars');
 
 Route::get('/Product/type1', 'user\ProductsellController@type1');
 Route::get('/cart/confrimadd', 'user\AddcartsControllers@confrim');
-
+Route::get('/Product/delete', 'user\AddcartsControllers@delete');
 
 Route::get('/invoice-print', function () {
 

@@ -145,7 +145,7 @@
                 <!-- this row will not appear when printing -->
                 <div class="row no-print">
         <div class="col-xs-9">
-          <a href="/ProductAyutaya"  class="btn btn-danger "><i class="fa fa-print"></i> ย้อนกลับ</a>
+          <a href="/Product/delete"  class="btn btn-danger "><i class="fa fa-print"></i> ย้อนกลับ</a>
 </div>
 <div class="col-xs-2">
            <a href="/invoice-print" target="_blank" class="btn btn-primary pull-right"></i> ปริ้นใบสั่งซื้อ</a>

@@ -42,11 +42,6 @@ class AddcartsControllers extends Controller
                   }
 
 
-
-if (Session::get('car') != "active") {
-
-
-
        \App\product_sell::insert([
                      'User_ID' => Auth::user()->User_ID,
                      'Prosell_Quantity' => 0,
@@ -82,49 +77,30 @@ if (Session::get('car') != "active") {
               'Prosell_totalPirce'  => $totalPirce,
               'Prosell_creat'=>   "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
             ]);
-            Session::put("car","active");
+
             return view('user.showcars',[
 
               'Prosell_ID' => $Prosell_ID
             ]);
-}
-if (Session::get('car') == "active") {
-  $Prosell_ID =  \App\product_sell::where([
-      ['User_ID', '=', Auth::user()->User_ID],
-      ])->max('Prosell_ID');
-  $num =0;
-  $Quantity = 0;
-  $totalPirce =0;
-  foreach(Cart::content() as $carcon) {
-
-    \App\sell_detail::where('Prosell_ID',$Prosell_ID)
-                  ->update([
-                  'Pro_ID' => $carcon->id,
-                  'Det_Num'  => $carcon->qty,
-                  'Det_total' => $carcon->qty * $carcon->price
-                  ]);
-    $num ++;
-    $Quantity += $carcon->qty;
-    $totalPirce += $carcon->qty * $carcon->price;
- }
-
- \App\product_sell::where('Prosell_ID',$Prosell_ID)
-         ->update([
-           'Prosell_Quantity' => $Quantity,
-           'Prosell_totalPirce'  => $totalPirce,
-         ]);
-         return view('user.showcars',[
-
-           'Prosell_ID' => $Prosell_ID
-         ]);
-}
-
-
-
-
-
 
      }
+
+     public function delete()
+     {
+       $Prosell_ID =  \App\product_sell::where([
+           ['User_ID', '=', Auth::user()->User_ID],
+           ])->max('Prosell_ID');
+
+           $sell_ID =  \App\sell_detail::where([
+               ['Prosell_ID', '=', $Prosell_ID],
+               ])->max('Det_ID');
+
+\App\product_sell::where('Prosell_ID', '=', $Prosell_ID)->delete();
+\App\sell_detail::where('Det_ID', '=', $sell_ID)->delete();
+
+
+       return redirect('/ProductAyutaya');
+   }
 
 
 
