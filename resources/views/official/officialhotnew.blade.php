@@ -6,7 +6,7 @@
    <div class="row justify-content-center" >
 
        <div class="col-md-12" id="dsds">
-           <div class="card card-default " >
+           <div class="card card-default ">
                <div class="card-header card text-center bg-info"> จัดการข่าวประชาสัมพันธ์และข่าวกิจกรรม </div>
 
  <div class="card-header card ">
@@ -25,8 +25,8 @@
   เพิ่มข้อมูล
 </button>
  </div>
-
- <div class="col-md-6 text-right">
+&nbsp;
+ <div class="col-md-5 text-right">
 <div class="input-group input-group-sm" style="width: 300px;">
 	                  <input type="text" name="table_search" class="form-control pull-right" placeholder="Search" v-model="searchKey">
 
@@ -39,7 +39,7 @@
  <br>
 
  <div class="row">
-   <div class="col-md-12">
+   <div class="col-md-12" style="overflow-x:auto;">
 
 
 

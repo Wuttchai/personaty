@@ -36,8 +36,9 @@
  </div>
  <br>
  <div class="row">
-   <div class="col-md-12">
+   <div class="col-md-12" style="overflow-x:auto;">
 
+    
 
 
                                 <table class="table table-borderless text-center" id="table">
@@ -384,7 +385,7 @@ var information =  new Vue({
         'datefirstedit':'',
         'datelastedit':'',
         'detailedit':'',
-        'buttoninsert' = false,
+        'buttoninsert' : false,
         'items': [],
         'pagination': [],
         'searchKey': '',

@@ -15,6 +15,7 @@
  </div>
 
 
+
                <div class="card-body" >
                  <div class="row">
                    <div class="col-md-6 text-center">
@@ -25,8 +26,8 @@
   เพิ่มข้อมูล
 </button>
  </div>
-
- <div class="col-md-6 text-right">
+&nbsp;
+ <div class="col-md-5 text-right">
 <div class="input-group input-group-sm" style="width: 300px;">
 	                  <input type="text" name="table_search" class="form-control pull-right" placeholder="Search" v-model="searchKey">
 
@@ -38,7 +39,7 @@
  </div>
  <br>
  <div class="row">
-   <div class="col-md-12">
+   <div class="col-md-12" style="overflow-x:auto;">
 
 
 
