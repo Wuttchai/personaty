@@ -57,7 +57,7 @@
         <td>
 
 
-@if($num == 1)
+@if($Car->Prosell_send != '-')
 <a href="/ProductCarorderdetail/<?php echo $Car->Prosell_ID ?>" clas>  <button  type="button" v-on:click="deleteItem(item)" class="btn btn-warning"><i class="material-icons">โปรดชำระเงิน </i></button></a>
 @else
 <a href="/ProductCardetail/<?php echo $Car->Prosell_ID ?>" clas>  <button  type="button" v-on:click="deleteItem(item)" class="btn btn-danger"><i class="material-icons">รายละเอียด </i></button></a>
