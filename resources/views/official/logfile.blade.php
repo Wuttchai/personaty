@@ -14,7 +14,7 @@
             <br>
              <br>
              <div class="row">
-               <div class="col-md-10">
+               <div class="col-md-10" style="overflow-x:auto;">
 
 
      <table id="example" class="display nowrap" cellspacing="0" width="120%">
