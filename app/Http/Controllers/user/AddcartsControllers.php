@@ -36,7 +36,7 @@ class AddcartsControllers extends Controller
                   ->where('product_Sell.User_ID','=' , Auth::user()->User_ID)
                   ->where('product_Sell.Prosell_img','=' ,'-')
                   ->get();
-dd($product);
+
                   if ($product != '[]') {
                     return redirect()->back()->with('alert', 'มีการซื้ออยู่!');
                   }
