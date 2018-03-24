@@ -31,6 +31,7 @@
         <th scope="col">ลำดับ</th>
         <th scope="col">จำนวน</th>
         <th scope="col">ราคารวม</th>
+        <th scope="col">สถานะ</th>
         <th scope="col">วันที่สั่งสินค้า</th>
         <th scope="col">จัดการ</th>
       </tr>
@@ -43,6 +44,15 @@
         <td>{{ $num }}</td>
         <td>{{ $Car->Prosell_Quantity}} ชิ้น</td>
         <td>{{ $Car->Prosell_totalPirce}} บาท</td>
+@if($Car->Prosell_send != '-')
+        <td>{{ $Car->Prosell_send}}</td>
+
+@else
+        <td>โปรดชำระเงิน</td>
+
+@endif
+
+
         <td>{{ $Car->Prosell_creat}}</td>
         <td>
 

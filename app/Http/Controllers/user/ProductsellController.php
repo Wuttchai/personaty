@@ -58,7 +58,7 @@ $cartItem = Cart::add($request->id, $product[0]->Pro_Name, $request->quantity, $
        Session::forget('tabmanu');
        Session::put("tabmanu4","active");
 
-       $CarOrders = \App\product_sell::select('Prosell_ID', 'Prosell_Quantity','Prosell_totalPirce', 'Prosell_creat')
+       $CarOrders = \App\product_sell::select('Prosell_ID', 'Prosell_Quantity','Prosell_totalPirce', 'Prosell_creat','Prosell_send')
                    ->where('User_ID','=' ,Auth::user()->User_ID)
                    ->orderBy('product_Sell.Prosell_creat', 'desc')->paginate(10);
 
