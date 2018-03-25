@@ -96,8 +96,10 @@
 
 
 
+
+
   <div class="panel-heading" style="word-break:break-all; " >
-  <strong>{{ $user->ques_name }}</strong></a>@if($user->User_ID == <?php echo Auth::user()->User_ID  ?>) <span class="glyphicon glyphicon-cog " v-on:click="open()" title="แก้ไขข้อมูลกระทู้"></span>@endif <span class="glyphicon glyphicon-calendar text-muted pull-right">{{ $user->ques_date }}</span>
+  <strong>{{ $user->ques_name }}</strong></a>@isset(Auth::user()->User_ID ) @if($user->User_ID ==   Auth::user()->User_ID) <span class="glyphicon glyphicon-cog " v-on:click="open()" title="แก้ไขข้อมูลกระทู้"></span>@endif @endisset @isset(Session::get('idoffice')) @if($user->official_ID ==   Session::get('idoffice')) <span class="glyphicon glyphicon-cog " v-on:click="open()" title="แก้ไขข้อมูลกระทู้"></span>@endif @endisset <span class="glyphicon glyphicon-calendar text-muted pull-right">{{ $user->ques_date }}</span>
   </div>
 
   <div class="panel-body " style="word-break:break-all; height: 100px;">
