@@ -13,9 +13,9 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
       $time =Carbon::now('Asia/Bangkok');
-      
 
-                      App\users::create([
+
+                      App\User::create([
 
 
                                         'User_Name' => 'เจ้าหน้าที่',
