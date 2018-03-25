@@ -99,7 +99,6 @@ $question = \App\question::join('users','question.User_ID','=','users.User_ID')
 ->orderBy('ques_date', 'desc')->paginate(5);
 
 
-dd($question);
                    $question2 = \App\question::select('question.ques_id', 'question.ques_name','question.ques_detail', 'question.ques_date', 'question.ques_type')
                              ->get();
 
