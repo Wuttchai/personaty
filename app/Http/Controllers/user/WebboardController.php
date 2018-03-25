@@ -59,9 +59,10 @@ if (Session::get('login') == 'yes') {
       ])->max('ques_id');
 
       \App\questiondetail::insert([
-        'User_ID' => Auth::user()->User_ID,
+        'User_ID' => '-',
         'ques_id' => $ques_id,
-        'quesde_detail' => '-',
+        'quesde_detail' => $request->textqestion,
+        'official_ID'=> Session::get('idoffice'),
         'quesde_date'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
   ]);
 }else {
@@ -81,7 +82,8 @@ if (Session::get('login') == 'yes') {
                   \App\questiondetail::insert([
                     'User_ID' => Auth::user()->User_ID,
                     'ques_id' => $ques_id,
-                    'quesde_detail' => '-',
+                    'quesde_detail' => $request->textqestion,
+                    'official_ID'=> '00',
                     'quesde_date'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
               ]);
 }
