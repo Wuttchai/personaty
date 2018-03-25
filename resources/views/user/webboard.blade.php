@@ -106,11 +106,7 @@
 @endif
 @endif
 
-@if(isset(Session::get('idoffice')))
-@if($user->User_ID == '0')
-<span class="glyphicon glyphicon-cog " v-on:click="open()" title="แก้ไขข้อมูลกระทู้"></span>
-@endif
-@endif
+
 
 
    <span class="glyphicon glyphicon-calendar text-muted pull-right">{{ $user->ques_date }}</span>
