@@ -168,12 +168,6 @@ return redirect('/webboard');
 }
 
 
-       $question = \App\question::select('ques_name', 'ques_detail', 'ques_type','ques_id')
-                  ->where('ques_id','=' , $id)
-                  ->get();
-
-return response()->json($question);
-
      }
 
 }
