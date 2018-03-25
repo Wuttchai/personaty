@@ -66,7 +66,7 @@
   </div>
 
 @foreach ($commentdetail as $commentdetails)
-@if($commentdetails->quesde_detail != '1')
+@if($commentdetails->quesde_id != '1')
 
   <div class="col-md-12" >
 <div class="panel panel-warning ">
