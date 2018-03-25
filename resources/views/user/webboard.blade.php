@@ -233,7 +233,76 @@ if (strlen($string) >= 200) {
 </div>
 
 
+<div class="modal fade" id="formwebboardedit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">แก้ไขข้อมูลกระทู้</h5>
 
+
+        <button type="button" class="close btn-danger btn-outline" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+
+
+          </div>
+          <div v-bind:class="{'form-group':headqestionerror , 'has-error has-feedback':headqestionerror }">
+
+                        <label for="recipient-name" class="col-form-label">หัวข้อกระทู้:</label>
+                        <input type="text" class="form-control" v-model="ques_name"   >
+                        <span class="glyphicon glyphicon-remove form-control-feedback" v-if="headqestionerror"></span>
+                        <span class="text-errors" v-if="headqestionerror">
+                            <strong><h5>@{{ headqestionerror }}</h5></strong>
+                        </span>
+                    </div>
+<br>
+
+
+
+
+
+
+
+
+          <div v-bind:class="{'form-group':textqestionerror , 'has-error has-feedback':textqestionerror }">
+
+            <label for="message-text" class="col-form-label">รายละเอียดกระทู้:</label>
+            <textarea class="form-control" v-model="ques_detail" ></textarea>
+                        <span class="glyphicon glyphicon-remove form-control-feedback" v-if="textqestionerror"></span>
+                        <span class="text-errors" v-if="textqestionerror">
+                            <strong><h5>@{{ textqestionerror }}</h5></strong>
+                        </span>
+                    </div>
+<br>
+
+
+                    <div v-bind:class="{'form-group':typeerror , 'has-error has-feedback':typeerror }">
+
+                      <label for="sel1">หมวดหมู่กระทู้:</label>
+                      <select class="form-control" v-model="ques_type">
+                        <option>การเยี่ยมผู้ต้องขัง</option>
+                        <option>การซื้อสินค้า</option>
+                        <option>การเตรียมเอกสาร</option>
+                      </select>
+
+                                  <span class="text-errors" v-if="typeerror">
+                                      <strong><h5>@{{ typeerror }}</h5></strong>
+                                  </span>
+                              </div>
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
+        <button type="button" class="btn btn-primary" v-if="btninsert" v-on:click="edit()" >แก้ไขข้อมูลข้อมูล</button>
+      </div>
+    </div>
+  </div>
+</div>
            <!-- /.col -->
 
         <!-- /.col-lg-12 -->
@@ -267,6 +336,9 @@ var information =  new Vue({
         'headqestionerror':'',
         'textqestionerror':'',
         'type':'',
+        'ques_detail':'',
+        'ques_name':'',
+        'ques_type':'',
         'typeerror':'',
         'btninsert':true,
 
@@ -318,8 +390,9 @@ closeOnConfirm: false
               var link = "/questiondetail/edit/" + question_ID;
               axios.get(link, {
               }).then(function (response) {
-
-console.log(response.data);
+                information.ques_detail = response.data[0].ques_detail;
+                information.ques_name = response.data[0].ques_name;
+                information.ques_type =response.data[0].ques_type;
 
 $("#exampleModal2").modal('show');
               })
