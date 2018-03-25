@@ -38,7 +38,7 @@
  <div class="row">
    <div class="col-md-12" style="overflow-x:auto;">
 
-    
+
 
 
                                 <table class="table table-borderless text-center" id="table">
@@ -427,8 +427,9 @@ var information =  new Vue({
                     	return item.Prosell_Quantity.toString().toLowerCase().indexOf(this.searchKey.toLowerCase()) > -1
                       || item.User_Name.toLowerCase().indexOf(this.searchKey.toLowerCase()) > -1
                       || item.Prosell_totalPirce.toString().toLowerCase().indexOf(this.searchKey.toLowerCase()) > -1
-
-
+                      || item.Prosell_send.toString().toLowerCase().indexOf(this.searchKey.toLowerCase()) > -1
+                      || item.Prosell_orderdate.toString().toLowerCase().indexOf(this.searchKey.toLowerCase()) > -1
+          
                  })
              },
              paginatedUsers: function(list){

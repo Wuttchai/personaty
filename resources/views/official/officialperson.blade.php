@@ -302,6 +302,8 @@ var information =  new Vue({
 
                     	return  item.Person_Type.indexOf(this.searchKey.toLowerCase()) > -1
                       || item.official_Name.toLowerCase().indexOf(this.searchKey.toLowerCase()) > -1
+                      || item.Person_Num.toLowerCase().indexOf(this.searchKey.toLowerCase()) > -1
+                      || item.perupdated_at.toLowerCase().indexOf(this.searchKey.toLowerCase()) > -1
 
                  })
              },

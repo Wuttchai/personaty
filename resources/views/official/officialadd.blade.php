@@ -539,7 +539,12 @@
 
                                       	return item.official_Name.toLowerCase().indexOf(this.searchKey.toLowerCase()) > -1
                                         || item.hotnews.indexOf(this.searchKey.toLowerCase()) > -1
-                                        || item.activity.toLowerCase().indexOf(this.searchKey.toLowerCase()) > -1
+                                        || item.info.toLowerCase().indexOf(this.searchKey.toLowerCase()) > -1
+                                        || item.product.toLowerCase().indexOf(this.searchKey.toLowerCase()) > -1
+                                        || item.prison.toLowerCase().indexOf(this.searchKey.toLowerCase()) > -1
+                                        || item.document.toLowerCase().indexOf(this.searchKey.toLowerCase()) > -1
+                                        || item.calender.toLowerCase().indexOf(this.searchKey.toLowerCase()) > -1
+
 
                                    })
                                },
