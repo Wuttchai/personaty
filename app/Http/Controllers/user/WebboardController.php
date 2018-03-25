@@ -48,7 +48,7 @@ if (Session::get('login') == 'yes') {
 
       \App\question::insert([
         'User_ID' => '-',
-        'official_ID' => Session::get('idoffice'),
+        'quesde_owner' => 'เจ้าหน้าที่',
         'ques_name' => $request->headqestion,
         'ques_detail' => $request->textqestion,
         'ques_type' => $request->type,
@@ -62,13 +62,13 @@ if (Session::get('login') == 'yes') {
         'User_ID' => '-',
         'ques_id' => $ques_id,
         'quesde_detail' => $request->textqestion,
-        'official_ID'=> Session::get('idoffice'),
+        'quesde_owner'=> 'เจ้าหน้าที่',
         'quesde_date'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
   ]);
 }else {
                   \App\question::insert([
                     'User_ID' => Auth::user()->User_ID,
-                    'official_ID' =>'00',
+                    'quesde_owner' =>'ผู้ใช้',
                     'ques_name' => $request->headqestion,
                     'ques_detail' => $request->textqestion,
                     'ques_type' => $request->type,
@@ -83,7 +83,7 @@ if (Session::get('login') == 'yes') {
                     'User_ID' => Auth::user()->User_ID,
                     'ques_id' => $ques_id,
                     'quesde_detail' => $request->textqestion,
-                    'official_ID'=> '00',
+                    'quesde_owner'=> 'ผู้ใช้',
                     'quesde_date'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
               ]);
 }
@@ -107,7 +107,7 @@ if (Session::get('login') == 'yes') {
        if (Session::get('login') == 'yes') {
          \App\questiondetail::insert([
            'User_ID' => '-',
-           'official_ID' => Session::get('idoffice'),
+           'official_ID' => 'เจ้าหน้าที่',
            'ques_id' => $request->id,
            'quesde_detail' => $request->message,
            'quesde_date'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
@@ -116,7 +116,7 @@ if (Session::get('login') == 'yes') {
        }else {
          \App\questiondetail::insert([
            'User_ID' => Auth::user()->User_ID,
-           'official_ID' => '00',
+           'official_ID' => 'ผู้ใช้',
            'ques_id' => $request->id,
            'quesde_detail' => $request->message,
            'quesde_date'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
