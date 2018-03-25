@@ -101,25 +101,7 @@
   <div class="panel-heading" style="word-break:break-all; " >
   <strong>{{ $user->ques_name }}</strong></a>
 
-  <?php if(isset(Auth::user()->User_ID)) {
-
-  if ($user->User_ID == Auth::user()->User_ID) {
-  ?>
-  <span class="glyphicon glyphicon-cog " v-on:click="open()" title="แก้ไขข้อมูลกระทู้"></span>
-  }
-  <?php
-  }
-
-
-  if (isset(Auth::user()->Session::get('idoffice') ) ) {
-      if ($user->User_ID == '0') {
-
-        ?>
-        <span class="glyphicon glyphicon-cog " v-on:click="open()" title="แก้ไขข้อมูลกระทู้"></span>
-        }
-        <?php
-  }
-  ?>
+  
    <span class="glyphicon glyphicon-calendar text-muted pull-right">{{ $user->ques_date }}</span>
   </div>
 
