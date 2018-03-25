@@ -106,7 +106,9 @@
 @endif
 @endif
 
+@if(isset(Session::get('idoffice')))
 
+@endif
 
 
    <span class="glyphicon glyphicon-calendar text-muted pull-right">{{ $user->ques_date }}</span>
