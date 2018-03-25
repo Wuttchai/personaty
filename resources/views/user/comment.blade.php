@@ -66,7 +66,7 @@
   </div>
 
 @foreach ($commentdetail as $commentdetails)
-@if($commentdetails->quesde_detail != '-')
+@if($commentdetails->quesde_detail != '1')
 
   <div class="col-md-12" >
 <div class="panel panel-warning ">
@@ -95,7 +95,7 @@
   </div>
 
 
-  @if (Auth::user())
+  @if (Auth::user() || Session::get('idoffice'))
 
     <div class="col-md-12 col-md-offset-1 pull-right">
 <div class="col-md-2 col-md-offset-0">
