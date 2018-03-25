@@ -140,7 +140,7 @@
           <form class="navbar-form"  action="/cart/confrimadd" method="get" >
 
                               {!! csrf_field() !!}
-                              <input type="submit" class="btn btn-success btn-sm " value="ยืนยันการซื้อ">
+                              <input type="submit" class="btn btn-success btn-sm " value="บันทึกข้อมูลการสั่งซื้อ">
                           </form>
   </div>
       </div>

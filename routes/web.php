@@ -125,6 +125,7 @@ Route::get('/invoice-print', function () {
   });
 
 Route::get('/ProductCarorderdetail/{id}', 'user\ProductsellController@ProductCarorderdetail');
+Route::get('/ProductCarorderdelete/{id}', 'user\ProductsellController@ProductCarorderdelete');
 
   Route::post('/insert/question', 'user\WebboardController@addqes');
 

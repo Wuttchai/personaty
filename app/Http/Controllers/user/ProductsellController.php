@@ -31,7 +31,7 @@ public $qtv = 0 ;
 
 
 
-    
+
      public function ProductCarOrders()
      {
 
@@ -95,7 +95,15 @@ return view('user.insrtimgcar',[
 'date' => $date,
 ]);
 }
+public function ProductCarorderdelete($id)
+{
 
+
+\App\product_sell::where('Prosell_ID', '=', $id)->delete();
+
+return redirect('/ProductCarOrders');
+
+}
 
 
 }
