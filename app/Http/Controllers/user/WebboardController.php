@@ -47,7 +47,7 @@ $time =Carbon::now('Asia/Bangkok');
 if (Session::get('login') == 'yes') {
 
       \App\question::insert([
-        'User_ID' => '-',
+        'User_ID' => '1',
         'quesde_owner' => 'เจ้าหน้าที่',
         'ques_name' => $request->headqestion,
         'ques_detail' => $request->textqestion,
@@ -59,7 +59,7 @@ if (Session::get('login') == 'yes') {
       ])->max('ques_id');
 
       \App\questiondetail::insert([
-        'User_ID' => '-',
+        'User_ID' => '1',
         'ques_id' => $ques_id,
         'quesde_detail' => $request->textqestion,
         'quesde_owner'=> 'เจ้าหน้าที่',
@@ -106,7 +106,7 @@ if (Session::get('login') == 'yes') {
 
        if (Session::get('login') == 'yes') {
          \App\questiondetail::insert([
-           'User_ID' => '-',
+           'User_ID' => '1',
            'official_ID' => 'เจ้าหน้าที่',
            'ques_id' => $request->id,
            'quesde_detail' => $request->message,
