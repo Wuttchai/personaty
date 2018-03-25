@@ -100,8 +100,10 @@
 
   <div class="panel-heading" style="word-break:break-all; " >
   <strong>{{ $user->ques_name }}</strong></a>
+@isset(Auth::user()->User_ID)
 
-  
+@endif
+
    <span class="glyphicon glyphicon-calendar text-muted pull-right">{{ $user->ques_date }}</span>
   </div>
 
