@@ -100,18 +100,18 @@
 
   <div class="panel-heading" style="word-break:break-all; " >
   <strong>{{ $user->ques_name }}</strong></a>
-@if(isset(Auth::user()->User_ID))
-@if($user->User_ID == Auth::user()->User_ID)
-<span class="glyphicon glyphicon-cog " v-on:click="open()" title="แก้ไขข้อมูลกระทู้"></span>
-@endif
-@endif
+  @if(isset(Auth::user()->User_ID))
+  @if($user->User_ID == Auth::user()->User_ID)
+  <span class="glyphicon glyphicon-cog " v-on:click="open()" title="แก้ไขข้อมูลกระทู้"></span>
+  @endif
+  @endif
 
-@if(Session::get('idoffice') != null)
-@if($user->User_ID == '0')
-<?php dd(Session::get('idoffice')); ?>
-<span class="glyphicon glyphicon-cog " v-on:click="open()" title="แก้ไขข้อมูลกระทู้"></span>
-@endif
-@endif
+  @if(Session::get('idoffice') != null)
+  @if($user->User_ID == '1')
+  <?php dd(Session::get('idoffice')); ?>
+  <span class="glyphicon glyphicon-cog " v-on:click="open()" title="แก้ไขข้อมูลกระทู้"></span>
+  @endif
+  @endif
 
 
    <span class="glyphicon glyphicon-calendar text-muted pull-right">{{ $user->ques_date }}</span>
