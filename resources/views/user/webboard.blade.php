@@ -105,10 +105,10 @@
 <span class="glyphicon glyphicon-cog " v-on:click="open()" title="แก้ไขข้อมูลกระทู้"></span>
 @endif
 @endif
-<?php dd(Session::get('idoffice')); ?>
+
 @if(Session::get('idoffice') != null)
 @if($user->User_ID == '0')
-xxxxxxxxxxxxx
+<?php dd(Session::get('idoffice')); ?>
 <span class="glyphicon glyphicon-cog " v-on:click="open()" title="แก้ไขข้อมูลกระทู้"></span>
 @endif
 @endif
