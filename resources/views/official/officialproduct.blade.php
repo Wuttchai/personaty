@@ -753,8 +753,7 @@ information.buttonedit = true;
 
                   },
                   deleteItem: function(item) {
-console.log(item.official_ID);
-console.log(information.id);
+
 
                       if (item.official_ID == information.id || information.id == '1') {
                         swal({
