@@ -32,7 +32,8 @@ public $timestamps = false;
        $info = \App\person::join('log','person_count.Log_ID','=','log.Log_ID')
                    ->join('official', 'official.official_ID', '=', 'log.official_ID')
                    ->select('official.official_Name', 'person_count.Person_Type', 'person_count.Person_Num','person_count.perupdated_at','person_count.Person_ID','official.official_ID')
-                   ->get();
+                   ->orderBy('person_count.perupdated_at', 'desc')
+                    ->get();
 
 
      		return response()->json($info);

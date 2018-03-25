@@ -33,6 +33,7 @@ public $timestamps = false;
        $info = \App\product::join('log','product.Log_ID','=','log.Log_ID')
                    ->join('official', 'official.official_ID', '=', 'log.official_ID')
                    ->select('official.official_ID','official.official_Name','product.Pro_Name', 'product.Pro_Price', 'product.Pro_img','product.Pro_Count','product.proupdated_at','product.Pro_ID')
+                   ->orderBy('product.proupdated_at', 'desc')
                    ->get();
 
 

@@ -96,6 +96,7 @@ public function graph() {
  }
      public function readItems() {
        $info = \App\official::select('official_ID', 'official_Name', 'info','product','hotnews','activity','prison','document','calender')
+                    ->orderBy('offupdated_at', 'desc')
                    ->get();
 
 

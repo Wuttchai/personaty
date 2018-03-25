@@ -32,6 +32,7 @@ public $timestamps = false;
        $xxx = \App\doccument::join('log','doccument.Log_ID','=','log.Log_ID')
                    ->join('official', 'official.official_ID', '=', 'log.official_ID')
                    ->select('official.official_Name', 'doccument.doc_name', 'doccument.doc_dateup','doccument.doc_file','doccument.doc_id')
+                   ->orderBy('doccument.doc_dateup', 'desc')
                    ->get();
 
 
