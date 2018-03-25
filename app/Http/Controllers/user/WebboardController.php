@@ -159,12 +159,12 @@ return response()->json($question);
        \App\question::where('ques_id',$id)
                    ->update([
                      'ques_name' => $request->headqestion,
-                     'ques_detail' => $request->textqestion,                     
+                     'ques_detail' => $request->textqestion,
                      'ques_type' => $request->type,
                      'ques_date' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
                    ]);
 
-
+return redirect('/webboard');
 }
 
 
