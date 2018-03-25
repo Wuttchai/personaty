@@ -100,7 +100,7 @@
 
   <div class="panel-heading" style="word-break:break-all; " >
   <strong>{{ $user->ques_name }}</strong></a>
-@isset(Auth::user()->User_ID)
+@if(isset(Auth::user()->User_ID))
 
 @endif
 
