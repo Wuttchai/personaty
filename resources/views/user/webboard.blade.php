@@ -108,7 +108,7 @@
 
   @if(Session::get('idoffice') != null)
   @if($user->User_ID == '1')
-  <?php dd(Session::get('idoffice')); ?>
+
   <span class="glyphicon glyphicon-cog " v-on:click="open()" title="แก้ไขข้อมูลกระทู้"></span>
   @endif
   @endif
