@@ -101,7 +101,7 @@
   <div class="panel-heading" style="word-break:break-all; " >
   <strong>{{ $user->ques_name }}</strong></a>
 @if(isset(Auth::user()->User_ID))
-
+xxxxxxxxxxx
 @endif
 
    <span class="glyphicon glyphicon-calendar text-muted pull-right">{{ $user->ques_date }}</span>
