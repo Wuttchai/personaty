@@ -128,7 +128,7 @@ Route::get('/ProductCarorderdetail/{id}', 'user\ProductsellController@ProductCar
 Route::get('/ProductCarorderdelete/{id}', 'user\ProductsellController@ProductCarorderdelete');
 
   Route::post('/insert/question', 'user\WebboardController@addqes');
-
+  Route::get('/questiondetail/edit/{id}', 'user\WebboardController@openedit');
   Route::post('/question/addcomment/', 'user\WebboardController@store')->name('addcomment');
   Route::get('/question/addcomment/eiei', 'user\WebboardController@showcomment');
   Route::get('/ProductCardetail/{id}', 'user\ProductsellController@ProductCardetail');

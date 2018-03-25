@@ -102,14 +102,14 @@
   <strong>{{ $user->ques_name }}</strong></a>
   @if(isset(Auth::user()->User_ID))
   @if($user->User_ID == Auth::user()->User_ID)
-  <span class="glyphicon glyphicon-cog " v-on:click="open()" title="แก้ไขข้อมูลกระทู้"></span>
+  <span class="glyphicon glyphicon-cog " v-on:click="openedit(<?php echo $user->ques_id ?>)" title="แก้ไขข้อมูลกระทู้"></span>
   @endif
   @endif
 
   @if(Session::get('idoffice') != null)
   @if($user->User_ID == '1')
 
-  <span class="glyphicon glyphicon-cog " v-on:click="open()" title="แก้ไขข้อมูลกระทู้"></span>
+  <span class="glyphicon glyphicon-cog " v-on:click="openedit(<?php echo $user->ques_id ?>)" title="แก้ไขข้อมูลกระทู้"></span>
   @endif
   @endif
 
@@ -309,41 +309,24 @@ closeOnConfirm: false
   }
 }
 
-
-
-
            },
-           showcomment: function (event) {
-$("#exampleModal2").modal('show');
+
+           openedit: function (event) {
+
              var question_ID =	event;
 
-              var link = "/question/comment" + question_ID;
+              var link = "/questiondetail/edit/" + question_ID;
               axios.get(link, {
               }).then(function (response) {
 
+console.log(response.data);
 
-
-
+$("#exampleModal2").modal('show');
               })
 
 
            },
-           addcomment: function (event) {
 
-             var question_ID =	event;
-
-              var link = "/question/comment" + question_ID;
-              axios.post(link, {
-              }).then(function (response) {
-
-
-
-          $("#exampleModal2").modal('show');
-
-              })
-
-
-           },
 
            insert: function () {
              information.btninsert = false;

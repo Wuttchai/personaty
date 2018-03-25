@@ -129,6 +129,14 @@ if (Session::get('login') == 'yes') {
 
 
      }
+     public function openedit($id)
+     {
+       $question = \App\question::select('ques_name', 'ques_detail', 'ques_type')
+                  ->where('ques_id','=' , $id)
+                  ->get();
 
+return response()->json($question);
+
+     }
 
 }
