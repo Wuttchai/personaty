@@ -95,7 +95,7 @@ $cartItem = Cart::add($request->id, $product[0]->Pro_Name, $request->quantity, $
 $question = \App\question::join('users','question.User_ID','=','users.User_ID')
 ->join('questiondetail','questiondetail.ques_id','=','question.ques_id')
 ->join('official','official.official_ID','=','question.official_ID')
-->select('question.ques_id',DB::raw('count(questiondetail.quesde_id) as user_count'), 'question.ques_name','question.ques_detail', 'question.ques_date','users.User_ID','users.User_Name', 'question.ques_type','official.official_ID')
+->select('question.ques_id',DB::raw('count(questiondetail.quesde_id) as user_count'), 'question.ques_name','question.ques_detail', 'question.ques_date','users.User_ID','users.User_Name', 'question.ques_type')
 ->GROUPBY('question.ques_id','users.User_Name')
 ->orderBy('ques_date', 'desc')->paginate(5);
 
