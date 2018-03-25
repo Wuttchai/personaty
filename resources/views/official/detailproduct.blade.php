@@ -1,3 +1,4 @@
+
 @extends('layouts.app')
 
 @section('content')
@@ -19,7 +20,7 @@
           <div class="row">
       			<div class="col-md-6 col-md-offset-3">
       				<div class="text-center">
-      					<h2>รายละเอียดการสั่งซื้อสินค้า</h2>
+      					<h2></h2>
       				</div>
       				<hr>
       			</div>
@@ -31,7 +32,7 @@
                   <div class="col-xs-12">
                     <h2 class="page-header">
                       <i class="fa fa-globe"></i> ใบสั่งซื้อสินค้า
-                      <small class="pull-right">วันที่: {{ Session::get('date') }}</small>
+                      <small class="pull-right">วันที่: {{ $date[0]->Prosell_creat }}</small>
                     </h2>
                   </div>
                   <!-- /.col -->
@@ -55,20 +56,19 @@
                   <div class="col-sm-4 invoice-col">
                     ถึง
                     <address>
-                      <strong>{{ Auth::user()->User_Name }}</strong><br>
-                      {{ Auth::user()->User_Address }}<br>
-                      เบอร์โทร: {{ Auth::user()->User_Tel }}<br>
-                      อีเมลล์: {{ Auth::user()->email }}
+                      <strong>{{ $date[0]->User_Name }}</strong><br>
+                      {{ $date[0]->User_Address }}<br>
+                      เบอร์โทร: {{ $date[0]->User_Tel }}<br>
+                      อีเมลล์: {{ $date[0]->email }}
                     </address>
                   </div>
                   <!-- /.col -->
                   <div class="col-sm-4 invoice-col">
 
                     <address>
-                      <strong>เลขที่ใบเสร็จสินค้า #007612</strong><br><br>
-                        รหัสการสั่งซื้อ: {{ $date[0]->Prosell_ID }}<br>
+                      <strong>  รหัสการสั่งซื้อ: {{ $date[0]->Prosell_ID }}</strong><br><br>
                         วันที่ซื้อ: {{ $date[0]->Prosell_creat }}<br>
-                        ชื่อผู้ซื้อ:  {{ Auth::user()->User_Name }}
+                        ชื่อผู้ซื้อ:  {{ $date[0]->User_Name }}
                     </address>
                   </div>
                   <!-- /.col -->
@@ -129,7 +129,7 @@
                   </div>
 
                   <div class="col-xs-6">
-                    <p class="lead">วันที่ : {{ Session::get('date') }}</p>
+                    <p class="lead">วันที่ : {{ $date[0]->Prosell_creat }}</p>
 
                     <div class="table-responsive">
                       <table class="table">

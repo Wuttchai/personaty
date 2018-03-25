@@ -43,7 +43,8 @@ public $timestamps = false;
 {
 
 $date = DB::table('product_Sell')
-            ->select('Prosell_ID','Prosell_creat','Prosell_orderdate','Prosell_creat','Prosell_img','Prosell_send','Prosell_Quantity')
+            ->join('users','users.User_ID','=','product_Sell.User_ID')
+            ->select('users.email','users.User_Tel','users.User_Address','users.User_Name','Prosell_ID','Prosell_creat','Prosell_orderdate','Prosell_creat','Prosell_img','Prosell_send','Prosell_Quantity')
             ->where('Prosell_ID','=' ,$id)
             ->get();
 
