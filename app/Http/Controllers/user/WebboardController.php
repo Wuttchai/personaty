@@ -67,7 +67,7 @@ if (Session::get('login') == 'yes') {
 }else {
                   \App\question::insert([
                     'User_ID' => Auth::user()->User_ID,
-                    'official_ID' =>'-',
+                    'official_ID' =>'00',
                     'ques_name' => $request->headqestion,
                     'ques_detail' => $request->textqestion,
                     'ques_type' => $request->type,
@@ -114,7 +114,7 @@ if (Session::get('login') == 'yes') {
        }else {
          \App\questiondetail::insert([
            'User_ID' => Auth::user()->User_ID,
-           'official_ID' => '-',
+           'official_ID' => '00',
            'ques_id' => $request->id,
            'quesde_detail' => $request->message,
            'quesde_date'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
