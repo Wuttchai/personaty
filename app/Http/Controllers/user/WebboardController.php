@@ -55,7 +55,7 @@ if (Session::get('login') == 'yes') {
         'ques_date'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
   ]);
   $ques_id =  \App\question::where([
-      ['User_ID', '=', Auth::user()->User_ID],
+      ['User_ID', '=', '1'],
       ])->max('ques_id');
 
       \App\questiondetail::insert([
