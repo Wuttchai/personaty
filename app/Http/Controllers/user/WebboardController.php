@@ -139,7 +139,7 @@ return response()->json($question);
 
      }
 
-     public function openedit(Request $request,$id)
+     public function editqes(Request $request,$id)
      {
        $validator =  Validator::make($request->all(), [
            'type' => 'required|string',
