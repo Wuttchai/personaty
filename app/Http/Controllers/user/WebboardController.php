@@ -131,7 +131,44 @@ if (Session::get('login') == 'yes') {
      }
      public function openedit($id)
      {
-       $question = \App\question::select('ques_name', 'ques_detail', 'ques_type')
+       $question = \App\question::select('ques_name', 'ques_detail', 'ques_type','ques_id')
+                  ->where('ques_id','=' , $id)
+                  ->get();
+
+return response()->json($question);
+
+     }
+
+     public function openedit(Request $request,$id)
+     {
+       $validator =  Validator::make($request->all(), [
+           'type' => 'required|string',
+           'headqestion' => 'required|string|unique:question,ques_name|max:50|min:10',
+           'textqestion' => 'required|string|unique:question,ques_detail|max:200|min:30'
+
+              ]);
+
+              if($validator->fails()){
+
+                    return[
+                    'messages' => $validator->errors()->messages()
+                    ];
+                  }else {
+       $time =Carbon::now('Asia/Bangkok');
+
+       \App\question::where('ques_id',$id)
+                   ->update([
+                     'ques_name' => $request->headqestion,
+                     'ques_detail' => $request->textqestion,                     
+                     'ques_type' => $request->type,
+                     'ques_date' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
+                   ]);
+
+
+}
+
+
+       $question = \App\question::select('ques_name', 'ques_detail', 'ques_type','ques_id')
                   ->where('ques_id','=' , $id)
                   ->get();
 

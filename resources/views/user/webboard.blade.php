@@ -339,6 +339,7 @@ var information =  new Vue({
         'ques_detail':'',
         'ques_name':'',
         'ques_type':'',
+        'idedit':'',
         'typeerror':'',
         'btninsert':true,
 
@@ -390,6 +391,8 @@ closeOnConfirm: false
               var link = "/questiondetail/edit/" + question_ID;
               axios.get(link, {
               }).then(function (response) {
+
+                information.idedit = response.data[0].ques_id;
                 information.ques_detail = response.data[0].ques_detail;
                 information.ques_name = response.data[0].ques_name;
                 information.ques_type =response.data[0].ques_type;
@@ -435,6 +438,45 @@ location.reload();
 
     });
             },
+
+            edit: function () {
+              information.btninsert = false;
+              this.headqestionerror = '';
+              this.textqestionerror = '';
+              this.typeerror = '';
+
+var question_ID =	information.idedit;
+
+
+
+ axios.post('/edit/question/'+ question_ID, {
+     headqestion: information.ques_name,
+     textqestion: information.ques_detail,
+     type: information.ques_type,
+
+   }).then(function (response) {
+
+ if (response.data.messages != null) {
+ if(response.data.messages.headqestion != null){
+ information.headqestionerror = true;
+ information.headqestionerror = response.data.messages.headqestion[0];
+ }
+ if(response.data.messages.textqestion != null){
+
+ information.textqestionerror = true;
+ information.textqestionerror = response.data.messages.textqestion[0];
+ }
+ if(response.data.messages.type != null){
+ information.typeerror = true;
+ information.typeerror = response.data.messages.type[0];
+ }
+ information.btninsert=true;
+ }else {
+ location.reload();
+ }
+
+     });
+             },
 
     }
   })

@@ -126,7 +126,7 @@ Route::get('/invoice-print', function () {
 
 Route::get('/ProductCarorderdetail/{id}', 'user\ProductsellController@ProductCarorderdetail');
 Route::get('/ProductCarorderdelete/{id}', 'user\ProductsellController@ProductCarorderdelete');
-
+Route::post('/edit/question/', 'user\WebboardController@editqes');
   Route::post('/insert/question', 'user\WebboardController@addqes');
   Route::get('/questiondetail/edit/{id}', 'user\WebboardController@openedit');
   Route::post('/question/addcomment/', 'user\WebboardController@store')->name('addcomment');
