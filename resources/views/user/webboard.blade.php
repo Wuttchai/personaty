@@ -233,7 +233,7 @@ if (strlen($string) >= 200) {
 </div>
 
 
-<div class="modal fade" id="formwebboardedit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="formwebboardedit" tabindex="-1" role="dialog" aria-labelledby="formwebboardedit" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -394,7 +394,8 @@ closeOnConfirm: false
                 information.ques_name = response.data[0].ques_name;
                 information.ques_type =response.data[0].ques_type;
 
-$("#exampleModal2").modal('show');
+
+$("#formwebboardedit").modal('show');
               })
 
 
