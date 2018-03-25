@@ -106,8 +106,10 @@
 @endif
 @endif
 
-@if(isset(Session::get('idoffice')))
-
+@if(Session::get('idoffice') != null)
+@if($user->User_ID == '0')
+<span class="glyphicon glyphicon-cog " v-on:click="open()" title="แก้ไขข้อมูลกระทู้"></span>
+@endif
 @endif
 
 
