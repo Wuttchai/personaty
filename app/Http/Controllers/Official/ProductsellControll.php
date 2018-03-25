@@ -33,7 +33,9 @@ public $timestamps = false;
        $xxx = \App\product_sell::join('users','product_Sell.User_ID','=','users.User_ID')
                    ->select('users.User_Name', 'product_Sell.Prosell_Quantity', 'product_Sell.Prosell_totalPirce','product_Sell.Prosell_orderdate','product_Sell.Prosell_ID','product_Sell.Prosell_send')
                    ->where('Prosell_orderdate','!=','')
+                    ->orderBy('Prosell_creat', 'desc')
                    ->get();
+
 
 
      		return response()->json($xxx);
