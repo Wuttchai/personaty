@@ -167,6 +167,7 @@ $validator =  Validator::make($request->all(), [
                                  'official_Name' => $request->name,
                                  'official_Email'  => $request->email,
                                  'official_Role' => 'user',
+                                 'official_cotton' =>'-',
                                  'info'  => $request->info,
                                  'product'  =>  $request->product,
                                  'hotnews'  => $request->hotnews,
@@ -178,7 +179,7 @@ $validator =  Validator::make($request->all(), [
                                  'offcreated_at' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "" ,
                                  'offupdated_at' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
                                ]);
-              
+
 
 
 
