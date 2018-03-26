@@ -159,7 +159,7 @@
       <div class="modal-body text-center">
 
 
-<img src="{{ 'http://project3.test/ProductCardetail/Receipt/' . $date[0]->Prosell_img }}">
+<img src="{{ 'https://project3.test/Receipt/' . $date[0]->Prosell_img }}">
 
       </div>
       <div class="modal-footer">
