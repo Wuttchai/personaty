@@ -159,7 +159,7 @@
       <div class="modal-body text-center">
 
 
-<img src="{{ 'https://prisonayuthaya.herokuapp.com/Receipt/' . $date[0]->Prosell_img }}" class="img-rounded"  width="500" height="350">
+<img src="{{ 'https://prisonayuthaya.herokuapp.com/ProductCardetail/Receipt/' . $date[0]->Prosell_img }}" class="img-rounded"  width="500" height="350">
 
       </div>
       <div class="modal-footer">
