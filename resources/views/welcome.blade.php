@@ -1,4 +1,4 @@
-@extends('layouts.offcialapp')
+@extends('layouts.app')
 
 @section('content')
 <div class="container"   >
@@ -15,66 +15,61 @@
         <div class="col-lg-12 ">
 
 
-
-          <div class="row">
-      			<div class="col-md-12 text-center">
-							<div class="card">
- 				         <div class="card-header">Category</div>
- 				         <div class="card-body ">
-                   <table id="example" class="display nowrap" cellspacing="0" width="120%">
-                       <thead>
-                           <tr>
-                             <th>ชื่อผู้จัดการ</th>
-                             <th>ข้อมูลที่จัดการ</th>
-                             <th>รหัสโปรเจค</th>
-                             <th>การจัดการ</th>
-                             <th>ที่อยู่ไอพี</th>
-                             <th>เวลาที่จัดการ</th>
-                           </tr>
-                       </thead>
-                       <tfoot>
-                           <tr>
-                               <th>ชื่อผู้จัดการ</th>
-                               <th>ข้อมูลที่จัดการ</th>
-                               <th>รหัสโปรเจค</th>
-                               <th>การจัดการ</th>
-                               <th>ที่อยู่ไอพี</th>
-                               <th>เวลาที่จัดการ</th>
-                           </tr>
-                       </tfoot>
-                       <tbody>
+          <div class="topnav">
+<div class="row">
+  <div class="col-md-2">
+    <a ><span  v-on:click="showcars()" class="glyphicon glyphicon-shopping-cart" style="font-size:20px;"></span>  <span class="badge badge-notify ">{{ Cart::content()->count() }}</span></a>
 
 
-
-
-
-                           @foreach($logfile as $value)
-                                           <tr >
-                                             <td>{{$value->official_Name}}</td>
-                                             <td>{{$value->table_log}}</td>
-                                             <td>{{$value->project_log}}</td>
-                                             <td>{{$value->Log_Event}}</td>
-                                             <td>{{$value->Log_IP}}</td>
-                                             <td>{{$value->Log_Time}}</td>
-                                           </tr>
-                                           @endforeach
-
-
-
-
-
-                       </tbody>
-                   </table>
- 				         </div>
- 				     </div>
-        <!-- /.col-lg-12 -->
-
-      </div>
-      <!-- /.row -->
-
+  </div>
+  <div class="col-md-2">
+    <div class="dropdown">
+    <button onclick="myFunction1()" class="dropbtn">ประเภทสินค้า</button>
+    <div id="myDropdown1" class="dropdown-content">
+      <a href="/ProductAyutaya?type=เฟอนิเจอร์">เฟอนิเจอร์</a>
+      <a href="/ProductAyutaya?type=ของฝาก">ของฝาก</a>
+      <a href="/ProductAyutaya">ค่าเริ่มต้น</a>
+    </div>
     </div>
 
+  </div>
+  <div class="col-md-4">
+    <div class="search-container">
+      <form class="navbar-form" role="search"  method="GET">
+      <div class="input-group ">
+          <input type="text" class="form-control " style="border-color:red" placeholder="<?php echo  Session::get('search'); ?>" name="q">
+          <div class="input-group-btn ">
+              <button class="btn btn-danger btn-outline" type="submit" ><i v-if="seach" class="glyphicon glyphicon-search"></i> <i v-if="cancelsearch" class="glyphicon glyphicon-remove"></i></button>
+          </div>
+      </div>
+      </form>
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="dropdown">
+<button onclick="myFunction()" class="dropbtn">กรองราคาสินค้า</button>
+<div id="myDropdown" class="dropdown-content">
+  <a href="/ProductAyutaya?price=ASC">ถูกไปหาเเพง</a>
+  <a href="/ProductAyutaya?price=DESC">เเพงไปหาถูก</a>
+  <a href="/ProductAyutaya?price=one">ต่ำกว่า 1000</a>
+  <a href="/ProductAyutaya?price=two">สูงกว่า 1000</a>
+</div>
+</div>
 
+  </div>
+
+
+
+</div>
+
+
+          </div>
+
+
+  </div>
+
+       </div>
+       </div>
        </div>
 
 <br>
@@ -83,8 +78,44 @@
 
 @push('scripts')
 <script>
+/* When the user clicks on the button,
+toggle between hiding and showing the dropdown content */
+function myFunction1() {
+    document.getElementById("myDropdown1").classList.toggle("show");
+}
 
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
 
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+}
 
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
 </script>
+
 @endpush

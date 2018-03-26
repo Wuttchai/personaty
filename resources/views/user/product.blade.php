@@ -24,69 +24,56 @@
       				<hr>
       			</div>
       		</div>
+          <div class="topnav" >
+  <div class="row">
+  <div class="col-md-2">
+    <br>&nbsp;&nbsp;
+    <span  v-on:click="showcars()" class="glyphicon glyphicon-shopping-cart" style="font-size:20px;"></span>  <span class="badge badge-notify ">{{ Cart::content()->count() }}</span>
 
-          <nav class="navbar navbar-default fixed-top-2" role="navigation" style="border-color:red">
-  <!-- Brand and toggle get grouped for better mobile display -->
-  <div class="navbar-header">
-    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-      <span class="sr-only">Toggle navigation</span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-    </button>
+
+  </div>
+  <div class="col-md-2">
+    <div class="dropdown">
+    <button onclick="myFunction1()" class="dropbtn">ประเภทสินค้า</button>
+    <div id="myDropdown1" class="dropdown-content">
+      <a href="/ProductAyutaya?type=เฟอนิเจอร์">เฟอนิเจอร์</a>
+      <a href="/ProductAyutaya?type=ของฝาก">ของฝาก</a>
+      <a href="/ProductAyutaya">ค่าเริ่มต้น</a>
+    </div>
+    </div>
+
+  </div>
+  <div class="col-md-4">
+    <div class="search-container">
+      <form class="navbar-form" role="search"  method="GET">
+      <div class="input-group ">
+          <input type="text" class="form-control " style="border-color:red" placeholder="<?php echo  Session::get('search'); ?>" name="q">
+          <div class="input-group-btn ">
+              <button class="btn btn-danger btn-outline" type="submit" ><i v-if="seach" class="glyphicon glyphicon-search"></i> <i v-if="cancelsearch" class="glyphicon glyphicon-remove"></i></button>
+          </div>
+      </div>
+      </form>
+    </div>
+  </div>
+  <div class="col-md-2 pull-right">
+    <div class="dropdown">
+  <button onclick="myFunction()" class="dropbtn">กรองราคาสินค้า</button>
+  <div id="myDropdown" class="dropdown-content">
+  <a href="/ProductAyutaya?price=ASC">ถูกไปหาเเพง</a>
+  <a href="/ProductAyutaya?price=DESC">เเพงไปหาถูก</a>
+  <a href="/ProductAyutaya?price=one">ต่ำกว่า 1000</a>
+  <a href="/ProductAyutaya?price=two">สูงกว่า 1000</a>
+  </div>
+  </div>
 
   </div>
 
-  <!-- Collect the nav links, forms, and other content for toggling -->
-  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" >
-    <ul class="nav navbar-nav" >
 
 
-      <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">ประเภทสินค้า <b class="caret"></b></a>
-
-        <ul class="dropdown-menu" >
-          <li><a href="/ProductAyutaya?type=เฟอนิเจอร์">เฟอนิเจอร์</a></li>
-          <li><a href="/ProductAyutaya?type=ของฝาก">ของฝาก</a></li>
-          <li class="divider"></li>
-          <li><a href="/ProductAyutaya">ค่าเริ่มต้น</a></li>
-
-        </ul>
-
-      </li>
-    </ul>
-    <div class="col-sm-6 col-md-6 text-right">
-        <form class="navbar-form" role="search"  method="GET">
-        <div class="input-group ">
-            <input type="text" class="form-control " style="border-color:red" placeholder="<?php echo  Session::get('search'); ?>" name="q">
-            <div class="input-group-btn ">
-                <button class="btn btn-danger btn-outline" type="submit" ><i v-if="seach" class="glyphicon glyphicon-search"></i> <i v-if="cancelsearch" class="glyphicon glyphicon-remove"></i></button>
-            </div>
-        </div>
-        </form>
-    </div>
-    <ul class="nav navbar-nav navbar-right">
-
-   <li><a ><span  v-on:click="showcars()" class="glyphicon glyphicon-shopping-cart" style="font-size:20px;"></span>  <span class="badge badge-notify ">{{ Cart::content()->count() }}</span></a></li>
+  </div>
 
 
-
-
-      <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">กรองราคาสินค้า <b class="caret"></b></a>
-        <ul class="dropdown-menu">
-          <li><a href="/ProductAyutaya?price=ASC">ถูกไปหาเเพง</a></li>
-          <li><a href="/ProductAyutaya?price=DESC">เเพงไปหาถูก</a></li>
-          <li><a href="/ProductAyutaya?price=one">ต่ำกว่า 1000</a></li>
-            <li><a href="/ProductAyutaya?price=two">สูงกว่า 1000</a></li>
-          <li class="divider"></li>
-          <li><a href="/ProductAyutaya">ค่าเริ่มต้น</a></li>
-        </ul>
-      </li>
-
-    </ul>
-  </div><!-- /.navbar-collapse -->
-</nav>
+          </div>
 
 
 
@@ -167,7 +154,7 @@
           @foreach ($products as $key1 => $product)
           <div class="col-md-4">
 
-                <div class="thumbnail">
+                <div class="thumbnail" style="border-color: #e80b0b" >
                     <br>
                   <img src="<?php echo "product/".$products[$key1]->Pro_img ?>" style="width:260px; height:146px;" class="img-responsive">
                   <div class="caption">
@@ -253,7 +240,42 @@
 
 
 document.getElementById("loader").style.display = "none";
+function myFunction1() {
+    document.getElementById("myDropdown1").classList.toggle("show");
+}
 
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
 var information =  new Vue({
     el: '#information',
     data: {
