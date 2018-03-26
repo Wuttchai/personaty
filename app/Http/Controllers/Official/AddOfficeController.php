@@ -286,7 +286,7 @@ public function update(Request $request,$id)
 
                               \App\official::where('official_ID',$id)
                                           ->update([
-                                            'Log_ID' => $logid,
+                                            
                                             'official_Name' => $request->name,
                                             'official_Email'  => $request->email,
                                             'official_cotton' =>'-',
