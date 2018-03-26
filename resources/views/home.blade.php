@@ -118,7 +118,7 @@
 <div class="row text-center">
         <div class="col-md-12 text-center">
           <div class="ficon">
-                        <a href="/advertise" class="btn btn-danger" role="button">อ่านทั่งหมด</a>
+                        <a href="/advertise" class="btn btn-danger" role="button">อ่านทั้งหมด</a>
                       </div>
         </div>
     </div>
@@ -307,7 +307,7 @@
 
     <div class="col-md-12 text-center">
       <div class="ficon">
-                    <a href="/activities" class="btn btn-danger" role="button">อ่านทั่งหมด</a>
+                    <a href="/activities" class="btn btn-danger" role="button">อ่านทั้งหมด</a>
                   </div>
     </div>
 </div>
@@ -371,7 +371,7 @@
 
 
                   <div class="ficon text-center">
-                                <a href="/documentsh" class="btn btn-danger" role="button">อ่านทั่งหมด</a>
+                                <a href="/documentsh" class="btn btn-danger" role="button">อ่านทั้งหมด</a>
                               </div>
                 </div>
                 <div class="col-md-6">
