@@ -16,28 +16,30 @@
 										<form method="POST" action="{{ route('login') }}" class="form-signin">
 												@csrf
 
-												<div class="form-group row">
+												<div class="form-group row{{ $errors->has('email') ? ' has-error has-feedback' : '' }}">
 
 
 														<div class="col-md-12">
-																<input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" placeholder="อีเมลล์" required autofocus>
+																<input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="อีเมลล์" required autofocus>
 
 																@if ($errors->has('email'))
-																		<span class="invalid-feedback">
+                              
+																		<span class="text-danger">
 																				<strong>{{ $errors->first('email') }}</strong>
 																		</span>
 																@endif
 														</div>
 												</div>
 
-												<div class="form-group row">
+												<div class="form-group row{{ $errors->has('password') ? ' has-error has-feedback' : '' }}">
 
 
 														<div class="col-md-12">
-																<input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" placeholder="รหัสผ่าน" required>
+																<input id="password" type="password" class="form-control{{ $errors->has('password') ? ' form-group has-error has-feedback ' : '' }}" name="password" placeholder="รหัสผ่าน" required>
 
 																@if ($errors->has('password'))
-																		<span class="invalid-feedback">
+                                <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+																		<span class="text-danger">
 																				<strong>{{ $errors->first('password') }}</strong>
 																		</span>
 																@endif
