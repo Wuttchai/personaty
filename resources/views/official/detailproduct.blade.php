@@ -158,8 +158,8 @@
       </div>
       <div class="modal-body text-center">
 
+<img src=" <?php echo "Receipt/".$date[0]->Prosell_img ?>" class="img-rounded"  width="500" height="350" />
 
-<img src="{{ 'https://project3.test/Receipt/' . $date[0]->Prosell_img }}">
 
       </div>
       <div class="modal-footer">
