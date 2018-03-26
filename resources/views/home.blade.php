@@ -161,33 +161,8 @@
               ?>
             <p>{{ $stringCut }}</p>
         </div>
-        @if($hotnews2[1] != '[]')
-        <div class="blockquote-box blockquote-primary clearfix">
-          <div class="square pull-left">
-              <img src="<?php echo "hotnew/".$hotnews2[1]->Hotnews_img ?>" style="width:150px; height:120px;">
-          </div>
-          <h4>{{ $hotnews2[1]->Hotnews_name }}</h4><span class="glyphicon glyphicon-calendar"></span>{{ $hotnews2[1]->datefirst }}
-          @if($hotnews2[1]->datelast)
-         - {{ $hotnews2[1]->datelast }}
-          @endif
-          <?php
-      $string = strip_tags($hotnews2[1]->Hotnews_detail);
+    
 
-      if (strlen($string) >= 122) {
-
-          // truncate string
-          $stringCut = iconv_substr($string, 0, 122, "UTF-8");
-
-      }else {
-        $stringCut = $hotnews2[1]->Hotnews_detail;
-
-      }
-
-            ?>
-          <p>{{ $stringCut }}</p>
-        </div>
-        @endif
-      
     </div>
 </div>
 @endif
