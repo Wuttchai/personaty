@@ -97,7 +97,7 @@ Route::post('/official/document/add', 'Official\DocumentController@insert');
 Route::get('/documentlist/edit{doc_id}', 'Official\DocumentController@showedit');
 Route::post('/document/update/{doc_id}', 'Official\DocumentController@update');
 Route::post('/document/delete{doc_id}', 'Official\DocumentController@delete');
-Route::get('/pdf/view/{id}', 'Official\DocumentController@showpdf');
+Route::get('/pdf/view/{id}', 'HomeController@showpdf');
 //
 
 Route::get('/official/productsell', 'Official\ProductsellControll@index');

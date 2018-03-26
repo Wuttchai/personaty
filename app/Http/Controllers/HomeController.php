@@ -30,7 +30,19 @@ class HomeController extends Controller
 
 
      }
+     public function showpdf($id)
+    {
 
+      $file = \App\doccument::select('doccument.doc_file')
+                  ->where('doc_id','=',$id)
+                  ->get();
+
+                  return view('official.pdf',[
+
+                    'file' => $file
+                  ]);
+
+    }
      public function addcars(Request $request)
      {
   $product = \App\product::select('Pro_ID', 'Pro_Name', 'Pro_Price')

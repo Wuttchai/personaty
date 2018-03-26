@@ -17,7 +17,7 @@ class CreateHotnewsTable extends Migration
             $table->increments('Hotnews_ID');
             $table->integer('Log_ID')->unsigned();
             $table->string('Hotnews_name');
-            $table->string('Hotnews_detail');
+            $table->string('Hotnews_detail', 1000);
             $table->string('Hotnews_img');
             $table->string('Hotnews_type');
             $table->string('datefirst');
