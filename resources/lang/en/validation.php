@@ -87,7 +87,7 @@ return [
     'unique'               => 'ข้อมูลนี้ถูกนำไปใช้แล้ว',
     'uploaded'             => 'The :attribute failed to upload.',
     'url'                  => 'The :attribute format is invalid.',
-
+    
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Language Lines
