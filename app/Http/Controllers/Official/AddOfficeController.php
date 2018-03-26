@@ -161,25 +161,9 @@ $validator =  Validator::make($request->all(), [
 
 
              $time =Carbon::now('Asia/Bangkok');
-             \App\log::insert([
-             'official_ID' => $request->id,
-             'table_log' => 'ข้อมูลเจ้าหน้าที่',
-             'project_log' => '0',
-             'Log_Event' => 'เพิ่มข้อมูล',
-             'Log_IP'  => \Request::ip(),
-             'Log_Time'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
-             ]);
-
-                   $logid =  \App\log::where([
-                       ['official_ID', '=', $request->id],
-                       ])->max('Log_ID');
-
-
-
-
 
                    \App\official::insert([
-                                 
+
                                  'official_Name' => $request->name,
                                  'official_Email'  => $request->email,
                                  'official_Role' => 'user',
@@ -194,15 +178,7 @@ $validator =  Validator::make($request->all(), [
                                  'offcreated_at' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "" ,
                                  'offupdated_at' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
                                ]);
-                   $projectlog =  \App\official::where([
-                                   ['Log_ID', '=', $logid],
-                                   ])->max('official_ID');
-
-                   \App\log::where('Log_ID',$logid)
-                                         ->update([
-                                         'project_log' => $projectlog,
-                                     ]);
-
+              
 
 
 
