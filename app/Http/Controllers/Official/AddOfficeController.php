@@ -279,18 +279,7 @@ public function update(Request $request,$id)
 
 
                     $time =Carbon::now('Asia/Bangkok');
-                    \App\log::insert([
-                    'official_ID' => $request->id,
-                    'table_log' => 'ข้อมูลเจ้าหน้าที่',
-                    'project_log' => $id,
-                    'Log_Event' => 'แก้ไขข้อมูล',
-                    'Log_IP'  => \Request::ip(),
-                    'Log_Time'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
-                    ]);
 
-                          $logid =  \App\log::where([
-                              ['official_ID', '=', $request->id],
-                              ])->max('Log_ID');
 
 
 
@@ -300,6 +289,7 @@ public function update(Request $request,$id)
                                             'Log_ID' => $logid,
                                             'official_Name' => $request->name,
                                             'official_Email'  => $request->email,
+                                            'official_cotton' =>'-',
                                             'official_Role' => 'user',
                                             'info'  => $request->info,
                                             'product'  =>  $request->product,
