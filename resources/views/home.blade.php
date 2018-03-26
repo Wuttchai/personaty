@@ -132,7 +132,7 @@
   </div>
 </div>
 
-
+<<?php dd($hotnews2); ?>
 @if($hotnews2 != '[]')
 <div class="row">
 
