@@ -179,7 +179,7 @@ $validator =  Validator::make($request->all(), [
 
 
                    \App\official::insert([
-                                 'Log_ID' => $logid,
+                                 'official.Log_ID' => $logid,
                                  'official_Name' => $request->name,
                                  'official_Email'  => $request->email,
                                  'official_Role' => 'user',
