@@ -342,29 +342,29 @@ a.list-group-item {
           <div class="col-md-3">
             <h4>เกี่ยวกับ เรือนจำ</h4>
             <ul class="contact">
-                      <li><p><a href="http://www.dop.go.th/th/aboutus/1"class="text-dark">ประวัติความเป็นมา</a></p></li>
-                      <li><p><a href="http://www.dop.go.th/th/aboutus/2"class="text-dark">วิสัยทัศน์และพันธกิจ</a></p></li>
-                      <li><p><a href="http://www.dop.go.th/th/aboutus/3"class="text-dark">โครงสร้างหน่วยงาน</a></p></li>
-                      <li><p><a href="http://www.dop.go.th/th/aboutus/4"class="text-dark">ทำเนียบผู้บริหาร</a></p></li>
-                      <li><p><a href="http://www.dop.go.th/th/aboutus/5"class="text-dark">ยุทธศาสตร์</a></p></li>
-                      <li><p><a href="http://www.dop.go.th/th/aboutus/6"class="text-dark">ภารกิจหน้าที่</a></p></li>
+                      <li><p><a href=""class="text-dark">ประวัติความเป็นมา</a></p></li>
+                      <li><p><a href=""class="text-dark">วิสัยทัศน์และพันธกิจ</a></p></li>
+                      <li><p><a href=""class="text-dark">โครงสร้างหน่วยงาน</a></p></li>
+                      <li><p><a href=""class="text-dark">ทำเนียบผู้บริหาร</a></p></li>
+                      <li><p><a href=""class="text-dark">ยุทธศาสตร์</a></p></li>
+                      <li><p><a href=""class="text-dark">ภารกิจหน้าที่</a></p></li>
                       <li><p><a href="/officialapp"class="text-dark">สำหรับเจ้าหน้าที่</a></p></li>
 
 
-              <li><p><a href="http://www.dop.go.th/th/organization"class="text-dark">หน่วยงานภายใน</a></p></li>
+              <li><p><a href=""class="text-dark">หน่วยงานภายใน</a></p></li>
             </ul>
 
           </div>
           <div class="col-md-3">
             <h4>เอกสารเผยแพร่</h4>
             <ul class="contact">
-                      <li><p><a href="http://www.dop.go.th/th/organization/1" class="text-dark">สำนักงานเลขานุการกรม</a></p></li>
-                      <li><p><a href="http://www.dop.go.th/th/organization/7" class="text-dark">กองยุทธศาสตร์และแผนงาน</a></p></li>
-                      <li><p><a href="http://www.dop.go.th/th/organization/2" class="text-dark">กองส่งเสริมสวัสดิการและคุ้มครองสิทธิผู้สูงอายุ</a></p></li>
-                      <li><p><a href="http://www.dop.go.th/th/organization/3" class="text-dark">กองส่งเสริมศักยภาพผูัสูงอายุ</a></p></li>
-                      <li><p><a href="http://www.dop.go.th/th/organization/4" class="text-dark">กองบริหารกองทุนผู้สูงอายุ</a></p></li>
-                      <li><p><a href="http://www.dop.go.th/th/organization/5" class="text-dark">กลุ่มพัฒนาระบบบริหาร</a></p></li>
-                      <li><p><a href="http://www.dop.go.th/th/organization/6" class="text-dark">กลุ่มตรวจสอบภายใน</a></p></li>
+                      <li><p><a href="" class="text-dark">สำนักงานเลขานุการกรม</a></p></li>
+                      <li><p><a href="" class="text-dark">กองยุทธศาสตร์และแผนงาน</a></p></li>
+                      <li><p><a href="" class="text-dark">กองส่งเสริมสวัสดิการและคุ้มครองสิทธิผู้สูงอายุ</a></p></li>
+                      <li><p><a href="" class="text-dark">กองส่งเสริมศักยภาพผูัสูงอายุ</a></p></li>
+                      <li><p><a href="" class="text-dark">กองบริหารกองทุนผู้สูงอายุ</a></p></li>
+                      <li><p><a href="" class="text-dark">กลุ่มพัฒนาระบบบริหาร</a></p></li>
+                      <li><p><a href="" class="text-dark">กลุ่มตรวจสอบภายใน</a></p></li>
                     </ul>
           </div>
 
@@ -372,25 +372,25 @@ a.list-group-item {
             <h4>คลังความรู้</h4>
             <ul class="contact">
                   <li><p>
-            <a href="http://www.dop.go.th/th/know/1" class="text-dark">สถิติผู้สูงอายุ</a>
+            <a href="" class="text-dark">สถิติผู้สูงอายุ</a>
           </p></li>
                   <li><p>
-            <a href="http://www.dop.go.th/th/know/2" class="text-dark">สถานการณ์ผู้สูงอายุ</a>
+            <a href="" class="text-dark">สถานการณ์ผู้สูงอายุ</a>
           </p></li>
                   <li><p>
-            <a href="http://www.dop.go.th/th/know/3" class="text-dark">บทความ</a>
+            <a href="" class="text-dark">บทความ</a>
           </p></li>
                   <li><p>
-            <a href="http://www.dop.go.th/th/know/4" class="text-dark">ผลงานวิชาการ</a>
+            <a href="" class="text-dark">ผลงานวิชาการ</a>
           </p></li>
                   <li><p>
-            <a href="http://www.dop.go.th/th/know/5" class="text-dark">เอกสารเผยแพร่/สื่อสิ่งพิมพ์</a>
+            <a href="" class="text-dark">เอกสารเผยแพร่/สื่อสิ่งพิมพ์</a>
           </p></li>
                   <li><p>
-            <a href="http://www.dop.go.th/th/know/7" class="text-dark">เทคโนโลยีสารสนเทศ</a>
+            <a href="" class="text-dark">เทคโนโลยีสารสนเทศ</a>
           </p></li>
                   <li><p>
-            <a href="http://www.dop.go.th/th/know/6" class="text-dark">สื่อมัลติมีเดีย</a>
+            <a href="" class="text-dark">สื่อมัลติมีเดีย</a>
           </p></li>
                     </ul>
 
@@ -401,27 +401,27 @@ a.list-group-item {
               <h4>บริการ</h4>
                           <ul class="contact">
                             <li>
-                              <p><a href="http://www.dop.go.th/th/formdownload" class="text-dark">ดาวน์โหลดเอกสาร/แบบฟอร์ม</a></p>
+                              <p><a href="" class="text-dark">ดาวน์โหลดเอกสาร/แบบฟอร์ม</a></p>
                             </li>
 
                             <li><p>
-                              <a href="http://www.dop.go.th/th/topic" class="text-dark">ถามตอบ (Q&amp;A)</a>
+                              <a href="" class="text-dark">ถามตอบ (Q&amp;A)</a>
                             </p></li>
                             <li><p>
-                              <a href="http://www.dop.go.th/th/faq" class="text-dark">คำถามที่พบบ่อย (FAQ)</a></p>
+                              <a href="" class="text-dark">คำถามที่พบบ่อย (FAQ)</a></p>
                             </li>
                             <li>
-                              <p><a href="http://www.dop.go.th/th/formcomplaint" class="text-dark">ร้องเรียน</a></p>
+                              <p><a href="" class="text-dark">ร้องเรียน</a></p>
                             </li>
 
                             <li>
-                              <p><a href="http://www.dop.go.th/th/weblink" class="text-dark">เว็บลิงค์</a></p>
+                              <p><a href="" class="text-dark">เว็บลิงค์</a></p>
                             </li>
                             <li>
-                              <p><a href="http://www.dop.go.th/th/rss" class="text-dark">ระบบกระจายข่าว (RSS)</a></p>
+                              <p><a href="" class="text-dark">ระบบกระจายข่าว (RSS)</a></p>
                             </li>
                             <li>
-                              <p><a href="http://www.dop.go.th/th/search" class="text-dark">ค้นหา</a></p>
+                              <p><a href="" class="text-dark">ค้นหา</a></p>
                             </li>
                           </ul>
 </footer>
