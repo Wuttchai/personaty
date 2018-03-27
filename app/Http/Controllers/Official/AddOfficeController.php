@@ -286,7 +286,7 @@ public function update(Request $request,$id)
 
                               \App\official::where('official_ID',$id)
                                           ->update([
-                                            
+
                                             'official_Name' => $request->name,
                                             'official_Email'  => $request->email,
                                             'official_cotton' =>'-',
@@ -313,9 +313,17 @@ public function update(Request $request,$id)
 }
 public function logfile()
 {
+
+  if (Session::get('idoffice') == '1') {
+    $logfile = \App\log::join('official', 'official.official_ID', '=', 'log.official_ID')
+                ->select('official.official_Name', 'log.table_log', 'log.project_log', 'log.Log_Event','log.Log_IP','log.Log_Time')
+
+                ->orderBy('Log_Time', 'desc')
+                ->get();
+}
   $logfile = \App\log::join('official', 'official.official_ID', '=', 'log.official_ID')
               ->select('official.official_Name', 'log.table_log', 'log.project_log', 'log.Log_Event','log.Log_IP','log.Log_Time')
-              ->where('log.Log_Event', '!=', 'เข้าสู่ระบบ')
+            
               ->where('official.official_ID', '=', Session::get('idoffice'))
               ->orderBy('Log_Time', 'desc')
               ->get();
