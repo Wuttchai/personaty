@@ -240,6 +240,7 @@
                            </div>
                            <div class="modal-footer">
                              <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
+                               <button type="button" class="btn btn-primary" v-if="buttonload"><i class="fa fa-spinner fa-spin"></i> บันทึกข้อมูล</button>
                              <button type="button" class="btn btn-primary"  v-if="buttoninsert"  v-on:click="insert()">บันทึกข้อมูล</button>
                            </div>
                          </div>
@@ -389,7 +390,8 @@
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
-                          <button type="button" class="btn btn-warning"  v-if="buttonedit" v-on:click="updateItem()">บันทึก</button>
+                            <button type="button" class="btn btn-warning" v-if="buttonload"><i class="fa fa-spinner fa-spin"></i>แก้ไขข้อมูล</button>
+                          <button type="button" class="btn btn-warning"  v-if="buttonedit" v-on:click="updateItem()">แก้ไขข้อมูล</button>
                         </div>
                       </div>
                     </div>
@@ -585,6 +587,7 @@
                                  reader.readAsDataURL(file);
                              },
                              insert: function () {
+                               information.buttonload =true;
 information.buttoninsert =false;
 information.nameerror = false;
 information.nocheck = false;
@@ -630,6 +633,7 @@ information.passworderror = false;
                   information.password_confirmationerror = true;
                   information.password_confirmationerror = response.data.messages.password_confirmation[0];
                 }
+                information.buttonload =false;
                 information.buttoninsert =true;
 }
 if (response.data.messages == null && response.data.nocheck != 'yes') {
@@ -710,6 +714,7 @@ if (response.data[0].document == 'จัดการ') {
                          								})
      },
                           updateItem: function() {
+                            information.buttonload = true;
 information.buttonedit =false;
                                      var official_id =	this.id_edit;
 
@@ -751,6 +756,7 @@ information.buttonedit =false;
                                                          information.password_confirmationerror = true;
                                                          information.password_confirmationerror = response.data.messages.password_confirmation[0];
                                                        }
+                                                       information.buttonload = false;
 information.buttonedit =true;
                                                      }
 

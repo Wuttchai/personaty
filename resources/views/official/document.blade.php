@@ -65,6 +65,7 @@
 
 
               <button  type="button"  v-on:click="editItem(item)" class="btn btn-warning"><i class="material-icons">แก้ไข</i></button>&nbsp;&nbsp;&nbsp;
+
               <button  type="button" v-on:click="deleteItem(item)" class="btn btn-danger"><i class="material-icons">ลบ</i></button>
 
             </td>
@@ -175,6 +176,7 @@
          </div>
          <div class="modal-footer">
            <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
+           <button type="button" class="btn btn-primary" v-if="buttonload"><i class="fa fa-spinner fa-spin"></i> บันทึกข้อมูล</button>
            <button type="button" class="btn btn-primary"  v-if="buttoninsert"  v-on:click="insert()">บันทึกข้อมูล</button>
          </div>
        </div>
@@ -259,7 +261,8 @@
          </div>
          <div class="modal-footer">
            <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
-           <button type="button" class="btn btn-warning"  v-if="buttonedit" v-on:click="updateItem()">บันทึก</button>
+           <button type="button" class="btn btn-warning" v-if="buttonload"><i class="fa fa-spinner fa-spin"></i> แก้ไขข้อมูล</button>
+           <button type="button" class="btn btn-warning"  v-if="buttonedit" v-on:click="updateItem()">แก้ไขข้อมูล</button>
          </div>
        </div>
      </div>
@@ -387,6 +390,7 @@ var information =  new Vue({
         'datelastedit':'',
         'detailedit':'',
         'buttoninsert':true,
+        'buttonload':false,
         'items': [],
         'pagination': [],
         'searchKey': '',
@@ -469,6 +473,8 @@ var information =  new Vue({
                reader.readAsDataURL(file);
            },
            insert: function () {
+
+             information.buttonload = true;
              information.buttoninsert = false;
              information.nameerror = false;
              information.fileofficeerror = false;
@@ -494,8 +500,10 @@ information.nameerror = response.data.messages.name[0];
 information.fileofficeerror = true;
 information.fileofficeerror = response.data.messages.fileoffice[0];
   }
+  information.buttonload = false;
 information.buttoninsert = true;
 }else if (response.data[0] == 'true' && response.data[1] == 'ชื่อไฟล์มีขนาดยาวเกินไป') {
+  information.buttonload = false;
 information.buttoninsert = true;
   information.fileofficeerror = true;
   information.fileofficeerror = response.data[1];
@@ -550,6 +558,7 @@ $("#editofficial").modal('show');
 
        							        },
         updateItem: function() {
+          information.buttonload = true;
           information.buttonedit = false;
           information.nameerror = false;
           information.fileofficeerror = false;
@@ -575,10 +584,12 @@ $("#editofficial").modal('show');
                      information.fileofficeerror = true;
                      information.fileofficeerror = response.data.messages.fileoffice[0];
                        }else if (response.data[0] == 'true' && response.data[1] == 'ชื่อไฟล์มีขนาดยาวเกินไป') {
+                         information.buttonload = false;
                          information.buttonedit = true;
                          information.fileofficeerror = true;
                          information.fileofficeerror = response.data[1];
                        }
+                       information.buttonload = false;
 information.buttonedit = true;
               }else {
               location.reload();

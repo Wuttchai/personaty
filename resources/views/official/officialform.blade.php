@@ -179,6 +179,7 @@
          </div>
          <div class="modal-footer">
            <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
+           <button type="button" class="btn btn-primary" v-if="buttonload"><i class="fa fa-spinner fa-spin"></i> บันทึกข้อมูล</button>
            <button type="button" class="btn btn-primary"  v-if="buttoninsert"  v-on:click="insert()">บันทึกข้อมูล</button>
          </div>
        </div>
@@ -278,7 +279,8 @@
          </div>
          <div class="modal-footer">
            <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
-           <button type="button" class="btn btn-warning"  v-if="buttonedit" v-on:click="updateItem()">บันทึก</button>
+           <button type="button" class="btn btn-warning" v-if="buttonload"><i class="fa fa-spinner fa-spin"></i> แก้ไขข้อมูล</button>
+           <button type="button" class="btn btn-warning"  v-if="buttonedit" v-on:click="updateItem()">แก้ไขข้อมูล</button>
          </div>
        </div>
      </div>
@@ -378,7 +380,7 @@ var information =  new Vue({
         'buttonedit':true,
         'buttonedit2':true,
         'inputedit':'true',
-
+        'buttonload' :false,
         'items': [],
         'pagination': [],
         'searchKey': '',
@@ -458,7 +460,7 @@ var information =  new Vue({
 
            },
            insert: function () {
-
+information.buttonedit = true;
 information.buttoninsert=false;
              axios.defaults.headers.post['formData'] = 'multipart/form-data';
              axios.post('/official/testza', {
@@ -476,6 +478,7 @@ information.nameerror = response.data.messages.name[0];
 information.fileofficeerror = true;
 information.fileofficeerror = response.data.messages.fileoffice[0];
   }
+  information.buttonedit = false;
   information.buttoninsert=true;
 }else {
   location.reload();
@@ -528,6 +531,7 @@ $("#editofficial").modal('show');
 
        							        },
         updateItem: function() {
+          information.buttonedit = true;
                   information.buttonedit = false;
                    var info_id =	this.id_edit;
 
@@ -546,6 +550,7 @@ $("#editofficial").modal('show');
               information.fileofficeerror = true;
               information.fileofficeerror = response.data.messages.fileoffice[0];
               }
+              information.buttonedit = false;
               information.buttonedit = true;
               }else {
               location.reload();

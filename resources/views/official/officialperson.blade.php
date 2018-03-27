@@ -151,6 +151,7 @@
          </div>
          <div class="modal-footer">
            <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
+           <button type="button" class="btn btn-primary" v-if="buttonload"><i class="fa fa-spinner fa-spin"></i> บันทึกข้อมูล</button>
            <button type="button" class="btn btn-primary"  v-if="buttoninsert" v-on:click="insert()">บันทึกข้อมูล</button>
          </div>
        </div>
@@ -225,7 +226,9 @@
          </div>
          <div class="modal-footer">
            <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
-           <button type="button" class="btn btn-warning"  v-if="buttonedit"  v-on:click="updateItem()">บันทึก</button>
+           <button type="button" class="btn btn-warning" v-if="buttonload"><i class="fa fa-spinner fa-spin"></i> แก้ไขข้อมูล</button>
+
+           <button type="button" class="btn btn-warning"  v-if="buttonedit"  v-on:click="updateItem()">แก้ไขข้อมูล</button>
          </div>
        </div>
      </div>
@@ -264,6 +267,7 @@ var information =  new Vue({
         'buttoninsert':false,
         'buttonedit':true,
         'buttoninsert':true,
+        'buttonload' :false,
 
         'items': [],
         'pagination': [],
@@ -329,7 +333,7 @@ var information =  new Vue({
 
 
            insert: function () {
-
+             information.buttonload = true;
             information.buttonedit=false;
              information.buttoninsert=false;
              axios.defaults.headers.post['formData'] = 'multipart/form-data';
@@ -348,6 +352,7 @@ information.nameerror = response.data.messages.name[0];
 information.counterror = true;
 information.counterror = response.data.messages.count[0];
   }
+  information.buttonload = false;
   information.buttoninsert=true;
 }else {
   location.reload();
@@ -387,6 +392,7 @@ $("#editofficial").modal('show');
 
        							        },
         updateItem: function() {
+          information.buttonload = true;
 information.buttonedit=false;
                    var Person_ID =	this.id_edit;
 
@@ -405,6 +411,7 @@ information.buttonedit=false;
                      information.counterror = true;
                      information.counterror = response.data.messages.count[0];
                        }
+                       information.buttonload = false;
                        information.buttonedit=true;
                      }else {
                        location.reload();

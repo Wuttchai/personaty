@@ -237,6 +237,7 @@
          </div>
          <div class="modal-footer">
            <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
+           <button type="button" class="btn btn-primary" v-if="buttonload"><i class="fa fa-spinner fa-spin"></i> บันทึกข้อมูล</button>
            <button type="button" class="btn btn-primary" v-if="buttoninsert"  v-on:click="insert()">บันทึกข้อมูล</button>
          </div>
        </div>
@@ -383,7 +384,8 @@
          </div>
          <div class="modal-footer">
            <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
-           <button type="button" class="btn btn-warning"  v-if="buttonedit" v-on:click="updateItem()">บันทึก</button>
+           <button type="button" class="btn btn-warning" v-if="buttonload"><i class="fa fa-spinner fa-spin"></i> แก้ไขข้อมูล</button>
+           <button type="button" class="btn btn-warning"  v-if="buttonedit" v-on:click="updateItem()">แก้ไขข้อมูล</button>
          </div>
        </div>
      </div>
@@ -499,7 +501,7 @@ var information =  new Vue({
         'countedit':'',
         'buttoninsert':true,
         'datelasterror':'',
-
+        'buttonload' :false,
         'datelastedit':'',
         'detailedit':'',
 
@@ -582,6 +584,7 @@ var information =  new Vue({
                reader.readAsDataURL(file);
            },
            insert: function () {
+             information.buttonload = true;
              information.buttoninsert = false;
              information.nameerror = false;
              information.fileofficeerror = false;
@@ -625,6 +628,7 @@ information.fileofficeerror = response.data.messages.fileoffice[0];
   information.detailerror = true;
   information.detailerror = response.data.messages.detail[0];
   }
+  information.buttonload = false;
   information.buttoninsert = true;
 }else {
   location.reload();
@@ -643,6 +647,7 @@ information.fileofficeerror = response.data.messages.fileoffice[0];
             information.moneyerror = false;
            },
   editItem: function(item) {
+
     information.fileofficeerror = false;
     information.detailerror = false;
     information.nameerror = false;
@@ -697,6 +702,7 @@ information.countedit = response.data[0].Pro_Count;
 
        							        },
         updateItem: function() {
+          information.buttonload = true;
           information.buttonedit = false;
           information.nameerror = false;
           information.fileofficeerror = false;
@@ -741,7 +747,8 @@ information.countedit = response.data[0].Pro_Count;
                          information.moneyerror = true;
                          information.moneyerror = response.data.messages.money[0];
                        }
-information.buttonedit = true;
+                       information.buttonload = false;
+                       information.buttonedit = true;
               }else {
               location.reload();
               }
