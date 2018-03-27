@@ -315,6 +315,7 @@ public function logfile()
 {
 
   if (Session::get('idoffice') == '1') {
+    dd("dddd");
     $logfile = \App\log::join('official', 'official.official_ID', '=', 'log.official_ID')
                 ->select('official.official_Name', 'log.table_log', 'log.project_log', 'log.Log_Event','log.Log_IP','log.Log_Time')
 
@@ -323,7 +324,7 @@ public function logfile()
 }
   $logfile = \App\log::join('official', 'official.official_ID', '=', 'log.official_ID')
               ->select('official.official_Name', 'log.table_log', 'log.project_log', 'log.Log_Event','log.Log_IP','log.Log_Time')
-            
+
               ->where('official.official_ID', '=', Session::get('idoffice'))
               ->orderBy('Log_Time', 'desc')
               ->get();
