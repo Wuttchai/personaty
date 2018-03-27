@@ -83,17 +83,38 @@
 
 @push('scripts')
 <script>
+pdfMake.fonts = {
+   THSarabun: {
+     normal: 'THSarabun.ttf',
+     bold: 'THSarabun-Bold.ttf',
+     italics: 'THSarabun-Italic.ttf',
+     bolditalics: 'THSarabun-BoldItalic.ttf'
+   }
+}
 document.getElementById("loader").style.display = "none";
 
 $(document).ready(function() {
     $('#example').DataTable( {
-        dom: 'Bfrtip',
-        buttons: [
-            'copy', 'csv', 'excel', 'pdf', 'print'
-        ],
-        "language": {
-           "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Thai.json"
-       }
+      "dom": 'Bfrtip',
+"buttons": [
+    'copy', 'excel',
+    { // กำหนดพิเศษเฉพาะปุ่ม pdf
+        "extend": 'pdf', // ปุ่มสร้าง pdf ไฟล์
+        "text": 'PDF', // ข้อความที่แสดง
+        "pageSize": 'A4',   // ขนาดหน้ากระดาษเป็น A4
+        "customize":function(doc){ // ส่วนกำหนดเพิ่มเติม ส่วนนี้จะใช้จัดการกับ pdfmake
+            // กำหนด style หลัก
+            doc.defaultStyle = {
+                font:'THSarabun',
+                fontSize:16
+            };
+            // กำหนดความกว้างของ header แต่ละคอลัมน์หัวข้อ
+          
+            console.log(doc); // เอาไว้ debug ดู doc object proptery เพื่ออ้างอิงเพิ่มเติม
+        }
+    }, // สิ้นสุดกำหนดพิเศษปุ่ม pdf
+    'print' , 'pageLength'
+]
     } );
 } );
 </script>
