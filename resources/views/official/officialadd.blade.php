@@ -72,8 +72,9 @@
 
                              <td >
 
-                                <button  type="button"  v-on:click="editItem(item)" class="btn btn-warning"><i class="material-icons">แก้ไข</i></button>&nbsp;&nbsp;&nbsp;
-                                <button  type="button" v-on:click="deleteItem(item)" class="btn btn-danger"><i class="material-icons">ลบ</i></button>
+                                <button  type="button"  v-on:click="editItem(item)" class="btn btn-warning"><i class="material-icons">แก้ไข</i></button>
+
+                                <button  type="button" v-on:click="deleteItem(item)" class="btn btn-danger" style="width: 62px;"><i class="material-icons"> ลบ</i></button>
 
                               </td>
 

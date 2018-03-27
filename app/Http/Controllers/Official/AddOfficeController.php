@@ -7,6 +7,7 @@ use Session;
 use Illuminate\Support\Facades\Validator;
 use Carbon\Carbon;
 use Khill\Lavacharts\Lavacharts;
+use DB;
 
 class AddOfficeController extends Controller
 {
@@ -315,13 +316,13 @@ public function logfile()
 {
 
   if (Session::get('idoffice') == '1') {
-    dd("dddd");
-    $logfile = \App\log::join('official', 'official.official_ID', '=', 'log.official_ID')
-                ->select('official.official_Name', 'log.table_log', 'log.project_log', 'log.Log_Event','log.Log_IP','log.Log_Time')
 
-                ->orderBy('Log_Time', 'desc')
-                ->get();
-}
+
+                $logfile = DB::table('log')
+                            ->crossJoin('official')
+                            ->get()->toarray();
+return view('official.logfile', ['logfile' => $logfile]);
+}else {
   $logfile = \App\log::join('official', 'official.official_ID', '=', 'log.official_ID')
               ->select('official.official_Name', 'log.table_log', 'log.project_log', 'log.Log_Event','log.Log_IP','log.Log_Time')
 
@@ -332,6 +333,8 @@ public function logfile()
 
 
   return view('official.logfile', ['logfile' => $logfile]);
+}
+
 
 }
     public function index()
