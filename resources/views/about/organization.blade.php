@@ -24,7 +24,7 @@
 
           <div class="item">
 
-<img src=" <?php echo "about/".$about[0]->Person_Num ?>" class="img-thumbnail" alt="Cinque Terre">
+<img src=" <?php echo "about/".$about[0]->Person_Num ?>" class="img-rounded">
 
 
   </div>
