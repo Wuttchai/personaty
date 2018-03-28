@@ -439,6 +439,7 @@ var information =  new Vue({
         'fileofficeerror':'',
         'items': [],
         'image':'',
+        'buttonedit2':true,
         'pagination': [],
         'searchKey': '',
         'currentPage': 0,
@@ -564,9 +565,6 @@ if (information.type == 'ประวัติความเป็นมา' ||
              information.nameerror = false;
            },
   editItem: function(item) {
-
-
-
              information.counterror = false;
              information.nameerror = false;
 
@@ -576,7 +574,7 @@ if (information.type == 'ประวัติความเป็นมา' ||
        								axios.get(link, {
        								}).then(function (response) {
                         information.id_edit = response.data[0].Person_ID;
-
+if (response.data[0].official_ID == information.id) {
 if (response.data[0].Person_Type == 'ประวัติความเป็นมา' || response.data[0].Person_Type == 'วิสัยทัศน์และพันธกิจ'   || response.data[0].Person_Type == 'ยุทธศาสตร์') {
 information.nameedit = response.data[0].Person_Num;
 
@@ -585,7 +583,18 @@ $("#editofficial").modal('show');
 information.imageedit = response.data[0].Person_Num;
 $("#editofficial2").modal('show');
 }
+}else {
+  if (response.data[0].Person_Type == 'ประวัติความเป็นมา' || response.data[0].Person_Type == 'วิสัยทัศน์และพันธกิจ'   || response.data[0].Person_Type == 'ยุทธศาสตร์') {
+  information.nameedit = response.data[0].Person_Num;
 
+  $("#editofficial").modal('show');
+  }else {
+  information.imageedit = response.data[0].Person_Num;
+  $("#editofficial2").modal('show');
+  }
+information.buttonedit2 = false
+
+}
 
 
 

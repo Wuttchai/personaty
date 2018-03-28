@@ -156,7 +156,7 @@ $time =Carbon::now('Asia/Bangkok');
 
        $info = \App\person::join('log','person_count.Log_ID','=','log.Log_ID')
                    ->join('official', 'official.official_ID', '=', 'log.official_ID')
-                   ->select('person_count.Person_Type','person_count.Person_Num','person_count.Person_ID')
+                   ->select('official.official_ID','person_count.Person_Type','person_count.Person_Num','person_count.Person_ID')
                    ->where('person_count.Person_ID','=' ,$id)
                    ->get();
 
