@@ -21,7 +21,8 @@
               <hr>
             </div>
           </div>
-@if(isset($about))
+          <<?php dd($about) ?>
+@if($about != '[]')
           <div class="item">
 
 <img src=" <?php echo "about/".$about[0]->Person_Num ?>" class="img-rounded">
