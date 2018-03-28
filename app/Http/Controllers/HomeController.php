@@ -40,7 +40,7 @@ return view('about.vision');
   return view('about.vision');
   }  if ($_GET['type'] == 'โครงสร้างหน่วยงาน') {
     $about = DB::table('person_count')
-  
+    ->where('Person_Type','=','โครงสร้างหน่วยงาน')
     ->where('perupdated_at', DB::raw("(select max(perupdated_at) from person_count)"))->get();
 return view('about.organization',[
   'about' => $about
