@@ -231,7 +231,84 @@
 
 
 <!---model close 1.7------------------------------------------>
+<div class="modal fade" id="editofficial2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header  text-center">
+        <h5 class="modal-title text-center" id="exampleModalLabel">แก้ไขข้อมูลผู้ต้องขัง</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-6 ">
+            <div class="card card-cascade ">
 
+        <!--Card image-->
+        <div class="view gradient-card-header blue-gradient">
+        <div class="card-header card text-center bg-info"> กรอกข้อมูล </div>
+
+        </div>
+        <!--/Card image-->
+
+        <!--Card content-->
+        <div class="card-body text-center" >
+
+              <div class="form-group">
+                <div v-bind:class="{'form-group':fileofficeerror , 'form-control label text-danger is-invalid':fileofficeerror }">
+
+                              <span class="btn btn-success btn-file" v-if="buttonedit2" >
+                                  Browse… <input type="file" id="imgInp2"  v-on:change="onFileChange">
+                              </span>
+                              <div class="form-group row">
+
+                              </div>
+                                 <input type="text" class="form-control" v-model="imageedit" readonly>
+                              <span class="text-danger" v-if="fileofficeerror">
+                                  <strong>@{{ fileofficeerror }}</strong>
+                              </span>
+                          </div>
+
+
+                    </div>
+                  </div>
+
+                  </div>
+         </div>
+
+                             <div class="col-md-6">
+                             <div class="card card-cascade">
+
+            <!--Card image-->
+            <div class="view gradient-card-header blue-gradient">
+              <div class="card-header card text-center bg-info"> ตัวอย่างรูปภาพ </div>
+
+            </div>
+            <!--/Card image-->
+
+            <!--Card content-->
+            <div class="card-body text-center" >
+
+       <img :src="'{{asset('about')}}/' + imageedit" height="400" width="320" id='img-upload2'/>
+            </div>
+
+            </div>
+
+        </div>
+
+
+                               </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
+        <button type="button" class="btn btn-warning" v-if="buttonload"><i class="fa fa-spinner fa-spin"></i> แก้ไขข้อมูล</button>
+        <button type="button" class="btn btn-warning"  v-if="buttonedit"  v-on:click="updateItem()">แก้ไขข้อมูล</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!---model 2------------------------------------------>
 
@@ -346,6 +423,7 @@ var information =  new Vue({
         'id'  :'<?php echo Session::get('idoffice'); ?>',
         'name': '',
         'type':'',
+        'imageedit':'',
         'nameedit': '',
         'count': '',
         'countedit':'',
@@ -497,11 +575,20 @@ if (information.type == 'ประวัติความเป็นมา' ||
        								var link = "/person/edit" + Person_ID;
        								axios.get(link, {
        								}).then(function (response) {
+                        information.id_edit = response.data[0].Person_ID;
 
-  information.id_edit = response.data[0].Person_ID;
-  information.nameedit = response.data[0].Person_Num;
+if (response.data[0].Person_Type == 'ประวัติความเป็นมา' || response.data[0].Person_Type == 'วิสัยทัศน์และพันธกิจ'   || response.data[0].Person_Type == 'ยุทธศาสตร์') {
+information.nameedit = response.data[0].Person_Num;
 
-  $("#editofficial").modal('show');
+$("#editofficial").modal('show');
+}else {
+information.imageedit = response.data[0].Person_Num;
+$("#editofficial2").modal('show');
+}
+
+
+
+
        								})
 
        							        },
