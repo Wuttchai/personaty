@@ -166,16 +166,31 @@ $time =Carbon::now('Asia/Bangkok');
 
      public function update(Request $request,$id)
      {
+if ($request->img && $request->name) {
+
+}
+if ($request->img) {
   $Validator = Validator::make($request->all(),[
     'id' => 'required|string',
-    'name' => 'required|string',
-   'count' => 'required|string'
+    'img' => 'required|string|unique:person_count,Person_Type|image64:jpeg,jpg,png|img_min_size:1000,500'
   ]);
   if($Validator->errors()->messages() != null){
     return[
     'messages' => $Validator->errors()->messages()
     ];
   }
+}
+if ($request->name) {
+  $Validator = Validator::make($request->all(),[
+    'id' => 'required|string',
+    'name' => 'required|string'
+  ]);
+  if($Validator->errors()->messages() != null){
+    return[
+    'messages' => $Validator->errors()->messages()
+    ];
+  }
+}
 
             $time =Carbon::now('Asia/Bangkok');
                 \App\log::insert([

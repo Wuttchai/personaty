@@ -602,25 +602,26 @@ information.buttonedit2 = false
 
        							        },
         updateItem: function() {
-          console.log(this.image);
           information.buttonload = true;
-information.buttonedit=false;
+          information.buttonedit=false;
+
+
                    var Person_ID =	this.id_edit;
 
                    var link = "/person/updateinfo/" + Person_ID;
                    axios.post(link, {
                      id: this.id,
                      name: this.nameedit,
-                     count: this.countedit,
+                     img:this.image,
                    }).then(function (response) {
                      if (response.data.messages != null) {
                        if(response.data.messages.name != null){
                      information.nameerror = true;
                      information.nameerror = response.data.messages.name[0];
                        }
-                       if(response.data.messages.count != null){
-                     information.counterror = true;
-                     information.counterror = response.data.messages.count[0];
+                       if(response.data.messages.img != null){
+                     information.fileofficeerror = true;
+                     information.fileofficeerror = response.data.messages.img[0];
                        }
                        information.buttonload = false;
                        information.buttonedit=true;
