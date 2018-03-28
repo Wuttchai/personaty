@@ -34,13 +34,9 @@ class HomeController extends Controller
     {
       if ($_GET['type'] == 'ประวัติความเป็นมา') {
   $about = DB::table('person_count')
-  ->where('person_count.Person_Type','=','ประวัติความเป็นมา')
-  ->where('person_count.perupdated_at', DB::raw("(select max('person_count.perupdated_at') from person_count)"))->get();
-  $about2 = DB::table('person_count')
-->where('person_count.perupdated_at', DB::raw("(select max('person_count.perupdated_at') from person_count)"))->get();
+  ->where('Person_Type','=','ประวัติความเป็นมา')
+  ->where('perupdated_at', DB::raw("(select max(perupdated_at) from person_count)"))->get();
 
-
-  dd($about,$about2);
 return view('about.vision',[
 
   'about' => $about
