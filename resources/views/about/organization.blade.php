@@ -16,7 +16,7 @@
           <div class="row">
             <div class="col-md-6 col-md-offset-3">
               <div class="text-center">
-                <h2>ประวัติความเป็นมา</h2>
+                <h2>โครงสร้างหน่วยงาน</h2>
               </div>
               <hr>
             </div>

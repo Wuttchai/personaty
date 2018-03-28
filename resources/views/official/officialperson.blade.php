@@ -30,8 +30,8 @@
                          <a class="dropdown-item"  v-on:click="cleardata('วิสัยทัศน์และพันธกิจ')">วิสัยทัศน์และพันธกิจ</a>
                          <a class="dropdown-item"  v-on:click="cleardata('ทำเนียบผู้บริหาร')">ทำเนียบผู้บริหาร</a>
                          <a class="dropdown-item"  v-on:click="cleardata('ยุทธศาสตร์')">ยุทธศาสตร์</a>
-                         <a class="dropdown-item"  v-on:click="cleardata('ภารกิจหน้าที่')">โครงสร้างการบริหารงาน</a>
-                            <a class="dropdown-item"  v-on:click="cleardata('ภารกิจหน้าที่')">ข้อมูลสถิติผู้ต้องขัง</a>
+                         <a class="dropdown-item"  v-on:click="cleardata('โครงสร้างการบริหารงาน')">โครงสร้างการบริหารงาน</a>
+                            <a class="dropdown-item"  v-on:click="cleardata('ข้อมูลสถิติผู้ต้องขัง')">ข้อมูลสถิติผู้ต้องขัง</a>
                        </div>
                      </div>
 
