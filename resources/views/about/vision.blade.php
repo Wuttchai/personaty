@@ -37,6 +37,7 @@
 </div>
 
   </div>
+  <<?php dd($about) ?>
 <h5 >{{ $about }} </h5>
        </div>
        </div>
