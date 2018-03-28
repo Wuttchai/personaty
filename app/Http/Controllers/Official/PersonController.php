@@ -237,18 +237,20 @@ $logid =  \App\log::where([
             'perupdated_at' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
           ]);
 }
-  
+
 
      }
 
 
      public function delete(Request $request,$id)
      {
+       $table_log = \App\person::select('Person_Type')
+                   ->get();
 
        $time =Carbon::now('Asia/Bangkok');
          \App\log::insert([
          'official_ID' => $request->id,
-         'table_log' => 'ข้อมูลผู้ต้องขัง',
+         'table_log' => "ข้อมูล" . $table_log[0]->Person_Type. "",
          'project_log' => $id,
          'Log_Event' => 'ลบข้อมูล',
          'Log_IP'  => \Request::ip(),
