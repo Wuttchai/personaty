@@ -577,7 +577,7 @@ if (information.type == 'ประวัติความเป็นมา' ||
 if (response.data[0].official_ID == information.id) {
 if (response.data[0].Person_Type == 'ประวัติความเป็นมา' || response.data[0].Person_Type == 'วิสัยทัศน์และพันธกิจ'   || response.data[0].Person_Type == 'ยุทธศาสตร์') {
 information.nameedit = response.data[0].Person_Num;
-
+information.type = response.data[0].Person_Type;
 $("#editofficial").modal('show');
 }else {
 information.imageedit = response.data[0].Person_Num;
@@ -613,6 +613,8 @@ information.buttonedit2 = false
                      id: this.id,
                      name: this.nameedit,
                      img:this.image,
+                     type:this.type,
+
                    }).then(function (response) {
                      if (response.data.messages != null) {
                        if(response.data.messages.name != null){

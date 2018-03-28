@@ -166,6 +166,7 @@ $time =Carbon::now('Asia/Bangkok');
 
      public function update(Request $request,$id)
      {
+         $time =Carbon::now('Asia/Bangkok');
 if ($request->img && $request->name) {
 
 }
@@ -179,6 +180,32 @@ if ($request->img) {
     'messages' => $Validator->errors()->messages()
     ];
   }
+
+  $imageData = $request->get('img');
+  $fileName = Carbon::now()->timestamp . '_' . uniqid() . '.' . explode('/', explode(':', substr($imageData, 0, strpos($imageData, ';')))[1])[1];
+  \Image::make($imageData)->resize(1366, 769)->save(public_path('about/').$fileName);
+
+
+\App\log::insert([
+'official_ID' => $request->id,
+'table_log' => "ข้อมูล" . $request->count. "",
+'project_log' => $id,
+'Log_Event' => 'แก้ไขข้อมูล',
+'Log_IP'  => \Request::ip(),
+'Log_Time'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
+]);
+ $logid =  \App\log::where([
+     ['official_ID', '=', $request->id],
+     ])->max('Log_ID');
+
+     \App\person::where('Person_ID',$id)
+                 ->update([
+                   'Log_ID' => $logid,
+                   'Person_Num'  => $fileName,
+                   'perupdated_at' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
+                 ]);
+
+
 }
 if ($request->name) {
   $Validator = Validator::make($request->all(),[
@@ -190,39 +217,26 @@ if ($request->name) {
     'messages' => $Validator->errors()->messages()
     ];
   }
+  \App\log::insert([
+    'official_ID' => $request->id,
+    'table_log' => "ข้อมูล" . $request->type. "",
+    'project_log' => $id,
+    'Log_Event' => 'แก้ไขข้อมูล',
+    'Log_IP'  => \Request::ip(),
+    'Log_Time'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
+]);
+
+$logid =  \App\log::where([
+['official_ID', '=', $request->id],
+])->max('Log_ID');
+
+\App\person::where('Person_ID',$id)
+          ->update([
+            'Log_ID' => $logid,
+            'Person_Num'  => $request->name,
+            'perupdated_at' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
+          ]);
 }
-
-            $time =Carbon::now('Asia/Bangkok');
-                \App\log::insert([
-                  'official_ID' => $request->id,
-                  'table_log' => 'ข้อมูลผู้ต้องขัง',
-                  'project_log' => '0',
-                  'Log_Event' => 'แก้ไขข้อมูล',
-                  'Log_IP'  => \Request::ip(),
-                  'Log_Time'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
-            ]);
-
-        $logid =  \App\log::where([
-            ['official_ID', '=', $request->id],
-            ])->max('Log_ID');
-
-
-
-            \App\person::where('Person_ID',$id)
-                        ->update([
-                          'Log_ID' => $logid,
-                          'Person_Type' => $request->name,
-                          'Person_Num'  => $request->count,
-                          'perupdated_at' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
-                        ]);
-
-
-
-      \App\log::where('Log_ID',$logid)
-      ->update([
-      'project_log' => $id,
-
-
   ]);
 
      }
