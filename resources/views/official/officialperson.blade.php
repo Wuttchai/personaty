@@ -21,10 +21,20 @@
                    <div class="col-md-6 text-center">
 
 
+                     <div class="dropdown">
+                       <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                         เพิ่มข้อมูล
+                       </button>
+                       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                         <a class="dropdown-item"  v-on:click="cleardata('ประวัติความเป็นมา')">ประวัติความเป็นมา</a>
+                         <a class="dropdown-item"  v-on:click="cleardata('วิสัยทัศน์และพันธกิจ')">วิสัยทัศน์และพันธกิจ</a>
+                         <a class="dropdown-item"  v-on:click="cleardata('ทำเนียบผู้บริหาร')">ทำเนียบผู้บริหาร</a>
+                         <a class="dropdown-item"  v-on:click="cleardata('ยุทธศาสตร์')">ยุทธศาสตร์</a>
+                         <a class="dropdown-item"  v-on:click="cleardata('ภารกิจหน้าที่')">โครงสร้างการบริหารงาน</a>
+                            <a class="dropdown-item"  v-on:click="cleardata('ภารกิจหน้าที่')">ข้อมูลสถิติผู้ต้องขัง</a>
+                       </div>
+                     </div>
 
-                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#official" v-on:click="cleardata">
-  เพิ่มข้อมูล
-</button>
  </div>
 &nbsp;
  <div class="col-md-5 text-right">
@@ -89,10 +99,10 @@
 
    <!-- Modal -->
    <div class="modal fade" id="official" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-     <div class="modal-dialog modal-mg" role="document">
+     <div class="modal-dialog modal-lg" role="document">
        <div class="modal-content">
          <div class="modal-header  text-center">
-           <h5 class="modal-title text-center" id="exampleModalLabel">เพิ่มข้อมูลผู้ต้องขัง</h5>
+           <h5 class="modal-title text-center" id="exampleModalLabel">เพิ่มข้อมูล@{{ type }}</h5>
            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
              <span aria-hidden="true">&times;</span>
            </button>
@@ -112,39 +122,18 @@
            <!--Card content-->
            <div class="card-body text-center" >
 
-
-             <div v-bind:class="{'form-group':nameerror , 'form-control label text-danger is-invalid':nameerror }">
-                           <label for="inputMessage">ชื่อประเภทข้อมูลผู้ต้องขัง</label>
-                           <input type="text" class="form-control"  id="name" placeholder="ใส่ชื่อประเภทข้อมูลผู้ต้องขัง" v-model="name"/>
-                           <span class="text-danger" v-if="nameerror">
-                               <strong>@{{ nameerror }}</strong>
-                           </span>
-                       </div>
-
-<div class="card-body" >
-
-
-
-</div>
-<div v-bind:class="{'form-group':counterror , 'form-control label text-danger is-invalid':counterror }">
-              <label for="inputMessage">จำนวนผู้ต้องขัง</label>
-              <input type="text" class="form-control"  id="count" placeholder="ใส่จำนวนผู้ต้องขัง" v-model="count"/>
-              <span class="text-danger" v-if="counterror">
-                  <strong>@{{ counterror }}</strong>
-              </span>
-          </div>
-
-                       <div class="form-group row">
-
-                       </div>
+                       <div v-bind:class="{'form-group':nameerror , 'form-control label text-danger is-invalid':nameerror }">
+                                     <label for="inputMessage">เนื้อหาข้างต้นของ@{{ type }}</label>
+                                    <textarea class="form-control" rows="12" id="detail" placeholder="ใส่เนื้อหา....." v-model="name"></textarea>
+                                     <span class="text-danger" v-if="nameerror">
+                                         <strong>@{{ nameerror }}</strong>
+                                     </span>
+                                 </div>
 
                      </div>
 
                      </div>
             </div>
-
-
-
 
                                   </div>
 
@@ -157,6 +146,91 @@
        </div>
      </div>
    </div>
+
+
+<!---model 1.5------------------------------------------>
+
+<div class="modal fade" id="officialimg" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header  text-center">
+        <h5 class="modal-title text-center" id="exampleModalLabel">เพิ่มข้อมูล@{{ type }}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12 ">
+            <div class="card card-cascade card text-center">
+
+        <!--Card image-->
+        <div class="view gradient-card-header blue-gradient">
+        <div class="card-header card text-center bg-info"> กรอกข้อมูล </div>
+
+        </div>
+        <!--/Card image-->
+
+        <!--Card content-->
+        <div class="card-body text-center" >
+          <div class="row">
+            <div class="col-md-6 ">
+          <div v-bind:class="{'form-group':fileofficeerror , 'form-control label text-danger is-invalid':fileofficeerror }">
+
+                        <span class="btn btn-success btn-file" >
+                            Browse… <input type="file" id="imgInp" v-on:change="onFileChange">
+                        </span>
+                        <div class="form-group row">
+
+                        </div>
+                           <input type="text" class="form-control" readonly>
+                        <span class="text-danger" v-if="fileofficeerror">
+                            <strong>@{{ fileofficeerror }}</strong>
+                        </span>
+                    </div>
+</div>
+<div class="col-md-6" id="text">
+<div class="card card-cascade">
+
+<!--Card image-->
+<div class="view gradient-card-header blue-gradient">
+<div class="card-header card text-center bg-info"> ตัวอย่างรูปภาพ </div>
+
+</div>
+<!--/Card image-->
+
+<!--Card content-->
+<div class="card-body text-center" >
+
+<img id='img-upload' />
+</div>
+
+</div>
+
+</div>
+
+
+                  </div>
+
+                  </div>
+         </div>
+
+                               </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
+        <button type="button" class="btn btn-primary" v-if="buttonload"><i class="fa fa-spinner fa-spin"></i> บันทึกข้อมูล</button>
+        <button type="button" class="btn btn-primary"  v-if="buttoninsert" v-on:click="insert()">บันทึกข้อมูล</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!---model close 1.5------------------------------------------>
+
+
+
 
 <!---model 2------------------------------------------>
 
@@ -251,12 +325,50 @@
 document.getElementById("loader").style.display = "none";
 document.getElementById("dsds").style.display = "block";
 
+$(document).ready( function() {
+
+    	$(document).on('change', '.btn-file :file', function() {
+		var input = $(this),
+			label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+		input.trigger('fileselect', [label]);
+		});
+
+		$('.btn-file :file').on('fileselect', function(event, label) {
+
+		    var input = $(this).parents('.form-group').find(':text'),
+		        log = label;
+
+		    if( input.length ) {
+		        input.val(log);
+		    } else {
+
+		    }
+
+		});
+		function readURL(input) {
+		    if (input.files && input.files[0]) {
+		        var reader = new FileReader();
+
+		        reader.onload = function (e) {
+		            $('#img-upload').attr('src', e.target.result);
+		        }
+
+		        reader.readAsDataURL(input.files[0]);
+            document.getElementById("text").style.display = "block";
+		    }
+		}
+
+		$("#imgInp").change(function(){
+		    readURL(this);
+		});
+	});
 
 var information =  new Vue({
     el: '#example-4',
     data: {
         'id'  :'<?php echo Session::get('idoffice'); ?>',
         'name': '',
+        'type':'',
         'nameedit': '',
         'count': '',
         'countedit':'',
@@ -268,8 +380,9 @@ var information =  new Vue({
         'buttonedit':true,
         'buttoninsert':true,
         'buttonload' :false,
-
+        'fileofficeerror':'',
         'items': [],
+        'image':'',
         'pagination': [],
         'searchKey': '',
         'currentPage': 0,
@@ -331,16 +444,33 @@ var information =  new Vue({
 
 				    },
 
-
+            onFileChange(e) {
+                     let files = e.target.files || e.dataTransfer.files;
+                     if (!files.length)
+                         return;
+                     this.createImage(files[0]);
+                 },
+                 createImage(file) {
+                     let reader = new FileReader();
+                     let vm = this;
+                     reader.onload = (e) => {
+                         vm.image = e.target.result;
+                     };
+                     reader.readAsDataURL(file);
+                 },
            insert: function () {
              information.buttonload = true;
-            information.buttonedit=false;
              information.buttoninsert=false;
+             if (information.type == 'ประวัติความเป็นมา' || information.type == 'วิสัยทัศน์และพันธกิจ'   || information.type == 'ยุทธศาสตร์') {
+              information.name = this.name;
+             }else {
+               information.name = this.image;
+             }
              axios.defaults.headers.post['formData'] = 'multipart/form-data';
              axios.post('/official/person/add', {
                  id: this.id,
                  name: this.name,
-                 count: this.count,
+                 count: this.type,
 
                }).then(function (response) {
 if (response.data.messages != null) {
@@ -362,7 +492,18 @@ information.counterror = response.data.messages.count[0];
 
 
            },
-   cleardata: function () {
+   cleardata: function (event) {
+     information.type = event;
+
+
+
+
+if (information.type == 'ประวัติความเป็นมา' || information.type == 'วิสัยทัศน์และพันธกิจ'   || information.type == 'ยุทธศาสตร์') {
+  $("#official").modal('show');
+}else {
+  $("#officialimg").modal('show');
+}
+
              information.counterror = false;
              information.nameerror = false;
            },

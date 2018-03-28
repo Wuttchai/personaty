@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="{{ asset('css/testboot.css') }}">
     <link rel="stylesheet" href="{{ asset('css/sweetalert2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('fonts/thsarabunnew.css') }}" />
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
 <style media="screen">
@@ -453,16 +453,14 @@ a.list-group-item {
           <div class="col-md-3">
             <h4>เกี่ยวกับ เรือนจำ</h4>
             <ul class="contact">
-                      <li><p><a href=""class="text-dark">ประวัติความเป็นมา</a></p></li>
-                      <li><p><a href=""class="text-dark">วิสัยทัศน์และพันธกิจ</a></p></li>
+                      <li><p><a href="/history"class="text-dark">ประวัติความเป็นมา</a></p></li>
+                      <li><p><a href="/vision"class="text-dark">วิสัยทัศน์และพันธกิจ</a></p></li>
                       <li><p><a href=""class="text-dark">โครงสร้างหน่วยงาน</a></p></li>
                       <li><p><a href=""class="text-dark">ทำเนียบผู้บริหาร</a></p></li>
                       <li><p><a href=""class="text-dark">ยุทธศาสตร์</a></p></li>
-                      <li><p><a href=""class="text-dark">ภารกิจหน้าที่</a></p></li>
+                      <li><p><a href=""class="text-dark">ข้อมูลบุคลากร</a></p></li>
                       <li><p><a href="/officialapp"class="text-dark">สำหรับเจ้าหน้าที่</a></p></li>
-
-
-              <li><p><a href=""class="text-dark">หน่วยงานภายใน</a></p></li>
+                      <li><p><a href=""class="text-dark">ข้อมูลสถิติผู้ต้องขัง</a></p></li>
             </ul>
 
           </div>

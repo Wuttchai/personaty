@@ -44,19 +44,20 @@ public $timestamps = false;
      public function insert(Request $request)
      {
 
-    $validator =  Validator::make($request->all(), [
-         'id' => 'required|string',
-         'name' => 'required|string|unique:person_count,Person_Type',
-        'count' => 'required|string|numeric'
+if ($request->count == 'ประวัติความเป็นมา' || $request->count == 'วิสัยทัศน์และพันธกิจ'   || $request->count == 'ยุทธศาสตร์') {
+  $validator =  Validator::make($request->all(), [
+       'id' => 'required|string',
+       'name' => 'required|string|unique:person_count,Person_Type',
+      'count' => 'required|string'
 
-           ]);
+         ]);
 
-           if($validator->fails()){
+         if($validator->fails()){
 
-                 return[
-                 'messages' => $validator->errors()->messages()
-                 ];
-               }else {
+               return[
+               'messages' => $validator->errors()->messages()
+               ];
+             }else {
 
 
 
@@ -64,43 +65,87 @@ public $timestamps = false;
 
 
 $time =Carbon::now('Asia/Bangkok');
-    \App\log::insert([
-      'official_ID' => $request->id,
-      'table_log' => 'ข้อมูลผู้ต้องขัง',
-      'project_log' => '0',
-      'Log_Event' => 'เพิ่มข้อมูล',
-      'Log_IP'  => \Request::ip(),
-      'Log_Time'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
+  \App\log::insert([
+    'official_ID' => $request->id,
+    'table_log' => "ข้อมูล" . $request->count. "",
+    'project_log' => '0',
+    'Log_Event' => 'เพิ่มข้อมูล',
+    'Log_IP'  => \Request::ip(),
+    'Log_Time'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
 ]);
 
-                $logid =  \App\log::where([
-                    ['official_ID', '=', $request->id],
-                    ])->max('Log_ID');
+              $logid =  \App\log::where([
+                  ['official_ID', '=', $request->id],
+                  ])->max('Log_ID');
 
 
 
-                \App\person::insert([
-                              'Log_ID' => $logid,
-                              'Person_Type' => $request->name,
-                              'Person_Num'  => $request->count,
-                              'percreated_at' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "" ,
-                              'perupdated_at' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
-                            ]);
-                $projectlog =  \App\person::where([
-                                ['Log_ID', '=', $logid],
-                                ])->max('Person_ID');
+              \App\person::insert([
+                            'Log_ID' => $logid,
+                            'Person_Type' => $request->count,
+                            'Person_Num'  => $request->name,
+                            'percreated_at' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "" ,
+                            'perupdated_at' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
+                          ]);
+              $projectlog =  \App\person::where([
+                              ['Log_ID', '=', $logid],
+                              ])->max('Person_ID');
+              \App\log::where('Log_ID',$logid)
+                                    ->update([
+                                    'project_log' => $projectlog,
+                                ]);
+             }
 
-                \App\log::where('Log_ID',$logid)
-                                      ->update([
-                                      'project_log' => $projectlog,
+}else {
+$validator =  Validator::make($request->all(), [
+  'id' => 'required|string',
+  'name' => 'required|string|unique:person_count,Person_Type|image64:jpeg,jpg,png|img_min_size:1000,500',
+ 'count' => 'required|string'
+
+    ]);
+
+    if($validator->fails()){
+
+          return[
+          'messages' => $validator->errors()->messages()
+          ];
+        }else {
+          $imageData = $request->get('name');
+          $fileName = Carbon::now()->timestamp . '_' . uniqid() . '.' . explode('/', explode(':', substr($imageData, 0, strpos($imageData, ';')))[1])[1];
+          \Image::make($imageData)->resize(1366, 769)->save(public_path('about/').$fileName);
 
 
-                                  ]);
+$time =Carbon::now('Asia/Bangkok');
+\App\log::insert([
+'official_ID' => $request->id,
+'table_log' => "ข้อมูล" . $request->count. "",
+'project_log' => '0',
+'Log_Event' => 'เพิ่มข้อมูล',
+'Log_IP'  => \Request::ip(),
+'Log_Time'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
+]);
+         $logid =  \App\log::where([
+             ['official_ID', '=', $request->id],
+             ])->max('Log_ID');
+         \App\person::insert([
+                       'Log_ID' => $logid,
+                       'Person_Type' => $request->count,
+                       'Person_Num'  => $request->name,
+                       'percreated_at' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "" ,
+                       'perupdated_at' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
+                     ]);
+         $projectlog =  \App\person::where([
+                         ['Log_ID', '=', $logid],
+                         ])->max('Person_ID');
+         \App\log::where('Log_ID',$logid)
+                               ->update([
+                               'project_log' => $projectlog,
+                           ]);
+        }
 
 
+}
 
-
-               }
 
 
 

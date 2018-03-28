@@ -45,6 +45,7 @@ public function graphproduct() {
       $chartjs = app()->chartjs
            ->name('barChartTest')
            ->type('doughnut')
+
            ->size(['width' => 200  , 'height' => 100])
            ->labels(['เอกสารที่เผยแพร่','ภาพแบรน์เนอร์','จำนวนผู้ต้องขัง','สินค้าวิชาชีพ','ข่าวประชาสัมพันธ์','ข่าวกิจกรรม','ข้อมูลวันหยุด'])
 
