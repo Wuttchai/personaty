@@ -25,7 +25,7 @@
 
           <div class="item">
 
-<img src=" <?php echo "about/".$about[0]->Person_Num ?>" class="img-rounded">
+<img src=" <?php echo "about/".$about[0]->Person_Num ?>"  class="img-thumbnail">
 
 
   </div>
