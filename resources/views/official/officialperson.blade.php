@@ -28,9 +28,10 @@
                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                          <a class="dropdown-item"  v-on:click="cleardata('ประวัติความเป็นมา')">ประวัติความเป็นมา</a>
                          <a class="dropdown-item"  v-on:click="cleardata('วิสัยทัศน์และพันธกิจ')">วิสัยทัศน์และพันธกิจ</a>
+                         <a class="dropdown-item"  v-on:click="cleardata('โครงสร้างหน่วยงาน')">โครงสร้างหน่วยงาน</a>
                          <a class="dropdown-item"  v-on:click="cleardata('ทำเนียบผู้บริหาร')">ทำเนียบผู้บริหาร</a>
                          <a class="dropdown-item"  v-on:click="cleardata('ยุทธศาสตร์')">ยุทธศาสตร์</a>
-                         <a class="dropdown-item"  v-on:click="cleardata('โครงสร้างการบริหารงาน')">โครงสร้างการบริหารงาน</a>
+                         <a class="dropdown-item"  v-on:click="cleardata('ข้อมูลบุคลากร')">ข้อมูลบุคลากร</a>
                             <a class="dropdown-item"  v-on:click="cleardata('ข้อมูลสถิติผู้ต้องขัง')">ข้อมูลสถิติผู้ต้องขัง</a>
                        </div>
                      </div>
