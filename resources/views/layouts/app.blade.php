@@ -453,7 +453,7 @@ a.list-group-item {
           <div class="col-md-3">
             <h4>เกี่ยวกับ เรือนจำ</h4>
             <ul class="contact">
-                      <li><p><a href="/history"class="text-dark">ประวัติความเป็นมา</a></p></li>
+                      <li><p><a href="/abouts?type=ประวัติความเป็นมา"class="text-dark">ประวัติความเป็นมา</a></p></li>
                       <li><p><a href="/vision"class="text-dark">วิสัยทัศน์และพันธกิจ</a></p></li>
                       <li><p><a href=""class="text-dark">โครงสร้างหน่วยงาน</a></p></li>
                       <li><p><a href=""class="text-dark">ทำเนียบผู้บริหาร</a></p></li>

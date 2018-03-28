@@ -26,7 +26,7 @@ Route::get('/history', function () {
 Route::get('/vision', function () {
     return view('about.vision');
 });
-
+Route::get('/abouts', 'HomeController@about');
 
 Route::get('/question/comment/{id}', 'HomeController@showcomment')->name('showcomment');
 Route::get('/product/view/{id}', 'HomeController@productview');

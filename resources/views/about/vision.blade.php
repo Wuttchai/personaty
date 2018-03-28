@@ -7,9 +7,6 @@
 
      <div class="container">
 
-
-
-
         <!-- /.col-lg-3 -->
 
         <div class="col-lg-12 ">
@@ -40,7 +37,7 @@
 </div>
 
   </div>
-
+<h5 >{{ $about }} </h5>
        </div>
        </div>
        </div>
