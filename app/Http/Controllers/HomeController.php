@@ -32,16 +32,30 @@ class HomeController extends Controller
      }
      public function about()
     {
+
       if ($_GET['type'] == 'ประวัติความเป็นมา') {
-  $about = DB::table('person_count')
-  ->where('Person_Type','=','ประวัติความเป็นมา')
-  ->where('perupdated_at', DB::raw("(select max(perupdated_at) from person_count)"))->get();
-
-return view('about.vision',[
-
+return view('about.vision');
+    }
+    if ($_GET['type'] == 'วิสัยทัศน์และพันธกิจ') {
+  return view('about.vision');
+  }  if ($_GET['type'] == 'โครงสร้างหน่วยงาน') {
+    $about = DB::table('person_count')
+  
+    ->where('perupdated_at', DB::raw("(select max(perupdated_at) from person_count)"))->get();
+return view('about.organization',[
   'about' => $about
 ]);
-      }
+
+  }  if ($_GET['type'] == 'ทำเนียบผู้บริหาร') {
+return view('about.vision');
+  }  if ($_GET['type'] == 'ยุทธศาสตร์') {
+return view('about.vision');
+  }
+  if ($_GET['type'] == 'ข้อมูลบุคลากร') {
+return view('about.vision');
+  }if ($_GET['type'] == 'ข้อมูลสถิติผู้ต้องขัง') {
+return view('about.vision');
+  }
 
 
 

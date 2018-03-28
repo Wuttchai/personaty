@@ -454,13 +454,13 @@ a.list-group-item {
             <h4>เกี่ยวกับ เรือนจำ</h4>
             <ul class="contact">
                       <li><p><a href="/abouts?type=ประวัติความเป็นมา"class="text-dark">ประวัติความเป็นมา</a></p></li>
-                      <li><p><a href="/vision"class="text-dark">วิสัยทัศน์และพันธกิจ</a></p></li>
-                      <li><p><a href=""class="text-dark">โครงสร้างหน่วยงาน</a></p></li>
-                      <li><p><a href=""class="text-dark">ทำเนียบผู้บริหาร</a></p></li>
-                      <li><p><a href=""class="text-dark">ยุทธศาสตร์</a></p></li>
-                      <li><p><a href=""class="text-dark">ข้อมูลบุคลากร</a></p></li>
+                      <li><p><a href="/abouts?type=วิสัยทัศน์และพันธกิจ"class="text-dark">วิสัยทัศน์และพันธกิจ</a></p></li>
+                      <li><p><a href="/abouts?type=โครงสร้างหน่วยงาน"class="text-dark">โครงสร้างหน่วยงาน</a></p></li>
+                      <li><p><a href="/abouts?type=ทำเนียบผู้บริหาร"class="text-dark">ทำเนียบผู้บริหาร</a></p></li>
+                      <li><p><a href="/abouts?type=ยุทธศาสตร์"class="text-dark">ยุทธศาสตร์</a></p></li>
+                      <li><p><a href="/abouts?type=ข้อมูลบุคลากร"class="text-dark">ข้อมูลบุคลากร</a></p></li>
                       <li><p><a href="/officialapp"class="text-dark">สำหรับเจ้าหน้าที่</a></p></li>
-                      <li><p><a href=""class="text-dark">ข้อมูลสถิติผู้ต้องขัง</a></p></li>
+                      <li><p><a href="/abouts?type=ข้อมูลสถิติผู้ต้องขัง"class="text-dark">ข้อมูลสถิติผู้ต้องขัง</a></p></li>
             </ul>
 
           </div>

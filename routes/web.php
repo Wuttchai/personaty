@@ -19,7 +19,13 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('/ww', function () {
     return view('welcome');
 });
+Route::get('/history', function () {
+    return view('about.history');
+});
 
+Route::get('/vision', function () {
+    return view('about.vision');
+});
 Route::get('/abouts', 'HomeController@about');
 
 Route::get('/question/comment/{id}', 'HomeController@showcomment')->name('showcomment');
