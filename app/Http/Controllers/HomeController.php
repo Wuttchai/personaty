@@ -34,7 +34,7 @@ class HomeController extends Controller
     {
 
       if ($_GET['type'] == 'ประวัติความเป็นมา') {
-return view('about.vision');
+return view('about.history');
     }
     if ($_GET['type'] == 'วิสัยทัศน์และพันธกิจ') {
   return view('about.vision');
@@ -47,15 +47,41 @@ return view('about.organization',[
 ]);
 
   }  if ($_GET['type'] == 'ทำเนียบผู้บริหาร') {
-return view('about.vision');
+    $about = DB::table('person_count')
+    ->where('Person_Type','=','ทำเนียบผู้บริหาร')
+    ->where('perupdated_at', DB::raw("(select max(perupdated_at) from person_count)"))->get();
+return view('about.executives',[
+  'about' => $about
+]);
+
   }  if ($_GET['type'] == 'ยุทธศาสตร์') {
-return view('about.vision');
+return view('about.strategic');
   }
   if ($_GET['type'] == 'ข้อมูลบุคลากร') {
-return view('about.vision');
+    $about = DB::table('person_count')
+    ->where('Person_Type','=','ข้อมูลบุคลากร')
+    ->where('perupdated_at', DB::raw("(select max(perupdated_at) from person_count)"))->get();
+    return view('about.Personnel',[
+    'about' => $about
+    ]);
+
   }if ($_GET['type'] == 'ข้อมูลสถิติผู้ต้องขัง') {
+
+    $about = DB::table('person_count')
+    ->where('Person_Type','=','ข้อมูลสถิติผู้ต้องขัง')
+    ->where('perupdated_at', DB::raw("(select max(perupdated_at) from person_count)"))->get();
+    return view('about.statistics',[
+    'about' => $about
+    ]);
+
+
+
+
 return view('about.vision');
   }
+
+
+
 
 
 
