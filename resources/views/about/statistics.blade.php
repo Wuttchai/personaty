@@ -21,7 +21,7 @@
               <hr>
             </div>
           </div>
-          @isset($about)
+        @if($about != '[]')
 
           <div class="item">
 
@@ -29,7 +29,7 @@
 
 
   </div>
-@endisset
+@endif
        </div>
        </div>
        </div>

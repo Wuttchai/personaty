@@ -21,7 +21,7 @@
               <hr>
             </div>
           </div>
-          <<?php dd($about) ?>
+
 @if($about != '[]')
           <div class="item">
 
