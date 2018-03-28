@@ -175,7 +175,8 @@
         <div class="card-body text-center" >
           <div class="row">
             <div class="col-md-6 ">
-          <div v-bind:class="{'form-group':fileofficeerror , 'form-control label text-danger is-invalid':fileofficeerror }">
+               <div class="form-group">
+          <div v-bind:class="{'form-group':nameerror , 'form-control label text-danger is-invalid':nameerror }">
 
                         <span class="btn btn-success btn-file" >
                             Browse… <input type="file" id="imgInp" v-on:change="onFileChange">
@@ -183,10 +184,11 @@
                         <div class="form-group row">
 
                         </div>
-                           <input type="text" class="form-control" readonly>
-                        <span class="text-danger" v-if="fileofficeerror">
-                            <strong>@{{ fileofficeerror }}</strong>
+                           <input type="text" class="form-control"  readonly>
+                        <span class="text-danger" v-if="nameerror">
+                            <strong>@{{ nameerror }}</strong>
                         </span>
+                    </div>
                     </div>
 </div>
 <div class="col-md-6" id="text">
@@ -324,7 +326,7 @@
 
 document.getElementById("loader").style.display = "none";
 document.getElementById("dsds").style.display = "block";
-
+document.getElementById("text").style.display = "none";
 $(document).ready( function() {
 
     	$(document).on('change', '.btn-file :file', function() {
@@ -341,7 +343,7 @@ $(document).ready( function() {
 		    if( input.length ) {
 		        input.val(log);
 		    } else {
-
+if( log ) alert(log);
 		    }
 
 		});
@@ -361,6 +363,7 @@ $(document).ready( function() {
 		$("#imgInp").change(function(){
 		    readURL(this);
 		});
+
 	});
 
 var information =  new Vue({
@@ -372,6 +375,7 @@ var information =  new Vue({
         'nameedit': '',
         'count': '',
         'countedit':'',
+        'showimg':'',
         'counterror':'',
         'nameerror':'',
         'id_edit':'',

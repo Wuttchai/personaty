@@ -130,7 +130,7 @@ $time =Carbon::now('Asia/Bangkok');
          \App\person::insert([
                        'Log_ID' => $logid,
                        'Person_Type' => $request->count,
-                       'Person_Num'  => $request->name,
+                       'Person_Num'  => $fileName,
                        'percreated_at' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "" ,
                        'perupdated_at' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
                      ]);
