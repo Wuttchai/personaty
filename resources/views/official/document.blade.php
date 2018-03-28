@@ -118,8 +118,8 @@
 
 
              <div v-bind:class="{'form-group':nameerror , 'form-control label text-danger is-invalid':nameerror }">
-                           <label for="inputMessage">เนื้อหาข้างต้นของไฟล์</label>
-                          <textarea class="form-control" rows="5" id="detail" placeholder="ใส่รายละเอียดข่าว" v-model="name"></textarea>
+                           <label for="inputMessage">ชื่อแบบฟอร์ม</label>
+                          <input class="form-control"  id="detail" placeholder="ใส่รายละเอียดข่าว" v-model="name"></textarea>
                            <span class="text-danger" v-if="nameerror">
                                <strong>@{{ nameerror }}</strong>
                            </span>
