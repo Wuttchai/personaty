@@ -237,7 +237,7 @@ $logid =  \App\log::where([
             'perupdated_at' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
           ]);
 }
-  ]);
+  
 
      }
 
