@@ -486,7 +486,7 @@ if (information.type == 'ประวัติความเป็นมา' ||
              information.nameerror = false;
            },
   editItem: function(item) {
-    $("#editofficial").modal('show');
+
 
 
              information.counterror = false;
@@ -499,9 +499,9 @@ if (information.type == 'ประวัติความเป็นมา' ||
        								}).then(function (response) {
 
   information.id_edit = response.data[0].Person_ID;
-  information.nameedit = response.data[0].Person_Type;
+  information.nameedit = response.data[0].Person_Num;
 
-
+  $("#editofficial").modal('show');
        								})
 
        							        },
