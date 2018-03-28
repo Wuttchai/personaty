@@ -602,6 +602,7 @@ information.buttonedit2 = false
 
        							        },
         updateItem: function() {
+          console.log(this.image);
           information.buttonload = true;
 information.buttonedit=false;
                    var Person_ID =	this.id_edit;
