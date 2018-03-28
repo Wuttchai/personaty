@@ -57,8 +57,7 @@
                <thead>
                  <tr>
                    <th>ชื่อผู้ทำ</th>
-                   <th>ชื่อประเภทข้อมูลผู้ต้องขัง</th>
-                   <th>จำนวนผู้ต้องขัง</th>
+                   <th>ประเภทข้อมูล</th>
                    <th>วันที่อัพเดทล่าสุด</th>
                    <th>จัดการ</th>
                  </tr>
@@ -66,7 +65,6 @@
                <tr v-for="item in paginatedUsers">
                  <td>@{{ item.official_Name }}</td>
                  <td>@{{ item.Person_Type }}</td>
-                 <td>@{{ item.Person_Num }}</td>
                  <td>@{{ item.perupdated_at }} </td>
 
            <td >
@@ -229,15 +227,64 @@
   </div>
 </div>
 
-<!---model close 1.5------------------------------------------>
+<!---model  1.7------------------------------------------>
 
+<div class="modal fade" id="official" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header  text-center">
+        <h5 class="modal-title text-center" id="exampleModalLabel">เพิ่มข้อมูล@{{ type }}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12 ">
+            <div class="card card-cascade card text-center">
 
+        <!--Card image-->
+        <div class="view gradient-card-header blue-gradient">
+        <div class="card-header card text-center bg-info"> กรอกข้อมูล </div>
+
+        </div>
+        <!--/Card image-->
+
+        <!--Card content-->
+        <div class="card-body text-center" >
+
+                    <div v-bind:class="{'form-group':nameerror , 'form-control label text-danger is-invalid':nameerror }">
+                                  <label for="inputMessage">เนื้อหาข้างต้นของ@{{ type }}</label>
+                                 <textarea class="form-control" rows="12" id="detail" placeholder="ใส่เนื้อหา....." v-model="nameedit"></textarea>
+                                  <span class="text-danger" v-if="nameerror">
+                                      <strong>@{{ nameerror }}</strong>
+                                  </span>
+                              </div>
+
+                  </div>
+
+                  </div>
+         </div>
+
+                               </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
+        <button type="button" class="btn btn-primary" v-if="buttonload"><i class="fa fa-spinner fa-spin"></i> บันทึกข้อมูล</button>
+        <button type="button" class="btn btn-primary"  v-if="buttoninsert" v-on:click="insert()">บันทึกข้อมูล</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!---model close 1.7------------------------------------------>
 
 
 <!---model 2------------------------------------------>
 
    <div class="modal fade" id="editofficial" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-     <div class="modal-dialog modal-mg" role="document">
+     <div class="modal-dialog modal-lg" role="document">
        <div class="modal-content">
          <div class="modal-header  text-center">
            <h5 class="modal-title text-center" id="exampleModalLabel">แก้ไขข้อมูลผู้ต้องขัง</h5>
@@ -248,7 +295,7 @@
          <div class="modal-body">
            <div class="row">
              <div class="col-md-12 ">
-               <div class="card card-cascade ">
+               <div class="card card-cascade card text-center">
 
            <!--Card image-->
            <div class="view gradient-card-header blue-gradient">
@@ -260,42 +307,18 @@
            <!--Card content-->
            <div class="card-body text-center" >
 
-
-                          <div v-bind:class="{'form-group':nameerror , 'form-control label text-danger is-invalid':nameerror }">
-                                        <label for="inputMessage">ชื่อประเภทข้อมูลผู้ต้องขัง</label>
-                                        <input type="text" class="form-control"  id="nameedit" placeholder="ใส่ชื่อประเภทข้อมูลผู้ต้องขัง" v-model="nameedit"/>
-                                        <span class="text-danger" v-if="nameerror">
-                                            <strong>@{{ nameerror }}</strong>
-                                        </span>
-                                    </div>
-
-             <div class="card-body" >
-
-
-
-             </div>
-             <div v-bind:class="{'form-group':counterror , 'form-control label text-danger is-invalid':counterror }">
-                           <label for="inputMessage">จำนวนผู้ต้องขัง</label>
-                           <input type="text" class="form-control"  id="countedit" placeholder="ใส่จำนวนผู้ต้องขัง" v-model="countedit"/>
-                           <span class="text-danger" v-if="counterror">
-                               <strong>@{{ counterror }}</strong>
-                           </span>
-                       </div>
-
-                                    <div class="form-group row">
-
-                                    </div>
-
-
-
+                       <div v-bind:class="{'form-group':nameerror , 'form-control label text-danger is-invalid':nameerror }">
+                                     <label for="inputMessage">เนื้อหาข้างต้นของ@{{ type }}</label>
+                                    <textarea class="form-control" rows="12" id="detail" placeholder="ใส่เนื้อหา....." v-model="nameedit"></textarea>
+                                     <span class="text-danger" v-if="nameerror">
+                                         <strong>@{{ nameerror }}</strong>
+                                     </span>
+                                 </div>
 
                      </div>
 
                      </div>
             </div>
-
-
-
 
                                   </div>
 
@@ -512,6 +535,9 @@ if (information.type == 'ประวัติความเป็นมา' ||
              information.nameerror = false;
            },
   editItem: function(item) {
+    $("#editofficial").modal('show');
+
+
              information.counterror = false;
              information.nameerror = false;
 
@@ -523,14 +549,6 @@ if (information.type == 'ประวัติความเป็นมา' ||
 
   information.id_edit = response.data[0].Person_ID;
   information.nameedit = response.data[0].Person_Type;
-  information.countedit = response.data[0].Person_Num;
-$("#editofficial").modal('show');
-
-
-
-
-
-
 
 
        								})

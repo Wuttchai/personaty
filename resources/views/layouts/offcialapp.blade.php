@@ -26,7 +26,18 @@
 <link rel="stylesheet" href="{{ asset('fonts/thsarabunnew.css') }}" />
 @stack('css')
 <style media="screen">
-
+html {
+  font-family: 'THSarabunNew', sans-serif;
+  -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+}
+body {
+  font-family: 'THSarabunNew',"Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #333;
+  background-color: #fff;
+}
 .loader {
   border: 16px solid #f3f3f3;
   border-radius: 50%;
