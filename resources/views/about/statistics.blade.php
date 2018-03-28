@@ -21,6 +21,7 @@
               <hr>
             </div>
           </div>
+          @isset($about)
 
           <div class="item">
 
@@ -28,7 +29,7 @@
 
 
   </div>
-
+@endisset
        </div>
        </div>
        </div>

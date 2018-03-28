@@ -21,14 +21,14 @@
               <hr>
             </div>
           </div>
-
+@isset($about)
           <div class="item">
 
 <img src=" <?php echo "about/".$about[0]->Person_Num ?>" class="img-rounded">
 
 
   </div>
-
+@endisset
        </div>
        </div>
        </div>
