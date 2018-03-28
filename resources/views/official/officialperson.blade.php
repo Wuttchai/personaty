@@ -415,6 +415,23 @@ if( log ) alert(log);
 		    readURL(this);
 		});
 
+    function readURL2(input) {
+      if (input.files && input.files[0]) {
+          var reader = new FileReader();
+
+          reader.onload = function (e) {
+              $('#img-upload2').attr('src', e.target.result);
+          }
+
+          reader.readAsDataURL(input.files[0]);
+
+      }
+    }
+
+    $("#imgInp2").change(function(){
+      readURL2(this);
+    });
+
 	});
 
 var information =  new Vue({
