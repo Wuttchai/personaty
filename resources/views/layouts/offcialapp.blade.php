@@ -208,7 +208,7 @@ body {
                             @endif
 
                             @if (session('prison') == 'จัดการ')
-                            <a class="nav-link" href="/official/person">จัดการข้อมูลผู้ต้องขัง</a>
+                            <a class="nav-link" href="/official/person">จัดการข้อมูลเกี่ยวกับเรือนจำ</a>
                             @endif
                             @if (session('document') == 'จัดการ')
                             <a class="nav-link" href="/official/document">  จัดการข้อมูลเอกสารเผยแพร่</a>
@@ -270,6 +270,7 @@ body {
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @if (session('activity') == 'จัดการ')
+                        <li><a class="nav-link" href="/webboard">จัดการข้อมูลกระทู้</a></li>
                         <li><a class="nav-link" href="/official/addoffice">จัดการข้อมูลเจ้าหน้าที่</a></li>
                         @endif
 
