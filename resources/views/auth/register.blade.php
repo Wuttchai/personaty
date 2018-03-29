@@ -48,16 +48,16 @@
 
 														<div class="col-md-9">
 
-<textarea id="User_Address" class="form-control{{ $errors->has('User_Address') ? ' is-invalid' : '' }}" name="User_Address" value="{{ old('User_Address') }}" required ></textarea>
+<textarea id="User_Address" class="form-control{{ $errors->has('User_Address') ? ' is-invalid' : '' }}" name="User_Address" value="{{ old('User_Address') }}" required >@if(null != old('User_Address')) {{ old('User_Address') }}   @endif</textarea>
 																@if ($errors->has('User_Address'))
 																		<span class="text-errors">
 																				<strong>{{ $errors->first('User_Address') }}</strong>
 																		</span>
 																@endif
-														</div>
-												</div>
+  														</div>
+  												</div>
 
-												<div class="form-group row">
+  												<div class="form-group row">
 														<label for="email" class="col-md-3 col-form-label text-md-right">อีเมลล์ :</label>
 
 														<div class="col-md-9">
