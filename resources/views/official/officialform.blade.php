@@ -460,7 +460,7 @@ var information =  new Vue({
 
            },
            insert: function () {
-information.buttonedit = true;
+information.buttonload = true;
 information.buttoninsert=false;
              axios.defaults.headers.post['formData'] = 'multipart/form-data';
              axios.post('/official/testza', {
@@ -478,7 +478,7 @@ information.nameerror = response.data.messages.name[0];
 information.fileofficeerror = true;
 information.fileofficeerror = response.data.messages.fileoffice[0];
   }
-  information.buttonedit = false;
+  information.buttonload = false;
   information.buttoninsert=true;
 }else {
   location.reload();
@@ -531,7 +531,7 @@ $("#editofficial").modal('show');
 
        							        },
         updateItem: function() {
-          information.buttonedit = true;
+          information.buttonload = true;
                   information.buttonedit = false;
                    var info_id =	this.id_edit;
 
@@ -550,7 +550,7 @@ $("#editofficial").modal('show');
               information.fileofficeerror = true;
               information.fileofficeerror = response.data.messages.fileoffice[0];
               }
-              information.buttonedit = false;
+              information.buttonload = false;
               information.buttonedit = true;
               }else {
               location.reload();

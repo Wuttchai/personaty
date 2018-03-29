@@ -371,9 +371,9 @@
          <div class="modal-footer">
            <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
 
-           <button type="button" class="btn btn-warning"  v-if="buttonload" >แก้ไขข้อมูล</button>
+
            <button type="button" class="btn btn-warning" v-if="buttonload"><i class="fa fa-spinner fa-spin"></i> แก้ไขข้อมูล</button>
-           <button type="button" class="btn btn-warning"  v-if="buttoneditform" v-on:click="updateItem()">แก้ไขข้อมูล</button>
+           <button type="button" class="btn btn-warning"  v-if="buttonedit" v-on:click="updateItem()">แก้ไขข้อมูล</button>
          </div>
        </div>
      </div>
@@ -671,7 +671,7 @@ information.datelasterror = response.data.messages.datelast[0];
 
 if (response.data[0].official_ID == information.id) {
   information.id_edit = response.data[0].Hotnews_ID;
-  information.nameedit = response.data[0].Hotnews_Name;
+  information.nameedit = response.data[0].Hotnews_name;
   information.datefirstedit = response.data[0].datefirst;
   information.datelastedit = response.data[0].datelast;
   information.detailedit = response.data[0].Hotnews_detail;
@@ -695,18 +695,12 @@ $("#editofficial").modal('show');
 
 }
 
-
-
-
-
-
-
        								})
 
        							        },
         updateItem: function() {
           information.buttonload =true;
-          information.buttoneditform = false;
+           information.buttonedit = false;
           information.nameerror = false;
           information.fileofficeerror = false;
           information.datefirsterror = false;
@@ -752,7 +746,7 @@ $("#editofficial").modal('show');
                        }
                        information.buttonload =false;
 
-                       information.buttoneditform = true;
+                       information.buttonedit = true;
               }else {
               location.reload();
               }
