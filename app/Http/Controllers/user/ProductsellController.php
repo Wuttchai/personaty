@@ -127,11 +127,12 @@ public function index()
   $Prosell_ID =  \App\product_sell::where([
       ['User_ID', '=', Auth::user()->User_ID],
       ])->max('Prosell_ID');
-  $date = DB::table('product_Sell')
-  ->select('Prosell_name','Prosell_address')
-  ->where('Prosell_ID','=' ,$Prosell_ID)
-  ->get();
-  
+      $date = DB::table('product_Sell')
+    ->select('Prosell_ID','Prosell_creat','Prosell_orderdate','Prosell_creat','Prosell_img','Prosell_send','Prosell_Quantity','Prosell_name',
+    'Prosell_address')
+                  ->where('Prosell_ID','=' ,$Prosell_ID)
+                  ->get();
+
   return view('user.detailcars',[
   'date'=>$date,
   'Prosell_ID' => $Prosell_ID
