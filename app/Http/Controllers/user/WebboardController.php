@@ -32,8 +32,8 @@ class WebboardController extends Controller
 
 $validator =  Validator::make($request->all(), [
     'type' => 'required|string',
-    'headqestion' => 'required|string|unique:question,ques_name|max:50|min:10',
-    'textqestion' => 'required|string|unique:question,ques_detail|max:200|min:30'
+    'headqestion' => 'required|regex:/^([a-zA-Z0-9ก-ูเ-๋๑-๙])/|unique:question,ques_name|max:50|min:10',
+    'textqestion' => 'required|regex:/^([a-zA-Z0-9ก-ูเ-๋๑-๙])/|unique:question,ques_detail|max:200|min:30'
 
        ]);
 
@@ -99,7 +99,7 @@ if (Session::get('login') == 'yes') {
      {
 
        $validator =  Validator::make($request->all(), [
-           'message' => 'required|string',
+           'message' => 'required|regex:/^([a-zA-Z0-9ก-ูเ-๋๑-๙])/',
               ])->validate();
 
        $time =Carbon::now('Asia/Bangkok');
@@ -143,8 +143,8 @@ return response()->json($question);
      {
        $validator =  Validator::make($request->all(), [
            'type' => 'required|string',
-           'headqestion' => 'required|string|max:50|min:10',
-           'textqestion' => 'required|string|max:200|min:30'
+           'headqestion' => 'required|regex:/^([a-zA-Z0-9ก-ูเ-๋๑-๙])/|max:50|min:10',
+           'textqestion' => 'required|regex:/^([a-zA-Z0-9ก-ูเ-๋๑-๙])/|max:200|min:30'
 
               ]);
 

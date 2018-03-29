@@ -87,16 +87,16 @@ class AddimageController extends Controller
         {
           if ($request->email == Auth::user()->email) {
             Validator::make($request->all(), [
-              'User_Name' => 'required|string|max:255',
-              'User_Address' => 'required',
-              'User_Tel'=>'required'
+              'User_Name' => 'required|regex:/^([a-zA-Z0-9ก-ูเ-๋๑-๙])/|max:255',
+              'User_Address' => 'required|regex:/^([a-zA-Z0-9ก-ูเ-๋๑-๙])/',
+              'User_Tel'=>'required|numeric'
         ])->validate();
       }else {
         Validator::make($request->all(), [
-          'User_Name' => 'required|string|max:255',
+          'User_Name' => 'required|regex:/^([a-zA-Z0-9ก-ูเ-๋๑-๙])/|max:255',
   'email' => 'required|string|email|max:255|unique:users,email',
-  'User_Address' => 'required',
-  'User_Tel'=>'required'
+  'User_Address' => 'required|regex:/^([a-zA-Z0-9ก-ูเ-๋๑-๙])/',
+  'User_Tel'=>'required|numeric'
     ])->validate();
       }
 
