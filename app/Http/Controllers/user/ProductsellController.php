@@ -132,7 +132,7 @@ public function index()
   ->where('Prosell_ID','=' ,$Prosell_ID)
   ->get();
 
-  return view('user.showcar',[
+  return view('user.showcars',[
   'date'=>$date,
   'Prosell_ID' => $Prosell_ID
   ]);
