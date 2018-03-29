@@ -60,5 +60,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'ckloginoffice' => \App\Http\Middleware\Ckloginoffice::class,
         'cheackcar' => \App\Http\Middleware\cheackcar::class,
+        'doccumethome' =>\App\Http\Middleware\doccumethome::class,
     ];
 }

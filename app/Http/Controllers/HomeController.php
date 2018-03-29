@@ -16,7 +16,8 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        //$this->middleware('auth');
+        $this->middleware('doccumethome');
+
     }
 
     /**
@@ -24,6 +25,7 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
      public function deletecars(Request $request)
      {
        Cart::remove($request->id);

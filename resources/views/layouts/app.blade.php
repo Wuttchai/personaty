@@ -403,7 +403,7 @@ a.list-group-item {
                         <li><p><a href="/abouts?type=ทำเนียบผู้บริหาร"class="text-dark">ทำเนียบผู้บริหาร</a></p></li>
                         <li><p><a href="/abouts?type=ยุทธศาสตร์"class="text-dark">ยุทธศาสตร์</a></p></li>
                         <li><p><a href="/abouts?type=ข้อมูลบุคลากร"class="text-dark">ข้อมูลบุคลากร</a></p></li>
-                      
+
                         <li><p><a href="/abouts?type=ข้อมูลสถิติผู้ต้องขัง"class="text-dark">ข้อมูลสถิติผู้ต้องขัง</a></p></li>
 
                       </ul>
@@ -483,13 +483,12 @@ a.list-group-item {
           <div class="col-md-3">
             <h4>เอกสารเผยแพร่</h4>
             <ul class="contact">
-                      <li><p><a href="" class="text-dark">สำนักงานเลขานุการกรม</a></p></li>
-                      <li><p><a href="" class="text-dark">กองยุทธศาสตร์และแผนงาน</a></p></li>
-                      <li><p><a href="" class="text-dark">กองส่งเสริมสวัสดิการและคุ้มครองสิทธิผู้สูงอายุ</a></p></li>
-                      <li><p><a href="" class="text-dark">กองส่งเสริมศักยภาพผูัสูงอายุ</a></p></li>
-                      <li><p><a href="" class="text-dark">กองบริหารกองทุนผู้สูงอายุ</a></p></li>
-                      <li><p><a href="" class="text-dark">กลุ่มพัฒนาระบบบริหาร</a></p></li>
-                      <li><p><a href="" class="text-dark">กลุ่มตรวจสอบภายใน</a></p></li>
+@if(Session::get('doccumenthome') != '[]')
+              @foreach(Session::get('doccumenthome') as $doc)
+
+                      <li><p><a href="/pdf/view/{{$doc->doc_id}}" class="text-dark" target="_blank">{{$doc->doc_name}}</a></p></li>
+              @endforeach
+@endif
                     </ul>
           </div>
 

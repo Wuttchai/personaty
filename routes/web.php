@@ -28,6 +28,7 @@ Route::get('/vision', function () {
 });
 Route::get('/abouts', 'HomeController@about');
 
+
 Route::get('/question/comment/{id}', 'HomeController@showcomment')->name('showcomment');
 Route::get('/product/view/{id}', 'HomeController@productview');
 Route::get('/datailuser', 'user\AddimageController@datailuser')->name('showdatailuser');
