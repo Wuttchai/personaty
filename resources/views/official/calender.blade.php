@@ -33,7 +33,7 @@
   {{ csrf_field() }}
   หมายเหตุ :
   <br />
-<input type="text" name="name" value="{{ old('name') }}"/>
+<input type="text" name="name" placeholder="หมายเหตุการหยุด.." value="{{ old('name') }}"/>
 @if ($errors->has('name'))
 <br>
     <span class="text-danger">
@@ -43,7 +43,7 @@
   <br /><br />
   วันที่เริ่ม :
   <br />
-   <input type="text" name="datefirst"  placeholder="yyyy-mm-dd" value="{{ old('datefirst') }}"/>
+   <input type="text" name="datefirst"  id="datelast2" placeholder="วันที่เริ่ม.." class="datepicker" value="{{ old('datefirst') }}"/>
    @if ($errors->has('datefirst'))
    <br>
        <span class="text-danger">
@@ -53,7 +53,8 @@
   <br /><br />
   วันที่สิ้นสุด :
   <br />
- <input type="text" name="datelast"  placeholder="yyyy-mm-dd" value="{{ old('datelast') }}"/>
+
+ <input type="text" name="datelast" id="datelast" class="datepicker" placeholder="วันที่สิ้นสุด.." value="{{ old('datelast') }}"/>
  @if ($errors->has('datelast'))
  <br>
      <span class="text-danger">
@@ -104,12 +105,9 @@
               <br /><br />
               วันที่เริ่ม :
               <br />
-<?php
-$firstedit = explode( ' ', $info[0]->cal_date );
-$lastedit = explode( ' ', $info[0]->cal_last );
- ?>
-<input type="text" name="datefirstedit" value="{{ $firstedit[0] }}" />
 
+<input type="text" name="datefirstedit" id="datelast" class="datepicker"  value="{{ $info[0]->cal_date }}" />
+<input type="text" name="datefirstedit2"  value="{{ $info[0]->cal_date }}" hidden/>
 @if ($errors->has('datefirstedit'))
 <br>
     <span class="text-danger">
@@ -119,7 +117,8 @@ $lastedit = explode( ' ', $info[0]->cal_last );
               <br /><br />
               วันที่สิ้นสุด :
               <br />
-<input type="text" name="datelastedit" value="{{ $lastedit[0] }}" />
+<input type="text" name="datelastedit" id="datelast2" class="datepicker"  value="{{ $info[0]->cal_last }}" />
+<input type="text" name="datelastedit2"  value="{{ $info[0]->cal_last }}" hidden/>
 @if ($errors->has('datelastedit'))
 <br>
     <span class="text-danger">
@@ -201,13 +200,19 @@ document.getElementById("loader").style.display = "none";
                todayBtn: true,
                language: 'th',
                thaiyear: true
-           }).datepicker("setDate", "0");
+           }).datepicker();
+           $('.datepicker2').datepicker({
+               format: 'dd/mm/yyyy',
+               todayBtn: true,
+               language: 'th',
+               thaiyear: true
+           }).datepicker();
 
            @if(session('modalshow') == 'active' && !$errors->first('name') && !$errors->first('datefirst') && !$errors->first('datelast'))
 
            $('#myModal').modal('show');
 
-        
+
 
            @endif
 

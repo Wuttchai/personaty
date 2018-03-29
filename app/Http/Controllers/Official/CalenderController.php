@@ -35,9 +35,18 @@ public function update(Request $request, $id)
 
   $validator =  Validator::make($request->all(), [
        'nameedit' => 'required|regex:/^([a-zA-Z0-9ก-ูเ-๋๑-๙])/',
-       'datefirstedit' => 'required|date_format:Y-m-d',
-       'datelastedit' => 'required|date_format:Y-m-d',
+       'datefirstedit' => 'required',
+       'datelastedit' => 'required',
          ])->validate();
+         if ($request->datefirstedit != $request->datefirstedit2) {
+           $cutdate = explode("/", $request->datefirstedit);
+           $request->datefirstedit = "" . $cutdate[2]-543 . "-" . $cutdate[1] . "-" . $cutdate[0] . "";
+         }
+         if ($request->datelastedit != $request->datelastedit2) {
+           $cutdate1 = explode("/", $request->datelastedit);
+           $request->datelastedit = "" . $cutdate1[2]-543 . "-" . $cutdate1[1] . "-" . $cutdate1[0] . "";
+
+         }
 
           $time =Carbon::now('Asia/Bangkok');
               \App\log::insert([
@@ -89,14 +98,19 @@ Session::put("modalshow","active");
        Session::forget('modalshow');
 
 
+
   $validator =  Validator::make($request->all(), [
        'name' => 'required|regex:/^([a-zA-Z0-9ก-ูเ-๋๑-๙])/',
-       'datefirst' => 'required|date_format:Y-m-d',
-       'datelast' => 'required|date_format:Y-m-d',
+       'datefirst' => 'required',
+       'datelast' => 'required',
          ])->validate();
 
 
+         $cutdate = explode("/", $request->datefirst);
+         $datatime = "" . $cutdate[2]-543 . "-" . $cutdate[1] . "-" . $cutdate[0] . "";
 
+         $cutdate1 = explode("/", $request->datelast);
+         $datatime1 = "" . $cutdate1[2]-543 . "-" . $cutdate1[1] . "-" . $cutdate1[0] . "";
 
                $time =Carbon::now('Asia/Bangkok');
                    \App\log::insert([
@@ -116,8 +130,8 @@ Session::put("modalshow","active");
         \App\calender::insert([
                      'Log_ID' => $logid,
                      'cal_name' => $request->name,
-                     'cal_date'  => $request->datefirst,
-                     'cal_last' =>$request->datelast
+                     'cal_date'  => $datatime,
+                     'cal_last' =>$datatime1
                    ]);
         $projectlog =  \App\calender::where([
                         ['Log_ID', '=', $logid],
