@@ -21,9 +21,11 @@
 
 
             <div class="row ">
-              <div class="col-md-12 ">
- <img src="{{ asset('hotnew/' . $hotnew[0]->Hotnews_img) }}">
-
+              <div class="col-md-12 text-center">
+ <img src="{{ asset('hotnew/' . $hotnew[0]->Hotnews_img) }}" class="img-responsive" style="width: 800px; height: 500px;" allowfullscreen>
+<br>
+<h4 class="text-center"> {{ Hotnews_name }}</h4>
+<br>
 <h5> {{ $hotnew[0]->Hotnews_detail }}</h5>
 
                </div>
