@@ -169,12 +169,61 @@ $question = \App\question::join('users','question.User_ID','=','users.User_ID')
 ->orderBy('ques_date', 'desc')->paginate(5);
 
 
-                   $question2 = \App\question::select('question.ques_id', 'question.ques_name','question.ques_detail', 'question.ques_date', 'question.ques_type')
-                             ->get();
-
        return view('user.webboard',[
        'question' => $question
        ]);
+       if (isset($_GET['q'])) {
+   $keyword = $_GET['q'];
+   $question = \App\question::join('users','question.User_ID','=','users.User_ID')
+   ->join('questiondetail','questiondetail.ques_id','=','question.ques_id')
+   ->select('question.ques_id',DB::raw('count(questiondetail.quesde_id) as user_count'), 'question.ques_name','question.ques_detail', 'question.ques_date','users.User_ID','users.User_Name', 'question.ques_type','question.ques_id','question.quesde_owner')
+   ->GROUPBY('question.ques_id','users.User_ID')
+    ->where('Pro_Name', 'LIKE', "%$keyword%")
+   ->orderBy('ques_date', 'desc')->paginate(5);
+
+   return view('user.webboard',[
+   'question' => $question
+   ]);
+       }
+       if ($_GET['type'] == 'การเยี่ยมผู้ต้องขัง') {
+         $question = \App\question::join('users','question.User_ID','=','users.User_ID')
+         ->join('questiondetail','questiondetail.ques_id','=','question.ques_id')
+         ->select('question.ques_id',DB::raw('count(questiondetail.quesde_id) as user_count'), 'question.ques_name','question.ques_detail', 'question.ques_date','users.User_ID','users.User_Name', 'question.ques_type','question.ques_id','question.quesde_owner')
+         ->GROUPBY('question.ques_id','users.User_ID')
+         ->where('ques_type','=','การเยี่ยมผู้ต้องขัง')
+         ->orderBy('ques_date', 'desc')->paginate(5);
+
+         return view('user.webboard',[
+         'question' => $question
+         ]);
+
+       }
+       if ($_GET['type'] == 'การซื้อสินค้า') {
+         $question = \App\question::join('users','question.User_ID','=','users.User_ID')
+         ->join('questiondetail','questiondetail.ques_id','=','question.ques_id')
+         ->select('question.ques_id',DB::raw('count(questiondetail.quesde_id) as user_count'), 'question.ques_name','question.ques_detail', 'question.ques_date','users.User_ID','users.User_Name', 'question.ques_type','question.ques_id','question.quesde_owner')
+         ->GROUPBY('question.ques_id','users.User_ID')
+         ->where('ques_type','=','การซื้อสินค้า')
+         ->orderBy('ques_date', 'desc')->paginate(5);
+
+         return view('user.webboard',[
+         'question' => $question
+         ]);
+       ]);
+
+       }
+       if ($_GET['type'] == 'การเตรียมเอกสาร') {
+         $question = \App\question::join('users','question.User_ID','=','users.User_ID')
+         ->join('questiondetail','questiondetail.ques_id','=','question.ques_id')
+         ->select('question.ques_id',DB::raw('count(questiondetail.quesde_id) as user_count'), 'question.ques_name','question.ques_detail', 'question.ques_date','users.User_ID','users.User_Name', 'question.ques_type','question.ques_id','question.quesde_owner')
+         ->GROUPBY('question.ques_id','users.User_ID')
+         ->where('ques_type','=','การเตรียมเอกสาร')
+         ->orderBy('ques_date', 'desc')->paginate(5);
+
+         return view('user.webboard',[
+         'question' => $question
+         ]);
+       }
      }
 
      public function Product()

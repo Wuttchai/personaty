@@ -129,12 +129,7 @@
 
                 </div>
 
-                <div class="col-md-6 col-md-offset-3" >
-                  <div class="alert alert-info alert-dismissible"v-if="guide" >
-                     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                     <strong >แนะนำ!</strong> คุณสามารถตรวจสอบการสั่งซื้อได้ที่ เมนู -> ชื่อ -> ข้อมูลการสั่งซื้อ
-                   </div>
-                   </div>
+            
                    <div class="col-md-6 col-md-offset-3" v-if="savefile">
                      <div class="alert alert-success alert-dismissible">
                         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>

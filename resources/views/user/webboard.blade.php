@@ -46,11 +46,11 @@
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">เรียงตาม <b class="caret"></b></a>
 
         <ul class="dropdown-menu" >
-          <li><a href="/ProductAyutaya?type=การเยี่ยมผู้ต้องขัง">การเยี่ยมผู้ต้องขัง</a></li>
-          <li><a href="/ProductAyutaya?type=การซื้อสินค้า">การซื้อสินค้า</a></li>
-          <li><a href="/ProductAyutaya?type=การเตรียมเอกสาร">การเตรียมเอกสาร</a></li>
+          <li><a href="/webboard?type=การเยี่ยมผู้ต้องขัง">การเยี่ยมผู้ต้องขัง</a></li>
+          <li><a href="/webboard?type=การซื้อสินค้า">การซื้อสินค้า</a></li>
+          <li><a href="/webboard?type=การเตรียมเอกสาร">การเตรียมเอกสาร</a></li>
           <li class="divider"></li>
-          <li><a href="/ProductAyutaya">ค่าเริ่มต้น</a></li>
+          <li><a href="/webboard">ค่าเริ่มต้น</a></li>
 
         </ul>
 

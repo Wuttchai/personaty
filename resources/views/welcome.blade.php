@@ -15,65 +15,63 @@
         <div class="col-lg-12 ">
 
 
-          <div class="container">
-    <h2 class="page-header">Bootstrap Data Flow Diagram</h2>
 
-    <div class="col-xs-12 level0">
-      <p class="lead text-center bg-info btn text-info center-block">What type of email do you want to send?</p>
-      <div class="row">
-        <div class="col-xs-6 text-center">
-          <p class="btn"><span class="glyphicon glyphicon-arrow-down"></span>
+            <div class="topnav" style="background-color: #DCDCDC;">
+        <div class="row">
+        <div class="col-md-2">
+        <br>&nbsp;&nbsp;
+        <span  v-on:click="showcars()" class="glyphicon glyphicon-shopping-cart" style="font-size:20px;color:#ef0e0e"></span>  <span class="badge badge-notify ">{{ Cart::content()->count() }}</span>
+
+
         </div>
-        <div class="col-xs-6 text-center">
-          <p class="btn">
-            <span class="glyphicon glyphicon-arrow-down"></span></p>
+        <div class="col-md-2">
+        <div class="dropdown">
+        <button onclick="myFunction1()" class="dropbtn" style="background-color: #ef0e0e;">ประเภทสินค้า<i class="fa fa-angle-down"></i></button>
+        <div id="myDropdown1" class="dropdown-content">
+        <a href="/ProductAyutaya?type=เฟอนิเจอร์">เฟอนิเจอร์</a>
+        <a href="/ProductAyutaya?type=ของฝาก">ของฝาก</a>
+        <a href="/ProductAyutaya">ค่าเริ่มต้น</a>
         </div>
-      </div>
-      <div class="row level1">
-        <div class="col-xs-6 text-center">
-          <p class="center-block"><span class="btn btn-warning btn-lg">Designing</span></p>
-          <p class="btn center-block"><span class="glyphicon glyphicon-arrow-down"></span></p>
-          <p class="center-block bg-info text-info btn">Is it directly related to fundraising?</p>
-          <div class="row">
-            <div class="col-xs-6 text-center">
-              <p class="btn"><span class="glyphicon glyphicon-arrow-down"></span>
-            </div>
-            <div class="col-xs-6 text-center">
-              <p class="btn">
-                <span class="glyphicon glyphicon-arrow-down"></span></p>
-            </div>
-          </div>
-          <div class="row level2">
-            <div class="col-xs-6">
-              <p class="center-block"><span class="btn btn-success btn-lg">Yes</span></p>
-              <p class="btn">
-                <span class="glyphicon glyphicon-arrow-down"></span></p>
-              <p class="bg-success text-success btn text-wrap">Okay! You can proceed to step 3. </p>
-
-            </div>
-            <div class="col-xs-6 text-center">
-              <p class="center-block"><span class="btn btn-danger btn-lg">No</span></p>
-              <p class="btn center-block"><span class="glyphicon glyphicon-arrow-down"></span></p>
-              <p class="btn bg-danger text-danger text-wrap">Content must be directly related to fundraising to use this service.</p>
-            </div>
-          </div>
         </div>
-        <div class="col-xs-6 text-center">
-          <p class="center-block"><span class="btn btn-success btn-lg">Back-End</span></p>
-          <p class="btn center-block"><span class="glyphicon glyphicon-arrow-down"></span></p>
 
-          <p class="bg-success text-success btn">Okay! Proceed to step 3.</p>
         </div>
-      </div>
+        <div class="col-md-4">
+        <div class="search-container">
+        <form class="navbar-form" role="search"  method="GET">
+        <div class="input-group ">
+            <input type="text" class="form-control " style="border-color:red" placeholder="<?php echo  Session::get('search'); ?>" name="q">
+            <div class="input-group-btn ">
+                <button class="btn btn-danger btn-outline" type="submit" ><i v-if="seach" class="glyphicon glyphicon-search"></i> <i v-if="cancelsearch" class="glyphicon glyphicon-remove"></i></button>
+            </div>
+        </div>
+        </form>
+        </div>
+        </div>
+        <div class="col-md-2 pull-right">
+        <div class="dropdown">
+        <button onclick="myFunction()" class="dropbtn" style="background-color: #ef0e0e;">กรองราคาสินค้า<i class="fa fa-angle-down"></i></button>
+        <div id="myDropdown" class="dropdown-content">
+        <a href="/ProductAyutaya?price=ASC">ถูกไปหาเเพง</a>
+        <a href="/ProductAyutaya?price=DESC">เเพงไปหาถูก</a>
+        <a href="/ProductAyutaya?price=one">ต่ำกว่า 1000</a>
+        <a href="/ProductAyutaya?price=two">สูงกว่า 1000</a>
+        </div>
+        </div>
 
-    </div>
+        </div>
 
+
+
+        </div>
+
+
+            </div>
   </div>
 
 
   </div>
 
-       </div>
+
        </div>
        </div>
 
