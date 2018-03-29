@@ -32,7 +32,7 @@ class WebboardController extends Controller
 
 $validator =  Validator::make($request->all(), [
     'type' => 'required|string',
-    'headqestion' => 'required|regex:/^([a-zA-Z0-9ก-ูเ-๋๑-๙])/|unique:question,ques_name|max:50|min:10',
+    'headqestion' => 'required|regex:/^([a-zA-Zก-ูเ-๋])/|unique:question,ques_name|max:50|min:10',
     'textqestion' => 'required|regex:/^([a-zA-Z0-9ก-ูเ-๋๑-๙])/|unique:question,ques_detail|max:200|min:30'
 
        ]);
@@ -143,7 +143,7 @@ return response()->json($question);
      {
        $validator =  Validator::make($request->all(), [
            'type' => 'required|string',
-           'headqestion' => 'required|regex:/^([a-zA-Z0-9ก-ูเ-๋๑-๙])/|max:50|min:10',
+           'headqestion' => 'required|regex:/^([a-zA-Zก-ูเ-๋])/|max:50|min:10',
            'textqestion' => 'required|regex:/^([a-zA-Z0-9ก-ูเ-๋๑-๙])/|max:200|min:30'
 
               ]);
