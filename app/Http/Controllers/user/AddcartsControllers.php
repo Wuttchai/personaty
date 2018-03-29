@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Session;
 use Illuminate\Support\Facades\Validator;
 use Carbon\Carbon;
+use DB;
 use \Cart as Cart;
 use Illuminate\Support\Facades\Auth;
 
