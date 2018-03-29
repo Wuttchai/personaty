@@ -36,6 +36,9 @@ class AddcartsControllers extends Controller
                   ->where('product_Sell.User_ID','=' , Auth::user()->User_ID)
                   ->where('product_Sell.Prosell_img','=' ,'-')
                   ->get();
+                  $userdetail = \App\User::select('User_Name','User_Address')
+                             ->where('users.User_ID','=' , Auth::user()->User_ID)
+                             ->get();
 
                   if ($product != '[]') {
                     return redirect()->back()->with('alert', 'มีการซื้ออยู่!');
@@ -48,6 +51,8 @@ class AddcartsControllers extends Controller
                      'Prosell_totalPirce'  => 0,
                      'Prosell_send' => '-',
                      'Prosell_img' => '-',
+                     'Prosell_name' => $userdetail[0]->User_Name,
+                     'Prosell_address' => $userdetail[0]->User_Address,
                      'Prosell_orderdate' => '-',
                      'Prosell_creat'=>   "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
                      ]);
@@ -77,9 +82,12 @@ class AddcartsControllers extends Controller
               'Prosell_totalPirce'  => $totalPirce,
               'Prosell_creat'=>   "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
             ]);
-
+            $date = DB::table('product_Sell')
+            ->select('Prosell_name','Prosell_address')
+            ->where('Prosell_ID','=' ,$Prosell_ID)
+            ->get();
             return view('user.showcars',[
-
+              'date'=>$date
               'Prosell_ID' => $Prosell_ID
             ]);
 

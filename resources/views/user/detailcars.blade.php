@@ -31,7 +31,7 @@
                   <div class="col-xs-12">
                     <h2 class="page-header">
                       <i class="fa fa-globe"></i> ใบสั่งซื้อสินค้า
-                      <small class="pull-right">วันที่: {{ Session::get('date') }}</small>
+                      <small class="pull-right">วันที่: {{ $date[0]->Prosell_creat }}</small>
                     </h2>
                   </div>
                   <!-- /.col -->

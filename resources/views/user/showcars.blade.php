@@ -39,14 +39,47 @@
                   </div>
                   <!-- /.col -->
                   <div class="col-sm-4 invoice-col">
-                    ถึง
-                    <address>
-                      <strong>{{ Auth::user()->User_Name }}</strong><br>
-                      {{ Auth::user()->User_Address }}<br>
-                      เบอร์โทร: {{ Auth::user()->User_Tel }}<br>
-                      อีเมลล์: {{ Auth::user()->email }}
-                    </address>
-                  </div>
+                      ถึง<button type="button" class="btn btn-warning btn-sm pull-right" v-if="btnedit2" v-on:click='edit'>
+            <span class="glyphicon glyphicon-edit"></span> แก้ไข
+          </button>
+
+
+
+
+                      <address>
+                        <form method="POST" action="/user/editsendxxxxx/{{ $Prosell_ID }}" v-if="btnedit">
+                          @csrf
+
+    <div class="form-group row">
+      <div class="form-group">
+  <label for="exampleFormControlTextarea1">ชื่อ-นามสกุล</label>
+  <input type="text" name="name" class="form-control" id="staticEmail" >
+  </div>
+  </div>
+                          <div class="form-group row">
+                            <div class="form-group">
+       <label for="exampleFormControlTextarea1">ที่อยู่จัดส่ง</label>
+       <textarea class="form-control" name="address" id="exampleFormControlTextarea1" rows="3"></textarea>
+     </div>
+     <button type="button" class="btn btn-danger btn-sm pull-right" v-if="btnedit" v-on:click='edit2'>
+  <span class="glyphicon glyphicon-remove-circle"></span> ยกเลิก
+  </button>
+     <button type="submit" class="btn btn-warning btn-sm pull-right" v-if="btnedit" v-on:click='insert'>
+     <span class="glyphicon glyphicon-saved"></span> บันทึก
+     </button>
+   </div>
+
+                        </form>
+
+
+                        <strong v-if="btnedit2">{{ $date[0]->Prosell_name }}</strong> <br v-if="btnedit2">
+
+  <h5 v-if="btnedit2">{{ $date[0]->Prosell_address }}</h5>
+                        เบอร์โทร: {{ Auth::user()->User_Tel }}<br>
+                        อีเมลล์: {{ Auth::user()->email }}
+                      </address>
+                    </div>
+
                   <!-- /.col -->
                   <div class="col-sm-4 invoice-col">
 
@@ -376,7 +409,8 @@ var information =  new Vue({
         'fileofficeerror':'',
         'guide' :true,
         'savefile':false,
-
+        'btnedit':false,
+        'btnedit2':true,
 
     },
 
@@ -453,7 +487,18 @@ document.getElementById("namefile").value = "";
 this.image ="";
 
 
-           }
+},
+edit: function () {
+     this.btnedit2= false;
+             this.btnedit= true;
+
+           },
+           edit2: function () {
+     this.btnedit= false;
+             this.btnedit2= true;
+
+           },
+
     }
   })
 </script>

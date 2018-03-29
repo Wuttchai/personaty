@@ -76,7 +76,8 @@ public function ProductCarorderdetail($id)
 {
 
   $date = DB::table('product_Sell')
-              ->select('Prosell_ID','Prosell_creat','Prosell_orderdate','Prosell_creat','Prosell_img','Prosell_send','Prosell_Quantity')
+->select('Prosell_ID','Prosell_creat','Prosell_orderdate','Prosell_creat','Prosell_img','Prosell_send','Prosell_Quantity','Prosell_name',
+'Prosell_address')
               ->where('Prosell_ID','=' ,$id)
               ->get();
 
@@ -104,6 +105,22 @@ public function ProductCarorderdelete($id)
 return redirect('/ProductCarOrders');
 
 }
+public function editsend(Request $request,$id)
+{
+  Validator::make($request->all(), [
+        'name' => 'required|regex:/^([a-zA-Zก-ูเ-๋])/|max:255',
+        'address' => 'required|string',
 
+    ])->validate();
+
+                \App\product_sell::where('Prosell_ID',$id)
+                            ->update([
+                              'Prosell_name' => $request->name,
+                              'Prosell_address' => $request->address,
+                              ]);
+
+return redirect('/confrimadd');
+
+}
 
 }

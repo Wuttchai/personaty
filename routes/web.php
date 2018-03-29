@@ -155,6 +155,7 @@ Route::get('/invoice-print', function () {
   Route::get('/ProductCarOrders', 'user\ProductsellController@ProductCarOrders')->name('ProductCarOrders');
   Route::post('/insert/receipt', 'user\AddimgcarController@insertimg');
   Route::get('/insert/receipt', 'user\AddimgcarController@index');
-
   Route::post('/insert/receiptimg', 'user\AddimageController@insertimg');
   Route::get('/insert/receiptimg', 'user\AddimageController@index');
+
+  Route::post('/user/editsendxxxxx/{id}', 'user\ProductsellController@editsend');
