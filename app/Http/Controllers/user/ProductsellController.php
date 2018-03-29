@@ -118,8 +118,18 @@ public function editsend(Request $request,$id)
                               'Prosell_name' => $request->name,
                               'Prosell_address' => $request->address,
                               ]);
+                              $Prosell_ID =  \App\product_sell::where([
+                                  ['User_ID', '=', Auth::user()->User_ID],
+                                  ])->max('Prosell_ID');
+                              $date = DB::table('product_Sell')
+                              ->select('Prosell_name','Prosell_address')
+                              ->where('Prosell_ID','=' ,$Prosell_ID)
+                              ->get();
+                              return redirect('/cart/confrimadd',[
+                              'date'=>$date,
+                              'Prosell_ID' => $Prosell_ID
+                              ]);
 
-return redirect('/cart/confrimadd');
 
 }
 
