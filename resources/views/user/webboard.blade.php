@@ -27,12 +27,7 @@
           <!-- /.row -->
           <div class="topnav" style="background-color: #DCDCDC;">
       <div class="row">
-      <div class="col-md-2">
-      <br>&nbsp;&nbsp;
-      <span  v-on:click="showcars()" class="glyphicon glyphicon-shopping-cart" style="font-size:20px;color:#ef0e0e"></span>  <span class="badge badge-notify ">{{ Cart::content()->count() }}</span>
 
-
-      </div>
       <div class="col-md-2">
       <div class="dropdown">
       <button onclick="myFunction1()" class="dropbtn" style="background-color: #ef0e0e;">เรียงตาม<i class="fa fa-angle-down"></i></button>
@@ -60,11 +55,11 @@
       </div>
       </div>
       <div class="col-md-2 pull-right">
-        <form class="navbar-form" role="search"  method="GET">
-        <div class="input-group ">
+        <form    method="GET">
+
           <a><button type="button" class="btn btn-danger btn-outline" v-on:click="open()">ตั้งกระทู้
         </button></a>
-        </div>
+
         </form>
 
       </div>

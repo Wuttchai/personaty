@@ -19,18 +19,17 @@
             <div class="topnav" style="background-color: #DCDCDC;">
         <div class="row">
         <div class="col-md-2">
-        <br>&nbsp;&nbsp;
-        <span  v-on:click="showcars()" class="glyphicon glyphicon-shopping-cart" style="font-size:20px;color:#ef0e0e"></span>  <span class="badge badge-notify ">{{ Cart::content()->count() }}</span>
-
 
         </div>
         <div class="col-md-2">
         <div class="dropdown">
-        <button onclick="myFunction1()" class="dropbtn" style="background-color: #ef0e0e;">ประเภทสินค้า<i class="fa fa-angle-down"></i></button>
+        <button onclick="myFunction1()" class="dropbtn" style="background-color: #ef0e0e;">เรียงตาม<i class="fa fa-angle-down"></i></button>
         <div id="myDropdown1" class="dropdown-content">
-        <a href="/ProductAyutaya?type=เฟอนิเจอร์">เฟอนิเจอร์</a>
-        <a href="/ProductAyutaya?type=ของฝาก">ของฝาก</a>
-        <a href="/ProductAyutaya">ค่าเริ่มต้น</a>
+          <a href="/webboard?type=การเยี่ยมผู้ต้องขัง">การเยี่ยมผู้ต้องขัง</a>
+          <a href="/webboard?type=การซื้อสินค้า">การซื้อสินค้า</a>
+          <a href="/webboard?type=การเตรียมเอกสาร">การเตรียมเอกสาร</a>
+          <a href="/webboard">ค่าเริ่มต้น</a>
+
         </div>
         </div>
 
@@ -48,15 +47,10 @@
         </div>
         </div>
         <div class="col-md-2 pull-right">
-        <div class="dropdown">
-        <button onclick="myFunction()" class="dropbtn" style="background-color: #ef0e0e;">กรองราคาสินค้า<i class="fa fa-angle-down"></i></button>
-        <div id="myDropdown" class="dropdown-content">
-        <a href="/ProductAyutaya?price=ASC">ถูกไปหาเเพง</a>
-        <a href="/ProductAyutaya?price=DESC">เเพงไปหาถูก</a>
-        <a href="/ProductAyutaya?price=one">ต่ำกว่า 1000</a>
-        <a href="/ProductAyutaya?price=two">สูงกว่า 1000</a>
-        </div>
-        </div>
+
+            <a><button type="button" class="btn btn-danger btn-outline" v-on:click="open()">ตั้งกระทู้
+          </button></a>
+        
 
         </div>
 
