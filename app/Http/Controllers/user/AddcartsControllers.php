@@ -82,10 +82,7 @@ class AddcartsControllers extends Controller
             ->select('Prosell_name','Prosell_address')
             ->where('Prosell_ID','=' ,$Prosell_ID)
             ->get();
-            return redirect('/cart/confrimadd',[
-              'date'=>$date,
-              'Prosell_ID' => $Prosell_ID
-            ]);
+            return redirect()->route('showcar');
 
      }
 
