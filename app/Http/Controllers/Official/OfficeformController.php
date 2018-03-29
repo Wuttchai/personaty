@@ -48,7 +48,7 @@ public $timestamps = false;
 
     $validator =  Validator::make($request->all(), [
          'id' => 'required|string',
-         'name' => 'required|string',
+         'name' => 'required|regex:/^([a-zA-Z0-9ก-ูเ-๋๑-๙])/',
         'fileoffice' => 'required|image64:jpeg,jpg,png|img_min_size:1100,400'
 
            ]);
@@ -129,7 +129,7 @@ $time =Carbon::now('Asia/Bangkok');
 if ($request->fileoffice) {
   $Validator = Validator::make($request->all(),[
     'id' => 'required|string',
-    'name' => 'required|string',
+    'name' => 'required|regex:/^([a-zA-Z0-9ก-ูเ-๋๑-๙])/',
    'fileoffice' => 'required|image64:jpeg,jpg,png|img_min_size:1100,400'
   ]);
   if($Validator->errors()->messages() != null){
@@ -191,7 +191,7 @@ if ($request->fileoffice) {
 }else {
   $Validator = Validator::make($request->all(),[
     'id' => 'required|string',
-    'name' => 'required|string',
+    'name' => 'required|regex:/^([a-zA-Z0-9ก-ูเ-๋๑-๙])/',
   ]);
 
   if($Validator->errors()->messages() != null){

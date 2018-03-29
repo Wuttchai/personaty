@@ -47,7 +47,7 @@ public $timestamps = false;
 if ($request->count == 'ประวัติความเป็นมา' || $request->count == 'วิสัยทัศน์และพันธกิจ'   || $request->count == 'ยุทธศาสตร์') {
   $validator =  Validator::make($request->all(), [
        'id' => 'required|string',
-       'name' => 'required|string|unique:person_count,Person_Type',
+       'name' => 'required|regex:/^([a-zA-Z0-9ก-ูเ-๋๑-๙])/|unique:person_count,Person_Type',
       'count' => 'required|string'
 
          ]);
@@ -99,7 +99,7 @@ $time =Carbon::now('Asia/Bangkok');
 }else {
 $validator =  Validator::make($request->all(), [
   'id' => 'required|string',
-  'name' => 'required|string|unique:person_count,Person_Type|image64:jpeg,jpg,png|img_min_size:1000,500',
+  'name' => 'required|regex:/^([a-zA-Z0-9ก-ูเ-๋๑-๙])/|unique:person_count,Person_Type|image64:jpeg,jpg,png|img_min_size:1000,500',
  'count' => 'required|string'
 
     ]);
@@ -210,7 +210,7 @@ if ($request->img) {
 if ($request->name) {
   $Validator = Validator::make($request->all(),[
     'id' => 'required|string',
-    'name' => 'required|string'
+    'name' => 'required|regex:/^([a-zA-Z0-9ก-ูเ-๋๑-๙])/'
   ]);
   if($Validator->errors()->messages() != null){
     return[

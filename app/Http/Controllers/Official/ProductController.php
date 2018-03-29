@@ -46,9 +46,9 @@ public $timestamps = false;
 
     $validator =  Validator::make($request->all(), [
          'id' => 'required|string',
-         'name' => 'required|string',
+         'name' => 'required|regex:/^([a-zA-Z0-9ก-ูเ-๋๑-๙])/',
         'fileoffice' => 'required|image64:jpeg,jpg,png|img_min_size:250,200',
-        'detail' => 'required|string',
+        'detail' => 'required|regex:/^([a-zA-Z0-9ก-ูเ-๋๑-๙])/',
         'type' => 'required|string',
         'money' => 'required|numeric',
         'count' => 'required|numeric',
@@ -139,9 +139,9 @@ $time =Carbon::now('Asia/Bangkok');
 if ($request->fileoffice) {
   $Validator = Validator::make($request->all(),[
     'id' => 'required|string',
-    'name' => 'required|string',
+    'name' => 'required|regex:/^([a-zA-Z0-9ก-ูเ-๋๑-๙])/',
    'fileoffice' => 'required|image64:jpeg,jpg,png|img_min_size:250,200',
-   'detail' => 'required|string',
+   'detail' => 'required|regex:/^([a-zA-Z0-9ก-ูเ-๋๑-๙])/',
    'type' => 'required',
    'money' => 'required|numeric',
    'count' => 'required|numeric',
@@ -206,8 +206,8 @@ if ($request->fileoffice) {
 
   $Validator = Validator::make($request->all(),[
     'id' => 'required|string',
-    'name' => 'required|string',
-   'detail' => 'required|string',
+    'name' => 'required|regex:/^([a-zA-Z0-9ก-ูเ-๋๑-๙])/',
+   'detail' => 'required|regex:/^([a-zA-Z0-9ก-ูเ-๋๑-๙])/',
    'type' => 'required',
    'money' => 'required|numeric',
    'count' => 'required|numeric',

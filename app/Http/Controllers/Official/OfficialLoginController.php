@@ -58,7 +58,7 @@ class OfficialLoginController extends Controller
 
       $Validator=  Validator::make($request->all(), [
           'email' => 'required|email',
-          'password' => 'required|string'
+          'password' => 'required|regex:/^([a-zA-Z0-9ก-ูเ-๋๑-๙])/'
 
             ])->validate();
 
