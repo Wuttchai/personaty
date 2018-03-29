@@ -131,7 +131,8 @@ public function index()
   ->select('Prosell_name','Prosell_address')
   ->where('Prosell_ID','=' ,$Prosell_ID)
   ->get();
-  return redirect('/cart/confrimadd',[
+  
+  return view('user.detailcars',[
   'date'=>$date,
   'Prosell_ID' => $Prosell_ID
   ]);
