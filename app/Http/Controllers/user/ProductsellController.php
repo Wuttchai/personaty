@@ -74,10 +74,8 @@ return view('user.detailcars',[
 }
 public function ProductCarorderdetail($id)
 {
-
   $date = DB::table('product_Sell')
-->select('Prosell_ID','Prosell_creat','Prosell_orderdate','Prosell_creat','Prosell_img','Prosell_send','Prosell_Quantity','Prosell_name',
-'Prosell_address')
+              ->select('Prosell_ID','Prosell_creat','Prosell_orderdate','Prosell_creat','Prosell_img','Prosell_send','Prosell_Quantity')
               ->where('Prosell_ID','=' ,$id)
               ->get();
 
@@ -87,8 +85,6 @@ public function ProductCarorderdetail($id)
               ->select('product.Pro_Name','sell_detail.Det_Num', 'product.Pro_Price')
               ->where('sell_detail.Prosell_ID','=' ,$id)
               ->get();
-
-
 
 
 return view('user.insrtimgcar',[
