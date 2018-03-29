@@ -76,7 +76,7 @@ class AddcartsControllers extends Controller
        $totalPirce += $carcon->qty * $carcon->price;
 }
 
-\App\product_sell::where('Prosell_ID',$Prosell_ID)
+          \App\product_sell::where('Prosell_ID',$Prosell_ID)
             ->update([
               'Prosell_Quantity' => $Quantity,
               'Prosell_totalPirce'  => $totalPirce,
@@ -87,7 +87,7 @@ class AddcartsControllers extends Controller
             ->where('Prosell_ID','=' ,$Prosell_ID)
             ->get();
             return view('user.showcars',[
-              'date'=>$date
+              'date'=>$date,
               'Prosell_ID' => $Prosell_ID
             ]);
 
