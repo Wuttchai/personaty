@@ -251,13 +251,13 @@ body {
                                 รายงานข้อมูลแบบกราฟ
                             </a>
                               @if (session('product') == 'จัดการ')
-                            <a class="dropdown-item" href="/official/logfile/graph/product">
+                            <a class="dropdown-item" href="/official/logfile/product">
                                 รายงานข้อมูลสต๊อกสินค้า
                             </a>
                               @endif
                               @if (session('product') == 'จัดการ')
                             <a class="dropdown-item" href="/official/logfile/graph">
-                                รายงานการสั่งซื้อสินค้า
+                                
                             </a>
                               @endif
                           </div>

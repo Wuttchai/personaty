@@ -72,7 +72,7 @@ Route::post('/official/logfile', 'Official\AddOfficeController@logfile');
 Route::get('/official/logfile', 'Official\AddOfficeController@logfile');
 Route::post('/official/login', 'Official\OfficialLoginController@login');
 
-Route::get('/graph/product', 'Official\AddOfficeController@graphproduct');
+Route::get('/official/logfile/product', 'Official\AddOfficeController@productlog');
 Route::get('/official/logfile/graph', 'Official\AddOfficeController@graph');
 Route::get('/official/officialform', 'Official\OfficeformController@index');
 Route::post('/official/testza', 'Official\OfficeformController@insert');
