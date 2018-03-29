@@ -373,7 +373,7 @@
 
            <button type="button" class="btn btn-warning"  v-if="buttonload" >แก้ไขข้อมูล</button>
            <button type="button" class="btn btn-warning" v-if="buttonload"><i class="fa fa-spinner fa-spin"></i> แก้ไขข้อมูล</button>
-           <button type="button" class="btn btn-warning"  v-if="buttonedit" v-on:click="updateItem()">แก้ไขข้อมูล</button>
+           <button type="button" class="btn btn-warning"  v-if="buttoneditform" v-on:click="updateItem()">แก้ไขข้อมูล</button>
          </div>
        </div>
      </div>
@@ -706,7 +706,7 @@ $("#editofficial").modal('show');
        							        },
         updateItem: function() {
           information.buttonload =true;
-          information.buttonedit = false;
+          information.buttoneditform = false;
           information.nameerror = false;
           information.fileofficeerror = false;
           information.datefirsterror = false;
@@ -752,7 +752,7 @@ $("#editofficial").modal('show');
                        }
                        information.buttonload =false;
 
-                       information.buttonedit = true;
+                       information.buttoneditform = true;
               }else {
               location.reload();
               }

@@ -22,7 +22,7 @@
 
             <div class="row ">
               <div class="col-md-12 text-center">
- <img src="{{ asset('hotnew/' . $hotnew[0]->Hotnews_img) }}" class="img-responsive" style="width: 800px; height: 500px;" allowfullscreen>
+ <img class="pull-center" src="{{ asset('hotnew/' . $hotnew[0]->Hotnews_img) }}" class="img-responsive" style="width: 800px; height: 500px;" allowfullscreen>
 <br>
 <h4 class="text-center"> {{ $hotnew[0]->Hotnews_name }}</h4>
 <h5> {{ $hotnew[0]->datefirst }} - {{ $hotnew[0]->datelast }}</h5>
