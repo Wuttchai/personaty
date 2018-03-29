@@ -74,13 +74,11 @@ return view('user.detailcars',[
 }
 public function ProductCarorderdetail($id)
 {
-  $Prosell_ID =  \App\product_sell::where([
-      ['User_ID', '=', Auth::user()->User_ID],
-      ])->max('Prosell_ID');
+  
 
               $date = DB::table('product_Sell')
-              ->select('Prosell_name','Prosell_address')
-              ->where('Prosell_ID','=' ,$Prosell_ID)
+              ->select('Prosell_ID','Prosell_name','Prosell_address')
+              ->where('Prosell_ID','=' ,$id)
               ->get();
   $Car = DB::table('product_Sell')
               ->join('sell_detail','product_Sell.Prosell_ID','=','sell_detail.Prosell_ID')
