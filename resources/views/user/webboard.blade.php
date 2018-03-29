@@ -25,38 +25,30 @@
       			</div>
       		</div>
           <!-- /.row -->
-          <nav class="navbar navbar-default fixed-top-2" role="navigation" style="border-color:red">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        </button>
-
-        </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav">
+          <div class="topnav" style="background-color: #DCDCDC;">
+      <div class="row">
+      <div class="col-md-2">
+      <br>&nbsp;&nbsp;
+      <span  v-on:click="showcars()" class="glyphicon glyphicon-shopping-cart" style="font-size:20px;color:#ef0e0e"></span>  <span class="badge badge-notify ">{{ Cart::content()->count() }}</span>
 
 
-        <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">เรียงตาม <b class="caret"></b></a>
+      </div>
+      <div class="col-md-2">
+      <div class="dropdown">
+      <button onclick="myFunction1()" class="dropbtn" style="background-color: #ef0e0e;">เรียงตาม<i class="fa fa-angle-down"></i></button>
+      <div id="myDropdown1" class="dropdown-content">
+        <a href="/webboard?type=การเยี่ยมผู้ต้องขัง">การเยี่ยมผู้ต้องขัง</a>
+        <a href="/webboard?type=การซื้อสินค้า">การซื้อสินค้า</a>
+        <a href="/webboard?type=การเตรียมเอกสาร">การเตรียมเอกสาร</a>
+        <a href="/webboard">ค่าเริ่มต้น</a>
+        <li><a href="/webboard">ค่าเริ่มต้น</a></li>
 
-        <ul class="dropdown-menu" >
-          <li><a href="/webboard?type=การเยี่ยมผู้ต้องขัง">การเยี่ยมผู้ต้องขัง</a></li>
-          <li><a href="/webboard?type=การซื้อสินค้า">การซื้อสินค้า</a></li>
-          <li><a href="/webboard?type=การเตรียมเอกสาร">การเตรียมเอกสาร</a></li>
-          <li class="divider"></li>
-          <li><a href="/webboard">ค่าเริ่มต้น</a></li>
+      </div>
+      </div>
 
-        </ul>
-
-        </li>
-        </ul>
-        <div class="col-sm-6 col-md-6 text-right">
+      </div>
+      <div class="col-md-4">
+      <div class="search-container">
         <form class="navbar-form" role="search"  method="GET">
         <div class="input-group ">
             <input type="text" class="form-control" style="border-color:red" placeholder="<?php echo  Session::get('search'); ?>" name="q">
@@ -65,27 +57,24 @@
             </div>
         </div>
         </form>
+      </div>
+      </div>
+      <div class="col-md-2 pull-right">
+        <form class="navbar-form" role="search"  method="GET">
+        <div class="input-group ">
+          <a><button type="button" class="btn btn-danger btn-outline" v-on:click="open()">ตั้งกระทู้
+        </button></a>
         </div>
-        <ul class="nav navbar-nav navbar-right">
+        </form>
+
+      </div>
 
 
 
-<div class="col-sm-6 col-md-6 text-right">
-<form class="navbar-form" role="search"  method="GET">
-<div class="input-group ">
-  <a><button type="button" class="btn btn-danger btn-outline" v-on:click="open()">ตั้งกระทู้
-</button></a>
-</div>
-</form>
-</div>
-        </ul>
+      </div>
 
 
-
-
-
-      </div><!-- /.navbar-collapse -->
-        </nav>
+          </div>
 
     @foreach ($question as $user)
 
