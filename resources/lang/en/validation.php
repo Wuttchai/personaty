@@ -67,7 +67,7 @@ return [
     'not_in'               => 'The selected :attribute is invalid.',
     'numeric'              => 'กรุณาใส่ข้อมูลเป็นตัวเลข.',
     'present'              => 'The :attribute field must be present.',
-    'regex'                => 'The :attribute format is invalid.',
+    'regex'                => 'โปรดกรอกข้อมูลเฉพาะข้อความเท่านั้น',
     'required'             => 'โปรดกรอกข้อมูล.',
     'required_if'          => 'The :attribute field is required when :other is :value.',
     'required_unless'      => 'The :attribute field is required unless :other is in :values.',
@@ -87,7 +87,7 @@ return [
     'unique'               => 'ข้อมูลนี้ถูกนำไปใช้แล้ว',
     'uploaded'             => 'The :attribute failed to upload.',
     'url'                  => 'The :attribute format is invalid.',
-    
+
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Language Lines

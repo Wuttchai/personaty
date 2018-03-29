@@ -34,7 +34,7 @@ public function update(Request $request, $id)
 
 
   $validator =  Validator::make($request->all(), [
-       'nameedit' => 'required|string',
+       'nameedit' => 'required|regex:/^([a-zA-Z0-9ก-ูเ-๋๑-๙])/',
        'datefirstedit' => 'required|date_format:Y-m-d',
        'datelastedit' => 'required|date_format:Y-m-d',
          ])->validate();
@@ -90,7 +90,7 @@ Session::put("modalshow","active");
 
 
   $validator =  Validator::make($request->all(), [
-       'name' => 'required|string',
+       'name' => 'required|regex:/^([a-zA-Z0-9ก-ูเ-๋๑-๙])/',
        'datefirst' => 'required|date_format:Y-m-d',
        'datelast' => 'required|date_format:Y-m-d',
          ])->validate();

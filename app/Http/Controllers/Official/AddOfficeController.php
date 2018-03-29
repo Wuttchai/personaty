@@ -110,9 +110,9 @@ public function graph() {
      {
 
 $validator =  Validator::make($request->all(), [
-            'name' => 'required|string',
+            'name' => 'required|regex:/^([a-zA-Z0-9ก-ูเ-๋๑-๙])/',
             'email' => 'required|string|email|max:255|unique:official,official_Email',
-            'password' => 'required|string|min:6|confirmed',
+            'password' => 'required|regex:/^([a-zA-Z0-9ก-ูเ-๋๑-๙])/|min:6|confirmed',
             'password_confirmation' => 'required'
               ]);
 
@@ -226,9 +226,9 @@ return response()->json($info);
 public function update(Request $request,$id)
 {
   $validator =  Validator::make($request->all(), [
-              'name' => 'required|string',
+              'name' => 'required|regex:/^([a-zA-Z0-9ก-ูเ-๋๑-๙])/',
               'email' => 'required|string|email|max:255',
-              'password' => 'required|string|min:6|confirmed',
+              'password' => 'required|regex:/^([a-zA-Z0-9ก-ูเ-๋๑-๙])/|min:6|confirmed',
               'password_confirmation' => 'required'
                 ]);
 

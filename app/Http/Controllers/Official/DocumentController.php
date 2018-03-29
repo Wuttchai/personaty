@@ -63,7 +63,7 @@ public $timestamps = false;
 
     $validator =  Validator::make($request->all(), [
          'id' => 'required|string',
-         'name' => 'required|string',
+         'name' => 'required|regex:/^([a-zA-Z0-9ก-ูเ-๋๑-๙])/',
         'fileoffice' => 'required|mimes:pdf|max:1000',
 
            ]);
@@ -164,7 +164,7 @@ $time =Carbon::now('Asia/Bangkok');
 
   $Validator = Validator::make($request->all(),[
     'id' => 'required|string',
-    'name' => 'required|string',
+    'name' => 'required|regex:/^([a-zA-Z0-9ก-ูเ-๋๑-๙])/',
    'fileoffice' => 'required|mimes:pdf|max:1000',
   ]);
   if($Validator->errors()->messages() != null){
@@ -216,7 +216,7 @@ $time =Carbon::now('Asia/Bangkok');
 
   $Validator = Validator::make($request->all(),[
     'id' => 'required|string',
-    'name' => 'required|string',
+    'name' => 'required|regex:/^([a-zA-Z0-9ก-ูเ-๋๑-๙])/',
   ]);
   if($Validator->errors()->messages() != null){
     return[
