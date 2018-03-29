@@ -528,7 +528,7 @@ a.list-group-item {
                               <p><a href="/location" class="text-dark">สถานที่ตั้ง</a></p>
                             </li>
                             <li>
-                              <p><a href="" class="text-dark">ติดต่อ</a></p>
+                              <p><a href="/contact" class="text-dark">ติดต่อ</a></p>
                             </li>
                           </ul>
 </footer>

@@ -27,6 +27,13 @@ Route::get('/vision', function () {
     return view('about.vision');
 });
 Route::get('/abouts', 'HomeController@about');
+
+
+Route::get('/contact', function () {
+  $this->middleware('doccumethome');
+    return view('about.contact');
+});
+
 Route::get('/location', function () {
   $this->middleware('doccumethome');
     return view('about.location');
