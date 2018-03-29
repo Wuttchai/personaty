@@ -170,7 +170,7 @@ $cartItem = Cart::add($request->id, $product[0]->Pro_Name, $request->quantity, $
    ->join('questiondetail','questiondetail.ques_id','=','question.ques_id')
    ->select('question.ques_id',DB::raw('count(questiondetail.quesde_id) as user_count'), 'question.ques_name','question.ques_detail', 'question.ques_date','users.User_ID','users.User_Name', 'question.ques_type','question.ques_id','question.quesde_owner')
    ->GROUPBY('question.ques_id','users.User_ID')
-    ->where('Pro_Name', 'LIKE', "%$keyword%")
+    ->where('ques_name', 'LIKE', "%$keyword%")
    ->orderBy('ques_date', 'desc')->paginate(5);
 
    return view('user.webboard',[
