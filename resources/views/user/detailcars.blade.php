@@ -55,8 +55,8 @@
                   <div class="col-sm-4 invoice-col">
                     ถึง
                     <address>
-                      <strong>{{ Auth::user()->User_Name }}</strong><br>
-                      {{ Auth::user()->User_Address }}<br>
+                      <strong>{{ $date[0]->Prosell_name }}</strong><br>
+                      {{ $date[0]->Prosell_address }}<br>
                       เบอร์โทร: {{ Auth::user()->User_Tel }}<br>
                       อีเมลล์: {{ Auth::user()->email }}
                     </address>
