@@ -493,29 +493,14 @@ a.list-group-item {
           </div>
 
           <div class="col-md-3">
-            <h4>คลังความรู้</h4>
+            <h4>กระทู้สอบถาม</h4>
             <ul class="contact">
-                  <li><p>
-            <a href="" class="text-dark">สถิติผู้สูงอายุ</a>
-          </p></li>
-                  <li><p>
-            <a href="" class="text-dark">สถานการณ์ผู้สูงอายุ</a>
-          </p></li>
-                  <li><p>
-            <a href="" class="text-dark">บทความ</a>
-          </p></li>
-                  <li><p>
-            <a href="" class="text-dark">ผลงานวิชาการ</a>
-          </p></li>
-                  <li><p>
-            <a href="" class="text-dark">เอกสารเผยแพร่/สื่อสิ่งพิมพ์</a>
-          </p></li>
-                  <li><p>
-            <a href="" class="text-dark">เทคโนโลยีสารสนเทศ</a>
-          </p></li>
-                  <li><p>
-            <a href="" class="text-dark">สื่อมัลติมีเดีย</a>
-          </p></li>
+              @if(Session::get('doccumenthome') != '[]')
+                            @foreach(Session::get('question') as $questi)
+
+                                    <li><p><a href="question/comment/{{$questi->ques_id}}" class="text-dark" >{{$questi->ques_name}}</a></p></li>
+                            @endforeach
+              @endif
                     </ul>
 
 
@@ -525,27 +510,25 @@ a.list-group-item {
               <h4>บริการ</h4>
                           <ul class="contact">
                             <li>
-                              <p><a href="" class="text-dark">ดาวน์โหลดเอกสาร/แบบฟอร์ม</a></p>
+                              <p><a href="/documentsh" class="text-dark">ดาวน์โหลดเอกสาร/แบบฟอร์ม</a></p>
                             </li>
 
                             <li><p>
-                              <a href="" class="text-dark">ถามตอบ (Q&amp;A)</a>
+                              <a href="/ProductAyutaya" class="text-dark">สินค้าวิชาชีพ</a>
                             </p></li>
-                            <li><p>
-                              <a href="" class="text-dark">คำถามที่พบบ่อย (FAQ)</a></p>
-                            </li>
+
                             <li>
-                              <p><a href="" class="text-dark">ร้องเรียน</a></p>
+                              <p><a href="" class="text-dark">การเข้าเยี่ยมผู้ต้องขัง</a></p>
                             </li>
 
                             <li>
-                              <p><a href="" class="text-dark">เว็บลิงค์</a></p>
+                              <p><a href="" class="text-dark">คู่มือการใช้งาน</a></p>
                             </li>
                             <li>
-                              <p><a href="" class="text-dark">ระบบกระจายข่าว (RSS)</a></p>
+                              <p><a href="/location" class="text-dark">สถานที่ตั้ง</a></p>
                             </li>
                             <li>
-                              <p><a href="" class="text-dark">ค้นหา</a></p>
+                              <p><a href="" class="text-dark">ติดต่อ</a></p>
                             </li>
                           </ul>
 </footer>

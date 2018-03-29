@@ -27,7 +27,10 @@ Route::get('/vision', function () {
     return view('about.vision');
 });
 Route::get('/abouts', 'HomeController@about');
-
+Route::get('/location', function () {
+  $this->middleware('doccumethome');
+    return view('about.location');
+});
 
 Route::get('/question/comment/{id}', 'HomeController@showcomment')->name('showcomment');
 Route::get('/product/view/{id}', 'HomeController@productview');
