@@ -172,6 +172,7 @@ $question = \App\question::join('users','question.User_ID','=','users.User_ID')
        return view('user.webboard',[
        'question' => $question
        ]);
+
        if (isset($_GET['q'])) {
    $keyword = $_GET['q'];
    $question = \App\question::join('users','question.User_ID','=','users.User_ID')
@@ -185,6 +186,7 @@ $question = \App\question::join('users','question.User_ID','=','users.User_ID')
    'question' => $question
    ]);
        }
+
        if ($_GET['type'] == 'การเยี่ยมผู้ต้องขัง') {
          $question = \App\question::join('users','question.User_ID','=','users.User_ID')
          ->join('questiondetail','questiondetail.ques_id','=','question.ques_id')
@@ -209,7 +211,7 @@ $question = \App\question::join('users','question.User_ID','=','users.User_ID')
          return view('user.webboard',[
          'question' => $question
          ]);
-       ]);
+       
 
        }
        if ($_GET['type'] == 'การเตรียมเอกสาร') {
