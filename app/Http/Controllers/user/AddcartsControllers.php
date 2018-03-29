@@ -41,11 +41,6 @@ class AddcartsControllers extends Controller
                              ->where('users.User_ID','=' , Auth::user()->User_ID)
                              ->get();
 
-                  if ($product != '[]') {
-                    return redirect()->back()->with('alert', 'มีการซื้ออยู่!');
-                  }
-
-
        \App\product_sell::insert([
                      'User_ID' => Auth::user()->User_ID,
                      'Prosell_Quantity' => 0,
@@ -87,7 +82,7 @@ class AddcartsControllers extends Controller
             ->select('Prosell_name','Prosell_address')
             ->where('Prosell_ID','=' ,$Prosell_ID)
             ->get();
-            return view('user.showcars',[
+            return redirect('/cart/confrimadd',[
               'date'=>$date,
               'Prosell_ID' => $Prosell_ID
             ]);

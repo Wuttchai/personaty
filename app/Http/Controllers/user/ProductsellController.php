@@ -119,7 +119,7 @@ public function editsend(Request $request,$id)
                               'Prosell_address' => $request->address,
                               ]);
 
-return redirect('/confrimadd');
+return redirect('/cart/confrimadd');
 
 }
 
