@@ -177,9 +177,9 @@ $cartItem = Cart::add($request->id, $product[0]->Pro_Name, $request->quantity, $
    'question' => $question
    ]);
        }
-
+ if (isset($_GET['type'])) {
        if ($_GET['type'] == 'การเยี่ยมผู้ต้องขัง') {
-         
+
          $question = \App\question::join('users','question.User_ID','=','users.User_ID')
          ->join('questiondetail','questiondetail.ques_id','=','question.ques_id')
          ->select('question.ques_id',DB::raw('count(questiondetail.quesde_id) as user_count'), 'question.ques_name','question.ques_detail', 'question.ques_date','users.User_ID','users.User_Name', 'question.ques_type','question.ques_id','question.quesde_owner')
@@ -218,6 +218,7 @@ $cartItem = Cart::add($request->id, $product[0]->Pro_Name, $request->quantity, $
          'question' => $question
          ]);
        }
+     }
        $question = \App\question::join('users','question.User_ID','=','users.User_ID')
        ->join('questiondetail','questiondetail.ques_id','=','question.ques_id')
        ->select('question.ques_id',DB::raw('count(questiondetail.quesde_id) as user_count'), 'question.ques_name','question.ques_detail', 'question.ques_date','users.User_ID','users.User_Name', 'question.ques_type','question.ques_id','question.quesde_owner')
