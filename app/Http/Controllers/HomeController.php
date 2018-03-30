@@ -43,16 +43,16 @@ return view('about.history');
   }  if ($_GET['type'] == 'โครงสร้างหน่วยงาน') {
     $about = DB::table('person_count')
     ->where('Person_Type','=','โครงสร้างหน่วยงาน')
-    ->where('perupdated_at', DB::raw("(select max(perupdated_at) from person_count where person_count.Person_Type == 'โครงสร้างหน่วยงาน')"))->get();
-return view('about.organization',[
+->orderBy('perupdated_at', 'desc')->limit(1)->get();
+    return view('about.organization',[
   'about' => $about
 ]);
 
   }  if ($_GET['type'] == 'ทำเนียบผู้บริหาร') {
     $about = DB::table('person_count')
     ->where('Person_Type','=','ทำเนียบผู้บริหาร')
-    ->where('perupdated_at', DB::raw("(select max(perupdated_at) from person_count where person_count.Person_Type == 'ทำเนียบผู้บริหาร')"))->get();
-return view('about.executives',[
+->orderBy('perupdated_at', 'desc')->limit(1)->get();
+    return view('about.executives',[
   'about' => $about
 ]);
 
@@ -62,8 +62,8 @@ return view('about.strategic');
   if ($_GET['type'] == 'ข้อมูลบุคลากร') {
     $about = DB::table('person_count')
     ->where('Person_Type','=','ข้อมูลบุคลากร')
-    ->where('perupdated_at', DB::raw("(select max(perupdated_at) from person_count where person_count.Person_Type == 'ข้อมูลบุคลากร')"))->get();
-    return view('about.Personnel',[
+    ->orderBy('perupdated_at', 'desc')->limit(1)->get();
+     return view('about.Personnel',[
     'about' => $about
     ]);
 
@@ -71,8 +71,8 @@ return view('about.strategic');
 
     $about = DB::table('person_count')
     ->where('Person_Type','=','ข้อมูลสถิติผู้ต้องขัง')
-    ->where('perupdated_at', DB::raw("(select max(perupdated_at) from person_count where person_count.Person_Type == 'ข้อมูลสถิติผู้ต้องขัง')"))->get();
-    return view('about.statistics',[
+  ->orderBy('perupdated_at', 'desc')->limit(1)->get();
+   return view('about.statistics',[
     'about' => $about
     ]);
 
