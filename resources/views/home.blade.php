@@ -349,7 +349,7 @@
 
                   <tr>
                     <td>{{ $key2+1 }}</td>
-                    <td>{{ $doccument[$key2]->doc_file }}</td>
+                    <td>{{ $doccument[$key2]->doc_name }}</td>
                     <td><a href="/pdf/view/<?php echo $doccument[$key2]->doc_id ?>" target="_blank" ><button type="button" class="btn btn-default btn-lm btn-warning">
                               <span class="glyphicon glyphicon glyphicon-file"></span> แสดงตัวอย่าง
                             </button>
