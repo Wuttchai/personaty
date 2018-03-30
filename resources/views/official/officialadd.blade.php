@@ -59,7 +59,7 @@
                                      <th>การจัดการ</th>
                                    </tr>
                                  </thead>
-                                 <tr v-for="item in paginatedUsers">
+                                 <tr v-for="item in paginatedUsers" v-if="item.official_Name != 'Admin'">
                                    <td>@{{ item.official_Name }}</td>
                                    <td>@{{ item.info }}</td>
                                    <td>@{{ item.product }}</td>
