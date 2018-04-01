@@ -140,6 +140,12 @@ if ($request->fileoffice) {
 
 
 
+  $imagedel = \App\info::select('Info_Img')
+              ->where('Info_ID','=',$id)
+              ->get();
+
+  $image_path = "images/".$imagedel[0]->Info_Img."";
+  unlink($image_path);
 
 
   $imageData = $request->get('fileoffice');
@@ -249,6 +255,12 @@ if ($request->fileoffice) {
          'Log_Time'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
          ]);
 
+         $imagedel = \App\info::select('Info_Img')
+                     ->where('Info_ID','=',$id)
+                     ->get();
+
+         $image_path = "images/".$imagedel[0]->Info_Img."";
+         unlink($image_path);
      \App\info::where('Info_ID', '=', $id)->delete();
 
      $info = \App\info::join('log','info.Log_ID','=','log.Log_ID')

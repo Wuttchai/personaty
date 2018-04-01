@@ -156,6 +156,13 @@ if ($request->fileoffice) {
 
 
 
+  $imagedel = \App\hotnews::select('Hotnews_img')
+              ->where('Hotnews_ID','=',$id)
+              ->get();
+
+  $image_path = "hotnew/".$imagedel[0]->Hotnews_img."";
+  unlink($image_path);
+ \App\doccument::where('doc_id', '=', $id)->delete();
 
   $imageData = $request->get('fileoffice');
  $fileName = Carbon::now()->timestamp . '_' . uniqid() . '.' . explode('/', explode(':', substr($imageData, 0, strpos($imageData, ';')))[1])[1];
@@ -268,7 +275,12 @@ if ($request->fileoffice) {
          'Log_IP'  => \Request::ip(),
          'Log_Time'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
          ]);
+         $imagedel = \App\hotnews::select('Hotnews_img')
+                     ->where('Hotnews_ID','=',$id)
+                     ->get();
 
+         $image_path = "hotnew/".$imagedel[0]->Hotnews_img."";
+         unlink($image_path);
      \App\hotnews::where('Hotnews_ID', '=', $id)->delete();
 
      $info = \App\hotnews::join('log','hotnews.Log_ID','=','log.Log_ID')

@@ -7,6 +7,8 @@ use Session;
 use Illuminate\Support\Facades\Validator;
 use Carbon\Carbon;
 use Intervention\Image\ImageManager ;
+use Illuminate\Support\Facades\Storage;
+use File;
 
 class DocumentController extends Controller
 {
@@ -183,6 +185,13 @@ $time =Carbon::now('Asia/Bangkok');
   }
 
    $imageName =   $time->day. '-' .$request->id . '.' .  $request->fileoffice->getClientOriginalName();
+   $imagedel = \App\doccument::select('doc_file')
+               ->where('doc_id','=',$id)
+               ->get();
+
+   $image_path = "pdf/".$imagedel[0]->doc_file."";
+   unlink($image_path);
+
 
             $request->fileoffice->move(
                       base_path() . '/public/pdf/', $imageName
@@ -260,7 +269,12 @@ $time =Carbon::now('Asia/Bangkok');
          'Log_IP'  => \Request::ip(),
          'Log_Time'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
          ]);
+         $imagedel = \App\doccument::select('doc_file')
+                     ->where('doc_id','=',$id)
+                     ->get();
 
+         $image_path = "pdf/".$imagedel[0]->doc_file."";
+         unlink($image_path);
      \App\doccument::where('doc_id', '=', $id)->delete();
 
      $xxx = \App\doccument::join('log','doccument.Log_ID','=','log.Log_ID')

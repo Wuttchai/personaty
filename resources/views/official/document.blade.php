@@ -558,6 +558,7 @@ $("#editofficial").modal('show');
 
        							        },
         updateItem: function() {
+          
           information.buttonload = true;
           information.buttonedit = false;
           information.nameerror = false;
@@ -570,9 +571,6 @@ $("#editofficial").modal('show');
                        data.append('secondParam', 0);
                        data.append('fileoffice', this.image);
                          var doc_id =	this.id_edit;
-
-
-
                       axios.post("/document/update/"+doc_id ,data, config).then(function (response) {
 
                      if (response.data.messages != null) {
