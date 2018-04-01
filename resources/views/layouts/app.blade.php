@@ -466,71 +466,28 @@ a.list-group-item {
       <div class="container">
 
         <div class="row">
-          <div class="col-md-3">
-            <h4>เกี่ยวกับ เรือนจำ</h4>
+          <div class="col-md-8">
+            <h4>สถานที่ตั้ง</h4>
             <ul class="contact">
-                      <li><p><a href="/abouts?type=ประวัติความเป็นมา"class="text-dark">ประวัติความเป็นมา</a></p></li>
-                      <li><p><a href="/abouts?type=วิสัยทัศน์และพันธกิจ"class="text-dark">วิสัยทัศน์และพันธกิจ</a></p></li>
-                      <li><p><a href="/abouts?type=โครงสร้างหน่วยงาน"class="text-dark">โครงสร้างหน่วยงาน</a></p></li>
-                      <li><p><a href="/abouts?type=ทำเนียบผู้บริหาร"class="text-dark">ทำเนียบผู้บริหาร</a></p></li>
-                      <li><p><a href="/abouts?type=ยุทธศาสตร์"class="text-dark">ยุทธศาสตร์</a></p></li>
-                      <li><p><a href="/abouts?type=ข้อมูลบุคลากร"class="text-dark">ข้อมูลบุคลากร</a></p></li>
-                      <li><p><a href="/officialapp"class="text-dark">สำหรับเจ้าหน้าที่</a></p></li>
-                      <li><p><a href="/abouts?type=ข้อมูลสถิติผู้ต้องขัง"class="text-dark">ข้อมูลสถิติผู้ต้องขัง</a></p></li>
+                      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d61847.46570814449!2d100.58205004640126!3d14.342387081527562!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e27582c403fc33%3A0xe7cb9f1e8aee3436!2z4LmA4Lij4Li34Lit4LiZ4LiI4Liz4LiI4Lix4LiH4Lir4Lin4Lix4LiU4Lie4Lij4Liw4LiZ4LiE4Lij4Lio4Lij4Li14Lit4Lii4Li44LiY4Lii4Liy!5e0!3m2!1sth!2sth!4v1522330134482" class="img-thumbnail" style="width: 1000px;" allowfullscreen></iframe>
+
             </ul>
 
           </div>
-          <div class="col-md-3">
-            <h4>เอกสารเผยแพร่</h4>
+
+
+
+          <div class="col-md-4">
+            <h4>ติดต่อ</h4>
             <ul class="contact">
-@if(Session::get('doccumenthome') != '[]')
-              @foreach(Session::get('doccumenthome') as $doc)
-
-                      <li><p><a href="/pdf/view/{{$doc->doc_id}}" class="text-dark" target="_blank">{{$doc->doc_name}}</a></p></li>
-              @endforeach
-@endif
-                    </ul>
-          </div>
-
-          <div class="col-md-3">
-            <h4>กระทู้สอบถาม</h4>
-            <ul class="contact">
-              @if(Session::get('doccumenthome') != '[]')
-                            @foreach(Session::get('question') as $questi)
-
-                                    <li><p><a href="question/comment/{{$questi->ques_id}}" class="text-dark" >{{$questi->ques_name}}</a></p></li>
-                            @endforeach
-              @endif
-                    </ul>
-
-
-
-          </div>
-          <div class="col-md-3">
-              <h4>บริการ</h4>
-                          <ul class="contact">
-                            <li>
-                              <p><a href="/documentsh" class="text-dark">ดาวน์โหลดเอกสาร/แบบฟอร์ม</a></p>
-                            </li>
-
-                            <li><p>
-                              <a href="/ProductAyutaya" class="text-dark">สินค้าวิชาชีพ</a>
-                            </p></li>
-
-                            <li>
-                              <p><a href="" class="text-dark">การเข้าเยี่ยมผู้ต้องขัง</a></p>
-                            </li>
-
-                            <li>
-                              <p><a href="" class="text-dark">คู่มือการใช้งาน</a></p>
-                            </li>
-                            <li>
-                              <p><a href="/location" class="text-dark">สถานที่ตั้ง</a></p>
-                            </li>
-                            <li>
-                              <p><a href="/contact" class="text-dark">ติดต่อ</a></p>
-                            </li>
-                          </ul>
+              <h5>โทรศัพท์ : 0-3570-9113</h5>
+          <h5>อีเมลล์ : info@comapyn.com</h5>
+          <h5>โทรสาร : 0-3570-911</h5>
+          <h5>ที่อยู่ : 123 หมู่ 3 ตำบลหันตรา </h5>
+          อำเภอพระนครศรีอยุธยา จังหวัดพระนครศรีอยุธยา 13000  </ul>
+          <a href="https://www.facebook.com/profile.php?id=100022422245864" target="_blank" class="btn btn-social-icon btn-facebook pull-right">
+             <span class="fa fa-facebook"></span>
+           </a>
 </footer>
 <footer class="panel-footer ">
       <div class="container">
