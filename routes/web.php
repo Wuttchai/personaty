@@ -138,7 +138,7 @@ Route::post('/Producteditcars', 'HomeController@editcars');
 Route::post('/Productdeletecars', 'HomeController@deletecars');
 Route::get('/questiondetail/edit/{id}', 'user\ProductsellController@openedit');
 Route::get('/product/invoice/', 'user\ProductsellController@index')->name('showcar');
-Route::post('/cart/confrimadd', 'user\AddcartsControllers@confrim');
+Route::get('/cart/confrimadd', 'user\AddcartsControllers@confrim');
 Route::get('/Product/delete', 'user\AddcartsControllers@delete');
 
 Route::get('/invoice-print', function () {
