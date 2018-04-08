@@ -32,6 +32,7 @@ class AddcartsControllers extends Controller
 
      public function confrim(Request $request)
      {
+      
        $time =Carbon::now('Asia/Bangkok');
        $product = \App\product_sell::select('product_Sell.Prosell_img')
                   ->where('product_Sell.User_ID','=' , Auth::user()->User_ID)

@@ -80,13 +80,14 @@
 
 
 @if (Cart::content() != null  && Cart::content() != "[]")
+<br>
 <div class="col-lg-2" >
 </div>
-<div class="col-lg-8" v-if="cars">
+<div class="col-md-8" v-if="cars" style="overflow-x:auto;">
     <div class="card card-default ">
-        <div   class="card-header card text-center bg-danger">ตระกร้าสินค้า</div>
+        <div class="card-header card text-center bg-danger"><h5>ตระกร้าสินค้า</h5></div>
 
-        <table class="table table-borderless ">
+        <table class="table table-borderless " >
           <thead>
             <tr>
               <th scope="col">ลำดับ</th>
@@ -97,37 +98,43 @@
             </tr>
           </thead>
           <tbody>
-<?php $num =1; ?>
+
+<?php $num1 =0;  $num =1; ?>
 
           @foreach (Cart::content() as $key1 => $product)
 
             <tr>
-              <th scope="row">&nbsp;&nbsp;&nbsp;{{ $num }}</th>
+              <th scope="row">{{ $num }}</th>
               <td>{{ $product->name }}</td>
-              <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ $product->qty }} ชิ้น</td>
-              <td>&nbsp;{{ $product->price }} บาท</td>
+              <td>
+
+                <select v-model="qtyedit['<?php echo $num1?>']['<?php echo $product->rowId ?>']" v-on:click="editcars('<?php echo $product->rowId ?>','<?php echo $num1?>')">
+                  <option v-for="n in <?php echo $product->options->size ?>" >@{{ n }} </option>
+
+                  </select>
+              ชิ้น</td>
+              <td>{{ number_format($product->price*$product->qty) }} บาท</td>
 
               <td>
               &nbsp;&nbsp; <button  type="button"  class="btn btn-danger" v-on:click="deletecars('<?php echo $key1 ?>')"><i class="glyphicon glyphicon-trash" aria-hidden="true"></i></button>
                </td>
             </tr>
 
-<?php $num ++; ?>
+<?php $num1 ++;  $num ++; ?>
              @endforeach
           </tbody>
           <tfoot>
              		<tr>
-             			<td colspan="3">&nbsp;</td>
-             			<td>ราคาสินค้าทั้งหมด :</td>
-             			<td><?php echo Cart::subtotal(); ?> บาท</td>
+             			<td colspan="6" class="text-center">
+             			ราคาสินค้าทั้งหมด :<?php echo Cart::subtotal(); ?> บาท</td>
              		</tr>
 
              	</tfoot>
         </table>
         <div class="col-lg-12 text-center">
 
-          <form class="navbar-form"  action="/cart/confrimadd" method="get" >
 
+    <form class="navbar-form"  action="/cart/confrimadd" method="post" >
                               {!! csrf_field() !!}
                               <input type="submit" class="btn btn-success btn-sm " value="บันทึกข้อมูลการสั่งซื้อ">
                           </form>
@@ -155,22 +162,38 @@
         @endif
           @foreach ($products as $key1 => $product)
           <div class="col-md-4">
+            @if (Cart::content() != null  && Cart::content() != "[]")
+            @isset(Cart::content()->groupBy('name')[$products[$key1]->Pro_Name][0]->name)
+              @if (Cart::content()->groupBy('name')[$products[$key1]->Pro_Name][0]->name == $products[$key1]->Pro_Name)
+            <?php  $products[$key1]->Pro_Count = $products[$key1]->Pro_Count - Cart::content()->groupBy('name')[$products[$key1]->Pro_Name][0]->qty;  ?>
 
+              @endif
+
+              @endisset
+
+            @endif
                 <div class="thumbnail" style="border-color: #e80b0b" >
                     <br>
                   <img src="<?php echo "product/".$products[$key1]->Pro_img ?>" style="width:260px; height:146px;" class="img-responsive">
                   <div class="caption">
-                    <h4 class="pull-right">{{ $products[$key1]->Pro_Price }} บาท</h4>
+                    <h4 class="pull-right">{{  number_format($products[$key1]->Pro_Price) }} บาท</h4>
                     <h4 ><a href="#" class="text-dark">{{ $products[$key1]->Pro_Name }} </a></h4>
                     <p>{{ $products[$key1]->Pro_Detail }}</p>
                   </div>
 
                   <div class="space-ten"></div>
                   <div class="btn-ground text-right">
-                    <select   v-model="quantity">
-                      <option v-for="n in <?php echo $products[$key1]->Pro_Count ?>" >@{{ n }}</option>
+                    @if ($products[$key1]->Pro_Count != 0 )
+                    <select   v-model="items[<?php echo $key1 ?>].<?php echo $products[$key1]->Pro_Name?>">
+                      <option v-for="n in <?php echo $products[$key1]->Pro_Count ?>" >@{{ n }} </option>
                       </select>
-                      <button type="button"  v-on:click="addcars(<?php echo $products[$key1]->Pro_ID ?>)" class="btn btn-default btn-md btn-warning" ><span class="glyphicon glyphicon-shopping-cart"></button>
+                        @endif
+                          @if ($products[$key1]->Pro_Count != 0 )
+                      <button type="button"  v-on:click="addcars(<?php echo $products[$key1]->Pro_ID ?>,'<?php echo $products[$key1]->Pro_Name?>','<?php echo $key1?>')" class="btn btn-default btn-md btn-warning" ><span class="glyphicon glyphicon-shopping-cart"></button>
+                          @endif
+                          @if ($products[$key1]->Pro_Count == 0 )
+                      <button   class="btn btn-default btn-md btn-danger" >สินค้าหมด</button>
+                          @endif
                       <button type="button"  v-on:click="detail(<?php echo $products[$key1]->Pro_ID ?>)" class="btn btn-primary" ><i class="fa fa-search"></i>รายละเอียด</button>
                   </div>
                   <div class="space-ten"></div>
@@ -282,7 +305,11 @@ var information =  new Vue({
     el: '#information',
     data: {
         'id'  :'',
-        'quantity' :1,
+        'qtyedit': [
+        <?php  foreach (Cart::content() as $key1 => $product): ?>
+      { '<?php echo $product->rowId ?>': <?php echo $product->qty ?> },
+           <?php endforeach; ?>
+    ],
         'cars' : false,
         'seach' : <?php if (Session::get('search') == 'ค้นหา' || Session::get('search') == null ) {echo 'true';}else {echo 'false';} ?>,
         'cancelsearch' :<?php if (Session::get('search')!='ค้นหา' && Session::get('search')!= null ) {echo 'true';}else {echo 'false';} ?>,
@@ -293,7 +320,11 @@ var information =  new Vue({
         'Pro_Price':'',
         'Pro_Type':'',
         'Pro_img':'',
-
+        'items': [
+          <?php foreach($products as $key1 => $product): ?>
+      { '<?php echo $products[$key1]->Pro_Name ?>': 1 },
+           <?php endforeach; ?>
+    ],
 
     },
 
@@ -303,9 +334,7 @@ var information =  new Vue({
     methods: {
 
 
-           addcars: function (event) {
-
-
+           addcars: function (event , event2 , event3) {
     swal({
 title: 'คุณแน่ใจ !',
 text: 'คุณต้องการเพิ่มลงตร้าใช่ไหม',
@@ -317,16 +346,11 @@ confirmButtonText: 'ยืนยัน',
 cancelButtonText : 'ยกเลิก',
 closeOnConfirm: false
 
-
-
-
 }).then(function (e) {
-
-
 
       axios.post('/Productaddcars', {
          id : event,
-        quantity : information.quantity,
+        quantity : information.items[event3][event2],
       }).then(function (response) {
 
 location.reload();
@@ -400,6 +424,14 @@ location.reload();
                    }
                  })
 
+           },
+           editcars: function (event, event2) {
+axios.post('/Producteditcars', {
+   id : event,
+   qty : information.qtyedit[event2][event],
+}).then(function (response) {
+
+   });
            },
            showcars: function () {
              if (this.cars == true) {

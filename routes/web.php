@@ -133,10 +133,12 @@ Route::post('/official/calender/update{id}', 'Official\CalenderController@update
 Route::post('/official/calender/delete{id}', 'Official\CalenderController@delete');
 //calender
 Route::post('/Productaddcars', 'HomeController@addcars');
+
+Route::post('/Producteditcars', 'HomeController@editcars');
 Route::post('/Productdeletecars', 'HomeController@deletecars');
 Route::get('/questiondetail/edit/{id}', 'user\ProductsellController@openedit');
 Route::get('/product/invoice/', 'user\ProductsellController@index')->name('showcar');
-Route::get('/cart/confrimadd', 'user\AddcartsControllers@confrim');
+Route::post('/cart/confrimadd', 'user\AddcartsControllers@confrim');
 Route::get('/Product/delete', 'user\AddcartsControllers@delete');
 
 Route::get('/invoice-print', function () {

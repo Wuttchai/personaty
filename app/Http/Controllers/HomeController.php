@@ -103,15 +103,22 @@ return view('about.vision');
     }
      public function addcars(Request $request)
      {
-  $product = \App\product::select('Pro_ID', 'Pro_Name', 'Pro_Price')
+
+  $product = \App\product::select('Pro_ID', 'Pro_Name', 'Pro_Price', 'Pro_Count')
              ->where('Pro_ID','=' , $request->id)
              ->get();
 
 
+Cart::add([
+  ['id' => $request->id, 'name' => $product[0]->Pro_Name, 'qty' => $request->quantity, 'price' => $product[0]->Pro_Price,'options' => ['size' => $product[0]->Pro_Count]]
+]);
 
-$cartItem = Cart::add($request->id, $product[0]->Pro_Name, $request->quantity, $product[0]->Pro_Price);
 
+     }
+     public function editcars(Request $request)
+     {
 
+Cart::update($request->id, ['qty' => $request->qty]);
 
      }
      public function detailhotnew($id)
