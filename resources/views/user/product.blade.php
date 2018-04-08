@@ -108,7 +108,7 @@
               <td>{{ $product->name }}</td>
               <td>
 
-                <select v-model="qtyedit['<?php echo $num1?>']['<?php echo $product->rowId ?>']" v-on:click="editcars('<?php echo $product->rowId ?>','<?php echo $num1?>')">
+                <select v-model="qtyedit['<?php echo $num1?>']['<?php echo $product->rowId ?>']" @click="editcars('<?php echo $product->rowId ?>','<?php echo $num1?>')">
                   <option v-for="n in <?php echo $product->options->size ?>" >@{{ n }} </option>
 
                   </select>
@@ -310,6 +310,11 @@ var information =  new Vue({
       { '<?php echo $product->rowId ?>': <?php echo $product->qty ?> },
            <?php endforeach; ?>
     ],
+    'oldqtyedit': [
+    <?php  foreach (Cart::content() as $key1 => $product): ?>
+  { '<?php echo $product->rowId ?>': '<?php echo $product->qty ?>' },
+       <?php endforeach; ?>
+],
         'cars' : false,
         'seach' : <?php if (Session::get('search') == 'ค้นหา' || Session::get('search') == null ) {echo 'true';}else {echo 'false';} ?>,
         'cancelsearch' :<?php if (Session::get('search')!='ค้นหา' && Session::get('search')!= null ) {echo 'true';}else {echo 'false';} ?>,
@@ -399,12 +404,8 @@ location.reload();
                   id : event,
 
                }).then(function (response) {
-
-
-
   location.reload();
                   });
-
                    swal(
                      'ถูกเพิ่มเเล้ว !',
                      'สินค้าของคุณถูกเพิ่มแล้ว.',
@@ -412,9 +413,6 @@ location.reload();
                    )
 
                  }, function (dismiss) {
-
-                   // dismiss can be 'cancel', 'overlay',
-                   // 'close', and 'timer'
                    if (dismiss === 'cancel') {
                      swal(
                        'ยกเลิกเเล้ว',
@@ -426,12 +424,32 @@ location.reload();
 
            },
            editcars: function (event, event2) {
-axios.post('/Producteditcars', {
-   id : event,
-   qty : information.qtyedit[event2][event],
-}).then(function (response) {
+
+            if (information.oldqtyedit[event2][event] != information.qtyedit[event2][event]) {
+              axios.post('/Producteditcars', {
+                 id : event,
+                 qty : information.qtyedit[event2][event],
+              }).then(function (response) {
+
+              swal({
+          title: 'แก้ไขจำนวนสินค้าสำเร็จ !',
+          text: '',
+          type: 'success',
+          showCancelButton: false,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'ยืนยัน',
+
+          closeOnConfirm: false
+
+          }).then(function (e) {
+
+              location.reload();
+            });
+
 
    });
+   }
            },
            showcars: function () {
              if (this.cars == true) {
