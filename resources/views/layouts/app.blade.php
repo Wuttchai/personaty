@@ -403,7 +403,7 @@ a.list-group-item {
                         <li><p><a href="/abouts?type=ทำเนียบผู้บริหาร"class="text-dark">ทำเนียบผู้บริหาร</a></p></li>
                         <li><p><a href="/abouts?type=ยุทธศาสตร์"class="text-dark">ยุทธศาสตร์</a></p></li>
                         <li><p><a href="/abouts?type=ข้อมูลบุคลากร"class="text-dark">ข้อมูลบุคลากร</a></p></li>
-
+                          <li><p><a href="/official/login"class="text-dark">สำหรับเจ้าหน้าที่</a></p></li>
                         <li><p><a href="/abouts?type=ข้อมูลสถิติผู้ต้องขัง"class="text-dark">ข้อมูลสถิติผู้ต้องขัง</a></p></li>
 
                       </ul>
