@@ -121,6 +121,20 @@ return redirect()->route('showcar');
 
 
 }
+
+public function showaddres()
+{
+
+  $address = \App\address::select('address_id','address_name', 'address_at')
+              ->where('User_ID','=' ,Auth::user()->User_ID)
+              ->get();
+
+
+return response()->json($address);
+
+}
+
+
 public function index()
 {
   $Prosell_ID =  \App\product_sell::where([

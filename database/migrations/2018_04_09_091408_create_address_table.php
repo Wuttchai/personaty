@@ -18,7 +18,7 @@ class CreateAddressTable extends Migration
             $table->integer('User_ID')->unsigned();
             $table->string('address_name');
             $table->string('address_at');
-            $table->timestamps();
+            
         });
     }
 

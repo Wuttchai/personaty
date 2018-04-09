@@ -47,7 +47,7 @@
 
 
                       <address>
-                        <form method="POST" action="/user/editsendxxxxx/{{ $Prosell_ID }}" v-if="btnedit">
+                        <form method="POST" action="/user/editsend/{{ $Prosell_ID }}" v-if="btneditform">
                           @csrf
 
     <div class="form-group row">
@@ -70,7 +70,33 @@
    </div>
 
                         </form>
+                        <form method="POST" action="/user/editsend/{{ $Prosell_ID }}" v-if="btnselect">
+                          @csrf
 
+                      <div class="form-group row">
+                      <div class="form-group">
+                      <label for="exampleFormControlTextarea1">ชื่อ-นามสกุล</label>
+
+                      <select class="form-control" name="name">
+                        <option v-for="n in listadd" >@{{ n.text }} </option>
+
+                        </select>
+                      </div>
+                      </div>
+                          <div class="form-group row">
+                            <div class="form-group">
+                      <label for="exampleFormControlTextarea1">ที่อยู่จัดส่ง</label>
+                      <textarea class="form-control" name="address" id="exampleFormControlTextarea1" rows="3"></textarea>
+                      </div>
+                      <button type="button" class="btn btn-danger btn-sm pull-right" v-if="btnedit" v-on:click='edit2'>
+                      <span class="glyphicon glyphicon-remove-circle"></span> ยกเลิก
+                      </button>
+                      <button type="submit" class="btn btn-warning btn-sm pull-right" v-if="btnedit" v-on:click='insert'>
+                      <span class="glyphicon glyphicon-saved"></span> บันทึก
+                      </button>
+                      </div>
+
+                        </form>
 
                         <strong v-if="btnedit2">{{ $date[0]->Prosell_name }}</strong> <br v-if="btnedit2">
 
@@ -119,8 +145,8 @@
                                       <th scope="row">&nbsp;&nbsp;&nbsp;{{ $num }}</th>
                                       <td>{{ $product->name }}</td>
                                       <td>&nbsp;{{ $product->qty }} ชิ้น</td>
-                                      <td>&nbsp;{{ $product->price }} บาท</td>
-                                      <td>&nbsp;{{ $product->qty * $product->price }} บาท</td>
+                                      <td>&nbsp;{{ number_format($product->price) }} บาท</td>
+                                      <td>&nbsp;{{ number_format($product->qty * $product->price) }} บาท</td>
 
                                     </tr>
 
@@ -411,6 +437,11 @@ var information =  new Vue({
         'savefile':false,
         'btnedit':false,
         'btnedit2':true,
+        'btnselect':false,
+        'btneditform':false,
+        'listadd':[
+
+    ],
 
     },
 
@@ -489,8 +520,28 @@ this.image ="";
 
 },
 edit: function () {
-     this.btnedit2= false;
-             this.btnedit= true;
+
+  var link = "/user/showaddres";
+
+  axios.get(link, {
+  }).then(function (response) {
+
+
+for (let i=0; i<response.data.length; i++) {
+
+  information.listadd.push({
+         id: [i],
+       })
+  information.listadd[i].text = response.data[i].address_name;
+  information.listadd[i].value = response.data[i].address_name;
+
+
+}
+information.btnedit2= false;
+information.btnedit= true;
+    information.btnedit2= false;
+    information.btnselect= true;
+  })
 
            },
            edit2: function () {
