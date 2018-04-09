@@ -68,12 +68,7 @@
      <span class="glyphicon glyphicon-saved"></span> บันทึก
      </button>
    </div>
-<?php $keyword = Input::get('address');
-if(isset($keyword)){
-   $tournaments = app/Tournament::where('Hotnews_Name', 'LIKE', "%$keyword%")->get();
-}else{
-   $tournaments = app/Tournament::all();
-} ?>
+
                         </form>
 
 
