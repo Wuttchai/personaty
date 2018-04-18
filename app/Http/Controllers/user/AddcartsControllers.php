@@ -32,24 +32,24 @@ class AddcartsControllers extends Controller
 
      public function confrim(Request $request)
      {
-      
+
        $time =Carbon::now('Asia/Bangkok');
        $product = \App\product_sell::select('product_Sell.Prosell_img')
                   ->where('product_Sell.User_ID','=' , Auth::user()->User_ID)
                   ->where('product_Sell.Prosell_img','=' ,'-')
                   ->get();
-                  $userdetail = \App\User::select('User_Name','User_Address')
-                             ->where('users.User_ID','=' , Auth::user()->User_ID)
-                             ->get();
+                  $userdetail = \App\address::select('address_id')
+                             ->where('address.User_ID','=' , Auth::user()->User_ID)
+                             ->max('address_id');
+
 
        \App\product_sell::insert([
                      'User_ID' => Auth::user()->User_ID,
+                     'address_id' => $userdetail,
                      'Prosell_Quantity' => 0,
                      'Prosell_totalPirce'  => 0,
                      'Prosell_send' => '-',
                      'Prosell_img' => '-',
-                     'Prosell_name' => $userdetail[0]->User_Name,
-                     'Prosell_address' => $userdetail[0]->User_Address,
                      'Prosell_orderdate' => '-',
                      'Prosell_creat'=>   "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
                      ]);
@@ -79,10 +79,7 @@ class AddcartsControllers extends Controller
               'Prosell_totalPirce'  => $totalPirce,
               'Prosell_creat'=>   "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
             ]);
-            $date = DB::table('product_Sell')
-            ->select('Prosell_name','Prosell_address')
-            ->where('Prosell_ID','=' ,$Prosell_ID)
-            ->get();
+          
             return redirect()->route('showcar');
 
      }

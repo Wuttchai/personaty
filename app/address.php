@@ -14,6 +14,6 @@ class address extends Model
 
 
   public $fillable = [
-      'address_id','User_ID','address_name','address_at'
+      'address_id','User_ID','address_name','address_at','address_tumbon','address_aumpor','address_province','address_zipcode','address_tel'
   ];
 }

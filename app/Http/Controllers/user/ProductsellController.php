@@ -53,7 +53,7 @@ public $qtv = 0 ;
      {
 
        $date = DB::table('product_Sell')
-                   ->select('Prosell_ID','Prosell_creat','Prosell_orderdate','Prosell_creat','Prosell_img','Prosell_send','Prosell_Quantity','Prosell_name','Prosell_address')
+                   ->select('Prosell_ID','Prosell_creat','Prosell_orderdate','Prosell_creat','Prosell_img','Prosell_send','Prosell_Quantity')
                    ->where('Prosell_ID','=' ,$id)
                    ->get();
 
@@ -75,7 +75,7 @@ return view('user.detailcars',[
 public function ProductCarorderdetail($id)
 {
   $date = DB::table('product_Sell')
-              ->select('Prosell_ID','Prosell_creat','Prosell_orderdate','Prosell_creat','Prosell_img','Prosell_send','Prosell_Quantity','Prosell_name','Prosell_address')
+              ->select('Prosell_ID','Prosell_creat','Prosell_orderdate','Prosell_creat','Prosell_img','Prosell_send','Prosell_Quantity')
               ->where('Prosell_ID','=' ,$id)
               ->get();
 
@@ -103,21 +103,59 @@ public function ProductCarorderdelete($id)
 
 return redirect('/ProductCarOrders');
 
+
 }
-public function editsend(Request $request,$id)
+
+public function editdropdown(Request $request,$id)
 {
-  Validator::make($request->all(), [
-        'name' => 'required|regex:/^([a-zA-Zก-ูเ-๋])/|max:255',
-        'address' => 'required|string',
+  \App\product_sell::where('Prosell_ID',$id)
+              ->update([
+                'address_id' => $request->idaddres
+            ]);
 
-    ])->validate();
 
-                \App\product_sell::where('Prosell_ID',$id)
-                            ->update([
-                              'Prosell_name' => $request->name,
-                              'Prosell_address' => $request->address,
-                              ]);
-return redirect()->route('showcar');
+
+}
+public function editsend(Request $request ,$id)
+{
+
+
+  $validator = Validator::make($request->all(), [
+        'name' => 'required|regex:/^([a-zA-Zก-ูเ-๋])/|min:5|max:255',
+        'address' => 'required',
+        'tumbon'  => 'required|regex:/^([ก-ูเ-๋])/',
+        'aumpor'  => 'required|regex:/^([ก-ูเ-๋])/',
+        'province' => 'required|regex:/^([ก-ูเ-๋])/',
+        'zipcode' => 'required|numeric|digits:5',
+        'tel' => 'required|numeric|digits:10',
+    ]);
+
+    if($validator->fails()){
+
+          return[
+          'messages' => $validator->errors()->messages()
+          ];
+        }else {
+
+          \App\address::insert([
+                        'User_ID' => Auth::user()->User_ID,
+                        'address_name' => $request->name,
+                        'address_at' => $request->address,
+                        'address_tumbon'  => $request->tumbon,
+                        'address_aumpor' => $request->aumpor,
+                        'address_province' => $request->province,
+                        'address_zipcode' => $request->zipcode,
+                        'address_tel' =>$request->tel,
+                        ]);
+                        $address = \App\address::where('User_ID',Auth::user()->User_ID)
+                        ->max('address_id');
+
+                                \App\product_sell::where('Prosell_ID',$id)
+                                            ->update([
+                                              'address_id' => $address
+                                          ]);
+        }
+
 
 
 }
@@ -125,8 +163,9 @@ return redirect()->route('showcar');
 public function showaddres()
 {
 
-  $address = \App\address::select('address_id','address_name', 'address_at')
+  $address = \App\address::select('address_id','address_name','address_at','address_tumbon','address_aumpor','address_province','address_zipcode','address_tel')
               ->where('User_ID','=' ,Auth::user()->User_ID)
+              ->orderBy('address_id', 'desc')
               ->get();
 
 
@@ -137,16 +176,26 @@ return response()->json($address);
 
 public function index()
 {
+
+
   $Prosell_ID =  \App\product_sell::where([
       ['User_ID', '=', Auth::user()->User_ID],
       ])->max('Prosell_ID');
+
   $date = DB::table('product_Sell')
-  ->select('Prosell_name','Prosell_address')
+  ->select('address_id')
   ->where('Prosell_ID','=' ,$Prosell_ID)
   ->get();
 
-  return view('user.showcars',[
-  'date'=>$date,
+
+
+  $userdetail = \App\address::select('address_name','address_at','address_tumbon','address_aumpor','address_province','address_zipcode','address_tel')
+             ->where('address.address_id','=' , $date[0]->address_id)
+             ->orderBy('address_id', 'desc')
+             ->get();
+
+return view('user.showcars',[
+  'userdetail' => $userdetail,
   'Prosell_ID' => $Prosell_ID
   ]);
 

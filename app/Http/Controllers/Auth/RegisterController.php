@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\address;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -49,11 +50,15 @@ class RegisterController extends Controller
     {
 
         return Validator::make($data, [
-          'User_Name' => 'required|regex:/^([a-zA-Zก-ูเ-๋])/|max:255',
+  'User_Name' => 'required|regex:/^([a-zA-Zก-ูเ-๋])/|min:5|max:255',
   'email' => 'required|string|email|max:255|unique:users,email',
   'password' => 'required|string|min:6|confirmed',
   'User_Address' => 'required|string',
-  'User_Tel'=>'required'
+  'User_Tel'=>'required|numeric|digits:10',
+  'tumbon'  => 'required|regex:/^([ก-ูเ-๋])/',
+  'aumpor'  => 'required|regex:/^([ก-ูเ-๋])/',
+  'province' => 'required|regex:/^([ก-ูเ-๋])/',
+  'zipcode' => 'required|numeric|digits:5',
         ]);
     }
     /**
@@ -64,7 +69,6 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-
         return User::create([
                 'User_Name' =>  $data['User_Name'],
                 'email' => $data['email'],
@@ -73,5 +77,8 @@ class RegisterController extends Controller
                 'remember_token' => $data['_token'],
                 'password' =>  bcrypt($data['password']),
         ]);
+
+      
+
     }
 }

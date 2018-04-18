@@ -42,67 +42,153 @@
                       ถึง<button type="button" class="btn btn-warning btn-sm pull-right" v-if="btnedit2" v-on:click='edit'>
             <span class="glyphicon glyphicon-edit"></span> แก้ไข
           </button>
+          <button type="button" class="btn btn-success btn-sm pull-right" data-toggle="modal" v-if="btnedit3" data-target="#exampleModal">
+          <span class="glyphicon glyphicon-plus"></span> เพิ่มผู้รับสินค้า
+          </button>
+
+          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">กรุณากรอกข้อมูลผู้รับสินค้า</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <div class="form-group">
+
+                    <div v-bind:class="{'form-group':nameediterror , 'has-error has-feedback':nameediterror }">
+                      <label for="exampleInputEmail1">ชื่อ-นามสกุล *</label>
+                      <input type="text" class="form-control"  v-model="nameedit" required>
+                  <span class="glyphicon glyphicon-remove form-control-feedback" v-if="nameediterror"></span>
+                                  <span class="text-errors" v-if="nameediterror">
+                                      <strong><h5>@{{ nameediterror }}</h5></strong>
+                                  </span>
+                  </div>
 
 
+         	</div>
+<div class="form-group">
+            <div v-bind:class="{'form-group':addressediterror , 'has-error has-feedback':addressediterror }">
+              <label for="exampleInputAddress">บ้านเลขที่ *</label>
+           		<input class="form-control"  v-model="addressedit" ></input>
+  <span class="glyphicon glyphicon-remove form-control-feedback" v-if="addressediterror"></span>
+                          <span class="text-errors" v-if="addressediterror">
+                              <strong><h5>@{{ addressediterror }}</h5></strong>
+                          </span>
+	</div>
+         	</div>
 
+         	<div class="form-group">
+
+            <div v-bind:class="{'form-group':tumbonediterror , 'has-error has-feedback':tumbonediterror }">
+              <label for="exampleInputPhone">ตำบล *</label>
+              <input type="text" class="form-control" v-model="tumbonedit"  required>
+          <span class="glyphicon glyphicon-remove form-control-feedback" v-if="tumbonediterror"></span>
+                          <span class="text-errors" v-if="tumbonediterror">
+                              <strong><h5>@{{ tumbonediterror }}</h5></strong>
+                          </span>
+          </div>
+
+
+         	</div>
+         	<div class="form-group">
+
+            <div v-bind:class="{'form-group':aumporediterror , 'has-error has-feedback':aumporediterror }">
+              <label for="exampleInputPhone">อำเภอ *</label>
+              <input type="text" class="form-control" v-model="aumporedit"  required>
+          <span class="glyphicon glyphicon-remove form-control-feedback" v-if="aumporediterror"></span>
+                          <span class="text-errors" v-if="aumporediterror">
+                              <strong><h5>@{{ aumporediterror }}</h5></strong>
+                          </span>
+          </div>
+
+
+         	</div>
+         	<div class="form-group">
+
+            <div v-bind:class="{'form-group':provinceediterror , 'has-error has-feedback':provinceediterror }">
+              <label for="exampleInputPhone">จังหวัด *</label>
+             <input type="text" class="form-control" v-model="provinceedit"  required>
+          <span class="glyphicon glyphicon-remove form-control-feedback" v-if="provinceediterror"></span>
+                          <span class="text-errors" v-if="provinceediterror">
+                              <strong><h5>@{{ provinceediterror }}</h5></strong>
+                          </span>
+          </div>
+
+
+         	</div>
+         	<div class="form-group">
+
+            <div v-bind:class="{'form-group':zipcodeediterror , 'has-error has-feedback':zipcodeediterror }">
+              <label for="exampleInputPhone">รหัสไปรษณีย์ *</label>
+              <input type="text" class="form-control" v-model="zipcodeedit"  maxlength="5" required>
+          <span class="glyphicon glyphicon-remove form-control-feedback" v-if="zipcodeediterror"></span>
+                          <span class="text-errors" v-if="zipcodeediterror">
+                              <strong><h5>@{{ zipcodeediterror }}</h5></strong>
+                          </span>
+          </div>
+
+
+         	</div>
+         	<div class="form-group">
+
+            <div v-bind:class="{'form-group':telediterror , 'has-error has-feedback':telediterror }">
+              <label for="exampleInputPhone">เบอร์โทรศัพท์ *</label>
+              <input type="text" class="form-control" v-model="teledit"  required>
+          <span class="glyphicon glyphicon-remove form-control-feedback" v-if="telediterror"></span>
+                          <span class="text-errors" v-if="telediterror">
+                              <strong><h5>@{{ telediterror }}</h5></strong>
+                          </span>
+          </div>
+
+
+         	</div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
+                  <button type="button" v-on:click='insertaddress(<?php echo $Prosell_ID ?>)' class="btn btn-primary">บันทึกข้อมูล</button>
+                </div>
+              </div>
+            </div>
+          </div>
 
                       <address>
-                        <form method="POST" action="/user/editsend/{{ $Prosell_ID }}" v-if="btneditform">
-                          @csrf
 
-    <div class="form-group row">
-      <div class="form-group">
-  <label for="exampleFormControlTextarea1">ชื่อ-นามสกุล</label>
-  <input type="text" name="name" class="form-control" id="staticEmail" >
-  </div>
-  </div>
-                          <div class="form-group row">
-                            <div class="form-group">
-       <label for="exampleFormControlTextarea1">ที่อยู่จัดส่ง</label>
-       <textarea class="form-control" name="address" id="exampleFormControlTextarea1" rows="3"></textarea>
-     </div>
-     <button type="button" class="btn btn-danger btn-sm pull-right" v-if="btnedit" v-on:click='edit2'>
-  <span class="glyphicon glyphicon-remove-circle"></span> ยกเลิก
-  </button>
-     <button type="submit" class="btn btn-warning btn-sm pull-right" v-if="btnedit" v-on:click='insert'>
-     <span class="glyphicon glyphicon-saved"></span> บันทึก
-     </button>
-   </div>
-
-                        </form>
-                        <form method="POST" action="/user/editsend/{{ $Prosell_ID }}" v-if="btnselect">
+                        <div v-if="btnselect">
                           @csrf
 
                       <div class="form-group row">
                       <div class="form-group">
-                      <label for="exampleFormControlTextarea1">ชื่อ-นามสกุล</label>
+                      <label for="exampleFormControlTextarea1">ชื่อ-นามสกุล </label>
 
-                      <select class="form-control" name="name">
-                        <option v-for="n in listadd" >@{{ n.text }} </option>
-
+                      <select class="form-control" name="name"  v-on:click="editaddress($event)">
+                        <option :value="n.id"   v-for="n in listadd" >@{{ n.text }} </option>
                         </select>
                       </div>
                       </div>
                           <div class="form-group row">
                             <div class="form-group">
                       <label for="exampleFormControlTextarea1">ที่อยู่จัดส่ง</label>
-                      <textarea class="form-control" name="address" id="exampleFormControlTextarea1" rows="3"></textarea>
+                      <textarea class="form-control" name="address" id="exampleFormControlTextarea1" rows="3" readonly>@{{listaddname}}</textarea>
                       </div>
                       <button type="button" class="btn btn-danger btn-sm pull-right" v-if="btnedit" v-on:click='edit2'>
                       <span class="glyphicon glyphicon-remove-circle"></span> ยกเลิก
                       </button>
-                      <button type="submit" class="btn btn-warning btn-sm pull-right" v-if="btnedit" v-on:click='insert'>
+                      <button  class="btn btn-warning btn-sm pull-right" v-if="btnedit" v-on:click='insertadduser({{ $Prosell_ID }} ,$event)'>
                       <span class="glyphicon glyphicon-saved"></span> บันทึก
                       </button>
                       </div>
 
-                        </form>
+                    </div>
 
-                        <strong v-if="btnedit2">{{ $date[0]->Prosell_name }}</strong> <br v-if="btnedit2">
+                        <strong v-if="btnedit2">ชื่อ : {{ $userdetail[0]->address_name }}</strong> <br v-if="btnedit2">
 
-  <h5 v-if="btnedit2">{{ $date[0]->Prosell_address }}</h5>
-                        เบอร์โทร: {{ Auth::user()->User_Tel }}<br>
-                        อีเมลล์: {{ Auth::user()->email }}
+                        <h5 v-if="btnedit2">ที่อยู่ : {{ $userdetail[0]->address_at }} ต.{{ $userdetail[0]->address_tumbon }} อ.{{ $userdetail[0]->address_aumpor }}</h5>
+                        <h5 v-if="btnedit2"> จ.{{ $userdetail[0]->address_province }}
+                        เบอร์โทร: {{ Auth::user()->User_Tel }}</h5>
+
                       </address>
                     </div>
 
@@ -437,11 +523,28 @@ var information =  new Vue({
         'savefile':false,
         'btnedit':false,
         'btnedit2':true,
+        'btnedit3':false,
         'btnselect':false,
         'btneditform':false,
         'listadd':[
 
     ],
+'listaddname':'',
+'nameedit':'',
+'addressedit':'',
+'tumbonedit':'',
+'aumporedit':'',
+'provinceedit':'',
+'zipcodeedit':'',
+'teledit':'',
+'nameediterror':false,
+'addressediterror':false,
+'tumbonediterror':false,
+'aumporediterror':false,
+'provinceediterror':false,
+'zipcodeediterror':false,
+'telediterror':false,
+'addressid':'',
 
     },
 
@@ -526,28 +629,109 @@ edit: function () {
   axios.get(link, {
   }).then(function (response) {
 
+    var text = response.data[0].address_at +" ต."+ response.data[0].address_tumbon+" อ."+ response.data[0].address_aumpor+" จ."+ response.data[0].address_province+" ปณ."+ response.data[0].address_zipcode+" โทร."+ response.data[0].address_tel;
+
+
 
 for (let i=0; i<response.data.length; i++) {
+  var textloop = response.data[i].address_at +" ต."+ response.data[i].address_tumbon+" อ."+ response.data[i].address_aumpor+" จ."+ response.data[i].address_province+" ปณ."+ response.data[i].address_zipcode+" โทร."+ response.data[i].address_tel;
 
   information.listadd.push({
          id: [i],
        })
   information.listadd[i].text = response.data[i].address_name;
   information.listadd[i].value = response.data[i].address_name;
-
+  information.listadd[i].addressid = response.data[i].address_id;
+  information.listadd[i].address = textloop;
 
 }
+information.addressid = response.data[0].address_id;
+information.listaddname=text;
 information.btnedit2= false;
+information.btnedit3= true;
 information.btnedit= true;
-    information.btnedit2= false;
-    information.btnselect= true;
+information.btnselect= true;
   })
 
            },
+           insertadduser: function (event ,event2) {
+
+axios.post('/user/editsendcon'+event, {
+    idaddres: information.addressid,
+
+  }).then(function (response) {
+ location.reload();
+});
+           },
+
            edit2: function () {
      this.btnedit= false;
              this.btnedit2= true;
+             this.btnselect= false;
+this.btnedit3= false;
+this.listadd=[];
 
+           },
+           editaddress: function (event) {
+
+               var targetId = event.currentTarget.value;
+               information.listaddname=information.listadd[targetId].address;
+
+               information.addressid = information.listadd[targetId].addressid;
+           },
+           insertaddress: function (event) {
+
+             information.addressediterror = false;
+            information.aumporediterror = false;
+            information.nameediterror = false;
+            information.provinceediterror = false;
+            information.telediterror = false;
+            information.tumbonediterror  = false;
+            information.zipcodeediterror = false;
+
+             axios.post('/user/editsend/'+event, {
+
+                 name:information.nameedit,
+                 address:information.addressedit,
+                 tumbon:information.tumbonedit,
+                 aumpor:information.aumporedit,
+                 province:information.provinceedit,
+                 zipcode:information.zipcodeedit,
+                 tel:information.teledit,
+               }).then(function (response) {
+                 if (response.data.messages != null) {
+                 if(response.data.messages.address != null){
+                 information.addressediterror = true;
+                 information.addressediterror = response.data.messages.address[0];
+                 }
+                 if(response.data.messages.aumpor != null){
+                 information.aumporediterror = true;
+                 information.aumporediterror= response.data.messages.aumpor[0];
+                 }
+                 if(response.data.messages.name != null){
+                 information.nameediterror = true;
+                 information.nameediterror = response.data.messages.name[0];
+                 }
+                 if(response.data.messages.province != null){
+                 information.provinceediterror = true;
+                 information.provinceediterror = response.data.messages.province[0];
+                 }
+                 if(response.data.messages.tel != null){
+                 information.telediterror = true;
+                 information.telediterror = response.data.messages.tel[0];
+                 }
+                 if(response.data.messages.tumbon != null){
+                 information.tumbonediterror  = true;
+                 information.tumbonediterror  = response.data.messages.tumbon[0];
+                 }
+                  if(response.data.messages.zipcode != null){
+                  information.zipcodeediterror = true;
+                  information.zipcodeediterror = response.data.messages.zipcode[0];
+                  }
+                 }else {
+                   location.reload();
+}
+                 });
            },
 
     }

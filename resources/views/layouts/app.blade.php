@@ -309,7 +309,7 @@ a.list-group-item {
 
     /* Full height */
     height: 100%;
-
+    width: 100%;
     /* Center and scale the image nicely */
     background-position: center;
     background-repeat: no-repeat;
@@ -324,7 +324,7 @@ a.list-group-item {
     background: -ms-linear-gradient(90deg, #FF512F 10%, #DD2476 90%);
     background: -o-linear-gradient(90deg, #FF512F 10%, #DD2476 90%);
     background: linear-gradient(90deg, #FF512F 10%, #DD2476 90%);
-    font-family: 'Open Sans', sans-serif!important;
+
 
 }.fc-time{
    display : none;

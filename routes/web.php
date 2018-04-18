@@ -159,6 +159,6 @@ Route::get('/invoice-print', function () {
   Route::get('/insert/receipt', 'user\AddimgcarController@index');
   Route::post('/insert/receiptimg', 'user\AddimageController@insertimg');
   Route::get('/insert/receiptimg', 'user\AddimageController@index');
-
   Route::post('/user/editsend/{id}', 'user\ProductsellController@editsend');
+  Route::post('/user/editsendcon{id}', 'user\ProductsellController@editdropdown');
   Route::get('/user/showaddres', 'user\ProductsellController@showaddres');
