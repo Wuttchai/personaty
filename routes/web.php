@@ -143,6 +143,7 @@ Route::get('/documentlist/edit{doc_id}', 'Official\DocumentController@showedit')
 Route::post('/document/update/{doc_id}', 'Official\DocumentController@update');
 Route::post('/document/delete{doc_id}', 'Official\DocumentController@delete');
 Route::get('/pdf/view/{id}', 'HomeController@showpdf');
+Route::post('/document/status{doc_id}', 'Official\DocumentController@updatestatus');
 //
 
 Route::get('/official/productsell', 'Official\ProductsellControll@index');
@@ -150,10 +151,7 @@ Route::get('/official/productselllist', 'Official\ProductsellControll@readItems'
 Route::post('/emsadd', 'Official\ProductsellControll@insert');
 Route::get('/sell/view/{id}', 'Official\ProductsellControll@showdetail');
 //user
-//controlshow
 
-Route::get('/official/controlshow', 'Official\ControlshowControll@index')->name('Controlshow');
-//controlshow//
 //calender
 Route::get('/official/calender', 'Official\CalenderController@index')->name('showcalender');
 Route::post('/official/calender/add', 'Official\CalenderController@insert');

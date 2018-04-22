@@ -18,9 +18,10 @@ class CreateDoccumentTable extends Migration
           $table->integer('Log_ID')->unsigned();
           $table->string('doc_name');
           $table->string('doc_file');
+          $table->string('doc_status');
           $table->string('doc_datecre');
           $table->string('doc_dateup');
-        
+
         });
     }
 

@@ -70,7 +70,7 @@ body {
 
 /* On mouse-over, add a grey background color */
 .cheakcus:hover input ~ .checkmark {
-  
+
     background-color: #ccc;
 }
 
@@ -90,7 +90,11 @@ body {
 .cheakcus input:checked ~ .checkmark:after {
     display: block;
 }
-
+.cheakcus-center {
+    position: absolute;
+    left: 8%;
+    transform: translateX(-50%);
+}
 /* Style the checkmark/indicator */
 .cheakcus .checkmark:after {
     left: 9px;

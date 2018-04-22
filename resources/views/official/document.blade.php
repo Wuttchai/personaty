@@ -56,12 +56,12 @@
                  </tr>
                </thead>
                <tr v-for="item in paginatedUsers" v-if="id == item.official_ID || id == '1'">
-                 <td v-if="item.doc_status == '-'" ><label class="cheakcus" v-on:click="showcrol('item.doc_status')">
+                 <td v-if="item.doc_status == '-'" ><label class="cheakcus cheakcus-center" v-on:click="showcrol(item.doc_id,item.doc_status)">
   <input type="checkbox" >
   <span class="checkmark"></span>
 </label></td>
-<td v-if="item.doc_status == 'checked'" ><label class="cheakcus" v-on:click="showcrol('item.doc_status')" >
-<input type="checkbox" checked="checked">
+<td v-if="item.doc_status == 'checked'" ><label class="cheakcus cheakcus-center" v-on:click="showcrol(item.doc_id,item.doc_status)" >
+<input  type="checkbox" checked="checked">
 <span class="checkmark"></span>
 </label></td>
                  <td>@{{ item.official_Name }}</td>
@@ -664,12 +664,12 @@ information.buttonedit = true;
                 })
                     }
     },
-    showcrol: function(item) {
+    showcrol: function(item,item2) {
 
         if (item.official_ID == information.id || information.id == '1') {
           swal({
     title: 'คุณแน่ใจ !',
-    text: 'คุณจะไม่สามารถกู้คืนไฟล์ที่ลบนี้ได้',
+    text: 'ข้อมูลที่คุณเลือกจะขึ้นหน้าแรกของเว็ป',
     type: 'warning',
     showCancelButton: true,
     confirmButtonColor: '#3085d6',
@@ -678,35 +678,40 @@ information.buttonedit = true;
     cancelButtonText : 'ยกเลิก',
     closeOnConfirm: false
 
-
-
-
     }).then(function () {
+if (item2 == 'checked') {
+  item2 = '-';
+}else {
+  item2 = 'checked';
+}
 
-            var doc_id =	item.doc_id;
 
-            axios.post('/document/delete' + doc_id, {
-
+            axios.post('/document/status' + item, {
               id: information.id,
+              status: item2
             }).then(function (response) {
               information.items = response.data;
               $("#official").modal('hide');
             });
             swal(
-              'ถูกลบเเล้ว !',
-              'ไฟล์ของคุณถูกลบแล้ว.',
+              'เรียบร้อยเเล้ว !',
+              'คุณได้แสดงข้อมูลนี้ที่หน้าแรกสำเร็จ.',
               'success'
             )
 
           }, function (dismiss) {
-            // dismiss can be 'cancel', 'overlay',
-            // 'close', and 'timer'
             if (dismiss === 'cancel') {
               swal(
                 'ยกเลิกเเล้ว',
-                'ไฟล์ที่คุณเลือกปลอดภัย :)',
+                'คุณได้ทำการยกเลิกเรียบร้อยแล้ว :)',
                 'error'
-              )
+              ).then(function (response) {
+                if (response == true) {
+
+                }
+              location.reload();
+              });
+
             }
           })
       }else {

@@ -281,7 +281,7 @@ $time =Carbon::now('Asia/Bangkok');
 
      $xxx = \App\doccument::join('log','doccument.Log_ID','=','log.Log_ID')
                  ->join('official', 'official.official_ID', '=', 'log.official_ID')
-                 ->select('official.official_Name', 'doccument.doc_name', 'doccument.doc_dateup','doccument.doc_file','doccument.doc_id')
+                 ->select('official.official_Name', 'doccument.doc_name', 'doccument.doc_dateup','doccument.doc_file','doccument.doc_status','doccument.doc_id')
                  ->get();
 
 
@@ -291,13 +291,46 @@ $time =Carbon::now('Asia/Bangkok');
 
      }
 
+
+    public function updatestatus(Request $request,$id)
+    {
+
+       $time =Carbon::now('Asia/Bangkok');
+
+      \App\log::insert([
+        'official_ID' => $request->id,
+        'table_log' => 'ข้อมูลเอกสารที่เผยแพร่',
+        'project_log' => $id,
+        'Log_Event' => 'แก้ไขสถานะการโชว์',
+        'Log_IP'  => \Request::ip(),
+        'Log_Time'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
+  ]);
+
+$logid =  \App\log::where([
+  ['official_ID', '=', $request->id],
+  ])->max('Log_ID');
+
+  \App\doccument::where('doc_id',$id)
+              ->update([
+                'Log_ID' => $logid,
+                'doc_status' => $request->status,
+              ]);
+
+              $xxx = \App\doccument::join('log','doccument.Log_ID','=','log.Log_ID')
+                          ->join('official', 'official.official_ID', '=', 'log.official_ID')
+                          ->select('official.official_Name', 'doccument.doc_name', 'doccument.doc_dateup','doccument.doc_file','doccument.doc_status','doccument.doc_id')
+                          ->get();
+
+
+               return response()->json($xxx);
+
+    }
     public function index()
     {
 
       return view('official.document');
 
     }
-
 
 
 }
