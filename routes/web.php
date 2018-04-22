@@ -150,6 +150,10 @@ Route::get('/official/productselllist', 'Official\ProductsellControll@readItems'
 Route::post('/emsadd', 'Official\ProductsellControll@insert');
 Route::get('/sell/view/{id}', 'Official\ProductsellControll@showdetail');
 //user
+//controlshow
+
+Route::get('/official/controlshow', 'Official\ControlshowControll@index')->name('Controlshow');
+//controlshow//
 //calender
 Route::get('/official/calender', 'Official\CalenderController@index')->name('showcalender');
 Route::post('/official/calender/add', 'Official\CalenderController@insert');

@@ -33,7 +33,7 @@ public $timestamps = false;
      public function readItems() {
        $xxx = \App\doccument::join('log','doccument.Log_ID','=','log.Log_ID')
                    ->join('official', 'official.official_ID', '=', 'log.official_ID')
-                   ->select('official.official_Name', 'doccument.doc_name', 'doccument.doc_dateup','doccument.doc_file','doccument.doc_id')
+                   ->select('official.official_Name', 'doccument.doc_name', 'doccument.doc_dateup','doccument.doc_file','doccument.doc_status','doccument.doc_id')
                    ->orderBy('doccument.doc_dateup', 'desc')
                    ->get();
 
@@ -119,6 +119,7 @@ $time =Carbon::now('Asia/Bangkok');
                               'Log_ID' => $logid,
                               'doc_name' => $request->name,
                               'doc_file'  => $imageName,
+                              'doc_status'  => '-',
                               'doc_datecre' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "" ,
                               'doc_dateup' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
                             ]);
@@ -215,6 +216,7 @@ $time =Carbon::now('Asia/Bangkok');
                           'Log_ID' => $logid,
                           'doc_name' => $request->name,
                           'doc_file'  => $imageName,
+                          'doc_status'  => '-',
                           'doc_dateup' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
                         ]);
 }else {
@@ -274,7 +276,7 @@ $time =Carbon::now('Asia/Bangkok');
                      ->get();
 
          $image_path = "pdf/".$imagedel[0]->doc_file."";
-        
+
      \App\doccument::where('doc_id', '=', $id)->delete();
 
      $xxx = \App\doccument::join('log','doccument.Log_ID','=','log.Log_ID')

@@ -21,14 +21,21 @@
 
 
 
-                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#official" v-on:click="cleardata">
-  เพิ่มข้อมูล
-</button>
+                     <div class="dropdown">
+               <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                 เลือกข้อมูลที่จัดการ
+               </button>
+               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                 <a class="dropdown-item" href="#">Action</a>
+                 <a class="dropdown-item" href="#">Another action</a>
+                 <a class="dropdown-item" href="#">Something else here</a>
+               </div>
+             </div>
  </div>
  &nbsp;
  <div class="col-md-5 text-right">
 <div class="input-group input-group-sm" style="width: 300px;">
-	                  <input type="text" name="table_search" class="form-control pull-right" placeholder="Search" v-model="searchKey">
+	                  <input type="text" name="table_search" class="form-control pull-right" placeholder="ค้นหา" v-model="searchKey">
 
 	                   <div class="input-group-btn">
 	                     <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
@@ -46,7 +53,6 @@
                                 <table class="table table-borderless text-center" id="table">
                <thead>
                  <tr>
-                   <th>โชว์หน้าแรก</th>
                    <th>ชื่อผู้ทำ</th>
                    <th>รายละเอียดไฟล์</th>
                    <th>วันที่อัพเดทล่าสุด</th>
@@ -56,14 +62,6 @@
                  </tr>
                </thead>
                <tr v-for="item in paginatedUsers" v-if="id == item.official_ID || id == '1'">
-                 <td v-if="item.doc_status == '-'" ><label class="cheakcus" v-on:click="showcrol('item.doc_status')">
-  <input type="checkbox" >
-  <span class="checkmark"></span>
-</label></td>
-<td v-if="item.doc_status == 'checked'" ><label class="cheakcus" v-on:click="showcrol('item.doc_status')" >
-<input type="checkbox" checked="checked">
-<span class="checkmark"></span>
-</label></td>
                  <td>@{{ item.official_Name }}</td>
                  <td>@{{ item.doc_name }}</td>
                  <td>@{{ item.doc_dateup }}</td>
@@ -664,62 +662,6 @@ information.buttonedit = true;
                 })
                     }
     },
-    showcrol: function(item) {
-
-        if (item.official_ID == information.id || information.id == '1') {
-          swal({
-    title: 'คุณแน่ใจ !',
-    text: 'คุณจะไม่สามารถกู้คืนไฟล์ที่ลบนี้ได้',
-    type: 'warning',
-    showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
-    confirmButtonText: 'ยืนยัน',
-    cancelButtonText : 'ยกเลิก',
-    closeOnConfirm: false
-
-
-
-
-    }).then(function () {
-
-            var doc_id =	item.doc_id;
-
-            axios.post('/document/delete' + doc_id, {
-
-              id: information.id,
-            }).then(function (response) {
-              information.items = response.data;
-              $("#official").modal('hide');
-            });
-            swal(
-              'ถูกลบเเล้ว !',
-              'ไฟล์ของคุณถูกลบแล้ว.',
-              'success'
-            )
-
-          }, function (dismiss) {
-            // dismiss can be 'cancel', 'overlay',
-            // 'close', and 'timer'
-            if (dismiss === 'cancel') {
-              swal(
-                'ยกเลิกเเล้ว',
-                'ไฟล์ที่คุณเลือกปลอดภัย :)',
-                'error'
-              )
-            }
-          })
-      }else {
-        swal({
-  title: 'คุณไม่มีสิทธิ์ไฟล์นี้ !',
-  text: 'กรุณาตรวจสอบไฟล์ที่ต้องการลบอีกครั้ง',
-  type: 'warning',
-  confirmButtonColor: '#3085d6',
-  confirmButtonText: 'ยืนยัน',
-  closeOnConfirm: false
-  })
-      }
-},
     }
   })
 
