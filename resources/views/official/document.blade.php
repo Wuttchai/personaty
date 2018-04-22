@@ -55,13 +55,16 @@
                    <th>การจัดการ</th>
                  </tr>
                </thead>
-               <tr v-for="item in paginatedUsers" v-if="id == item.official_ID || id == '1'">
+
+               <tr v-for="item in paginatedUsers" v-if="id == item.official_ID || id == '1'" >
                  <td v-if="item.doc_status == '-'" ><label class="cheakcus cheakcus-center" v-on:click="showcrol(item.doc_id,item.doc_status)">
   <input type="checkbox" >
-  <span class="checkmark"></span>
+  <span class="checkmark" ></span>
 </label></td>
+
 <td v-if="item.doc_status == 'checked'" ><label class="cheakcus cheakcus-center" v-on:click="showcrol(item.doc_id,item.doc_status)" >
-<input  type="checkbox" checked="checked">
+
+<input  type="checkbox" checked="checked" >
 <span class="checkmark"></span>
 </label></td>
                  <td>@{{ item.official_Name }}</td>
@@ -376,6 +379,8 @@ var information =  new Vue({
         'id'  :'<?php echo Session::get('idoffice'); ?>',
         'name': '',
         'nameedit': '',
+        'statuschek':0,
+
         'startDate':'',
         'detail':'',
         'detailerror':'',
@@ -457,7 +462,7 @@ var information =  new Vue({
 
  	        information.items = response.data;
 
-
+console.log(response.data);
 
  	      });
  	    },
@@ -689,15 +694,17 @@ if (item2 == 'checked') {
             axios.post('/document/status' + item, {
               id: information.id,
               status: item2
-            }).then(function (response) {
-              information.items = response.data;
-              $("#official").modal('hide');
-            });
+            })
             swal(
               'เรียบร้อยเเล้ว !',
               'คุณได้แสดงข้อมูลนี้ที่หน้าแรกสำเร็จ.',
               'success'
-            )
+            ).then(function (response) {
+              if (response == true) {
+location.reload();
+              }
+
+            });
 
           }, function (dismiss) {
             if (dismiss === 'cancel') {
@@ -707,9 +714,9 @@ if (item2 == 'checked') {
                 'error'
               ).then(function (response) {
                 if (response == true) {
-
+  location.reload();
                 }
-              location.reload();
+
               });
 
             }
