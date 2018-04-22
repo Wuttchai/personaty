@@ -221,24 +221,25 @@
             <tbody>
 
                         <?php
+
                         $num =1;
                         $totalPirce =0;
                         ?>
 
-                                  @foreach (Cart::content() as $key1 => $product)
+                                  @foreach ($Car as $product)
 
                                     <tr>
                                       <th scope="row">&nbsp;&nbsp;&nbsp;{{ $num }}</th>
-                                      <td>{{ $product->name }}</td>
-                                      <td>&nbsp;{{ $product->qty }} ชิ้น</td>
-                                      <td>&nbsp;{{ number_format($product->price) }} บาท</td>
-                                      <td>&nbsp;{{ number_format($product->qty * $product->price) }} บาท</td>
+                                      <td>{{ $product->Pro_Name }}</td>
+                                      <td>&nbsp;{{ $product->Det_Num }} ชิ้น</td>
+                                      <td>&nbsp;{{ number_format($product->Pro_Price) }} บาท</td>
+                                      <td>&nbsp;{{ number_format($product->Det_Num * $product->Pro_Price) }} บาท</td>
 
                                     </tr>
 
                         <?php
                         $num ++;
-                        $totalPirce += $product->qty * $product->price;
+                        $totalPirce += $product->Det_Num * $product->Pro_Price;
                         ?>
                                      @endforeach
 
@@ -290,10 +291,10 @@
                 <!-- this row will not appear when printing -->
                 <div class="row no-print">
         <div class="col-xs-9">
-          <a href="/Product/delete"  class="btn btn-danger "><i class="fa fa-print"></i> ย้อนกลับ</a>
+          <a href="/Product/delete"  class="btn btn-danger "><i class="fa fa-remove"></i> ยกเลิก</a>
 </div>
 <div class="col-xs-2">
-           <a href="/invoice-print" target="_blank" class="btn btn-primary pull-right"></i> ปริ้นใบสั่งซื้อ</a>
+           <a href="/invoice-print" target="_blank" class="btn btn-primary pull-right"></i><i class="fa fa-print"></i> ปริ้นใบสั่งซื้อ</a>
 </div>
 <div class="col-xs-1">
            <button type="button"  class="btn btn-success pull-left" data-toggle="modal" data-target="#myModal"></i> ยืนยันการสั่งซื้อ</button>

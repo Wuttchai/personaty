@@ -221,7 +221,10 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-6 product_img">
-                            <img :src="'{{asset('product')}}/' +  Pro_img "  class="img-responsive" style="width:425px; height:529px;"/>
+
+                          <a v-bind:href="'product/' +  Pro_img " v-bind:data-zoom-image-2x=" 'product/'+ Pro_img"  data-options="zoomCaption: top; zoomWidth: 150%; zoomDistance: 100; expand: fullscreen; expandZoomOn: always;"   class="MagicZoom">
+                            <img v-bind:src="'product/' +  Pro_img "  v-bind:srcset=" 'product/'+ Pro_img+' '+'2x' "   class="img-responsive" style="width:425px; height:529px;"/>
+ </a>
                         </div>
                         <div class="col-md-6 product_content">
 
@@ -262,6 +265,14 @@
 @push('scripts')
 <script>
 
+           function noBack(){
+               window.history.forward()
+           }
+
+           noBack();
+           window.onload = noBack;
+           window.onpageshow = function(evt) { if (evt.persisted) noBack() }
+           window.onunload = function() { void (0) }
 
 
 document.getElementById("loader").style.display = "none";

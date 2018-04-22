@@ -62,12 +62,37 @@ Route::get('/official/login', function () {
         'erx' => '',
       ]);
   }else {
-    return view('official.officialform');
+    if (session('activity') == 'จัดการ') {
+    return redirect('/official/add');
+    }
+    if (session('info') == 'จัดการ') {
+      return redirect('/official/add');
+    }
+    if (session('product') == 'จัดการ') {
+      return redirect('/official/product');
+
+    }
+    if (session('hotnews') == 'จัดการ') {
+    return redirect('/official/hotnews');
+    }
+
+    if (session('prison') == 'จัดการ') {
+
+    return redirect('/official/person');
+    }
+    if (session('document') == 'จัดการ') {
+
+    return redirect('/official/document');
+    }
+    if (session('calender') == 'จัดการ') {
+
+    return redirect('/official/calender');
+    }
   }
 })->name('officiallogin');
 
 Route::post('/official/logout','Official\OfficialLoginController@logout' );
-Route::get('/official/addoffice', 'Official\AddOfficeController@index');
+
 Route::post('/official/logfile', 'Official\AddOfficeController@logfile');
 Route::get('/official/logfile', 'Official\AddOfficeController@logfile');
 Route::post('/official/login', 'Official\OfficialLoginController@login');

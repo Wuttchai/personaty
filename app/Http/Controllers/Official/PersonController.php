@@ -187,7 +187,7 @@ if ($request->img) {
               ->get();
 
   $image_path = "about/".$imagedel[0]->Person_Num."";
-  unlink($image_path);
+
 
   $imageData = $request->get('img');
   $fileName = Carbon::now()->timestamp . '_' . uniqid() . '.' . explode('/', explode(':', substr($imageData, 0, strpos($imageData, ';')))[1])[1];
@@ -264,13 +264,13 @@ $logid =  \App\log::where([
          'Log_IP'  => \Request::ip(),
          'Log_Time'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
          ]);
-         
+
          $imagedel = \App\person::select('Person_Num')
                      ->where('Person_ID','=',$id)
                      ->get();
 
          $image_path = "about/".$imagedel[0]->Person_Num."";
-         unlink($image_path);
+        
      \App\person::where('Person_ID', '=', $id)->delete();
 
      $info = \App\person::join('log','person_count.Log_ID','=','log.Log_ID')

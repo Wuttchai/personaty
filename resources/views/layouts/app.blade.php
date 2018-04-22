@@ -21,6 +21,9 @@
     <link rel="stylesheet" href="{{ asset('css/sweetalert2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('fonts/thsarabunnew.css') }}" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link property="stylesheet" rel='stylesheet' id='magic360-style-css'  href='//www.magictoolbox.com/static/magic360/magic360.css' type='text/css' media='all' />
+    <link property="stylesheet" rel='stylesheet' id='magiczoomplus-style-css'  href='//www.magictoolbox.com/static/magiczoomplus/magiczoomplus.css' type='text/css' media='all' />
+    <link property="stylesheet" rel='stylesheet' id='magicscroll-style-css'  href='//www.magictoolbox.com/static/magicscroll/magicscroll.css' type='text/css' media='all' />
 
 
 <style media="screen">
@@ -507,6 +510,9 @@ a.list-group-item {
   <script src="{{ asset('js/sweetalert2.min.js') }}"></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js'></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.js'></script>
+  <script type='text/javascript' src='//www.magictoolbox.com/static/magic360/magic360.js'></script>
+  <script type='text/javascript' src='//www.magictoolbox.com/static/magiczoomplus/magiczoomplus.js'></script>
+  <script type='text/javascript' src='//www.magictoolbox.com/static/magicscroll/magicscroll.js'></script>
 
       @stack('scripts')
 </body>

@@ -190,7 +190,7 @@ $time =Carbon::now('Asia/Bangkok');
                ->get();
 
    $image_path = "pdf/".$imagedel[0]->doc_file."";
-   unlink($image_path);
+
 
 
             $request->fileoffice->move(
@@ -274,7 +274,7 @@ $time =Carbon::now('Asia/Bangkok');
                      ->get();
 
          $image_path = "pdf/".$imagedel[0]->doc_file."";
-         unlink($image_path);
+        
      \App\doccument::where('doc_id', '=', $id)->delete();
 
      $xxx = \App\doccument::join('log','doccument.Log_ID','=','log.Log_ID')

@@ -20,7 +20,6 @@ class AddcartsControllers extends Controller
      public function __construct()
      {
   $this->middleware('auth');
-  $this->middleware('cheackcar');
      }
 
     /**
@@ -79,7 +78,9 @@ class AddcartsControllers extends Controller
               'Prosell_totalPirce'  => $totalPirce,
               'Prosell_creat'=>   "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
             ]);
-          
+            foreach (Cart::content() as $key1 => $product) {
+              Cart::remove($product->rowId);
+            }
             return redirect()->route('showcar');
 
      }
@@ -97,7 +98,9 @@ class AddcartsControllers extends Controller
 \App\product_sell::where('Prosell_ID', '=', $Prosell_ID)->delete();
 \App\sell_detail::where('Det_ID', '=', $sell_ID)->delete();
 
-
+foreach (Cart::content() as $key1 => $product) {
+  Cart::remove($product->rowId);
+}
        return redirect('/ProductAyutaya');
    }
 

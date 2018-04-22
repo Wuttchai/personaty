@@ -23,7 +23,7 @@
 																<input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="อีเมลล์" required autofocus>
 
 																@if ($errors->has('email'))
-                              
+
 																		<span class="text-danger">
 																				<strong>{{ $errors->first('email') }}</strong>
 																		</span>
@@ -51,7 +51,7 @@
                     <input type="checkbox"  name="remember" id="remember" >
                     Remember me
                 </label>
-                <a href="#" class="pull-right need-help">ลืมรหัสผ่าน? </a><span class="clearfix"></span>
+                <a href="/register" class="pull-right need-help">สมัครสมาชิก </a><span class="clearfix"></span>
                 </form>
             </div>
 

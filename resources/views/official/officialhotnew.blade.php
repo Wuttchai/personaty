@@ -55,11 +55,13 @@
                    <th scope="col">การจัดการ</th>
                  </tr>
                </thead>
-               <tr v-for="item in paginatedUsers">
+               <tr v-for="item in paginatedUsers" v-if="id == item.official_ID || id == '1'">
                  <td>@{{ item.official_Name }}</td>
                  <td>@{{ item.Hotnews_name }}</td>
                  <td>@{{ item.hotupdated_at }}</td>
-                 <td><img :src="'{{asset('hotnew')}}/' + item.Hotnews_img" height="42" width="42"/></td>
+                 <td>@{{ item.hotupdated_at }}</td>
+                 <td v-if="item.Hotnews_img == '-'">-</td>
+                 <td v-if="item.Hotnews_img != '-'"><img :src="'{{asset('hotnew')}}/' + item.Hotnews_img" height="42" width="42"/></td>
                   <td>@{{ item.Hotnews_type }}</td>
            <td >
 
@@ -591,6 +593,7 @@ var information =  new Vue({
              information.buttoninsert = false;
              information.nameerror = false;
              information.fileofficeerror = false;
+             information.typeerror = false;
              information.datefirsterror = false;
              information.datelasterror = false;
              information.detailerror = false;
@@ -702,6 +705,7 @@ $("#editofficial").modal('show');
           information.buttonload =true;
            information.buttonedit = false;
           information.nameerror = false;
+          information.typeerror = false;
           information.fileofficeerror = false;
           information.datefirsterror = false;
           information.datelasterror = false;

@@ -201,6 +201,7 @@ body {
                           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             @if (session('info') == 'จัดการ')
                             <a class="nav-link" href="/official/officialform">จัดการภาพแบรน์เนอร์</a>
+                          
                             @endif
 
                             @if (session('hotnews') == 'จัดการ')
@@ -257,7 +258,7 @@ body {
                               @endif
                               @if (session('product') == 'จัดการ')
                             <a class="dropdown-item" href="/official/logfile/graph">
-                                
+
                             </a>
                               @endif
                           </div>
@@ -271,7 +272,7 @@ body {
                         <!-- Authentication Links -->
                         @if (session('activity') == 'จัดการ')
                         <li><a class="nav-link" href="/webboard">จัดการข้อมูลกระทู้</a></li>
-                        <li><a class="nav-link" href="/official/addoffice">จัดการข้อมูลเจ้าหน้าที่</a></li>
+                        <li><a class="nav-link" href="/official/add">จัดการข้อมูลเจ้าหน้าที่</a></li>
                         @endif
 
 

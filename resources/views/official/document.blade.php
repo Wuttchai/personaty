@@ -54,7 +54,7 @@
                    <th>การจัดการ</th>
                  </tr>
                </thead>
-               <tr v-for="item in paginatedUsers">
+               <tr v-for="item in paginatedUsers" v-if="id == item.official_ID || id == '1'">
                  <td>@{{ item.official_Name }}</td>
                  <td>@{{ item.doc_name }}</td>
                  <td>@{{ item.doc_dateup }}</td>
@@ -558,7 +558,7 @@ $("#editofficial").modal('show');
 
        							        },
         updateItem: function() {
-          
+
           information.buttonload = true;
           information.buttonedit = false;
           information.nameerror = false;

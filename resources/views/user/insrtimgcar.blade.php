@@ -42,10 +42,14 @@
                   <div class="col-sm-4 invoice-col">
                     ถึง
                     <address>
-                      <strong>{{ $date[0]->Prosell_name }}</strong><br>
-                      {{ $date[0]->Prosell_address }}<br>
-                      เบอร์โทร: {{ Auth::user()->User_Tel }}<br>
-                      อีเมลล์: {{ Auth::user()->email }}
+<?php
+$addressat = "" . $address[0]->address_at. " ต." . $address[0]->address_tumbon . " อ." . $address[0]->address_aumpor . " จ." . $address[0]->address_province . " ปณ." . $address[0]->address_zipcode.  "";
+ ?>
+
+                      <strong>{{   $address[0]->address_name }}</strong><br>
+                      {{ $addressat }}<br>
+                      เบอร์โทร: {{ $address[0]->address_tel }}<br>
+
                     </address>
                   </div>
                   <!-- /.col -->
@@ -129,7 +133,7 @@
 
                 </div>
 
-            
+
                    <div class="col-md-6 col-md-offset-3" v-if="savefile">
                      <div class="alert alert-success alert-dismissible">
                         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>

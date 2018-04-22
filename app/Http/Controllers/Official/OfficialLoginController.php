@@ -108,6 +108,10 @@ Session::put("role", $official[0]['official_Role']);
 
 
 
+
+if ($official[0]['activity'] == 'จัดการ') {
+return redirect('/official/add');
+}
 if ($official[0]['info'] == 'จัดการ') {
   return redirect('/official/add');
 }
@@ -118,9 +122,7 @@ if ($official[0]['product'] == 'จัดการ') {
 if ($official[0]['hotnews'] == 'จัดการ') {
 return redirect('/official/hotnews');
 }
-if ($official[0]['activity'] == 'จัดการ') {
-return redirect('/official/addoffice');
-}
+
 if ($official[0]['prison'] == 'จัดการ') {
 
 return redirect('/official/person');

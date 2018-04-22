@@ -87,12 +87,22 @@ public function ProductCarorderdetail($id)
               ->where('sell_detail.Prosell_ID','=' ,$id)
               ->get();
 
+              $addressid = DB::table('product_Sell')
+                          ->select('Prosell_ID','Prosell_creat','Prosell_orderdate','Prosell_creat','Prosell_img','Prosell_send','Prosell_Quantity','address_id')
+                          ->where('Prosell_ID','=' ,$id)
+                          ->where('User_ID','=',Auth::user()->User_ID)
+                          ->get();
 
+$address = DB::table('address')
+            ->select('address_name','address_at','address_tumbon','address_aumpor','address_province','address_zipcode','address_tel')
+            ->where('address_id','=' ,$addressid[0]->address_id)
+            ->get();
 
 
 return view('user.insrtimgcar',[
 'Car' => $Car,
 'date' => $date,
+'address' => $address,
 ]);
 }
 public function ProductCarorderdelete($id)
@@ -176,6 +186,19 @@ return response()->json($address);
 
 public function index()
 {
+  $Car2 = DB::table('product_Sell')
+              ->join('sell_detail','product_Sell.Prosell_ID','=','sell_detail.Prosell_ID')
+              ->join('product','product.Pro_ID','=','sell_detail.Pro_ID')
+              ->select('product.Pro_Name','sell_detail.Det_Num', 'product.Pro_Price','product_Sell.Prosell_ID')
+              ->where('product_Sell.User_ID','=' ,Auth::user()->User_ID)
+              ->max('product_Sell.Prosell_ID', 'desc');
+
+              $Car = DB::table('product_Sell')
+                          ->join('sell_detail','product_Sell.Prosell_ID','=','sell_detail.Prosell_ID')
+                          ->join('product','product.Pro_ID','=','sell_detail.Pro_ID')
+                          ->select('product.Pro_Name','sell_detail.Det_Num', 'product.Pro_Price','product_Sell.Prosell_ID')
+                          ->where('product_Sell.Prosell_ID','=' ,$Car2)
+                          ->get();
 
 
   $Prosell_ID =  \App\product_sell::where([
@@ -196,7 +219,9 @@ public function index()
 
 return view('user.showcars',[
   'userdetail' => $userdetail,
-  'Prosell_ID' => $Prosell_ID
+  'Prosell_ID' => $Prosell_ID,
+  'Car' => $Car
+
   ]);
 
 }

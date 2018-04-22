@@ -411,11 +411,14 @@
                   title : '{{ $task->cal_name }}',
                   start : '{{ $task->cal_date }}',
                   color: 'red',
+
                   end:     '{{ $task->cal_last }}',
                   displayEventTime: false
               },
               @endforeach
-          ]});
+          ],
+  hiddenDays: [ 0, 6 ]
+        });
 
   });
 

@@ -145,7 +145,7 @@ if ($request->fileoffice) {
               ->get();
 
   $image_path = "images/".$imagedel[0]->Info_Img."";
-  unlink($image_path);
+
 
 
   $imageData = $request->get('fileoffice');
@@ -260,7 +260,7 @@ if ($request->fileoffice) {
                      ->get();
 
          $image_path = "images/".$imagedel[0]->Info_Img."";
-         unlink($image_path);
+         
      \App\info::where('Info_ID', '=', $id)->delete();
 
      $info = \App\info::join('log','info.Log_ID','=','log.Log_ID')

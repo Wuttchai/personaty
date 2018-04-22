@@ -1,136 +1,36 @@
-@extends('layouts.app')
 
-@section('content')
-<div class="container"   >
+<!DOCTYPE html>
+<html lang="en">
+	<head>
 
-   <div class="row justify-content-center" >
-
-     <div class="container">
+  </head>
 
 
+	<link property="stylesheet" rel='stylesheet' id='magic360-style-css'  href='//www.magictoolbox.com/static/magic360/magic360.css' type='text/css' media='all' />
+	<link property="stylesheet" rel='stylesheet' id='magiczoomplus-style-css'  href='//www.magictoolbox.com/static/magiczoomplus/magiczoomplus.css' type='text/css' media='all' />
+	<link property="stylesheet" rel='stylesheet' id='magicscroll-style-css'  href='//www.magictoolbox.com/static/magicscroll/magicscroll.css' type='text/css' media='all' />
 
 
-        <!-- /.col-lg-3 -->
-
-        <div class="col-lg-12 ">
+<body class="page-alias-examples page-id-115">
 
 
+<div id="site-canvas">
 
-          <template>
-                  <!-- object value -->
-                  <model-select :options="options"
-                                          v-model="item"
-                                          placeholder="select item">
-                   </model-select>
+    <div class="container tool-page" id="container">
 
-                   <!-- string value -->
-                   <model-select :options="options2"
-                                           v-model="item2"
-                                           placeholder="select item2">
-                   </model-select>
-          </template>
-
-          <script>
-            import { ModelSelect } from 'vue-search-select'
-
-            export default {
-              data () {
-                return {
-                  options: [
-                    { value: '1', text: 'aa' + ' - ' + '1' },
-                    { value: '2', text: 'ab' + ' - ' + '2' },
-                    { value: '3', text: 'bc' + ' - ' + '3' },
-                    { value: '4', text: 'cd' + ' - ' + '4' },
-                    { value: '5', text: 'de' + ' - ' + '5' }
-                  ],
-                  item: {
-                    value: '',
-                    text: ''
-                  },
-                  options2: [
-                    { value: '1', text: 'aa' + ' - ' + '1' },
-                    { value: '2', text: 'ab' + ' - ' + '2' },
-                    { value: '3', text: 'bc' + ' - ' + '3' },
-                    { value: '4', text: 'cd' + ' - ' + '4' },
-                    { value: '5', text: 'de' + ' - ' + '5' }
-                  ],
-                  item2: ''
-                }
-              },
-              methods: {
-                reset () {
-                  this.item = {}
-                },
-                selectOption () {
-                  // select option from parent component
-                  this.item = this.options[0]
-                },
-                reset2 () {
-                  this.item2 = ''
-                },
-                selectOption2 () {
-                  // select option from parent component
-                  this.item2 = this.options2[0].value
-                }
-              },
-              components: {
-                ModelSelect
-              }
-            }
-          </script>
-  </div>
+<hr class="example" style="border:none" />
 
 
-  </div>
+<a href="/images/14-296.jpg" data-zoom-image-2x="/images/14-296.jpg" data-options="zoomCaption: top; zoomWidth: 150%; zoomDistance: 100; expand: fullscreen; expandZoomOn: always;"   class="MagicZoom">
+        <img  srcset="/images/14-296.jpg 2x" alt="" /></a>
 
 
-       </div>
-       </div>
 
-<br>
-<br>
-@endsection
 
-@push('scripts')
-<script>
-/* When the user clicks on the button,
-toggle between hiding and showing the dropdown content */
-function myFunction1() {
-    document.getElementById("myDropdown1").classList.toggle("show");
-}
+<script type='text/javascript' src='//www.magictoolbox.com/static/magic360/magic360.js'></script>
+<script type='text/javascript' src='//www.magictoolbox.com/static/magiczoomplus/magiczoomplus.js'></script>
+<script type='text/javascript' src='//www.magictoolbox.com/static/magicscroll/magicscroll.js'></script>
 
-// Close the dropdown if the user clicks outside of it
-window.onclick = function(event) {
-  if (!event.target.matches('.dropbtn')) {
 
-    var dropdowns = document.getElementsByClassName("dropdown-content");
-    var i;
-    for (i = 0; i < dropdowns.length; i++) {
-      var openDropdown = dropdowns[i];
-      if (openDropdown.classList.contains('show')) {
-        openDropdown.classList.remove('show');
-      }
-    }
-  }
-}
-function myFunction() {
-    document.getElementById("myDropdown").classList.toggle("show");
-}
-
-// Close the dropdown if the user clicks outside of it
-window.onclick = function(event) {
-  if (!event.target.matches('.dropbtn')) {
-
-    var dropdowns = document.getElementsByClassName("dropdown-content");
-    var i;
-    for (i = 0; i < dropdowns.length; i++) {
-      var openDropdown = dropdowns[i];
-      if (openDropdown.classList.contains('show')) {
-        openDropdown.classList.remove('show');
-      }
-    }
-  }
-}
-</script>
-
-@endpush
+</body>
+</html>

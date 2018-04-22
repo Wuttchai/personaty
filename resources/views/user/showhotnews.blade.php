@@ -25,7 +25,7 @@
  <img class="pull-center" src="{{ asset('hotnew/' . $hotnew[0]->Hotnews_img) }}" class="img-responsive" style="width: 800px; height: 500px;" allowfullscreen>
 <br>
 <h4 class="text-center"> {{ $hotnew[0]->Hotnews_name }}</h4>
-<h5> {{ $hotnew[0]->datefirst }} - {{ $hotnew[0]->datelast }}</h5>
+<h5> เริ่มตั้งแต่ : {{ $hotnew[0]->datefirst }} ถึง : {{ $hotnew[0]->datelast }}</h5>
 <br>
 <h5> {{ $hotnew[0]->Hotnews_detail }}</h5>
 

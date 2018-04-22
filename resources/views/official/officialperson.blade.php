@@ -29,7 +29,7 @@
 
                          <a class="dropdown-item"  v-on:click="cleardata('โครงสร้างหน่วยงาน')">โครงสร้างหน่วยงาน</a>
                          <a class="dropdown-item"  v-on:click="cleardata('ทำเนียบผู้บริหาร')">ทำเนียบผู้บริหาร</a>
-                        
+
                          <a class="dropdown-item"  v-on:click="cleardata('ข้อมูลบุคลากร')">ข้อมูลบุคลากร</a>
                             <a class="dropdown-item"  v-on:click="cleardata('ข้อมูลสถิติผู้ต้องขัง')">ข้อมูลสถิติผู้ต้องขัง</a>
                        </div>
@@ -62,7 +62,7 @@
                    <th>จัดการ</th>
                  </tr>
                </thead>
-               <tr v-for="item in paginatedUsers">
+               <tr v-for="item in paginatedUsers" v-if="id == item.official_ID || id == '1'">
                  <td>@{{ item.official_Name }}</td>
                  <td>@{{ item.Person_Type }}</td>
                  <td>@{{ item.perupdated_at }} </td>

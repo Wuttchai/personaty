@@ -5,7 +5,7 @@
 <div class="loader" id="loader"></div>
    <div class="row justify-content-center" >
      <div class="card card-default ">
-         <div class="card-header card text-center bg-info">จัดการข้อมูลเจ้าหน้าที่</div>
+         <div class="card-header card text-center bg-info">จัดการข้อมูลสินค้า</div>
 
 <div class="card-header card ">
 

@@ -53,7 +53,7 @@
                    <th>จัดการ</th>
                  </tr>
                </thead>
-               <tr v-for="item in paginatedUsers">
+               <tr v-for="item in paginatedUsers" v-if="id == item.official_ID || id == '1'">
                  <td>@{{ item.official_Name }}</td>
                  <td>@{{ item.Info_Name }}</td>
                  <td>@{{ item.Info_up }}</td>

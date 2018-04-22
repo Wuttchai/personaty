@@ -47,32 +47,55 @@ public $timestamps = false;
        $request->detail= str_replace("\n", "", "$request->detail");
 
 
+if ($request->get('fileoffice') == null) {
 
-    $validator =  Validator::make($request->all(), [
-         'id' => 'required|string',
-         'name' => 'required|regex:/^([a-zA-Z0-9ก-ูเ-๋๑-๙])/|unique:hotnews,Hotnews_name',
-        'fileoffice' => 'required|image64:jpeg,jpg,png|img_min_size:1300,700',
-        'detail' => 'required|regex:/^([a-zA-Z0-9ก-ูเ-๋๑-๙])/',
-        'type' => 'required|string',
-        'datefirst' => 'required|string',
-        'datelast' => 'string',
+  $validator =  Validator::make($request->all(), [
+       'id' => 'required|string',
+       'name' => 'required|regex:/^([a-zA-Z0-9ก-ูเ-๋๑-๙])/|unique:hotnews,Hotnews_name',
+      'detail' => 'required|regex:/^([a-zA-Z0-9ก-ูเ-๋๑-๙])/',
+      'type' => 'required|string',
+      'datefirst' => 'required|string',
+      'datelast' => 'string',
 
-           ]);
+         ]);
+         if($validator->fails()){
 
-           if($validator->fails()){
+               return[
+               'messages' => $validator->errors()->messages()
+               ];
+             }else {
+               $imageData = $request->get('fileoffice');
+               $fileName = '-';
+}
+}
+else {
+  $validator =  Validator::make($request->all(), [
+       'id' => 'required|string',
+       'name' => 'required|regex:/^([a-zA-Z0-9ก-ูเ-๋๑-๙])/|unique:hotnews,Hotnews_name',
+      'fileoffice' => 'required|image64:jpeg,jpg,png|img_min_size:1300,700',
+      'detail' => 'required|regex:/^([a-zA-Z0-9ก-ูเ-๋๑-๙])/',
+      'type' => 'required|string',
+      'datefirst' => 'required|string',
+      'datelast' => 'string',
 
-                 return[
-                 'messages' => $validator->errors()->messages()
-                 ];
-               }else {
+         ]);
+
+         if($validator->fails()){
+
+               return[
+               'messages' => $validator->errors()->messages()
+               ];
+             }else {
 
 
 
 
-                 $imageData = $request->get('fileoffice');
-       $fileName = Carbon::now()->timestamp . '_' . uniqid() . '.' . explode('/', explode(':', substr($imageData, 0, strpos($imageData, ';')))[1])[1];
-     \Image::make($imageData)->resize(1366, 769)->save(public_path('hotnew/').$fileName);
+               $imageData = $request->get('fileoffice');
+     $fileName = Carbon::now()->timestamp . '_' . uniqid() . '.' . explode('/', explode(':', substr($imageData, 0, strpos($imageData, ';')))[1])[1];
+   \Image::make($imageData)->resize(1366, 769)->save(public_path('hotnew/').$fileName);
 
+}
+}
 
 $time =Carbon::now('Asia/Bangkok');
     \App\log::insert([
@@ -111,15 +134,6 @@ $time =Carbon::now('Asia/Bangkok');
 
 
                                   ]);
-
-
-
-
-               }
-
-
-
-
 
      }
      public function showedit($id) {
@@ -161,7 +175,7 @@ if ($request->fileoffice) {
               ->get();
 
   $image_path = "hotnew/".$imagedel[0]->Hotnews_img."";
-  unlink($image_path);
+
  \App\doccument::where('doc_id', '=', $id)->delete();
 
   $imageData = $request->get('fileoffice');
@@ -280,7 +294,7 @@ if ($request->fileoffice) {
                      ->get();
 
          $image_path = "hotnew/".$imagedel[0]->Hotnews_img."";
-         unlink($image_path);
+        
      \App\hotnews::where('Hotnews_ID', '=', $id)->delete();
 
      $info = \App\hotnews::join('log','hotnews.Log_ID','=','log.Log_ID')

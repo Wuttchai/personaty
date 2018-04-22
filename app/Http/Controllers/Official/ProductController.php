@@ -160,7 +160,7 @@ if ($request->fileoffice) {
               ->get();
 
   $image_path = "about/".$imagedel[0]->Pro_img."";
-  unlink($image_path);
+
 
   $imageData = $request->get('fileoffice');
  $fileName = Carbon::now()->timestamp . '_' . uniqid() . '.' . explode('/', explode(':', substr($imageData, 0, strpos($imageData, ';')))[1])[1];
@@ -279,7 +279,7 @@ if ($request->fileoffice) {
                      ->get();
 
          $image_path = "about/".$imagedel[0]->Pro_img."";
-         unlink($image_path);
+        
      \App\product::where('Pro_ID', '=', $id)->delete();
 
      $info = \App\product::join('log','product.Log_ID','=','log.Log_ID')

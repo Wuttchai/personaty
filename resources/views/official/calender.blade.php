@@ -192,7 +192,9 @@ document.getElementById("loader").style.display = "none";
                   displayEventTime: false
               },
               @endforeach
-          ]});
+          ],
+  hiddenDays: [ 0, 6 ]
+        });
            // uppercase H for 24-hour clock、
 
            $('.datepicker').datepicker({
