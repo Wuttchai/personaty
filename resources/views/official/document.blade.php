@@ -461,8 +461,15 @@ var information =  new Vue({
  	      axios.get('/official/documentlist?page=' + page).then(function (response) {
 
  	        information.items = response.data;
+          for (var i = 0; i < response.data.length; i++) {
 
-console.log(response.data);
+            if (response.data[i].doc_status == "checked") {
+
+            information.statuschek += 1 ;
+            }
+          }
+
+
 
  	      });
  	    },
@@ -671,7 +678,8 @@ information.buttonedit = true;
     },
     showcrol: function(item,item2) {
 
-        if (item.official_ID == information.id || information.id == '1') {
+        if (information.statuschek < 5 || information.id == '1') {
+          console.log(information.statuschek);
           swal({
     title: 'คุณแน่ใจ !',
     text: 'ข้อมูลที่คุณเลือกจะขึ้นหน้าแรกของเว็ป',
@@ -723,8 +731,8 @@ location.reload();
           })
       }else {
         swal({
-  title: 'คุณไม่มีสิทธิ์ไฟล์นี้ !',
-  text: 'กรุณาตรวจสอบไฟล์ที่ต้องการลบอีกครั้ง',
+  title: 'คุณกำลังเพิ่มข้อมูลที่แสดงเกิน 5ไฟล์ !',
+  text: 'กรุณาตรวจสอบข้อมูลที่ต้องการแสดงอีกครั้ง',
   type: 'warning',
   confirmButtonColor: '#3085d6',
   confirmButtonText: 'ยืนยัน',
