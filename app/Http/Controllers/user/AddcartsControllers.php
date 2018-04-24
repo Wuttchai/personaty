@@ -43,7 +43,6 @@ class AddcartsControllers extends Controller
                  $userdetail = \App\address::select('address_name','address_at','address_tumbon','address_aumpor','address_province','address_zipcode','address_tel')
                             ->where('address.address_id','=' , $userid)
                             ->get();
-
        \App\product_sell::insert([
                      'User_ID' => Auth::user()->User_ID,
                      'address_name' => $userdetail[0]->address_name,
