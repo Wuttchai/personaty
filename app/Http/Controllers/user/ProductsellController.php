@@ -99,6 +99,11 @@ $address = DB::table('address')
             ->get();
 
 
+        $address = DB::table('product_Sell')
+                      ->select('address_name','address_at','address_tumbon','address_aumpor','address_province','address_zipcode','address_tel')
+                      ->where('sell_detail.Prosell_ID','=' ,$id)
+                      ->get();
+
 return view('user.insrtimgcar',[
 'Car' => $Car,
 'date' => $date,
@@ -196,7 +201,7 @@ public function index()
               $Car = DB::table('product_Sell')
                           ->join('sell_detail','product_Sell.Prosell_ID','=','sell_detail.Prosell_ID')
                           ->join('product','product.Pro_ID','=','sell_detail.Pro_ID')
-                          ->select('product.Pro_Name','sell_detail.Det_Num', 'product.Pro_Price','product_Sell.Prosell_ID')
+                          ->select('product.Pro_Name','sell_detail.Det_total','sell_detail.Det_Num', 'product.Pro_Price','product_Sell.Prosell_ID')
                           ->where('product_Sell.Prosell_ID','=' ,$Car2)
                           ->get();
 
@@ -205,17 +210,14 @@ public function index()
       ['User_ID', '=', Auth::user()->User_ID],
       ])->max('Prosell_ID');
 
-  $date = DB::table('product_Sell')
-  ->select('address_id')
-  ->where('Prosell_ID','=' ,$Prosell_ID)
-  ->get();
 
 
+  $userdetail = DB::table('product_Sell')
+                ->select('address_name','address_at','address_tumbon','address_aumpor','address_province','address_zipcode','address_tel')
+                ->where('product_Sell.Prosell_ID','=' ,$Prosell_ID)
+                ->get();
 
-  $userdetail = \App\address::select('address_name','address_at','address_tumbon','address_aumpor','address_province','address_zipcode','address_tel')
-             ->where('address.address_id','=' , $date[0]->address_id)
-             ->orderBy('address_id', 'desc')
-             ->get();
+
 
 return view('user.showcars',[
   'userdetail' => $userdetail,

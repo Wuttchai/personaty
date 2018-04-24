@@ -37,14 +37,22 @@ class AddcartsControllers extends Controller
                   ->where('product_Sell.User_ID','=' , Auth::user()->User_ID)
                   ->where('product_Sell.Prosell_img','=' ,'-')
                   ->get();
-                  $userdetail = \App\address::select('address_id')
+                  $userid = \App\address::select('address_id')
                              ->where('address.User_ID','=' , Auth::user()->User_ID)
                              ->max('address.address_id');
-
+                 $userdetail = \App\address::select('address_name','address_at','address_tumbon','address_aumpor','address_province','address_zipcode','address_tel')
+                            ->where('address.address_id','=' , $userid)
+                            ->get();
 
        \App\product_sell::insert([
                      'User_ID' => Auth::user()->User_ID,
-                     'address_id' => $userdetail,
+                     'address_name' => $userdetail[0]->address_name,
+                     'address_at' => $userdetail[0]->address_at ,
+                     'address_tumbon' => $userdetail[0]->address_tumbon  ,
+                     'address_aumpor' => $userdetail[0]->address_aumpor ,
+                     'address_province' => $userdetail[0]->address_province ,
+                     'address_zipcode' => $userdetail[0]->address_zipcode ,
+                     'address_tel' => $userdetail[0]->address_tel,
                      'Prosell_Quantity' => 0,
                      'Prosell_totalPirce'  => 0,
                      'Prosell_send' => '-',

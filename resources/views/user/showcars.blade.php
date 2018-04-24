@@ -263,7 +263,7 @@
                       <table class="table">
                         <tr>
                           <th style="width:50%">ราคาสินค้าทั้งหมด :</th>
-                          <td>{{ Cart::subtotal() }} บาท</td>
+                          <td>{{  number_format($Car[0]->Det_total) }} บาท</td>
                         </tr>
 
 

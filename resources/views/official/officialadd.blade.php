@@ -505,6 +505,7 @@
                           'buttonedit2':true,
                           'inputedit':'true',
                           'buttoninsert' : true,
+                          'buttonload':false,
                           'items': [],
                           'pagination': [],
                           'searchKey': '',
@@ -613,9 +614,10 @@ information.passworderror = false;
                                  }).then(function (response) {
 
                                    if (response.data.nocheck == 'yes') {
+                                     information.buttonload =false;
                                      information.buttoninsert =true;
                                      information.nocheck = true;
-}
+                                   }
                   if (response.data.messages != null) {
                     if(response.data.messages.name != null){
 
@@ -636,10 +638,10 @@ information.passworderror = false;
                 }
                 information.buttonload =false;
                 information.buttoninsert =true;
-}
+              }
 if (response.data.messages == null && response.data.nocheck != 'yes') {
   location.reload();
-}
+                }
 
 
 

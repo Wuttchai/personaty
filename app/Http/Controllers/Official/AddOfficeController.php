@@ -84,7 +84,7 @@ public function graph() {
      {
 
 $validator =  Validator::make($request->all(), [
-            'name' => 'required|regex:/^([a-zA-Zก-ูเ-๋])/',
+            'name' => 'required|regex:/^([ก-ูเ-๋])/',
             'email' => 'required|string|email|max:255|unique:official,official_Email',
             'password' => 'required|regex:/^([a-zA-Z0-9ก-ูเ-๋๑-๙])/|min:6|confirmed',
             'password_confirmation' => 'required'
