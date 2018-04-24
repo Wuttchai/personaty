@@ -29,7 +29,7 @@ class AddcartsControllers extends Controller
      */
 
 
-     public function confrim(Request $request)
+     public function confrim()
      {
 
        $time =Carbon::now('Asia/Bangkok');
