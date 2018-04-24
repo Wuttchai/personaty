@@ -35,7 +35,7 @@ class DatabaseSeeder extends Seeder
                       App\User::create([
                                         'User_Name' => 'เจ้าหน้าที่',
                                         'email' => 'admin@admin.com',
-                                        'User_Address' => '-',
+                                        'address_id' => 0,
                                         'User_Tel' => '01111111111',
                                         'password' => bcrypt('123456'),
 
