@@ -55,10 +55,11 @@
                   <div class="col-sm-4 invoice-col">
                     ถึง
                     <address>
-                      <strong>{{ $date[0]->Prosell_name }}</strong><br>
-                      {{ $date[0]->Prosell_address }}<br>
-                      เบอร์โทร: {{ Auth::user()->User_Tel }}<br>
-                      อีเมลล์: {{ Auth::user()->email }}
+                      <strong>{{ $date[0]->address_name }}</strong><br>
+                      <h5 >ที่อยู่ : {{ $date[0]->address_at }} ต.{{ $date[0]->address_tumbon }} อ.{{ $date[0]->address_aumpor }}</h5>
+                      <h5 > จ.{{ $date[0]->address_province }}
+                      เบอร์โทร: {{ $date[0]->address_tel }}</h5>
+
                     </address>
                   </div>
                   <!-- /.col -->
@@ -104,8 +105,8 @@
                                       <th scope="row">&nbsp;&nbsp;&nbsp;{{ $num }}</th>
                                       <td>{{ $product->Pro_Name }}</td>
                                       <td>&nbsp;{{ $product->Det_Num }} ชิ้น</td>
-                                      <td>&nbsp;{{ $product->Pro_Price }} บาท</td>
-                                      <td>&nbsp;{{ $product->Det_Num * $product->Pro_Price }} บาท</td>
+                                      <td>&nbsp;{{ number_format($product->Pro_Price) }} บาท</td>
+                                      <td>&nbsp;{{ number_format($product->Det_Num * $product->Pro_Price) }} บาท</td>
 
                                     </tr>
 
@@ -129,14 +130,14 @@
                   </div>
 
                   <div class="col-xs-6">
-                    <p class="lead">วันที่ : {{ Session::get('date') }}</p>
+                    <p class="lead">วันที่ : {{ $date[0]->Prosell_creat }}</p>
 
                     <div class="table-responsive">
                       <table class="table">
 
                         <tr>
                           <th>รวมราคาทั้งหมด :</th>
-                          <td>{{ $totalPirce }}บาท</td>
+                          <td>{{ number_format($totalPirce) }}บาท</td>
                         </tr>
 
                       </table>
@@ -158,7 +159,7 @@
       </div>
       <div class="modal-body text-center">
 
-<img src=" <?php echo "Receipt/".$date[0]->Prosell_img ?>" class="img-rounded"  width="500" height="350" />
+<img src=" <?php echo "".$date[0]->Prosell_img ?>" class="img-rounded"  width="500" height="350" />
 
       </div>
 
@@ -173,13 +174,13 @@
                 <!-- this row will not appear when printing -->
                 <div class="row no-print">
         <div class="col-xs-9">
-          <a href="/ProductCarOrders"  class="btn btn-danger "><i class="fa fa-print"></i> ย้อนกลับ</a>
+          <a href="/ProductCarOrders"  class="btn btn-danger "><i class="fa fa-mail-reply-all"></i> ย้อนกลับ</a>
 </div>
 <div class="col-xs-2">
-           <a href="/invoice-print" target="_blank" class="btn btn-primary pull-right"><i class="fa fa-print"></i> ปริ้นใบสั่งซื้อ</a>
+           <a href="/invoice-print/{{$date[0]->Prosell_ID}}" target="_blank" class="btn btn-primary pull-right"><i class="fa fa-print"></i> ปริ้นใบสั่งซื้อ</a>
 </div>
 <div class="col-xs-1">
-           <a data-toggle="modal" data-target="#exampleModal" class="btn btn-success pull-left"><i class="fa fa-print"></i>ดูใบเสร็จการโอนเงิน</a>
+           <a data-toggle="modal" data-target="#exampleModal" class="btn btn-success pull-left"><i class="glyphicon glyphicon-zoom-in"></i> ดูใบเสร็จการโอนเงิน</a>
 </div>
 
         </div>

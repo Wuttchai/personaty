@@ -397,20 +397,23 @@ a.list-group-item {
                   <li class="<?php echo  Session::get('tabmanu'); ?>"><a href="/home"><h5>หน้าแรก</h5></a></li>
 
 
+                  
+
                   <li class="dropdown <?php echo  Session::get('tabmanu3'); ?>" >
-                    <a data-toggle="dropdown" class="dropdown-toggle " href="#"><h5>เกี่ยวกับเรือนจำ<b class="caret"></b> </h5></a>
+                    <a data-toggle="dropdown" class="dropdown-toggle " ><h5>เกี่ยวกับเรือนจำ<b class="caret"></b> </h5></a>
                       <ul class="dropdown-menu">
-                        <li><p><a href="/abouts?type=ประวัติความเป็นมา"class="text-dark">ประวัติความเป็นมา</a></p></li>
-                        <li><p><a href="/abouts?type=วิสัยทัศน์และพันธกิจ"class="text-dark">วิสัยทัศน์และพันธกิจ</a></p></li>
-                        <li><p><a href="/abouts?type=โครงสร้างหน่วยงาน"class="text-dark">โครงสร้างหน่วยงาน</a></p></li>
-                        <li><p><a href="/abouts?type=ทำเนียบผู้บริหาร"class="text-dark">ทำเนียบผู้บริหาร</a></p></li>
-                        <li><p><a href="/abouts?type=ยุทธศาสตร์"class="text-dark">ยุทธศาสตร์</a></p></li>
-                        <li><p><a href="/abouts?type=ข้อมูลบุคลากร"class="text-dark">ข้อมูลบุคลากร</a></p></li>
-                          <li><p><a href="/official/login"class="text-dark">สำหรับเจ้าหน้าที่</a></p></li>
-                        <li><p><a href="/abouts?type=ข้อมูลสถิติผู้ต้องขัง"class="text-dark">ข้อมูลสถิติผู้ต้องขัง</a></p></li>
+                        <li><a href="/abouts?type=ประวัติความเป็นมา"class="text-dark">ประวัติความเป็นมา</a></li>
+                        <li><a href="/abouts?type=วิสัยทัศน์และพันธกิจ"class="text-dark">วิสัยทัศน์และพันธกิจ</a></li>
+                        <li><a href="/abouts?type=โครงสร้างหน่วยงาน"class="text-dark">โครงสร้างหน่วยงาน</a></li>
+                        <li><a href="/abouts?type=ทำเนียบผู้บริหาร"class="text-dark">ทำเนียบผู้บริหาร</a></li>
+                        <li><a href="/abouts?type=ยุทธศาสตร์"class="text-dark">ยุทธศาสตร์</a></li>
+                        <li><a href="/abouts?type=ข้อมูลบุคลากร"class="text-dark">ข้อมูลบุคลากร</a></li>
+                        <li><a href="/official/login"class="text-dark">สำหรับเจ้าหน้าที่</a></li>
+                        <li><a href="/abouts?type=ข้อมูลสถิติผู้ต้องขัง"class="text-dark">ข้อมูลสถิติผู้ต้องขัง</a></li>
 
                       </ul>
                   </li>
+
 
                   <li class="dropdown <?php echo  Session::get('tabmanu3'); ?>" >
                     <a data-toggle="dropdown" class="dropdown-toggle " ><h5>ข่าวเกี่ยวกับเรือนจำ<b class="caret"></b> </h5></a>

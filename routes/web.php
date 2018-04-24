@@ -171,10 +171,8 @@ Route::post('/update/infoaddress/{id}', 'user\ProductsellController@infoaddress'
 Route::get('/cart/confrimadd', 'user\AddcartsControllers@confrim');
 Route::get('/Product/delete', 'user\AddcartsControllers@delete');
 
-Route::get('/invoice-print', function () {
 
-    return view('user.carsprint');
-  });
+  Route::get('/invoice-print/{id}', 'HomeController@carsprint');
 
   Route::get('/ProductCarorderdetail/{id}', 'user\ProductsellController@ProductCarorderdetail');
   Route::get('/ProductCarorderdelete/{id}', 'user\ProductsellController@ProductCarorderdelete');

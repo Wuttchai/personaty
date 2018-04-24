@@ -44,23 +44,25 @@ public $timestamps = false;
  public function showdetail($id)
 {
 
-$date = DB::table('product_Sell')
-            ->join('users','users.User_ID','=','product_Sell.User_ID')
-            ->select('users.email','users.User_Tel','users.User_Address','users.User_Name','Prosell_ID','Prosell_creat','Prosell_orderdate','Prosell_creat','Prosell_img','Prosell_send','Prosell_Quantity')
-            ->where('Prosell_ID','=' ,$id)
-            ->get();
+  $date = DB::table('product_Sell')
+              ->select('Prosell_ID','Prosell_creat','Prosell_orderdate','Prosell_img','Prosell_send','Prosell_Quantity','address_name','address_at','address_tumbon','address_aumpor','address_province','address_zipcode','address_tel')
+              ->where('Prosell_ID','=' ,$id)
+              ->get();
 
-$Car = DB::table('product_Sell')
-            ->join('sell_detail','product_Sell.Prosell_ID','=','sell_detail.Prosell_ID')
-            ->join('product','product.Pro_ID','=','sell_detail.Pro_ID')
-            ->select('product.Pro_Name','sell_detail.Det_Num', 'product.Pro_Price')
-            ->where('sell_detail.Prosell_ID','=' ,$id)
-            ->get();
+  $Car = DB::table('product_Sell')
+              ->join('sell_detail','product_Sell.Prosell_ID','=','sell_detail.Prosell_ID')
+              ->join('product','product.Pro_ID','=','sell_detail.Pro_ID')
+              ->select('product.Pro_Name','sell_detail.Det_Num', 'product.Pro_Price')
+              ->where('sell_detail.Prosell_ID','=' ,$id)
+              ->get();
+
             return view('official.detailproduct',[
               'Car' => $Car,
               'date' => $date,
             ]);
 }
+
+
 
      public function insert(Request $request)
      {

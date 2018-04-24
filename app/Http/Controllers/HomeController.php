@@ -25,7 +25,26 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+     public function carsprint($id)
+     {
 
+      $date = DB::table('product_Sell')
+                  ->select('Prosell_ID','Prosell_creat','Prosell_orderdate','Prosell_img','Prosell_send','Prosell_Quantity','address_name','address_at','address_tumbon','address_aumpor','address_province','address_zipcode','address_tel')
+                  ->where('Prosell_ID','=' ,$id)
+                  ->get();
+
+      $Car = DB::table('product_Sell')
+                  ->join('sell_detail','product_Sell.Prosell_ID','=','sell_detail.Prosell_ID')
+                  ->join('product','product.Pro_ID','=','sell_detail.Pro_ID')
+                  ->select('product.Pro_Name','sell_detail.Det_Num', 'product.Pro_Price')
+                  ->where('sell_detail.Prosell_ID','=' ,$id)
+                  ->get();
+
+                return view('carsprint',[
+                  'Car' => $Car,
+                  'date' => $date,
+                ]);
+     }
      public function deletecars(Request $request)
      {
        Cart::remove($request->id);

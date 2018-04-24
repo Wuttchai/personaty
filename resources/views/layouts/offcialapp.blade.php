@@ -323,7 +323,7 @@ body {
                             </a>
                               @if (session('product') == 'จัดการ')
                             <a class="dropdown-item" href="/official/logfile/product">
-                                รายงานข้อมูลสต๊อกสินค้า
+                                รายงานทางการเงิน 
                             </a>
                               @endif
                               @if (session('product') == 'จัดการ')

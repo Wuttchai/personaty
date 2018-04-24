@@ -52,8 +52,12 @@ public $qtv = 0 ;
      public function ProductCardetail($id)
      {
 
+
+
+
+
        $date = DB::table('product_Sell')
-                   ->select('Prosell_ID','Prosell_creat','Prosell_orderdate','Prosell_creat','Prosell_img','Prosell_send','Prosell_Quantity')
+                   ->select('Prosell_ID','Prosell_creat','Prosell_orderdate','Prosell_img','Prosell_send','Prosell_Quantity','address_name','address_at','address_tumbon','address_aumpor','address_province','address_zipcode','address_tel')
                    ->where('Prosell_ID','=' ,$id)
                    ->get();
 

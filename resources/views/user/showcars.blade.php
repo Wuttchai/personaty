@@ -293,12 +293,7 @@
                      <strong >แนะนำ!</strong> คุณสามารถตรวจสอบการสั่งซื้อได้ที่ เมนู -> ชื่อ -> ข้อมูลการสั่งซื้อ
                    </div>
                    </div>
-                   <div class="col-md-6 col-md-offset-3" v-if="savefile">
-                     <div class="alert alert-success alert-dismissible">
-                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                        <strong>บันทึกข้อมูล!</strong> คุณได้เพิ่มใบเสร็จโอนเงินเรียบร้อยเเล้ว
-                      </div>
-                      </div>
+
 
 
                 <!-- this row will not appear when printing -->
@@ -307,7 +302,7 @@
           <a href="/Product/delete"  class="btn btn-danger "><i class="fa fa-remove"></i> ยกเลิก</a>
 </div>
 <div class="col-xs-2">
-           <a href="/invoice-print" target="_blank" class="btn btn-primary pull-right"></i><i class="fa fa-print"></i> ปริ้นใบสั่งซื้อ</a>
+           <a href="/invoice-print/{{$date[0]->Prosell_ID}}" target="_blank" class="btn btn-primary pull-right"></i><i class="fa fa-print"></i> ปริ้นใบสั่งซื้อ</a>
 </div>
 <div class="col-xs-1">
            <button type="button"  class="btn btn-success pull-left" data-toggle="modal" data-target="#myModal"></i> ยืนยันการสั่งซื้อ</button>
@@ -715,7 +710,17 @@ if (document.getElementById('results').style.cssText == "display: block;") {
           }
           }else {
           information.guide = false;
-          information.savefile = true;
+          swal(
+            'บันทึกข้อมูล !',
+            'คุณได้เพิ่มใบเสร็จโอนเงินเรียบร้อยเเล้ว.',
+            'success'
+          ).then(function (response) {
+            if (response == true) {
+    window.location.href = '/ProductCarOrders';
+            }
+
+          });
+
 
 $("#myModal").modal('hide');
           }

@@ -59,19 +59,21 @@
                     <div class="col-sm-4 invoice-col">
                       ถึง
                       <address>
-                        <strong>{{ Auth::user()->User_Name }}</strong><br>
-                        {{ Auth::user()->User_Address }}<br>
-                        Phone: {{ Auth::user()->User_Tel }}<br>
-                        Email: {{ Auth::user()->email }}
+                        <strong>{{ $date[0]->address_name }}</strong><br>
+                        <h5 >ที่อยู่ : {{ $date[0]->address_at }} ต.{{ $date[0]->address_tumbon }} อ.{{ $date[0]->address_aumpor }}</h5>
+                        <h5 > จ.{{ $date[0]->address_province }}
+                        เบอร์โทร: {{ $date[0]->address_tel }}</h5>
+
                       </address>
                     </div>
                     <!-- /.col -->
                     <div class="col-sm-4 invoice-col">
-                      <b>Invoice #007612</b><br>
-                      <br>
-                      <b>Order ID:</b> 4F3S8J<br>
-                      <b>Payment Due:</b> 2/22/2014<br>
-                      <b>Account:</b> 968-34567
+                      <address>
+                        <strong>เลขที่ใบเสร็จสินค้า #007612</strong><br><br>
+                          รหัสการสั่งซื้อ: {{ $date[0]->Prosell_ID }}<br>
+                          วันที่ซื้อ: {{ $date[0]->Prosell_creat }}<br>
+                          ชื่อผู้ซื้อ:  {{ Auth::user()->User_Name }}
+                      </address>
                     </div>
                     <!-- /.col -->
                   </div>
@@ -98,20 +100,20 @@
                           $totalPirce =0;
                           ?>
 
-                                    @foreach (Cart::content() as $key1 => $product)
+                                    @foreach ($Car as $product )
 
                                       <tr>
                                         <th scope="row">&nbsp;&nbsp;&nbsp;{{ $num }}</th>
-                                        <td>{{ $product->name }}</td>
-                                        <td>&nbsp;{{ $product->qty }} ชิ้น</td>
-                                        <td>&nbsp;{{ $product->price }} บาท</td>
-                                        <td>&nbsp;{{ $product->qty * $product->price }} บาท</td>
+                                        <td>{{ $product->Pro_Name }}</td>
+                                        <td>&nbsp;{{ $product->Det_Num }} ชิ้น</td>
+                                        <td>&nbsp;{{ number_format($product->Pro_Price) }} บาท</td>
+                                        <td>&nbsp;{{ number_format($product->Det_Num * $product->Pro_Price) }} บาท</td>
 
                                       </tr>
 
                           <?php
                           $num ++;
-                          $totalPirce += $product->qty * $product->price;
+                          $totalPirce += $product->Det_Num * $product->Pro_Price;
                           ?>
                                        @endforeach
 
@@ -129,21 +131,14 @@
                     </div>
                     <!-- /.col -->
                     <div class="col-xs-6">
-                      <p class="lead">Amount Due {{ Session::get('date') }}</p>
+                      <p class="lead">วันที่สั่ง : {{ $date[0]->Prosell_creat }}</p>
 
                       <div class="table-responsive">
                         <table class="table">
-                          <tr>
-                            <th style="width:50%">ราคาสินค้าทั้งหมด :</th>
-                            <td>{{ Cart::subtotal() }} บาท</td>
-                          </tr>
-                          <tr>
-                            <th>ภาษี :</th>
-                            <td>{{ Cart::tax() }} บาท</td>
-                          </tr>
+
                           <tr>
                             <th>รวมราคาทั้งหมด :</th>
-                            <td>{{ Cart::total() }} บาท</td>
+                            <td>{{ number_format($totalPirce) }}บาท</td>
                           </tr>
 
                         </table>

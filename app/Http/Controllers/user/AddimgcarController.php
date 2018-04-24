@@ -19,7 +19,7 @@ class AddimgcarController extends Controller
      public function __construct()
      {
   $this->middleware('auth');
-  $this->middleware('cheackcar');
+
      }
 
     /**
@@ -47,7 +47,7 @@ class AddimgcarController extends Controller
 
                          $imageData = $request->get('fileoffice');
                         $fileName = Carbon::now()->timestamp . '_' . uniqid() . '.' . explode('/', explode(':', substr($imageData, 0, strpos($imageData, ';')))[1])[1];
-                        \Image::make($imageData)->resize(500, 800)->save(public_path('/ProductCardetail/Receipt/').$fileName);
+                        \Image::make($imageData)->resize(500, 800)->save(public_path('ProductCardetail/').$fileName);
 
 
             $time =Carbon::now('Asia/Bangkok');
@@ -72,7 +72,7 @@ class AddimgcarController extends Controller
 
      }
           }
-        
+
 
     public function index()
     {
