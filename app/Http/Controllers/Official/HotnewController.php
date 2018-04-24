@@ -213,7 +213,6 @@ if ($request->fileoffice) {
                           'Hotnews_type' => $request->type,
                           'datefirst' => $request->datefirst,
                           'datelast' => $request->datelast,
-
                           'hotupdated_at' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
                         ]);
 
@@ -294,7 +293,7 @@ if ($request->fileoffice) {
                      ->get();
 
          $image_path = "hotnew/".$imagedel[0]->Hotnews_img."";
-        
+
      \App\hotnews::where('Hotnews_ID', '=', $id)->delete();
 
      $info = \App\hotnews::join('log','hotnews.Log_ID','=','log.Log_ID')
