@@ -123,9 +123,20 @@ return redirect('/ProductCarOrders');
 
 public function editdropdown(Request $request,$id)
 {
+  $address = DB::table('address')
+              ->select('address_name','address_at','address_tumbon','address_aumpor','address_province','address_zipcode','address_tel')
+              ->where('address_id','=' ,$request->idaddres)
+              ->get();
+
   \App\product_sell::where('Prosell_ID',$id)
               ->update([
-                'address_id' => $request->idaddres
+                'address_name' => $address[0]->address_name,
+                'address_at' => $address[0]->address_at,
+                'address_tumbon'  => $address[0]->address_tumbon,
+                'address_aumpor' => $address[0]->address_aumpor,
+                'address_province' => $address[0]->address_province,
+                'address_zipcode' => $address[0]->address_zipcode,
+                'address_tel' =>$address[0]->address_tel,
             ]);
 
 
@@ -167,7 +178,13 @@ public function editsend(Request $request ,$id)
 
                                 \App\product_sell::where('Prosell_ID',$id)
                                             ->update([
-                                              'address_id' => $address
+                                              'address_name' => $request->name,
+                                              'address_at' => $request->address,
+                                              'address_tumbon'  => $request->tumbon,
+                                              'address_aumpor' => $request->aumpor,
+                                              'address_province' => $request->province,
+                                              'address_zipcode' => $request->zipcode,
+                                              'address_tel' =>$request->tel,
                                           ]);
         }
 
@@ -187,7 +204,81 @@ public function showaddres()
 return response()->json($address);
 
 }
+public function showinfo($id)
+{
 
+  $address = \App\address::select('address_name','address_at','address_tumbon','address_aumpor','address_province','address_zipcode','address_tel')
+              ->where('address_id','=' ,$id)
+              ->get();
+
+
+return response()->json($address);
+
+}
+
+public function infoaddress($id ,Request $request)
+{
+  $validator = Validator::make($request->all(), [
+        'name' => 'required|regex:/^([a-zA-Zก-ูเ-๋])/|min:5|max:255',
+        'address' => 'required',
+        'tumbon'  => 'required|regex:/^([ก-ูเ-๋])/',
+        'aumpor'  => 'required|regex:/^([ก-ูเ-๋])/',
+        'province' => 'required|regex:/^([ก-ูเ-๋])/',
+        'zipcode' => 'required|numeric|digits:5',
+        'tel' => 'required|numeric|digits:10',
+    ]);
+
+    if($validator->fails()){
+
+          return[
+          'messages' => $validator->errors()->messages()
+          ];
+        }else {
+
+                                \App\product_sell::where('Prosell_ID',$id)
+                                            ->update([
+                                              'address_name' => $request->name,
+                                              'address_at' => $request->address,
+                                              'address_tumbon'  => $request->tumbon,
+                                              'address_aumpor' => $request->aumpor,
+                                              'address_province' => $request->province,
+                                              'address_zipcode' => $request->zipcode,
+                                              'address_tel' =>$request->tel,
+                                          ]);
+
+                                          \App\address::where('address_id',$request->idaddress)
+                                                      ->update([
+                                                        'address_name' => $request->name,
+                                                        'address_at' => $request->address,
+                                                        'address_tumbon'  => $request->tumbon,
+                                                        'address_aumpor' => $request->aumpor,
+                                                        'address_province' => $request->province,
+                                                        'address_zipcode' => $request->zipcode,
+                                                        'address_tel' =>$request->tel,
+                                                        ]);
+
+}
+
+}
+public function deleteinfo($id)
+{
+
+  $address = \App\address::select('address_name')
+              ->where('User_ID','=' ,Auth::user()->User_ID)
+              ->get();
+$addresscount =  count($address);
+if ($addresscount == 1) {
+  $error ='true';
+
+  return response()->json($error);
+}else {
+  \App\address::where('address_id', '=', $id)->delete();
+
+}
+
+
+
+}
 
 public function index()
 {
@@ -209,7 +300,6 @@ public function index()
   $Prosell_ID =  \App\product_sell::where([
       ['User_ID', '=', Auth::user()->User_ID],
       ])->max('Prosell_ID');
-
 
 
   $userdetail = DB::table('product_Sell')

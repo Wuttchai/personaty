@@ -39,13 +39,26 @@
                   </div>
                   <!-- /.col -->
                   <div class="col-sm-4 invoice-col">
+
+
+
                       ถึง<button type="button" class="btn btn-warning btn-sm pull-right" v-if="btnedit2" v-on:click='edit'>
-            <span class="glyphicon glyphicon-edit"></span> แก้ไข
-          </button>
-          <button type="button" class="btn btn-success btn-sm pull-right" data-toggle="modal" v-if="btnedit3" data-target="#exampleModal">
-          <span class="glyphicon glyphicon-plus"></span> เพิ่มผู้รับสินค้า
+            <span class="glyphicon glyphicon-edit"></span> จัดการข้อมูล
           </button>
 
+          <button type="button" class="btn btn-danger btn-sm pull-right" v-if="btnedit3" v-on:click="deleteinfo()">
+          <span class="fa fa-remove"></span> ลบ
+          </button>  <p class="pull-right" style="padding-left: 10px;"> </p>
+          <button type="button" class="btn btn-warning btn-sm pull-right"  v-if="btnedit3" v-on:click="showinfo()">
+          <span class="fa fa-cog"></span> แก้ไข
+          </button>
+
+
+          <p class="pull-right" style="padding-left: 10px;"> </p>
+
+          <button type="button" class="btn btn-success btn-sm pull-right"  data-toggle="modal" v-if="btnedit3" data-target="#exampleModal">
+          <span class="glyphicon glyphicon-plus"></span> เพิ่มผู้รับสินค้า
+          </button>
           <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
@@ -173,10 +186,10 @@
                       <label for="exampleFormControlTextarea1">ที่อยู่จัดส่ง</label>
                       <textarea class="form-control" name="address" id="exampleFormControlTextarea1" rows="3" readonly>@{{listaddname}}</textarea>
                       </div>
-                      <button type="button" class="btn btn-danger btn-sm pull-right" v-if="btnedit" v-on:click='edit2'>
-                      <span class="glyphicon glyphicon-remove-circle"></span> ยกเลิก
-                      </button>
-                      <button  class="btn btn-warning btn-sm pull-right" v-if="btnedit" v-on:click='insertadduser({{ $Prosell_ID }} ,$event)'>
+                      <button type="button" class="btn btn-default btn-sm " v-if="btnedit" v-on:click='edit2'>
+                      <span class="fa fa-mail-reply-all"></span> ย้อนกลับ
+                      </button>  <p class="pull-right" style="padding-left: 10px;"> </p>
+                      <button  class="btn btn-primary btn-sm pull-right" v-if="btnedit" v-on:click='insertadduser({{ $Prosell_ID }} ,$event)'>
                       <span class="glyphicon glyphicon-saved"></span> บันทึก
                       </button>
                       </div>
@@ -187,7 +200,7 @@
 
                         <h5 v-if="btnedit2">ที่อยู่ : {{ $userdetail[0]->address_at }} ต.{{ $userdetail[0]->address_tumbon }} อ.{{ $userdetail[0]->address_aumpor }}</h5>
                         <h5 v-if="btnedit2"> จ.{{ $userdetail[0]->address_province }}
-                        เบอร์โทร: {{ Auth::user()->User_Tel }}</h5>
+                        เบอร์โทร: {{ $userdetail[0]->address_tel }}</h5>
 
                       </address>
                     </div>
@@ -422,13 +435,115 @@
 
          </div>
        </div>
-    </div>
+       <div class="modal fade" id="exampleModaledit" tabindex="-1" role="dialog" aria-labelledby="exampleModaledit" aria-hidden="true">
+         <div class="modal-dialog" role="document">
+           <div class="modal-content">
+             <div class="modal-header">
+               <h5 class="modal-title" id="exampleModalLabel">แก้ไขข้อมูลผู้รับสินค้า</h5>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                 <span aria-hidden="true">&times;</span>
+               </button>
+             </div>
+             <div class="modal-body">
+               <div class="form-group">
 
+                 <div v-bind:class="{'form-group':nameediterror , 'has-error has-feedback':nameediterror }">
+                   <label for="exampleInputEmail1">ชื่อ-นามสกุล *</label>
+                   <input type="text" class="form-control"  v-model="nameedit2" required>
+               <span class="glyphicon glyphicon-remove form-control-feedback" v-if="nameediterror"></span>
+                               <span class="text-errors" v-if="nameediterror">
+                                   <strong><h5>@{{ nameediterror }}</h5></strong>
+                               </span>
+               </div>
+
+
+       </div>
+       <div class="form-group">
+         <div v-bind:class="{'form-group':addressediterror , 'has-error has-feedback':addressediterror }">
+           <label for="exampleInputAddress">บ้านเลขที่ *</label>
+           <input class="form-control"  v-model="addressedit2" ></input>
+       <span class="glyphicon glyphicon-remove form-control-feedback" v-if="addressediterror"></span>
+                       <span class="text-errors" v-if="addressediterror">
+                           <strong><h5>@{{ addressediterror }}</h5></strong>
+                       </span>
+       </div>
+       </div>
+
+       <div class="form-group">
+
+         <div v-bind:class="{'form-group':tumbonediterror , 'has-error has-feedback':tumbonediterror }">
+           <label for="exampleInputPhone">ตำบล *</label>
+           <input type="text" class="form-control" v-model="tumbonedit2"  required>
+       <span class="glyphicon glyphicon-remove form-control-feedback" v-if="tumbonediterror"></span>
+                       <span class="text-errors" v-if="tumbonediterror">
+                           <strong><h5>@{{ tumbonediterror }}</h5></strong>
+                       </span>
        </div>
 
 
+       </div>
+       <div class="form-group">
+
+         <div v-bind:class="{'form-group':aumporediterror , 'has-error has-feedback':aumporediterror }">
+           <label for="exampleInputPhone">อำเภอ *</label>
+           <input type="text" class="form-control" v-model="aumporedit2"  required>
+       <span class="glyphicon glyphicon-remove form-control-feedback" v-if="aumporediterror"></span>
+                       <span class="text-errors" v-if="aumporediterror">
+                           <strong><h5>@{{ aumporediterror }}</h5></strong>
+                       </span>
+       </div>
 
 
+       </div>
+       <div class="form-group">
+
+         <div v-bind:class="{'form-group':provinceediterror , 'has-error has-feedback':provinceediterror }">
+           <label for="exampleInputPhone">จังหวัด *</label>
+          <input type="text" class="form-control" v-model="provinceedit2"  required>
+       <span class="glyphicon glyphicon-remove form-control-feedback" v-if="provinceediterror"></span>
+                       <span class="text-errors" v-if="provinceediterror">
+                           <strong><h5>@{{ provinceediterror }}</h5></strong>
+                       </span>
+       </div>
+
+
+       </div>
+       <div class="form-group">
+
+         <div v-bind:class="{'form-group':zipcodeediterror , 'has-error has-feedback':zipcodeediterror }">
+           <label for="exampleInputPhone">รหัสไปรษณีย์ *</label>
+           <input type="text" class="form-control" v-model="zipcodeedit2"  maxlength="5" required>
+       <span class="glyphicon glyphicon-remove form-control-feedback" v-if="zipcodeediterror"></span>
+                       <span class="text-errors" v-if="zipcodeediterror">
+                           <strong><h5>@{{ zipcodeediterror }}</h5></strong>
+                       </span>
+       </div>
+
+
+       </div>
+       <div class="form-group">
+
+         <div v-bind:class="{'form-group':telediterror , 'has-error has-feedback':telediterror }">
+           <label for="exampleInputPhone">เบอร์โทรศัพท์ *</label>
+           <input type="text" class="form-control" v-model="teledit2"  required>
+       <span class="glyphicon glyphicon-remove form-control-feedback" v-if="telediterror"></span>
+                       <span class="text-errors" v-if="telediterror">
+                           <strong><h5>@{{ telediterror }}</h5></strong>
+                       </span>
+       </div>
+
+
+       </div>
+             </div>
+             <div class="modal-footer">
+               <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
+               <button type="button" v-on:click='updateaddress(<?php echo $Prosell_ID ?>)' class="btn btn-primary">บันทึกการแก้ไข</button>
+             </div>
+           </div>
+         </div>
+       </div>
+
+    </div>
 
 
 <br>
@@ -538,6 +653,13 @@ var information =  new Vue({
 'provinceedit':'',
 'zipcodeedit':'',
 'teledit':'',
+'nameedit2':'',
+'addressedit2':'',
+'tumbonedit2':'',
+'aumporedit2':'',
+'provinceedit2':'',
+'zipcodeedit2':'',
+'teledit2':'',
 'nameediterror':false,
 'addressediterror':false,
 'tumbonediterror':false,
@@ -734,7 +856,133 @@ this.listadd=[];
 }
                  });
            },
+           showinfo: function () {
+var addressid =	information.addressid;
+var link = "/showinfo/address"+addressid;
 
+axios.get(link, {
+}).then(function (response) {
+
+information.nameedit2 = response.data[0].address_name;
+information.addressedit2= response.data[0].address_at;
+information.tumbonedit2= response.data[0].address_tumbon;
+information.aumporedit2= response.data[0].address_aumpor;
+information.provinceedit2= response.data[0].address_province;
+information.zipcodeedit2= response.data[0].address_zipcode;
+information.teledit2= response.data[0].address_tel;
+
+$("#exampleModaledit").modal('show');
+
+})
+           },
+           updateaddress: function (event) {
+
+      information.addressediterror = false;
+     information.aumporediterror = false;
+     information.nameediterror = false;
+     information.provinceediterror = false;
+     information.telediterror = false;
+     information.tumbonediterror  = false;
+     information.zipcodeediterror = false;
+
+      axios.post('/update/infoaddress/'+event, {
+          idaddress:information.addressid,
+          name:information.nameedit2,
+          address:information.addressedit2,
+          tumbon:information.tumbonedit2,
+          aumpor:information.aumporedit2,
+          province:information.provinceedit2,
+          zipcode:information.zipcodeedit2,
+          tel:information.teledit2,
+        }).then(function (response) {
+          if (response.data.messages != null) {
+          if(response.data.messages.address != null){
+          information.addressediterror = true;
+          information.addressediterror = response.data.messages.address[0];
+          }
+          if(response.data.messages.aumpor != null){
+          information.aumporediterror = true;
+          information.aumporediterror= response.data.messages.aumpor[0];
+          }
+          if(response.data.messages.name != null){
+          information.nameediterror = true;
+          information.nameediterror = response.data.messages.name[0];
+          }
+          if(response.data.messages.province != null){
+          information.provinceediterror = true;
+          information.provinceediterror = response.data.messages.province[0];
+          }
+          if(response.data.messages.tel != null){
+          information.telediterror = true;
+          information.telediterror = response.data.messages.tel[0];
+          }
+          if(response.data.messages.tumbon != null){
+          information.tumbonediterror  = true;
+          information.tumbonediterror  = response.data.messages.tumbon[0];
+          }
+           if(response.data.messages.zipcode != null){
+           information.zipcodeediterror = true;
+           information.zipcodeediterror = response.data.messages.zipcode[0];
+           }
+          }else {
+            location.reload();
+ }
+ })
+           },
+           deleteinfo: function () {
+
+
+swal({
+title: 'คุณแน่ใจ !',
+text: 'คุณจะไม่สามารถกู้คืนไฟล์ที่ลบนี้ได้',
+type: 'warning',
+showCancelButton: true,
+confirmButtonColor: '#3085d6',
+cancelButtonColor: '#d33',
+confirmButtonText: 'ยืนยัน',
+cancelButtonText : 'ยกเลิก',
+closeOnConfirm: false
+
+
+
+
+}).then(function () {
+
+  axios.get('/deleteinfo/address'+information.addressid, {
+    }).then(function (response) {
+var erroradd = response.data;
+  if (erroradd == 'true') {
+    swal(
+      'ไม่อนุญาติ',
+      'กรุณาเก็บข้อมูลผู้รับสินค้าไว้อย่างน้อย1คน ',
+      'error'
+    )
+  }else {
+    location.reload();
+  }
+  });
+  if (erroradd != 'true') {
+  swal(
+    'ถูกลบเเล้ว !',
+    'ไฟล์ของคุณถูกลบแล้ว.',
+    'success'
+  )
+}
+}, function (dismiss) {
+  // dismiss can be 'cancel', 'overlay',
+  // 'close', and 'timer'
+  if (dismiss === 'cancel') {
+    swal(
+      'ยกเลิกเเล้ว',
+      'ไฟล์ที่คุณเลือกปลอดภัย :)',
+      'error'
+    )
+  }
+})
+
+
+
+           },
     }
   })
 </script>

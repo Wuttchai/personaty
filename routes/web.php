@@ -165,6 +165,9 @@ Route::post('/Producteditcars', 'HomeController@editcars');
 Route::post('/Productdeletecars', 'HomeController@deletecars');
 Route::get('/questiondetail/edit/{id}', 'user\ProductsellController@openedit');
 Route::get('/product/invoice/', 'user\ProductsellController@index')->name('showcar');
+Route::get('/showinfo/address{id}', 'user\ProductsellController@showinfo');
+Route::get('/deleteinfo/address{id}', 'user\ProductsellController@deleteinfo');
+Route::post('/update/infoaddress/{id}', 'user\ProductsellController@infoaddress');
 Route::get('/cart/confrimadd', 'user\AddcartsControllers@confrim');
 Route::get('/Product/delete', 'user\AddcartsControllers@delete');
 
