@@ -46,7 +46,7 @@
                                 <table class="table table-borderless text-center" id="table">
                <thead>
                  <tr>
-                   <th>โชว์หน้าแรก</th>
+                   <th v-if="id == '1'">โชว์หน้าแรก</th>
                    <th>ชื่อผู้ทำ</th>
                    <th>รายละเอียดไฟล์</th>
                    <th>วันที่อัพเดทล่าสุด</th>
@@ -57,12 +57,12 @@
                </thead>
 
                <tr v-for="item in paginatedUsers" v-if="id == item.official_ID || id == '1'" >
-                 <td v-if="item.doc_status == '-'" ><label class="cheakcus cheakcus-center" v-on:click="showcrol(item.doc_id,item.doc_status)">
+                 <td v-if="item.doc_status == '-' && id == '1' " ><label class="cheakcus cheakcus-center" v-on:click="showcrol(item.doc_id,item.doc_status)">
   <input type="checkbox" >
   <span class="checkmark" ></span>
 </label></td>
 
-<td v-if="item.doc_status == 'checked'" ><label class="cheakcus cheakcus-center" v-on:click="showcrol(item.doc_id,item.doc_status)" >
+<td v-if="item.doc_status == 'checked' && id == '1'" ><label class="cheakcus cheakcus-center" v-on:click="showcrol(item.doc_id,item.doc_status)" >
 
 <input  type="checkbox" checked="checked" >
 <span class="checkmark"></span>

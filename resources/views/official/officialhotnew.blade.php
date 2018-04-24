@@ -47,6 +47,7 @@
 
     <thead >
                  <tr>
+                   <th v-if="id == '1'">โชว์หน้าแรก</th>
                    <th scope="col">ชื่อผู้ทำ</th>
                    <th scope="col">ชื่อข่าวประชาสัมพันธ์</th>
                    <th scope="col">วันที่อัพเดทล่าสุด</th>
@@ -56,6 +57,16 @@
                  </tr>
                </thead>
                <tr v-for="item in paginatedUsers" v-if="id == item.official_ID || id == '1'">
+                 <td v-if="item.Hotnews_status == '-' || item.Hotnews_status == ''  && id == '1' " ><label class="cheakcus cheakcus-center" v-on:click="showcrol(item.Hotnews_ID,item.Hotnews_status)">
+  <input type="checkbox" >
+  <span class="checkmark" ></span>
+</label></td>
+
+<td v-if="item.Hotnews_status == 'checked' && id == '1'" ><label class="cheakcus cheakcus-center" v-on:click="showcrol(item.Hotnews_ID,item.Hotnews_status)" >
+
+<input  type="checkbox" checked="checked" >
+<span class="checkmark"></span>
+</label></td>
                  <td>@{{ item.official_Name }}</td>
                  <td>@{{ item.Hotnews_name }}</td>
                  <td>@{{ item.hotupdated_at }}</td>
@@ -817,6 +828,69 @@ $("#editofficial").modal('show');
                 })
                     }
     },
+    showcrol: function(item,item2) {
+
+        if (information.statuschek < 5 || information.id == '1') {
+          swal({
+    title: 'คุณแน่ใจ !',
+    text: 'ข้อมูลที่คุณเลือกจะขึ้นหน้าแรกของเว็ป',
+    type: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'ยืนยัน',
+    cancelButtonText : 'ยกเลิก',
+    closeOnConfirm: false
+
+    }).then(function () {
+    if (item2 == 'checked') {
+    item2 = '-';
+    }else {
+    item2 = 'checked';
+    }
+    console.log(item,item2);
+            axios.post('/hotnews/status' + item, {
+              id: information.id,
+              status: item2
+            })
+            swal(
+              'เรียบร้อยเเล้ว !',
+              'คุณได้แสดงข้อมูลนี้ที่หน้าแรกสำเร็จ.',
+              'success'
+            ).then(function (response) {
+              if (response == true) {
+    location.reload();
+              }
+
+            });
+
+          }, function (dismiss) {
+            if (dismiss === 'cancel') {
+              swal(
+                'ยกเลิกเเล้ว',
+                'คุณได้ทำการยกเลิกเรียบร้อยแล้ว :)',
+                'error'
+              ).then(function (response) {
+                if (response == true) {
+    location.reload();
+                }
+
+              });
+
+            }
+          })
+      }else {
+        swal({
+    title: 'คุณกำลังเพิ่มข้อมูลที่แสดงเกิน 5ไฟล์ !',
+    text: 'กรุณาตรวจสอบข้อมูลที่ต้องการแสดงอีกครั้ง',
+    type: 'warning',
+    confirmButtonColor: '#3085d6',
+    confirmButtonText: 'ยืนยัน',
+    closeOnConfirm: false
+    })
+      }
+    },
+
     }
   })
 

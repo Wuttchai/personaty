@@ -31,7 +31,7 @@ public $timestamps = false;
      public function readItems() {
        $info = \App\hotnews::join('log','hotnews.Log_ID','=','log.Log_ID')
                    ->join('official', 'official.official_ID', '=', 'log.official_ID')
-                   ->select('official.official_Name', 'hotnews.Hotnews_name', 'hotnews.hotupdated_at','hotnews.Hotnews_img','hotnews.datelast','hotnews.Hotnews_ID','hotnews.Hotnews_type')
+                   ->select('official.official_Name', 'hotnews.Hotnews_name', 'hotnews.hotupdated_at','hotnews.Hotnews_img','hotnews.datelast','hotnews.Hotnews_ID','hotnews.Hotnews_type','hotnews.Hotnews_status')
                    ->orderBy('hotnews.hotupdated_at', 'desc')
                    ->get();
 
@@ -176,7 +176,7 @@ if ($request->fileoffice) {
 
   $image_path = "hotnew/".$imagedel[0]->Hotnews_img."";
 
- \App\doccument::where('doc_id', '=', $id)->delete();
+
 
   $imageData = $request->get('fileoffice');
  $fileName = Carbon::now()->timestamp . '_' . uniqid() . '.' . explode('/', explode(':', substr($imageData, 0, strpos($imageData, ';')))[1])[1];
@@ -307,7 +307,32 @@ if ($request->fileoffice) {
 
 
      }
+     public function updatestatus(Request $request,$id)
+     {
 
+        $time =Carbon::now('Asia/Bangkok');
+
+       \App\log::insert([
+         'official_ID' => $request->id,
+         'table_log' => 'ข้อมูลข่าวประชาสัมพันธ์',
+         'project_log' => $id,
+         'Log_Event' => 'แก้ไขสถานะการโชว์',
+         'Log_IP'  => \Request::ip(),
+         'Log_Time'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
+   ]);
+
+   $logid =  \App\log::where([
+   ['official_ID', '=', $request->id],
+   ])->max('Log_ID');
+
+   \App\hotnews::where('Hotnews_ID',$id)
+               ->update([
+                 'Log_ID' => $logid,
+                 'Hotnews_status' => $request->status,
+               ]);
+
+
+     }
     public function index()
     {
 

@@ -127,6 +127,7 @@ Route::post('/official/hotnews/add', 'Official\HotnewController@insert');
 Route::get('/hotnews/edit{Hotnews_ID}', 'Official\HotnewController@showedit');
 Route::post('/hotnews/update/{Hotnews_ID}', 'Official\HotnewController@update');
 Route::post('/hotnews/delete{Hotnews_ID}', 'Official\HotnewController@delete');
+Route::post('/hotnews/status{Hotnews_ID}', 'Official\HotnewController@updatestatus');
 
 
 Route::get('/official/product', 'Official\ProductController@index');
