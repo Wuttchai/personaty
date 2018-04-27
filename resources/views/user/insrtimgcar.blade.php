@@ -18,7 +18,7 @@
                   <div class="col-xs-12">
                     <h2 class="page-header">
                       <i class="fa fa-globe"></i> ใบสั่งซื้อสินค้า
-                      <small class="pull-right">วันที่: {{ Session::get('date') }}</small>
+                      <small class="pull-right">วันที่: {{ $date[0]->Prosell_creat }}</small>
                     </h2>
                   </div>
                   <!-- /.col -->
@@ -42,13 +42,10 @@
                   <div class="col-sm-4 invoice-col">
                     ถึง
                     <address>
-<?php
-$addressat = "" . $address[0]->address_at. " ต." . $address[0]->address_tumbon . " อ." . $address[0]->address_aumpor . " จ." . $address[0]->address_province . " ปณ." . $address[0]->address_zipcode.  "";
- ?>
-
-                      <strong>{{   $address[0]->address_name }}</strong><br>
-                      {{ $addressat }}<br>
-                      เบอร์โทร: {{ $address[0]->address_tel }}<br>
+                      <strong>{{ $date[0]->address_name }}</strong><br>
+                      <h5 >ที่อยู่ : {{ $date[0]->address_at }} ต.{{ $date[0]->address_tumbon }} อ.{{ $date[0]->address_aumpor }}</h5>
+                      <h5 > จ.{{ $date[0]->address_province }}
+                      เบอร์โทร: {{ $date[0]->address_tel }}</h5>
 
                     </address>
                   </div>
@@ -91,8 +88,8 @@ $addressat = "" . $address[0]->address_at. " ต." . $address[0]->address_tumbon
                             <th scope="row">&nbsp;&nbsp;&nbsp;{{ $num }}</th>
                             <td>{{ $product->Pro_Name }}</td>
                             <td>&nbsp;{{ $product->Det_Num }} ชิ้น</td>
-                            <td>&nbsp;{{ $product->Pro_Price }} บาท</td>
-                            <td>&nbsp;{{ $product->Det_Num * $product->Pro_Price }} บาท</td>
+                            <td>&nbsp;{{ number_format($product->Pro_Price) }} บาท</td>
+                            <td>&nbsp;{{ number_format($product->Det_Num * $product->Pro_Price) }} บาท</td>
 
                           </tr>
 
@@ -122,7 +119,7 @@ $addressat = "" . $address[0]->address_at. " ต." . $address[0]->address_tumbon
                       <table class="table">
                         <tr>
                           <th style="width:50%">ราคาสินค้าทั้งหมด :</th>
-                          <td>{{ $totalPirce }} บาท</td>
+                          <td>{{ number_format($totalPirce) }} บาท</td>
                         </tr>
 
 
@@ -145,13 +142,13 @@ $addressat = "" . $address[0]->address_at. " ต." . $address[0]->address_tumbon
                 <!-- this row will not appear when printing -->
                 <div class="row no-print">
         <div class="col-xs-9">
-          <a href="/ProductCarOrders"  class="btn btn-danger "><i class="fa fa-print"></i> ย้อนกลับ</a>
+          <a href="/ProductCarOrders"  class="btn btn-danger "><i class="fa fa-mail-reply-all"></i> ย้อนกลับ</a>
 </div>
 <div class="col-xs-2">
-           <a href="/invoice-print" target="_blank" class="btn btn-primary pull-right"></i> ปริ้นใบสั่งซื้อ</a>
+           <a href="/invoice-print/{{$date[0]->Prosell_ID}}" target="_blank" class="btn btn-primary pull-right"></i><i class="fa fa-print"></i> ปริ้นใบสั่งซื้อ</a>
 </div>
 <div class="col-xs-1">
-           <button type="button"  class="btn btn-success pull-left" data-toggle="modal" data-target="#myModal"></i> ยืนยันการสั่งซื้อ</button>
+           <button type="button"  class="btn btn-success pull-left" data-toggle="modal" data-target="#myModal"></i><i class="glyphicon glyphicon-floppy-open"></i> ยืนยันการสั่งซื้อ</button>
 
 </div>
 

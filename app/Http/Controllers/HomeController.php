@@ -416,10 +416,12 @@ Cart::update($request->id, ['qty' => $request->qty]);
       Session::forget('tabmanu2');
       Session::put("tabmanu","active");
       $info = \App\info::select('Info_ID', 'Info_Name', 'Info_Img')
+                  ->where('Info_status','=','checked')
                   ->orderBy('info.Info_up', 'desc')->limit(5)->get();
 
       $hotnew = \App\hotnews::select('Hotnews_ID', 'hotnews.Hotnews_name','Hotnews_img', 'Hotnews_detail', 'datefirst', 'datelast')
                   ->where('Hotnews_type','=','ข่าวประชาสัมพันธ์')
+                  ->where('Hotnews_status','=','checked')
                   ->orderBy('hotnews.hotupdated_at', 'desc ')->limit(3)->get();
 
                   $time =Carbon::now('Asia/Bangkok');
@@ -427,9 +429,11 @@ Cart::update($request->id, ['qty' => $request->qty]);
 
     $hotnew2 = \App\hotnews::select('Hotnews_ID', 'hotnews.Hotnews_name','Hotnews_img', 'Hotnews_detail', 'datefirst', 'datelast')
           ->where('Hotnews_type','=','ข่าวกิจกรรม')
+          ->where('Hotnews_status','=','checked')
           ->orderBy('hotnews.hotupdated_at', 'desc ')->limit(6)->get();
 
           $doccument = \App\doccument::select('doccument.doc_id','doc_name', 'doc_file')
+                  ->where('doc_status','=','checked')
                 ->orderBy('doccument.doc_dateup', 'desc ')->limit(5)->get();
 
                 $tasks  = \App\calender::select('cal_date','cal_last','cal_name','cal_id')

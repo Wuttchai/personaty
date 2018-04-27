@@ -51,7 +51,7 @@ return [
     'ipv6'                 => 'The :attribute must be a valid IPv6 address.',
     'json'                 => 'The :attribute must be a valid JSON string.',
     'max'                  => [
-        'numeric' => 'The :attribute may not be greater than :max.',
+        'numeric' => 'โปรดใส่ข้อมูลให้น้อยกว่า :max.',
         'file'    => 'The :attribute may not be greater than :max kilobytes.',
         'string'  => 'กรุณาใส่ข้อความให้สั่นกว่า :max ตัวอักษร.',
         'array'   => 'The :attribute may not have more than :max items.',

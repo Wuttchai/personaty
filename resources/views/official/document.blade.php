@@ -57,7 +57,7 @@
                </thead>
 
                <tr v-for="item in paginatedUsers" v-if="id == item.official_ID || id == '1'" >
-                 <td v-if="item.doc_status == '-' && id == '1' " ><label class="cheakcus cheakcus-center" v-on:click="showcrol(item.doc_id,item.doc_status)">
+                 <td v-if="item.doc_status == '-' || item.doc_status == '' && id == '1' " ><label class="cheakcus cheakcus-center" v-on:click="showcrol(item.doc_id,item.doc_status)">
   <input type="checkbox" >
   <span class="checkmark" ></span>
 </label></td>
@@ -130,15 +130,14 @@
 
 
              <div v-bind:class="{'form-group':nameerror , 'form-control label text-danger is-invalid':nameerror }">
-                           <label for="inputMessage">ชื่อแบบฟอร์ม</label>
-                          <input class="form-control"  id="detail" placeholder="ใส่รายละเอียดข่าว" v-model="name"></textarea>
+                           <label for="inputMessage">ชื่อไฟล์</label>
+                          <input class="form-control"  id="detail" placeholder="ใส่ชื่อไฟล์" v-model="name"></textarea>
                            <span class="text-danger" v-if="nameerror">
                                <strong>@{{ nameerror }}</strong>
                            </span>
                        </div>
             <div v-bind:class="{'form-group':detailerror , 'form-control label text-danger is-invalid':detailerror }">
               <label for="inputMessage">รายละเอียดข่าว</label>
-
 
               <span class="text-danger" v-if="detailerror">
                 <strong>@{{detailerror }}</strong>
@@ -201,7 +200,7 @@
      <div class="modal-dialog modal-lg" role="document">
        <div class="modal-content">
          <div class="modal-header  text-center">
-           <h5 class="modal-title text-center" id="exampleModalLabel">แก้ไขข้อมูลเอกสารที่เผยแพร่ ์</h5>
+           <h5 class="modal-title text-center" id="exampleModalLabel">แก้ไขข้อมูลเอกสารที่เผยแพร่</h5>
            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
              <span aria-hidden="true">&times;</span>
            </button>
@@ -223,8 +222,9 @@
 
 
              <div v-bind:class="{'form-group':nameerror , 'form-control label text-danger is-invalid':nameerror }">
-                           <label for="inputMessage">เนื้อหาข้างต้นของไฟล์</label>
-                           <textarea class="form-control" rows="5" id="detail" placeholder="ใส่รายละเอียดข่าว" v-model="nameedit" :disabled ="inputedit == 'false'"></textarea>
+                           <label for="inputMessage">ชื่อไฟล์</label>
+
+<input class="form-control"  id="detail" placeholder="ใส่ชื่อไฟล์" v-model="nameedit" :disabled ="inputedit == 'false'">
                            <span class="text-danger" v-if="nameerror">
                                <strong>@{{ nameerror }}</strong>
                            </span>
@@ -678,8 +678,8 @@ information.buttonedit = true;
     },
     showcrol: function(item,item2) {
 
-        if (information.statuschek < 5 || information.id == '1') {
-          console.log(information.statuschek);
+        if (information.statuschek < 5 && information.id == '1') {
+
           swal({
     title: 'คุณแน่ใจ !',
     text: 'ข้อมูลที่คุณเลือกจะขึ้นหน้าแรกของเว็ป',
@@ -737,7 +737,12 @@ location.reload();
   confirmButtonColor: '#3085d6',
   confirmButtonText: 'ยืนยัน',
   closeOnConfirm: false
-  })
+  }).then(function (response) {
+    if (response == true) {
+location.reload();
+    }
+
+  });
       }
 },
     }

@@ -46,12 +46,12 @@ public $timestamps = false;
 
     $validator =  Validator::make($request->all(), [
          'id' => 'required|string',
-         'name' => 'required|regex:/^([a-zA-Z0-9ก-ูเ-๋๑-๙])/',
+         'name' => 'required|regex:/^([ก-ูเ-๋๑-๙])/|max:255',
         'fileoffice' => 'required|image64:jpeg,jpg,png|img_min_size:250,200',
-        'detail' => 'required|regex:/^([a-zA-Z0-9ก-ูเ-๋๑-๙])/',
-        'type' => 'required|string',
-        'money' => 'required|numeric',
-        'count' => 'required|numeric',
+        'detail' => 'required|regex:/^([ก-ูเ-๋๑-๙])/|max:255',
+        'type' => 'required|string|max:255',
+        'money' => 'required|numeric|max:100000',
+        'count' => 'required|numeric|max:1000',
 
            ]);
 
@@ -279,7 +279,7 @@ if ($request->fileoffice) {
                      ->get();
 
          $image_path = "about/".$imagedel[0]->Pro_img."";
-        
+
      \App\product::where('Pro_ID', '=', $id)->delete();
 
      $info = \App\product::join('log','product.Log_ID','=','log.Log_ID')

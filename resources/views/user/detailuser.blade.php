@@ -43,7 +43,7 @@
       <tr>
         <td>{{ $num }}</td>
         <td>{{ $Car->Prosell_Quantity}} ชิ้น</td>
-        <td>{{ $Car->Prosell_totalPirce}} บาท</td>
+        <td>{{ number_format($Car->Prosell_totalPirce)}} บาท</td>
 @if($Car->Prosell_send != '-')
         <td>{{ $Car->Prosell_send}}</td>
 

@@ -84,10 +84,10 @@ public function graph() {
      {
 
 $validator =  Validator::make($request->all(), [
-            'name' => 'required|regex:/^([ก-ูเ-๋])/',
+            'name' => 'required|regex:/^([ก-ูเ-๋])/|max:255',
             'email' => 'required|string|email|max:255|unique:official,official_Email',
-            'password' => 'required|regex:/^([a-zA-Z0-9ก-ูเ-๋๑-๙])/|min:6|confirmed',
-            'password_confirmation' => 'required'
+            'password' => 'required|regex:/^([a-zA-Z0-9ก-ูเ-๋๑-๙])/|min:6|confirmed|max:255',
+            'password_confirmation' => 'required|max:255'
               ]);
 
               if($validator->fails()){
@@ -200,10 +200,10 @@ return response()->json($info);
 public function update(Request $request,$id)
 {
   $validator =  Validator::make($request->all(), [
-              'name' => 'required|regex:/^([a-zA-Zก-ูเ-๋])/',
+              'name' => 'required|regex:/^([ก-ูเ-๋])/|max:255',
               'email' => 'required|string|email|max:255',
-              'password' => 'required|regex:/^([a-zA-Z0-9ก-ูเ-๋๑-๙])/|min:6|confirmed',
-              'password_confirmation' => 'required'
+              'password' => 'required|regex:/^([a-zA-Z0-9ก-ูเ-๋๑-๙])/|min:6|confirmed|max:255',
+              'password_confirmation' => 'required|max:255'
                 ]);
 
                 if($validator->fails()){

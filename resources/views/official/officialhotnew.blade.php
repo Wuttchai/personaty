@@ -57,20 +57,21 @@
                  </tr>
                </thead>
                <tr v-for="item in paginatedUsers" v-if="id == item.official_ID || id == '1'">
-                 <td v-if="item.Hotnews_status == '-' || item.Hotnews_status == ''  && id == '1' " ><label class="cheakcus cheakcus-center" v-on:click="showcrol(item.Hotnews_ID,item.Hotnews_status)">
+                 <td v-if="item.Hotnews_status == '-' || item.Hotnews_status == ''  && id == '1' " ><label class="cheakcus cheakcus-center" v-on:click="showcrol(item.Hotnews_ID,item.Hotnews_status,item.Hotnews_type)">
   <input type="checkbox" >
   <span class="checkmark" ></span>
 </label></td>
 
-<td v-if="item.Hotnews_status == 'checked' && id == '1'" ><label class="cheakcus cheakcus-center" v-on:click="showcrol(item.Hotnews_ID,item.Hotnews_status)" >
+<td v-if="item.Hotnews_status == 'checked' && id == '1'" ><label class="cheakcus cheakcus-center" v-on:click="showcrol(item.Hotnews_ID,item.Hotnews_status,item.Hotnews_type)" >
 
 <input  type="checkbox" checked="checked" >
 <span class="checkmark"></span>
 </label></td>
+
                  <td>@{{ item.official_Name }}</td>
-                 <td>@{{ item.Hotnews_name }}</td>
+                 <td>@{{ item.Hotnews_name.substring(0,25) }}..</td>
                  <td>@{{ item.hotupdated_at }}</td>
-                 <td>@{{ item.hotupdated_at }}</td>
+
                  <td v-if="item.Hotnews_img == '-'">-</td>
                  <td v-if="item.Hotnews_img != '-'"><img :src="'{{asset('hotnew')}}/' + item.Hotnews_img" height="42" width="42"/></td>
                   <td>@{{ item.Hotnews_type }}</td>
@@ -517,6 +518,8 @@ var information =  new Vue({
         'typeerror':'',
         'type':'',
         'typeedit':'',
+        'statusevent':0,
+        'statuschek':0,
         'items': [],
         'pagination': [],
         'searchKey': '',
@@ -574,7 +577,16 @@ var information =  new Vue({
 
  	        information.items = response.data;
 
+          for (var i = 0; i < response.data.length; i++) {
 
+            if (response.data[i].Hotnews_status == "checked" && response.data[i].Hotnews_type == "ข่าวกิจกรรม") {
+            information.statusevent += 1 ;
+            }
+            if (response.data[i].Hotnews_status == "checked" && response.data[i].Hotnews_type == "ข่าวประชาสัมพันธ์") {
+            information.statuschek += 1 ;
+            }
+
+          }
 
  	      });
  	    },
@@ -828,9 +840,44 @@ $("#editofficial").modal('show');
                 })
                     }
     },
-    showcrol: function(item,item2) {
+    showcrol: function(item,item2,item3) {
+      if (item2 == 'checked') {
+      item2 = '-';
+      }else {
+      item2 = 'checked';
+      }
 
-        if (information.statuschek < 5 || information.id == '1') {
+
+if (information.statusevent >= 6 && item2 == 'checked' && item3 == 'ข่าวกิจกรรม') {
+  swal({
+title: 'คุณกำลังเพิ่มข้อมูลที่แสดงเกิน 5ไฟล์ !',
+text: 'กรุณาตรวจสอบข้อมูลที่ต้องการแสดงอีกครั้ง',
+type: 'warning',
+confirmButtonColor: '#3085d6',
+confirmButtonText: 'ยืนยัน',
+closeOnConfirm: false
+}).then(function (response) {
+  if (response == true) {
+location.reload();
+  }
+});
+}else if (information.statuschek >= 3 && item2 == 'checked' && item3 == 'ข่าวประชาสัมพันธ์') {
+  swal({
+title: 'คุณกำลังเพิ่มข้อมูลที่แสดงเกิน 5ไฟล์ !',
+text: 'กรุณาตรวจสอบข้อมูลที่ต้องการแสดงอีกครั้ง',
+type: 'warning',
+confirmButtonColor: '#3085d6',
+confirmButtonText: 'ยืนยัน',
+closeOnConfirm: false
+}).then(function (response) {
+  if (response == true) {
+location.reload();
+  }
+});
+}
+
+
+else{
           swal({
     title: 'คุณแน่ใจ !',
     text: 'ข้อมูลที่คุณเลือกจะขึ้นหน้าแรกของเว็ป',
@@ -843,12 +890,8 @@ $("#editofficial").modal('show');
     closeOnConfirm: false
 
     }).then(function () {
-    if (item2 == 'checked') {
-    item2 = '-';
-    }else {
-    item2 = 'checked';
-    }
-    console.log(item,item2);
+
+
             axios.post('/hotnews/status' + item, {
               id: information.id,
               status: item2
@@ -879,15 +922,6 @@ $("#editofficial").modal('show');
 
             }
           })
-      }else {
-        swal({
-    title: 'คุณกำลังเพิ่มข้อมูลที่แสดงเกิน 5ไฟล์ !',
-    text: 'กรุณาตรวจสอบข้อมูลที่ต้องการแสดงอีกครั้ง',
-    type: 'warning',
-    confirmButtonColor: '#3085d6',
-    confirmButtonText: 'ยืนยัน',
-    closeOnConfirm: false
-    })
       }
     },
 

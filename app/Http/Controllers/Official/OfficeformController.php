@@ -33,7 +33,7 @@ public $timestamps = false;
      public function readItems() {
        $info = \App\info::join('log','info.Log_ID','=','log.Log_ID')
                    ->join('official', 'official.official_ID', '=', 'log.official_ID')
-                   ->select('official.official_Name', 'info.Info_Name', 'info.Info_up','info.Info_Img','info.Info_ID','official.official_ID')
+                   ->select('official.official_Name', 'info.Info_Name', 'info.Info_up','info.Info_Img','info.Info_ID','info.Info_status','official.official_ID')
                    ->orderBy('info.Info_up', 'desc')
                    ->get();
 
@@ -88,6 +88,7 @@ $time =Carbon::now('Asia/Bangkok');
                               'Log_ID' => $logid,
                               'Info_Name' => $request->name,
                               'Info_Img'  => $fileName,
+                              'Info_status' => '-',
                               'Info_cre' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "" ,
                               'Info_up' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
                             ]);
@@ -179,6 +180,7 @@ if ($request->fileoffice) {
                           'Log_ID' => $logid,
                           'Info_Name' => $request->name,
                           'Info_Img'  => $fileName,
+                          'Info_status' => '-',
                           'Info_up' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
                         ]);
 
@@ -226,6 +228,7 @@ if ($request->fileoffice) {
                         ->update([
                           'Log_ID' => $logid,
                           'Info_Name' => $request->name,
+                          'Info_status' => '-',
                           'Info_up' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
                         ]);
 
@@ -260,7 +263,7 @@ if ($request->fileoffice) {
                      ->get();
 
          $image_path = "images/".$imagedel[0]->Info_Img."";
-         
+
      \App\info::where('Info_ID', '=', $id)->delete();
 
      $info = \App\info::join('log','info.Log_ID','=','log.Log_ID')
@@ -275,6 +278,33 @@ if ($request->fileoffice) {
 
      }
 
+     public function updatestatus(Request $request,$id)
+     {
+
+        $time =Carbon::now('Asia/Bangkok');
+
+       \App\log::insert([
+         'official_ID' => $request->id,
+         'table_log' => 'ข้อมูลภาพแบรน์เนอร์',
+         'project_log' => $id,
+         'Log_Event' => 'แก้ไขสถานะการโชว์',
+         'Log_IP'  => \Request::ip(),
+         'Log_Time'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
+     ]);
+
+     $logid =  \App\log::where([
+     ['official_ID', '=', $request->id],
+     ])->max('Log_ID');
+
+     \App\info::where('Info_ID',$id)
+               ->update([
+                 'Log_ID' => $logid,
+                 'Info_status' => $request->status,
+               ]);
+
+
+
+     }
     public function index()
     {
 

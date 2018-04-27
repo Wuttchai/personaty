@@ -130,7 +130,7 @@
                        </div>
             <div v-bind:class="{'form-group':detailerror , 'form-control label text-danger is-invalid':detailerror }">
               <label for="inputMessage">รายละเอียดสินค้า</label>
-            <textarea class="form-control" rows="5" id="detail" placeholder="ใส่รายละเอียดข่าว" v-model="detail"></textarea>
+            <textarea class="form-control" rows="5" id="detail" placeholder="ใส่รายละเอียดสินค้าวิชาชีพ" v-model="detail"></textarea>
 
               <span class="text-danger" v-if="detailerror">
                 <strong>@{{detailerror }}</strong>

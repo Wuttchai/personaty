@@ -323,7 +323,7 @@ body {
                             </a>
                               @if (session('product') == 'จัดการ')
                             <a class="dropdown-item" href="/official/logfile/product">
-                                รายงานทางการเงิน 
+                                รายงานทางการเงิน
                             </a>
                               @endif
                               @if (session('product') == 'จัดการ')
@@ -341,7 +341,7 @@ body {
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @if (session('activity') == 'จัดการ')
-                        <li><a class="nav-link" href="/official/controlshow">จัดการข้อมูลแสดงหน้าเว็ป</a></li>
+                        
                         <li><a class="nav-link" href="/webboard">จัดการข้อมูลกระทู้</a></li>
                         <li><a class="nav-link" href="/official/add">จัดการข้อมูลเจ้าหน้าที่</a></li>
                         @endif

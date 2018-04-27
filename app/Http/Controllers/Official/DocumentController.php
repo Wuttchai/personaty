@@ -65,7 +65,7 @@ public $timestamps = false;
 
     $validator =  Validator::make($request->all(), [
          'id' => 'required|string',
-         'name' => 'required|regex:/^([a-zA-Z0-9ก-ูเ-๋๑-๙])/',
+         'name' => 'required|regex:/^([ก-ูเ-๋๑-๙])/|max:255',
         'fileoffice' => 'required|mimes:pdf|max:1000',
 
            ]);
@@ -252,6 +252,7 @@ $time =Carbon::now('Asia/Bangkok');
                         ->update([
                           'Log_ID' => $logid,
                           'doc_name' => $request->name,
+                          'doc_status'  => '-',
                           'doc_dateup' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
                         ]);
 }

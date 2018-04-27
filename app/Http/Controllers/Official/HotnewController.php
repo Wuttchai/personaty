@@ -65,7 +65,7 @@ if ($request->get('fileoffice') == null) {
                ];
              }else {
                $imageData = $request->get('fileoffice');
-               $fileName = '-';
+               $fileName = 'noimg.jpg';
 }
 }
 else {
@@ -119,6 +119,7 @@ $time =Carbon::now('Asia/Bangkok');
                               'Hotnews_detail' => $request->detail,
                               'Hotnews_img'  => $fileName,
                               'Hotnews_type' => $request->type,
+                              'Hotnews_status'=>'-',
                               'datefirst' => $request->datefirst,
                               'datelast' => $request->datelast,
                               'hotcreated_at' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "" ,
@@ -211,6 +212,7 @@ if ($request->fileoffice) {
                           'Hotnews_detail' => $request->detail,
                           'Hotnews_img'  => $fileName,
                           'Hotnews_type' => $request->type,
+                          'Hotnews_status'=>'-',
                           'datefirst' => $request->datefirst,
                           'datelast' => $request->datelast,
                           'hotupdated_at' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
@@ -264,6 +266,7 @@ if ($request->fileoffice) {
                           'Hotnews_detail' => $request->detail,
                           'datefirst' => $request->datefirst,
                           'datelast' => $request->datelast,
+                          'Hotnews_status'=>'-',
                           'Hotnews_type' => $request->type,
                           'hotupdated_at' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
                         ]);

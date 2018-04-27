@@ -302,10 +302,10 @@
           <a href="/Product/delete"  class="btn btn-danger "><i class="fa fa-remove"></i> ยกเลิก</a>
 </div>
 <div class="col-xs-2">
-           <a href="/invoice-print/{{$date[0]->Prosell_ID}}" target="_blank" class="btn btn-primary pull-right"></i><i class="fa fa-print"></i> ปริ้นใบสั่งซื้อ</a>
+           <a href="/invoice-print/{{$Prosell_ID}}" target="_blank" class="btn btn-primary pull-right"></i><i class="fa fa-print"></i> ปริ้นใบสั่งซื้อ</a>
 </div>
 <div class="col-xs-1">
-           <button type="button"  class="btn btn-success pull-left" data-toggle="modal" data-target="#myModal"></i> ยืนยันการสั่งซื้อ</button>
+           <button type="button"  class="btn btn-success pull-left" data-toggle="modal" data-target="#myModal"></i><i class="glyphicon glyphicon-floppy-open"></i> ยืนยันการสั่งซื้อ</button>
 
 </div>
 

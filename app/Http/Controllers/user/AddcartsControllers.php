@@ -55,6 +55,7 @@ class AddcartsControllers extends Controller
                      'Prosell_Quantity' => 0,
                      'Prosell_totalPirce'  => 0,
                      'Prosell_send' => '-',
+                     'Prosell_about' => 'โปรดยืนยันการสั่งซื้อ',
                      'Prosell_img' => '-',
                      'Prosell_orderdate' => '-',
                      'Prosell_creat'=>   "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""

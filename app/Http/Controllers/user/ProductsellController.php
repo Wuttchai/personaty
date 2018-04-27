@@ -79,10 +79,9 @@ return view('user.detailcars',[
 public function ProductCarorderdetail($id)
 {
   $date = DB::table('product_Sell')
-              ->select('Prosell_ID','Prosell_creat','Prosell_orderdate','Prosell_creat','Prosell_img','Prosell_send','Prosell_Quantity')
+              ->select('Prosell_ID','Prosell_creat','Prosell_orderdate','Prosell_img','Prosell_send','Prosell_Quantity','address_name','address_at','address_tumbon','address_aumpor','address_province','address_zipcode','address_tel')
               ->where('Prosell_ID','=' ,$id)
               ->get();
-
 
   $Car = DB::table('product_Sell')
               ->join('sell_detail','product_Sell.Prosell_ID','=','sell_detail.Prosell_ID')
@@ -91,27 +90,9 @@ public function ProductCarorderdetail($id)
               ->where('sell_detail.Prosell_ID','=' ,$id)
               ->get();
 
-              $addressid = DB::table('product_Sell')
-                          ->select('Prosell_ID','Prosell_creat','Prosell_orderdate','Prosell_creat','Prosell_img','Prosell_send','Prosell_Quantity','address_id')
-                          ->where('Prosell_ID','=' ,$id)
-                          ->where('User_ID','=',Auth::user()->User_ID)
-                          ->get();
-
-$address = DB::table('address')
-            ->select('address_name','address_at','address_tumbon','address_aumpor','address_province','address_zipcode','address_tel')
-            ->where('address_id','=' ,$addressid[0]->address_id)
-            ->get();
-
-
-        $address = DB::table('product_Sell')
-                      ->select('address_name','address_at','address_tumbon','address_aumpor','address_province','address_zipcode','address_tel')
-                      ->where('sell_detail.Prosell_ID','=' ,$id)
-                      ->get();
-
 return view('user.insrtimgcar',[
 'Car' => $Car,
-'date' => $date,
-'address' => $address,
+'date' => $date
 ]);
 }
 public function ProductCarorderdelete($id)

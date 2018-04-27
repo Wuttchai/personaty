@@ -105,7 +105,7 @@ Route::get('/official/testza', 'Official\OfficeformController@readItems');
 Route::get('/official/editinfo/{info_id}', 'Official\OfficeformController@showedit');
 Route::post('/official/updateinfo/{info_id}', 'Official\OfficeformController@update');
 Route::post('/official/delete/{info_id}', 'Official\OfficeformController@delete');
-
+Route::post('/info/status{info_id}', 'Official\OfficeformController@updatestatus');
 
 Route::get('/official/add', 'Official\AddOfficeController@index');
 Route::post('/official/add', 'Official\AddOfficeController@add');

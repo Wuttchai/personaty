@@ -40,7 +40,7 @@
       <a href="/ProductAyutaya?type=เบเกอรี่">เบเกอรี่</a>
       <a href="/ProductAyutaya?type=ศาลพระภูมิ">ศาลพระภูมิ</a>
       <a href="/ProductAyutaya?type=ของฝาก">ของฝาก</a>
-      <a href="/ProductAyutaya">ค่าเริ่มต้น</a>
+      <a href="/ProductAyutaya">สินค้าทั้งหมด</a>
       </div>
       </div>
 
@@ -265,7 +265,7 @@
 @push('scripts')
 <script>
 
-        
+
 
 
 document.getElementById("loader").style.display = "none";

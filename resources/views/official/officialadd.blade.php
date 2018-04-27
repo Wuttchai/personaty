@@ -175,7 +175,7 @@
 
                                  <!--Card image-->
                                  <div class="view gradient-card-header blue-gradient">
-                                   <div class="card-header card text-center bg-warning"> กำหนดสิทธ์ผู้ใช้ </div>
+                                   <div class="card-header card text-center bg-warning"> กำหนดสิทธ์เจ้าหน้าที่ </div>
 
                                  </div>
                                  <!--/Card image-->
@@ -325,7 +325,7 @@
 
                               <!--Card image-->
                               <div class="view gradient-card-header blue-gradient">
-                                <div class="card-header card text-center bg-warning"> แก้ไขสิทธ์ผู้ใช้ </div>
+                                <div class="card-header card text-center bg-warning"> แก้ไขสิทธ์สิทธ์เจ้าหน้าที่้ </div>
 
                               </div>
                               <!--/Card image-->
