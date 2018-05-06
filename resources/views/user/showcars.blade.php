@@ -34,6 +34,7 @@
 
                       จังหวัดพระนครศรีอยุธยา, 13000<br>
                       เบอร์โทร: 035 709 113<br>
+                      เลขที่บัญชี : xxxxx-xxxx-xxxx
 
                     </address>
                   </div>
@@ -208,12 +209,13 @@
                   <!-- /.col -->
                   <div class="col-sm-4 invoice-col">
 
-                    <address>
-                      <strong>เลขที่ใบเสร็จสินค้า #007612</strong><br><br>
-                        รหัสการสั่งซื้อ: {{ $Prosell_ID }}<br>
-                    วันที่ซื้อ: {{ Session::get('date') }}<br>
-                      ชื่อผู้ซื้อ:  {{ Auth::user()->User_Name }}
-                    </address>
+                    ข้อมูลคนสั่งซื้อ
+                                        <address>
+                                        <strong> {{ Auth::user()->User_Name }} </strong><br>
+                                      <h5 >  อีเมลล์: {{ Auth::user()->email }}</h5>
+                                        <h5 >เบอร์โทร: {{ $userdetail[0]->address_tel }}</h5>
+                                        </address>
+
                   </div>
                   <!-- /.col -->
                 </div>
@@ -323,13 +325,14 @@
            <div class="modal-content">
              <div class="modal-header">
                <button type="button" class="close" data-dismiss="modal">&times;</button>
-               <h4 class="modal-title">Modal Header</h4>
+               <h4 class="modal-title">กรุณาเพิ่มใบเสร็จการโอนเงิน</h4>
              </div>
              <div class="modal-body">
                <div class="row">
                  <div class="col-md-6 col-md-offset-3">
                    <div class="text-center">
-                     <h2>ใบเสร็จการโอนเงิน</h2>
+                     <h2>เพิ่มใบเสร็จการโอนเงิน</h2>
+                     <h4>เลขที่บัญชีของเรือนจำ : xxxxx-xxxx-xxxx </h4>
                    </div>
                    <hr>
                  </div>

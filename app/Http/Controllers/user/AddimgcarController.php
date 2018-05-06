@@ -57,7 +57,8 @@ class AddimgcarController extends Controller
                 \App\product_sell::where('Prosell_ID',$request->id)
                                       ->update([
                                       'Prosell_img' => $fileName,
-                                      'Prosell_send' => 'รอดำเนินการ',
+                                      'Prosell_send' => 'ชำระเงิน',
+                                      'Prosell_about' => 'กรุณารอเจ้าหน้าที่ตรวจสอบ',
                                       'Prosell_orderdate'=>   "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
                                   ]);
 

@@ -45,19 +45,22 @@
                <thead>
                  <tr>
                    <th>ชื่อผู้สั่งสินค้า</th>
-                   <th>จำนวนที่สั่ง</th>
+
                    <th>ราคารวม</th>
-                   <th>การจัดส่ง</th>
+                   <th>สถานะ</th>
+                   <th>หมายเหตุ</th>
                    <th>วันที่ชำระเงิน</th>
+                   <th>วันที่จัดส่ง</th>
                    <th>การจัดการ</th>
                  </tr>
                </thead>
-               <tr v-for="item in paginatedUsers">
+               <tr v-for="item in paginatedUsers" >
                  <td>@{{ item.User_Name }}</td>
-                 <td>@{{ item.Prosell_Quantity }}</td>
-                 <td>@{{ item.Prosell_totalPirce }}</td>
-                <td>@{{ item.Prosell_send }}</td>
+                 <td>@{{ formatPrice(item.Prosell_totalPirce) }} บาท</td>
+                 <td>@{{ item.Prosell_send }}</td>
+                 <td>@{{ item.Prosell_about }}</td>
                  <td>@{{ item.Prosell_orderdate }}</td>
+                 <td>@{{ item.Prosell_senddate }}</td>
 
 
            <td>
@@ -424,12 +427,14 @@ var information =  new Vue({
           usersFilteredBySearchKey: function () {
 
                 return this.items.filter(item => {
-                    	return item.Prosell_Quantity.toString().toLowerCase().indexOf(this.searchKey.toLowerCase()) > -1
+                    	return item.Prosell_about.toString().toLowerCase().indexOf(this.searchKey.toLowerCase()) > -1
                       || item.User_Name.toLowerCase().indexOf(this.searchKey.toLowerCase()) > -1
                       || item.Prosell_totalPirce.toString().toLowerCase().indexOf(this.searchKey.toLowerCase()) > -1
                       || item.Prosell_send.toString().toLowerCase().indexOf(this.searchKey.toLowerCase()) > -1
                       || item.Prosell_orderdate.toString().toLowerCase().indexOf(this.searchKey.toLowerCase()) > -1
-          
+                      || item.Prosell_senddate.toString().toLowerCase().indexOf(this.searchKey.toLowerCase()) > -1
+
+
                  })
              },
              paginatedUsers: function(list){
@@ -508,6 +513,10 @@ location.reload();
 
 
            },
+           formatPrice(value) {
+       let val = (value/1).toFixed(0).replace('.', ',')
+       return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+   },
    cleardata: function () {
      information.nameerror = false;
      information.fileofficeerror = false;

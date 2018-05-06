@@ -7,6 +7,7 @@ use Session;
 use Illuminate\Support\Facades\Validator;
 use Carbon\Carbon;
 use DB;
+use Redirect;
 use \Cart as Cart;
 use Illuminate\Support\Facades\Auth;
 
@@ -35,8 +36,18 @@ class AddcartsControllers extends Controller
        $time =Carbon::now('Asia/Bangkok');
        $product = \App\product_sell::select('product_Sell.Prosell_img')
                   ->where('product_Sell.User_ID','=' , Auth::user()->User_ID)
-                  ->where('product_Sell.Prosell_img','=' ,'-')
+                  ->where('product_Sell.Prosell_send','=' ,'ค้างชำระ')
                   ->get();
+if ($product != '[]') {
+  foreach (Cart::content() as $key1 => $product) {
+    Cart::remove($product->rowId);
+  }
+   return Redirect::back()->with('alert', 'Profile updated!');
+}
+
+
+
+
                   $userid = \App\address::select('address_id')
                              ->where('address.User_ID','=' , Auth::user()->User_ID)
                              ->max('address.address_id');
@@ -54,11 +65,12 @@ class AddcartsControllers extends Controller
                      'address_tel' => $userdetail[0]->address_tel,
                      'Prosell_Quantity' => 0,
                      'Prosell_totalPirce'  => 0,
-                     'Prosell_send' => '-',
+                     'Prosell_send' => 'ค้างชำระ',
                      'Prosell_about' => 'โปรดยืนยันการสั่งซื้อ',
                      'Prosell_img' => '-',
                      'Prosell_orderdate' => '-',
-                     'Prosell_creat'=>   "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
+                     'Prosell_creat'=>   "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
+                     'Prosell_senddate' => '-'
                      ]);
                      $Prosell_ID =  \App\product_sell::where([
                          ['User_ID', '=', Auth::user()->User_ID],

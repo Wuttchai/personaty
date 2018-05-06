@@ -38,12 +38,13 @@ public $qtv = 0 ;
        Session::forget('tabmanu1');
        Session::forget('tabmanu2');
        Session::forget('tabmanu3');
+       Session::forget('tabmanu4');
        Session::forget('tabmanu');
-       Session::put("tabmanu4","active");
+       Session::put("tabmanu5","active");
 
-       $CarOrders = \App\product_sell::select('Prosell_ID', 'Prosell_Quantity','Prosell_totalPirce', 'Prosell_creat','Prosell_send')
+       $CarOrders = \App\product_sell::select('Prosell_ID', 'Prosell_Quantity','Prosell_totalPirce', 'Prosell_creat','Prosell_send','Prosell_senddate','Prosell_about')
                    ->where('User_ID','=' ,Auth::user()->User_ID)
-                   ->orderBy('product_Sell.Prosell_creat', 'desc')->paginate(10);
+                   ->orderBy('product_Sell.Prosell_ID', 'desc')->paginate(10);
 
                    return view('user.detailuser',[
                      'CarOrders' => $CarOrders

@@ -37,10 +37,17 @@ public function productlog() {
      return view('official.logproduct', ['logfile' => $logfile]);
  }
 public function graph() {
-//now
+
   $acs = \App\doccument:: select("doc_id")
     ->where('doc_datecre','>',Carbon::now()->startOfMonth())
     ->count();
+
+
+
+
+    $users = \App\sell_detail::groupBy('Pro_ID')
+                ->having('account_id', '>', 100)
+                ->get();
 //
       $doccument = \App\doccument::count();
       $info = \App\info::count();

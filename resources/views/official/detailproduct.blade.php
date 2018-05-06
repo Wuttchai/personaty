@@ -169,7 +169,7 @@
           <button type="button" class="btn btn-danger" data-dismiss="modal">ปิด</button>
         </div>
 
-          <button type="button" class="btn btn-warning" v-on:click="deleteItem({{ $date[0]->Prosell_ID }})">ไม่อนุมัติการสั่งซื้อ</button>
+          <button type="button" class="btn btn-warning" v-on:click="showabout()">ไม่อนุมัติการสั่งซื้อ</button>
           <button type="button" class="btn btn-primary" v-on:click="cleardata()">อนุมัติการสั่งซื้อ</button>
       </div>
 
@@ -201,14 +201,45 @@
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">ปิด</button>
         <button type="button" class="btn btn-primary" v-if="buttoninsert" v-on:click="addcars({{ $date[0]->Prosell_ID }})">บันทึก</button>
       </div>
     </div>
 
   </div>
 </div>
+<div id="myModal2" class="modal fade" role="dialog">
+  <div class="modal-dialog">
 
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">กรุณาใส่หมายเหตุที่ไม่อนุมัติ </h4>
+      </div>
+      <div class="modal-body">
+
+
+                  <div v-bind:class="{'form-group':abouterror , 'has-error has-feedback':abouterror }">
+
+                                <label for="recipient-name" class="col-form-label">หมายเหตุ :</label>
+                                  <input type="text" class="form-control"  id="about" placeholder="ใส่หมายเหตุหมายเหตุในการไม่อนุมัติ" v-model="about"/>
+                                <span class="glyphicon glyphicon-remove form-control-feedback" v-if="abouterror"></span>
+                                <span class="text-errors" v-if="abouterror">
+                                    <strong><h5>@{{ abouterror }}</h5></strong>
+                                </span>
+                            </div>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">ปิด</button>
+        <button type="button" class="btn btn-primary" v-if="buttoninsert" v-on:click="addabout({{ $date[0]->Prosell_ID }})">บันทึก</button>
+      </div>
+    </div>
+
+  </div>
+</div>
                 </div>
                 <!-- /.row -->
 
@@ -256,7 +287,8 @@ var information =  new Vue({
         'name'      :'',
         'nameerror' :'',
         'buttoninsert':true,
-
+        'about':'',
+        'abouterror':'',
 
     },
 
@@ -284,53 +316,49 @@ information.buttoninsert = true ;
   information.nameerror = true;
   information.nameerror = response.data[1];
 }else {
-  swal("สำเร็จ!","หมายเลขพัสดุได้ถูกเพิ่มเเล้ว","success");
+  swal("สำเร็จ!","หมายเลขพัสดุถูกเพิ่มแล้ว","success").then(function (response) {
+    if (response == true) {
+location.reload();
+    }
+
+  });
 }
                 });
            },
+           showabout: function () {
+                     information.abouterror = false;
+                      $("#myModal2").modal('show');
+                   },
            cleardata: function () {
                      information.nameerror = false;
                       $("#myModal").modal('show');
                    },
-                   deleteItem: function(event) {
+                   addabout: function(event) {
 
-                         swal({
-                   title: 'คุณแน่ใจ !',
-                   text: 'คุณจะไม่สามารถกู้คืนไฟล์ที่ลบนี้ได้',
-                   type: 'warning',
-                   showCancelButton: true,
-                   confirmButtonColor: '#3085d6',
-                   cancelButtonColor: '#d33',
-                   confirmButtonText: 'ยืนยัน',
-                   cancelButtonText : 'ยกเลิก',
-                   closeOnConfirm: false
 
-                   }).then(function () {
                            axios.post('/emsadd', {
                              id : event,
-                            quantity : 'ไม่อนุมัติ',
+                            about : information.about,
                             status : 'delete',
                            }).then(function (response) {
-                             information.items = response.data;
-                             $("#official").modal('hide');
-                           });
-                           swal(
-                             'ไม่อนุมัติเเล้ว !',
-                             'คุณได้ทำการไม่อนุมัติการสั่งซื้อสินค้า.',
-                             'success'
-                           )
+              if (response.data.messages != null) {
+                if(response.data.messages.about != null){
+              information.abouterror = true;
+              information.abouterror = response.data.messages.about[0];
+                }
+              information.buttoninsert = true ;
+              }else {
+                swal("สำเร็จ!","หมายเหตุในการไม่อนุมัติถูกเพิ่มแล้ว","success").then(function (response) {
+                  if (response == true) {
+          location.reload();
+                  }
 
-                         }, function (dismiss) {
-                           // dismiss can be 'cancel', 'overlay',
-                           // 'close', and 'timer'
-                           if (dismiss === 'cancel') {
-                             swal(
-                               'ยกเลิกเเล้ว',
-                               'รายการที่คุณเลือกยังไม่มีการเปลี่ยนแปลง :)',
-                               'error'
-                             )
-                           }
-                         })
+                });
+              }
+                              });
+
+
+
 
            },
 

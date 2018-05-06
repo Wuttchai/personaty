@@ -397,7 +397,7 @@ a.list-group-item {
                   <li class="<?php echo  Session::get('tabmanu'); ?>"><a href="/home"><h5>หน้าแรก</h5></a></li>
 
 
-                  
+
 
                   <li class="dropdown <?php echo  Session::get('tabmanu3'); ?>" >
                     <a data-toggle="dropdown" class="dropdown-toggle " ><h5>เกี่ยวกับเรือนจำ<b class="caret"></b> </h5></a>
@@ -441,7 +441,7 @@ a.list-group-item {
             <li><a href="#" onclick="event.preventDefault();
                           document.getElementById('datailuser-form').submit();">แก้ไขข้อมูลส่วนตัว</a></li>
             <li><a href="#" onclick="event.preventDefault();
-                          document.getElementById('logout-form').submit();">Logout</a></li>
+                          document.getElementById('logout-form').submit();">ออกจากระบบ</a></li>
 
                           <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                               @csrf

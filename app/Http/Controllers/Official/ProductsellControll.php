@@ -31,8 +31,10 @@ public $timestamps = false;
 
      public function readItems() {
        $xxx = \App\product_sell::join('users','product_Sell.User_ID','=','users.User_ID')
-                   ->select('users.User_Name', 'product_Sell.Prosell_Quantity', 'product_Sell.Prosell_totalPirce','product_Sell.Prosell_orderdate','product_Sell.Prosell_ID','product_Sell.Prosell_send')
+                   ->select('users.User_Name', 'product_Sell.Prosell_about', 'product_Sell.Prosell_totalPirce','product_Sell.Prosell_orderdate','product_Sell.Prosell_ID','product_Sell.Prosell_send','product_Sell.Prosell_senddate')
                    ->where('Prosell_orderdate','!=','')
+                   ->where('Prosell_send','!=','-')
+                   ->where('Prosell_send','!=','ค้างชำระ')
                     ->orderBy('Prosell_creat', 'desc')
                    ->get();
 
@@ -67,7 +69,22 @@ public $timestamps = false;
      public function insert(Request $request)
      {
 
+
 if ($request->status == 'delete') {
+  $validator =  Validator::make($request->all(), [
+       'id' => 'required|alpha_num',
+       'about' => 'required|regex:/^([ก-ูเ-๋๑-๙])/',
+         ]);
+         if($validator->fails()){
+
+               return[
+               'messages' => $validator->errors()->messages()
+               ];
+             }
+
+             else {
+
+
   $time =Carbon::now('Asia/Bangkok');
       \App\log::insert([
         'official_ID' => Session::get('idoffice'),
@@ -81,9 +98,12 @@ if ($request->status == 'delete') {
 
                       \App\product_sell::where('Prosell_ID',$request->id)
                                   ->update([
-                                    'Prosell_send' => $request->quantity,
+                                    'Prosell_send' => 'ไม่อนุมัติการสั่งซื้อสินค้า',
+                                    'Prosell_about' => $request->about,
                                   ]);
 return response()->json($time);
+
+}
                  }
 
 
@@ -117,6 +137,8 @@ return response()->json($time);
                  }
 
 
+
+
 $time =Carbon::now('Asia/Bangkok');
     \App\log::insert([
       'official_ID' => Session::get('idoffice'),
@@ -128,9 +150,36 @@ $time =Carbon::now('Asia/Bangkok');
 ]);
 
 
+
+$Car = DB::table('product_Sell')
+            ->join('sell_detail','product_Sell.Prosell_ID','=','sell_detail.Prosell_ID')
+            ->join('product','product.Pro_ID','=','sell_detail.Pro_ID')
+            ->select('sell_detail.Det_Num','sell_detail.Pro_ID')
+            ->where('sell_detail.Prosell_ID','=' ,$request->id)
+            ->get();
+
+foreach ($Car as $key => $value) {
+
+$datapro = DB::table('product')
+       ->select('product.Pro_Count')
+       ->where('product.Pro_ID','=' ,$Car[$key]->Pro_ID)
+       ->get();
+
+$total = $datapro[0]->Pro_Count - $Car[$key]->Det_Num ;
+
+
+\App\product::where('Pro_ID',$Car[$key]->Pro_ID)
+     ->update([
+       'Pro_Count' => $total,
+     ]);
+}
+
+
                     \App\product_sell::where('Prosell_ID',$request->id)
                                 ->update([
-                                  'Prosell_send' => $request->quantity,
+                                  'Prosell_send' => 'จัดส่งสินค้า',
+                                  'Prosell_about' => $request->quantity,
+                                  'Prosell_senddate' => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
                                 ]);
 
                }

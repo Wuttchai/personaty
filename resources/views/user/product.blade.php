@@ -140,16 +140,21 @@
                           </form>
   </div>
       </div>
-      @if(session('alert'))
-      <?php
-        echo '<script type="text/javascript">';
-        echo 'setTimeout(function () { swal("มีรายการสั่งซื้อสินค้าอยู่!","กรุณาตรวจสอบรายการสั่งซื้อที่เมนูข้อมูลการสั่งซื้อ","error");';
-        echo '}, 1000);</script>';
-      ?>
-      @endif
+
 </div>
 @endif
+@if(session('alert'))
+<?php
+  echo '<script type="text/javascript">';
+  echo "setTimeout(function () { swal('มีรายการสั่งซื้อสินค้าอยู่!','กรุณาตรวจสอบรายการสั่งซื้อที่เมนูข้อมูลการสั่งซื้อ','error').then(function (response) {
+    if (response == true) {
+window.location.href = '/ProductCarOrders';
+    }
 
+  });";
+  echo '}, 1000);</script>';
+?>
+@endif
  <div class="col-lg-12 ">
    <br>
 
@@ -222,8 +227,8 @@
                     <div class="row">
                         <div class="col-md-6 product_img">
 
-                          <a v-bind:href="'product/' +  Pro_img " v-bind:data-zoom-image-2x=" 'product/'+ Pro_img"  data-options="zoomCaption: top; zoomWidth: 150%; zoomDistance: 100; expand: fullscreen; expandZoomOn: always;"   class="MagicZoom">
-                            <img v-bind:src="'product/' +  Pro_img "  v-bind:srcset=" 'product/'+ Pro_img+' '+'2x' "   class="img-responsive" style="width:425px; height:529px;"/>
+                          <a :href="'product/'+Pro_img" :data-zoom-image-2x="'product/'+ Pro_img"  data-options="zoomCaption: top; zoomWidth: 150%; zoomDistance: 100; expand: fullscreen; expandZoomOn: always;"   class="MagicZoom">
+                            <img :src="'product/'+Pro_img"  :srcset="'product/'+ Pro_img+' '+'2x'"   class="img-responsive" />
  </a>
                         </div>
                         <div class="col-md-6 product_content">

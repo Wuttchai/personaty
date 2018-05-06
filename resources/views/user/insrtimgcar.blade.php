@@ -51,12 +51,11 @@
                   </div>
                   <!-- /.col -->
                   <div class="col-sm-4 invoice-col">
-
+ข้อมูลคนสั่งซื้อ
                     <address>
-                      <strong>เลขที่ใบเสร็จสินค้า #007612</strong><br><br>
-                        รหัสการสั่งซื้อ: {{ $date[0]->Prosell_ID }}<br>
-                        วันที่ซื้อ: {{ $date[0]->Prosell_creat }}<br>
-                        ชื่อผู้ซื้อ:  {{ Auth::user()->User_Name }}
+                    <strong> {{ Auth::user()->User_Name }} </strong><br>
+                  <h5 >  อีเมลล์: {{ Auth::user()->email }}</h5>
+                    <h5 >เบอร์โทร: {{ $date[0]->address_tel }}</h5>
                     </address>
                   </div>
                   <!-- /.col -->
@@ -166,13 +165,14 @@
            <div class="modal-content">
              <div class="modal-header">
                <button type="button" class="close" data-dismiss="modal">&times;</button>
-               <h4 class="modal-title">Modal Header</h4>
+               <h4 class="modal-title">กรุณาเพิ่มใบเสร็จการโอนเงิน</h4>
              </div>
              <div class="modal-body">
                <div class="row">
                  <div class="col-md-6 col-md-offset-3">
                    <div class="text-center">
-                     <h2>ใบเสร็จการโอนเงิน</h2>
+                     <h2>เพิ่มใบเสร็จการโอนเงิน</h2>
+                     <h4>เลขที่บัญชีของเรือนจำ : xxxxx-xxxx-xxxx </h4>
                    </div>
                    <hr>
                  </div>
@@ -400,7 +400,6 @@ var information =  new Vue({
            },
 
            insert: function (event) {
-
 information.fileofficeerror ="";
 if (document.getElementById('results').style.cssText == "display: block;") {
 
@@ -409,13 +408,11 @@ if (document.getElementById('results').style.cssText == "display: block;") {
 
 }
              axios.defaults.headers.post['formData'] = 'multipart/form-data';
-
-             axios.post('/insert/receiptimg', {
+             axios.post('/insert/receipt', {
                  id: event,
                  fileoffice: this.image,
 
                }).then(function (response) {
-                console.log("dsds");
           if (response.data.messages != null) {
 
           if(response.data.messages.fileoffice != null){
@@ -424,9 +421,19 @@ if (document.getElementById('results').style.cssText == "display: block;") {
           }
           }else {
           information.guide = false;
-          information.savefile = true;
+          swal(
+            'บันทึกข้อมูล !',
+            'คุณได้เพิ่มใบเสร็จโอนเงินเรียบร้อยเเล้ว.',
+            'success'
+          ).then(function (response) {
+            if (response == true) {
+    window.location.href = '/ProductCarOrders';
+            }
+
+          });
 
 
+$("#myModal").modal('hide');
           }
 
 
