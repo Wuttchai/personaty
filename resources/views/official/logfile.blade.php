@@ -22,7 +22,7 @@
 
 
 
-  <table id="example" class="display nowrap" cellspacing="0" width="120%">
+  <table id="example" class="display nowrap" cellspacing="0">
       <thead>
           <tr>
             <th>ชื่อผู้จัดการ</th>
@@ -109,7 +109,7 @@ $(document).ready(function() {
                 fontSize:16
             };
             // กำหนดความกว้างของ header แต่ละคอลัมน์หัวข้อ
-          
+
             console.log(doc); // เอาไว้ debug ดู doc object proptery เพื่ออ้างอิงเพิ่มเติม
         }
     }, // สิ้นสุดกำหนดพิเศษปุ่ม pdf

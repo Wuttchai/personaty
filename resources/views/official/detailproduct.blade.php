@@ -70,7 +70,7 @@
                       <strong>เลขที่ใบเสร็จสินค้า #007612</strong><br><br>
                         รหัสการสั่งซื้อ: {{ $date[0]->Prosell_ID }}<br>
                         วันที่ซื้อ: {{ $date[0]->Prosell_creat }}<br>
-                        ชื่อผู้ซื้อ:  {{ Auth::user()->User_Name }}
+
                     </address>
                   </div>
                   <!-- /.col -->

@@ -29,10 +29,11 @@ class AddOfficeController extends Controller
 
 public function productlog() {
 
-  $logfile = \App\product::join('log','product.Log_ID','=','log.Log_ID')
-              ->join('official', 'official.official_ID', '=', 'log.official_ID')
-              ->select('official.official_ID','official.official_Name','product.Pro_Name', 'product.Pro_Price', 'product.Pro_img','product.Pro_Count','product.proupdated_at','product.Pro_ID')
-              ->orderBy('product.proupdated_at', 'desc')
+  $logfile = DB::table('product_Sell')
+              ->join('sell_detail','product_Sell.Prosell_ID','=','sell_detail.Prosell_ID')
+              ->join('product','product.Pro_ID','=','sell_detail.Pro_ID')
+              ->select('product.Pro_Name','sell_detail.Det_Num', 'product.Pro_Price','product_Sell.address_name','product_Sell.Prosell_senddate')
+              ->where('product_Sell.Prosell_send','=' ,'จัดส่งสินค้า')
               ->get();
      return view('official.logproduct', ['logfile' => $logfile]);
  }
@@ -42,8 +43,14 @@ public function graph() {
     ->where('doc_datecre','>',Carbon::now()->startOfMonth())
     ->count();
 
+    $Car = DB::table('product_Sell')
+                ->join('sell_detail','product_Sell.Prosell_ID','=','sell_detail.Prosell_ID')
+                ->join('product','product.Pro_ID','=','sell_detail.Pro_ID')
+                ->select('product.Pro_Name','sell_detail.Det_Num', 'product.Pro_Price')
+                ->where('product_Sell.Prosell_send','=' ,'จัดส่งสินค้า')
+                ->get();
 
-
+dd($Car);
 
     $users = \App\sell_detail::groupBy('Pro_ID')
                 ->having('account_id', '>', 100)

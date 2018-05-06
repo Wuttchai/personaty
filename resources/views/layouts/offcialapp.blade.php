@@ -24,6 +24,7 @@
 <!-- dataTables -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="{{ asset('fonts/thsarabunnew.css') }}" />
+
 @stack('css')
 <style media="screen">
 html {
@@ -316,16 +317,17 @@ body {
                             <a class="dropdown-item" href="#"
                                onclick="event.preventDefault();
                                              document.getElementById('edit-form').submit();">
-                                รายงานข้อมูลแบบตาราง
+                                รายงานข้อมูลเจ้าหน้าที่
                             </a>
-                            <a class="dropdown-item" href="/official/logfile/graph">
-                                รายงานข้อมูลแบบกราฟ
-                            </a>
+
                               @if (session('product') == 'จัดการ')
                             <a class="dropdown-item" href="/official/logfile/product">
-                                รายงานทางการเงิน
+                                รายงานข้อมูลการขายสินค้า
                             </a>
                               @endif
+                              <a class="dropdown-item" href="/official/logfile/graph">
+                                  รายงานข้อมูลแบบกราฟ
+                              </a>
                               @if (session('product') == 'จัดการ')
                             <a class="dropdown-item" href="/official/logfile/graph">
 
@@ -341,7 +343,7 @@ body {
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @if (session('activity') == 'จัดการ')
-                        
+
                         <li><a class="nav-link" href="/webboard">จัดการข้อมูลกระทู้</a></li>
                         <li><a class="nav-link" href="/official/add">จัดการข้อมูลเจ้าหน้าที่</a></li>
                         @endif

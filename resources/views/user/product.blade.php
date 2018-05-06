@@ -227,9 +227,18 @@ window.location.href = '/ProductCarOrders';
                     <div class="row">
                         <div class="col-md-6 product_img">
 
-                          <a :href="'product/'+Pro_img" :data-zoom-image-2x="'product/'+ Pro_img"  data-options="zoomCaption: top; zoomWidth: 150%; zoomDistance: 100; expand: fullscreen; expandZoomOn: always;"   class="MagicZoom">
-                            <img :src="'product/'+Pro_img"  :srcset="'product/'+ Pro_img+' '+'2x'"   class="img-responsive" />
- </a>
+
+ <div class="preview col">
+
+
+<div class="app-figure" id="zoom-fig">
+<a  v-bind:href="'product/'+Pro_img" id="Zoom-1" class="MagicZoom">
+<img :src="'product/'+Pro_img" alt=""/> </a>
+
+</div>
+
+
+</div>
                         </div>
                         <div class="col-md-6 product_content">
 

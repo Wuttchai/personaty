@@ -63,11 +63,13 @@
                <tr v-for="item in paginatedUsers" v-if="id == item.official_ID || id == '1'">
                  <td>@{{ item.official_Name }}</td>
                  <td>@{{ item.Pro_Name }}</td>
-                 <td>@{{ item.Pro_Price }}</td>
+                 <td>@{{  formatPrice(item.Pro_Price) }}</td>
                  <td>@{{ item.Pro_Count }}</td>
                  <td><img :src="'{{asset('product')}}/' + item.Pro_img" height="42" width="42"/></td>
                  <td>@{{ item.proupdated_at }}</td>
            <td >
+
+
 
               <button  type="button"  v-on:click="editItem(item)" class="btn btn-warning"><i class="material-icons">แก้ไข</i></button>&nbsp;&nbsp;&nbsp;
               <button  type="button" v-on:click="deleteItem(item)" class="btn btn-danger"><i class="material-icons">ลบ</i></button>
@@ -583,6 +585,10 @@ var information =  new Vue({
                };
                reader.readAsDataURL(file);
            },
+           formatPrice(value) {
+       let val = (value/1).toFixed(0).replace('.', ',')
+       return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+      },
            insert: function () {
              information.buttonload = true;
              information.buttoninsert = false;
