@@ -663,6 +663,7 @@ information.fileofficeerror = response.data.messages.fileoffice[0];
    information.buttonedit = true;
    information.buttonedit2 = true;
    information.inputedit = 'true';
+
        								var Pro_ID =	item.Pro_ID;
 
        								var link = "/product/edit" + Pro_ID;

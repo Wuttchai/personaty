@@ -47,7 +47,7 @@ public $timestamps = false;
     $validator =  Validator::make($request->all(), [
          'id' => 'required|string',
          'name' => 'required|regex:/^([ก-ูเ-๋๑-๙])/|max:255',
-        'fileoffice' => 'required|image64:jpeg,jpg,png|img_min_size:250,200',
+        'fileoffice' => 'required|image64:jpeg,jpg,png|img_min_size:900,900',
         'detail' => 'required|regex:/^([ก-ูเ-๋๑-๙])/|max:255',
         'type' => 'required|string|max:255',
         'money' => 'required|numeric|max:100000',
@@ -69,7 +69,7 @@ public $timestamps = false;
 
                  $imageData = $request->get('fileoffice');
        $fileName = Carbon::now()->timestamp . '_' . uniqid() . '.' . explode('/', explode(':', substr($imageData, 0, strpos($imageData, ';')))[1])[1];
-     \Image::make($imageData)->resize(290, 220)->save(public_path('product/').$fileName);
+     \Image::make($imageData)->resize(1000, 1000)->save(public_path('product/').$fileName);
 
 
 $time =Carbon::now('Asia/Bangkok');
@@ -140,7 +140,7 @@ if ($request->fileoffice) {
   $Validator = Validator::make($request->all(),[
     'id' => 'required|string',
     'name' => 'required|regex:/^([a-zA-Z0-9ก-ูเ-๋๑-๙])/',
-   'fileoffice' => 'required|image64:jpeg,jpg,png|img_min_size:250,200',
+   'fileoffice' => 'required|image64:jpeg,jpg,png|img_min_size:900,900',
    'detail' => 'required|regex:/^([a-zA-Z0-9ก-ูเ-๋๑-๙])/',
    'type' => 'required',
    'money' => 'required|numeric',
@@ -164,7 +164,7 @@ if ($request->fileoffice) {
 
   $imageData = $request->get('fileoffice');
  $fileName = Carbon::now()->timestamp . '_' . uniqid() . '.' . explode('/', explode(':', substr($imageData, 0, strpos($imageData, ';')))[1])[1];
- \Image::make($imageData)->resize(290, 220)->save(public_path('product/').$fileName);
+ \Image::make($imageData)->resize(1000, 1000)->save(public_path('product/').$fileName);
 
 
 //-------------

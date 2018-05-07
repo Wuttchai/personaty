@@ -1,7 +1,7 @@
 /*
 
 
-   Magic Zoom  v5.2.5 
+   Magic Zoom  v5.2.5
    Copyright 2018 Magic Toolbox
    Buy a license: https://www.magictoolbox.com/magiczoom/
    License agreement: https://www.magictoolbox.com/license/
@@ -77,7 +77,7 @@ figure.mz-figure {
 .MagicZoom > img,
 .mz-figure > img {
     width: 100%;
-    height: auto;
+    height: 200px;
 }
 .ie8-magic .MagicZoom > img,
 .ie8-magic .mz-figure > img {

@@ -176,8 +176,10 @@ Cart::update($request->id, ['qty' => $request->qty]);
        $product = \App\product::select('Pro_ID', 'Pro_Name','Pro_img', 'Pro_Price', 'Pro_Type','Pro_Count','Pro_Detail')
                    ->where('Pro_ID', '=', $id)
                    ->get();
-
-       return response()->json($product);
+                   return view('user.detailproduct',[
+                   'product' => $product
+                   ]);
+       
      }
      public function webbord()
      {

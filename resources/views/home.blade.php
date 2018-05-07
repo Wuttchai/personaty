@@ -149,7 +149,7 @@
     <div class="col-md-6">
         <div class="blockquote-box blockquote-danger clearfix">
             <div class="square pull-left">
-                <img src="<?php echo "hotnew/".$hotnews2[0]->Hotnews_img ?>" style="width:150px; height:120px;">
+                <img src="<?php echo "hotnew/".$hotnews2[0]->Hotnews_img ?>" style="width:150px; height:125px;">
             </div>
             <?php
           $stringhot = strip_tags($hotnews2[0]->Hotnews_detail);
@@ -185,7 +185,7 @@
         @if(isset($hotnews2[4]))
         <div class="blockquote-box blockquote-danger clearfix">
           <div class="square pull-left">
-              <img src="<?php echo "hotnew/".$hotnews2[4]->Hotnews_img ?>" style="width:150px; height:120px;">
+              <img src="<?php echo "hotnew/".$hotnews2[4]->Hotnews_img ?>" style="width:150px; height:125px;">
           </div>
           <?php
         $stringhot3 = strip_tags($hotnews2[4]->Hotnews_name);
@@ -221,7 +221,7 @@
         @if(isset($hotnews2[2]))
         <div class="blockquote-box blockquote-danger clearfix">
           <div class="square pull-left">
-              <img src="<?php echo "hotnew/".$hotnews2[2]->Hotnews_img ?>" style="width:150px; height:120px;">
+              <img src="<?php echo "hotnew/".$hotnews2[2]->Hotnews_img ?>" style="width:150px; height:125px;">
           </div>
           <?php
         $stringhot4 = strip_tags($hotnews2[2]->Hotnews_name);
@@ -260,7 +260,7 @@
     <div class="col-md-6">
         <div class="blockquote-box blockquote-danger clearfix">
           <div class="square pull-left">
-              <img src="<?php echo "hotnew/".$hotnews2[1]->Hotnews_img ?>" style="width:150px; height:120px;">
+              <img src="<?php echo "hotnew/".$hotnews2[1]->Hotnews_img ?>" style="width:150px; height:125px;">
           </div>
           <?php
         $stringhot5 = strip_tags($hotnews2[1]->Hotnews_name);
@@ -296,7 +296,7 @@
         @if(isset($hotnews2[3]))
         <div class="blockquote-box blockquote-danger clearfix">
           <div class="square pull-left">
-              <img src="<?php echo "hotnew/".$hotnews2[3]->Hotnews_img ?>" style="width:150px; height:120px;">
+              <img src="<?php echo "hotnew/".$hotnews2[3]->Hotnews_img ?>" style="width:150px; height:125px;">
           </div>
           <?php
         $stringhot6 = strip_tags($hotnews2[3]->Hotnews_name);
@@ -332,7 +332,7 @@
         @if(isset($hotnews2[5]) )
         <div class="blockquote-box blockquote-danger clearfix">
           <div class="square pull-left">
-              <img src="<?php echo "hotnew/".$hotnews2[5]->Hotnews_img ?>" style="width:150px; height:120px;">
+              <img src="<?php echo "hotnew/".$hotnews2[5]->Hotnews_img ?>" style="width:150px; height:130px;">
           </div>
           <?php
         $stringhot7 = strip_tags($hotnews2[5]->Hotnews_name);

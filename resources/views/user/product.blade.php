@@ -179,7 +179,18 @@ window.location.href = '/ProductCarOrders';
             @endif
                 <div class="thumbnail" style="border-color: #e80b0b" >
                     <br>
-                  <img src="<?php echo "product/".$products[$key1]->Pro_img ?>" style="width:260px; height:146px;" class="img-responsive">
+
+                    <div class="preview col text-center">
+                   <div class="app-figure" id="zoom-fig">
+                      <a id="Zoom-1" class="MagicZoom"  href="<?php echo "product/".$products[$key1]->Pro_img ?>" >
+                   <img src="<?php echo "product/".$products[$key1]->Pro_img ?> " alt="" style="width: 10px;"/> </a>
+
+
+                   </div>
+
+
+                   </div>
+
                   <div class="caption">
                     <h4 class="pull-right">{{  number_format($products[$key1]->Pro_Price) }} บาท</h4>
                     <h4 ><a href="#" class="text-dark">{{ $products[$key1]->Pro_Name }} </a></h4>
@@ -199,7 +210,7 @@ window.location.href = '/ProductCarOrders';
                           @if ($products[$key1]->Pro_Count == 0 )
                       <button   class="btn btn-default btn-md btn-danger" >สินค้าหมด</button>
                           @endif
-                      <button type="button"  v-on:click="detail(<?php echo $products[$key1]->Pro_ID ?>)" class="btn btn-primary" ><i class="fa fa-search"></i>รายละเอียด</button>
+                    <a href="/product/view/<?php echo $products[$key1]->Pro_ID ?>"><button type="button"  v-on:click="detail()" class="btn btn-primary" ><i class="fa fa-search"></i>รายละเอียด</button></a>
                   </div>
                   <div class="space-ten"></div>
                 </div>
@@ -228,12 +239,13 @@ window.location.href = '/ProductCarOrders';
                         <div class="col-md-6 product_img">
 
 
+
  <div class="preview col">
 
 
 <div class="app-figure" id="zoom-fig">
-<a  v-bind:href="'product/'+Pro_img" id="Zoom-1" class="MagicZoom">
-<img :src="'product/'+Pro_img" alt=""/> </a>
+<a id="Zoom-1" class="MagicZoom"  href="http://project3.test/product/1523283933_5acb77ddbd314.png" >
+<img src="http://project3.test/product/1523283933_5acb77ddbd314.png" alt=""/> </a>
 
 </div>
 
@@ -376,13 +388,18 @@ closeOnConfirm: false
         quantity : information.items[event3][event2],
       }).then(function (response) {
 
-location.reload();
+
          });
       swal(
         'ถูกเพิ่มเเล้ว !',
         'สินค้าของคุณถูกเพิ่มแล้ว.',
         'success'
-      )
+      ).then(function (response) {
+        if (response == true) {
+    location.reload();
+        }
+
+      });
 
     }, function (dismiss) {
 
@@ -422,13 +439,17 @@ location.reload();
                   id : event,
 
                }).then(function (response) {
-  location.reload();
                   });
                    swal(
                      'ถูกเพิ่มเเล้ว !',
                      'สินค้าของคุณถูกเพิ่มแล้ว.',
                      'success'
-                   )
+                   ).then(function (response) {
+                     if (response == true) {
+                 location.reload();
+                     }
+
+                   });
 
                  }, function (dismiss) {
                    if (dismiss === 'cancel') {
@@ -441,6 +462,8 @@ location.reload();
                  })
 
            },
+
+
            editcars: function (event, event2) {
 
             if (information.oldqtyedit[event2][event] != information.qtyedit[event2][event]) {
