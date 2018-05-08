@@ -177,7 +177,7 @@ window.location.href = '/ProductCarOrders';
               @endisset
 
             @endif
-                <div class="thumbnail" style="border-color: #e80b0b;height: 380px;" >
+                <div class="thumbnail" style="border-color: #e80b0b;" >
                     <br>
 
                     <div class="preview col text-center">
