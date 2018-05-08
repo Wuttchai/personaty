@@ -23,7 +23,6 @@ class CreateAddressTable extends Migration
             $table->string('address_province');
             $table->string('address_zipcode');
             $table->string('address_tel');
-            $table->string('status');
 
         });
     }
