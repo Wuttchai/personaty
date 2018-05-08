@@ -79,7 +79,7 @@ $time =Carbon::now('Asia/Bangkok');
       'project_log' => '0',
       'Log_Event' => 'เพิ่มข้อมูล',
       'Log_IP'  => \Request::ip(),
-      'Log_Time'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
+      'Log_Time'  => "" . $time->day. "-" . $time->month . "-" . $time->year . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
 ]);
 
                 $logid =  \App\log::where([
@@ -97,8 +97,8 @@ $time =Carbon::now('Asia/Bangkok');
                               'Pro_Type' => $request->type,
                               'Pro_Count' => $request->count,
                               'Pro_Price' => $request->money,
-                              'procreated_at' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "" ,
-                              'proupdated_at' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
+                              'procreated_at' =>"" . $time->day. "-" . $time->month . "-" . $time->year . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "" ,
+                              'proupdated_at' =>"" . $time->day. "-" . $time->month . "-" . $time->year . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
                             ]);
                 $projectlog =  \App\product::where([
                                 ['Log_ID', '=', $logid],
@@ -179,7 +179,7 @@ if ($request->fileoffice) {
                   'project_log' => $id,
                   'Log_Event' => 'แก้ไขข้อมูล',
                   'Log_IP'  => \Request::ip(),
-                  'Log_Time'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
+                  'Log_Time'  => "" . $time->day. "-" . $time->month . "-" . $time->year . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
             ]);
 
         $logid =  \App\log::where([
@@ -197,7 +197,7 @@ if ($request->fileoffice) {
                           'Pro_Type' => $request->type,
                           'Pro_Count' => $request->count,
                           'Pro_Price' => $request->money,
-                          'proupdated_at' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
+                          'proupdated_at' =>"" . $time->day. "-" . $time->month . "-" . $time->year . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
                         ]);
 
 
@@ -233,7 +233,7 @@ if ($request->fileoffice) {
                   'project_log' => $id,
                   'Log_Event' => 'แก้ไขข้อมูล',
                   'Log_IP'  => \Request::ip(),
-                  'Log_Time'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
+                  'Log_Time'  => "" . $time->day. "-" . $time->month . "-" . $time->year . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
             ]);
 
         $logid =  \App\log::where([
@@ -250,7 +250,7 @@ if ($request->fileoffice) {
                           'Pro_Type' => $request->type,
                           'Pro_Count' => $request->count,
                           'Pro_Price' => $request->money,
-                          'proupdated_at' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
+                          'proupdated_at' =>"" . $time->day. "-" . $time->month . "-" . $time->year . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
                         ]);
 
 
@@ -271,7 +271,7 @@ if ($request->fileoffice) {
          'project_log' => $id,
          'Log_Event' => 'ลบข้อมูล',
          'Log_IP'  => \Request::ip(),
-         'Log_Time'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
+         'Log_Time'  => "" . $time->day. "-" . $time->month . "-" . $time->year . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
          ]);
 
          $imagedel = \App\product::select('Pro_img')

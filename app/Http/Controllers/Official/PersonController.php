@@ -71,7 +71,7 @@ $time =Carbon::now('Asia/Bangkok');
     'project_log' => '0',
     'Log_Event' => 'เพิ่มข้อมูล',
     'Log_IP'  => \Request::ip(),
-    'Log_Time'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
+    'Log_Time'  => "" . $time->day. "-" . $time->month . "-" . $time->year . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
 ]);
 
               $logid =  \App\log::where([
@@ -84,8 +84,8 @@ $time =Carbon::now('Asia/Bangkok');
                             'Log_ID' => $logid,
                             'Person_Type' => $request->count,
                             'Person_Num'  => $request->name,
-                            'percreated_at' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "" ,
-                            'perupdated_at' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
+                            'percreated_at' =>"" . $time->day. "-" . $time->month . "-" . $time->year . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "" ,
+                            'perupdated_at' =>"" . $time->day. "-" . $time->month . "-" . $time->year . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
                           ]);
               $projectlog =  \App\person::where([
                               ['Log_ID', '=', $logid],
@@ -122,7 +122,7 @@ $time =Carbon::now('Asia/Bangkok');
 'project_log' => '0',
 'Log_Event' => 'เพิ่มข้อมูล',
 'Log_IP'  => \Request::ip(),
-'Log_Time'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
+'Log_Time'  => "" . $time->day. "-" . $time->month . "-" . $time->year . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
 ]);
          $logid =  \App\log::where([
              ['official_ID', '=', $request->id],
@@ -131,8 +131,8 @@ $time =Carbon::now('Asia/Bangkok');
                        'Log_ID' => $logid,
                        'Person_Type' => $request->count,
                        'Person_Num'  => $fileName,
-                       'percreated_at' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "" ,
-                       'perupdated_at' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
+                       'percreated_at' =>"" . $time->day. "-" . $time->month . "-" . $time->year . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "" ,
+                       'perupdated_at' =>"" . $time->day. "-" . $time->month . "-" . $time->year . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
                      ]);
          $projectlog =  \App\person::where([
                          ['Log_ID', '=', $logid],
@@ -200,7 +200,7 @@ if ($request->img) {
 'project_log' => $id,
 'Log_Event' => 'แก้ไขข้อมูล',
 'Log_IP'  => \Request::ip(),
-'Log_Time'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
+'Log_Time'  => "" . $time->day. "-" . $time->month . "-" . $time->year . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
 ]);
  $logid =  \App\log::where([
      ['official_ID', '=', $request->id],
@@ -210,7 +210,7 @@ if ($request->img) {
                  ->update([
                    'Log_ID' => $logid,
                    'Person_Num'  => $fileName,
-                   'perupdated_at' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
+                   'perupdated_at' =>"" . $time->day. "-" . $time->month . "-" . $time->year . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
                  ]);
 
 
@@ -231,7 +231,7 @@ if ($request->name) {
     'project_log' => $id,
     'Log_Event' => 'แก้ไขข้อมูล',
     'Log_IP'  => \Request::ip(),
-    'Log_Time'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
+    'Log_Time'  => "" . $time->day. "-" . $time->month . "-" . $time->year . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
 ]);
 
 $logid =  \App\log::where([
@@ -242,7 +242,7 @@ $logid =  \App\log::where([
           ->update([
             'Log_ID' => $logid,
             'Person_Num'  => $request->name,
-            'perupdated_at' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
+            'perupdated_at' =>"" . $time->day. "-" . $time->month . "-" . $time->year . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
           ]);
 }
 
@@ -262,7 +262,7 @@ $logid =  \App\log::where([
          'project_log' => $id,
          'Log_Event' => 'ลบข้อมูล',
          'Log_IP'  => \Request::ip(),
-         'Log_Time'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
+         'Log_Time'  => "" . $time->day. "-" . $time->month . "-" . $time->year . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
          ]);
 
          $imagedel = \App\person::select('Person_Num')
@@ -270,7 +270,7 @@ $logid =  \App\log::where([
                      ->get();
 
          $image_path = "about/".$imagedel[0]->Person_Num."";
-        
+
      \App\person::where('Person_ID', '=', $id)->delete();
 
      $info = \App\person::join('log','person_count.Log_ID','=','log.Log_ID')

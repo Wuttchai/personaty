@@ -69,7 +69,7 @@ if ($product != '[]') {
                      'Prosell_about' => 'โปรดยืนยันการสั่งซื้อ',
                      'Prosell_img' => '-',
                      'Prosell_orderdate' => '-',
-                     'Prosell_creat'=>   "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
+                     'Prosell_creat'=>   "" . $time->day. "-" . $time->month . "-" . $time->year . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
                      'Prosell_senddate' => '-'
                      ]);
                      $Prosell_ID =  \App\product_sell::where([
@@ -96,7 +96,7 @@ if ($product != '[]') {
             ->update([
               'Prosell_Quantity' => $Quantity,
               'Prosell_totalPirce'  => $totalPirce,
-              'Prosell_creat'=>   "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
+              'Prosell_creat'=>   "" . $time->day. "-" . $time->month . "-" . $time->year . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
             ]);
             foreach (Cart::content() as $key1 => $product) {
               Cart::remove($product->rowId);

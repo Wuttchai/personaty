@@ -34,6 +34,7 @@ public function productlog() {
               ->join('product','product.Pro_ID','=','sell_detail.Pro_ID')
               ->select('product.Pro_Name','sell_detail.Det_Num', 'product.Pro_Price','product_Sell.address_name','product_Sell.Prosell_senddate')
               ->where('product_Sell.Prosell_send','=' ,'จัดส่งสินค้า')
+              ->orderBy('doccument.Prosell_senddate', 'desc')
               ->get();
      return view('official.logproduct', ['logfile' => $logfile]);
  }
@@ -155,8 +156,8 @@ $validator =  Validator::make($request->all(), [
                                  'document'  => $request->documentper,
                                  'calender'  => $request->calender,
                                  'official_Password' =>$request->password,
-                                 'offcreated_at' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "" ,
-                                 'offupdated_at' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
+                                 'offcreated_at' =>"" . $time->day. "-" . $time->month . "-" . $time->year . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "" ,
+                                 'offupdated_at' =>"" . $time->day. "-" . $time->month . "-" . $time->year . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
                                ]);
 
 
@@ -185,7 +186,7 @@ public function delete(Request $request,$id)
   'project_log' => $id,
   'Log_Event' => 'ลบข้อมูล',
   'Log_IP'  => \Request::ip(),
-  'Log_Time'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
+  'Log_Time'  => "" . $time->day. "-" . $time->month . "-" . $time->year . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
   ]);
 
 \App\official::where('official_ID', '=', $id)->delete();
@@ -278,8 +279,8 @@ public function update(Request $request,$id)
                                             'document'  => $request->documentper,
                                             'calender'  => $request->calender,
                                             'official_Password' =>$request->password,
-                                            'offcreated_at' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "" ,
-                                            'offupdated_at' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
+                                            'offcreated_at' =>"" . $time->day. "-" . $time->month . "-" . $time->year . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "" ,
+                                            'offupdated_at' =>"" . $time->day. "-" . $time->month . "-" . $time->year . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
                                           ]);
 
 
@@ -298,14 +299,14 @@ public function logfile()
 
                 $logfile = DB::table('log')
                             ->crossJoin('official')
+                            ->orderBy('Log_ID', 'desc')
                             ->get()->toarray();
 return view('official.logfile', ['logfile' => $logfile]);
 }else {
   $logfile = \App\log::join('official', 'official.official_ID', '=', 'log.official_ID')
               ->select('official.official_Name', 'log.table_log', 'log.project_log', 'log.Log_Event','log.Log_IP','log.Log_Time')
-
               ->where('official.official_ID', '=', Session::get('idoffice'))
-              ->orderBy('Log_Time', 'desc')
+              ->orderBy('Log_ID', 'desc')
               ->get();
 
 

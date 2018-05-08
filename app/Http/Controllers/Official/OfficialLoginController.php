@@ -88,7 +88,7 @@ if (!Session::get("login")) {
               'project_log' => '0',
               'Log_Event' => 'เข้าสู่ระบบ',
               'Log_IP'  => \Request::ip(),
-              'Log_Time'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
+              'Log_Time'  => "" . $time->day. "-" . $time->month . "-" . $time->year . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
             ]);
 
 }

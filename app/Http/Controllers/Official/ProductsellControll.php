@@ -92,7 +92,7 @@ if ($request->status == 'delete') {
         'project_log' => $request->id,
         'Log_Event' => 'ไม่อนุมัติการสั่งซื้อ',
         'Log_IP'  => \Request::ip(),
-        'Log_Time'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
+        'Log_Time'  => "" . $time->day. "-" . $time->month . "-" . $time->year . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
   ]);
 
 
@@ -146,7 +146,7 @@ $time =Carbon::now('Asia/Bangkok');
       'project_log' => $request->id,
       'Log_Event' => 'เพิ่มหมายเลขพัสดุ',
       'Log_IP'  => \Request::ip(),
-      'Log_Time'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
+      'Log_Time'  => "" . $time->day. "-" . $time->month . "-" . $time->year . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
 ]);
 
 
@@ -154,9 +154,13 @@ $time =Carbon::now('Asia/Bangkok');
 $Car = DB::table('product_Sell')
             ->join('sell_detail','product_Sell.Prosell_ID','=','sell_detail.Prosell_ID')
             ->join('product','product.Pro_ID','=','sell_detail.Pro_ID')
-            ->select('sell_detail.Det_Num','sell_detail.Pro_ID')
+            ->select('sell_detail.Det_Num','sell_detail.Pro_ID','product_Sell.Prosell_send')
             ->where('sell_detail.Prosell_ID','=' ,$request->id)
             ->get();
+
+            if ($Car[0]->Prosell_send != 'จัดส่งสินค้า') {
+
+
 
 foreach ($Car as $key => $value) {
 
@@ -173,13 +177,13 @@ $total = $datapro[0]->Pro_Count - $Car[$key]->Det_Num ;
        'Pro_Count' => $total,
      ]);
 }
-
+}
 
                     \App\product_sell::where('Prosell_ID',$request->id)
                                 ->update([
                                   'Prosell_send' => 'จัดส่งสินค้า',
                                   'Prosell_about' => $request->quantity,
-                                  'Prosell_senddate' => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
+                                  'Prosell_senddate' => "" . $time->day. "-" . $time->month . "-" . $time->year . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
                                 ]);
 
                }

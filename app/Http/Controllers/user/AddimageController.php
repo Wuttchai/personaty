@@ -57,7 +57,7 @@ dd("dsdsds");
                                       'Prosell_img' => $fileName,
                                       'Prosell_send' => 'ชำระเงิน',
                                       'Prosell_about' => 'กรุณารอเจ้าหน้าที่ตรวจสอบ',
-                                      'Prosell_orderdate'=>   "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
+                                      'Prosell_orderdate'=>   "" . $time->day. "-" . $time->month . "-" . $time->year . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
                                   ]);
 
 
@@ -74,13 +74,19 @@ dd("dsdsds");
 
           public function datailuser()
           {
-            $user = \App\User::select('User_ID', 'User_Name', 'email', 'User_Address', 'User_Tel', 'User_Tel')
+            $user = \App\User::select('User_ID', 'User_Name', 'email')
                        ->where('User_ID','=' , Auth::user()->User_ID)
                        ->get();
-
+                       $userid = \App\address::select('address_id')
+                                  ->where('address.User_ID','=' , Auth::user()->User_ID)
+                                  ->min('address.address_id');
+                      $userdetail = \App\address::select('address_name','address_at','address_tumbon','address_aumpor','address_province','address_zipcode','address_tel')
+                                 ->where('address.address_id','=' , $userid)
+                                 ->get();
 
         return view('user.infouser',[
-          'user'=>$user
+          'user'=>$user,
+          'userdetail'=>$userdetail
          ]);
 
         }
@@ -88,16 +94,24 @@ dd("dsdsds");
         {
           if ($request->email == Auth::user()->email) {
             Validator::make($request->all(), [
-              'User_Name' => 'required|regex:/^([a-zA-Z0-9ก-ูเ-๋๑-๙])/|max:255',
+              'User_Name' => 'required|regex:/^([a-zA-Zก-ูเ-๋])/|min:5|max:255',
               'User_Address' => 'required|regex:/^([a-zA-Z0-9ก-ูเ-๋๑-๙])/',
-              'User_Tel'=>'required|numeric'
+              'User_Tel'=>'required|numeric|digits:10',
+              'tumbon'  => 'required|regex:/^([ก-ูเ-๋])/',
+              'aumpor'  => 'required|regex:/^([ก-ูเ-๋])/',
+              'province' => 'required|regex:/^([ก-ูเ-๋])/',
+              'zipcode' => 'required|numeric|digits:5'
         ])->validate();
       }else {
         Validator::make($request->all(), [
-          'User_Name' => 'required|regex:/^([a-zA-Z0-9ก-ูเ-๋๑-๙])/|max:255',
+          'User_Name' => 'required|regex:/^([a-zA-Zก-ูเ-๋])/|min:5|max:255',
   'email' => 'required|string|email|max:255|unique:users,email',
   'User_Address' => 'required|regex:/^([a-zA-Z0-9ก-ูเ-๋๑-๙])/',
-  'User_Tel'=>'required|numeric'
+  'User_Tel'=>'required|numeric|digits:10',
+  'tumbon'  => 'required|regex:/^([ก-ูเ-๋])/',
+  'aumpor'  => 'required|regex:/^([ก-ูเ-๋])/',
+  'province' => 'required|regex:/^([ก-ูเ-๋])/',
+  'zipcode' => 'required|numeric|digits:5'
     ])->validate();
       }
 
@@ -105,9 +119,17 @@ dd("dsdsds");
                   ->update([
                     'User_Name' => $request->User_Name,
                     'email' => $request->email,
-                    'User_Address'  => $request->User_Address,
-                    'User_Tel' =>$request->User_Tel
                   ]);
+     \App\address::where('User_ID',Auth::user()->User_ID)
+                 ->update([
+                   'address_name' => $request->User_Name,
+                   'address_at' => $request->User_Address,
+                   'address_tumbon' => $request->tumbon,
+                   'address_aumpor' => $request->aumpor,
+                   'address_province' => $request->province,
+                   'address_zipcode' => $request->zipcode,
+                   'address_tel'   => $request->User_Tel,
+                 ]);
 
 
 

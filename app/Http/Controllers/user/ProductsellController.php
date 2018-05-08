@@ -60,6 +60,7 @@ public $qtv = 0 ;
        $date = DB::table('product_Sell')
                    ->select('Prosell_ID','Prosell_creat','Prosell_orderdate','Prosell_img','Prosell_send','Prosell_Quantity','address_name','address_at','address_tumbon','address_aumpor','address_province','address_zipcode','address_tel')
                    ->where('Prosell_ID','=' ,$id)
+                   ->where('product_Sell.User_ID','=' ,Auth::user()->User_ID)
                    ->get();
 
        $Car = DB::table('product_Sell')
@@ -67,6 +68,7 @@ public $qtv = 0 ;
                    ->join('product','product.Pro_ID','=','sell_detail.Pro_ID')
                    ->select('product.Pro_Name','sell_detail.Det_Num', 'product.Pro_Price')
                    ->where('sell_detail.Prosell_ID','=' ,$id)
+                   ->where('product_Sell.User_ID','=' ,Auth::user()->User_ID)
                    ->get();
 
 

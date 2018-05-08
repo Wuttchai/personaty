@@ -59,7 +59,7 @@ class AddimgcarController extends Controller
                                       'Prosell_img' => $fileName,
                                       'Prosell_send' => 'ชำระเงิน',
                                       'Prosell_about' => 'กรุณารอเจ้าหน้าที่ตรวจสอบ',
-                                      'Prosell_orderdate'=>   "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
+                                      'Prosell_orderdate'=>   "" . $time->day. "-" . $time->month . "-" . $time->year . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
                                   ]);
 
 

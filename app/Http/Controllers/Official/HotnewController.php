@@ -104,7 +104,7 @@ $time =Carbon::now('Asia/Bangkok');
       'project_log' => '0',
       'Log_Event' => 'เพิ่มข้อมูล',
       'Log_IP'  => \Request::ip(),
-      'Log_Time'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
+      'Log_Time'  => "" . $time->day. "-" . $time->month . "-" . $time->year . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
 ]);
 
                 $logid =  \App\log::where([
@@ -122,8 +122,8 @@ $time =Carbon::now('Asia/Bangkok');
                               'Hotnews_status'=>'-',
                               'datefirst' => $request->datefirst,
                               'datelast' => $request->datelast,
-                              'hotcreated_at' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "" ,
-                              'hotupdated_at' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
+                              'hotcreated_at' =>"" . $time->day. "-" . $time->month . "-" . $time->year . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "" ,
+                              'hotupdated_at' =>"" . $time->day. "-" . $time->month . "-" . $time->year . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
                             ]);
                 $projectlog =  \App\hotnews::where([
                                 ['Log_ID', '=', $logid],
@@ -196,7 +196,7 @@ if ($request->fileoffice) {
                   'project_log' => $id,
                   'Log_Event' => 'แก้ไขข้อมูล',
                   'Log_IP'  => \Request::ip(),
-                  'Log_Time'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
+                  'Log_Time'  => "" . $time->day. "-" . $time->month . "-" . $time->year . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
             ]);
 
         $logid =  \App\log::where([
@@ -215,7 +215,7 @@ if ($request->fileoffice) {
                           'Hotnews_status'=>'-',
                           'datefirst' => $request->datefirst,
                           'datelast' => $request->datelast,
-                          'hotupdated_at' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
+                          'hotupdated_at' =>"" . $time->day. "-" . $time->month . "-" . $time->year . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
                         ]);
 
 
@@ -250,7 +250,7 @@ if ($request->fileoffice) {
                   'project_log' => $id,
                   'Log_Event' => 'แก้ไขข้อมูล',
                   'Log_IP'  => \Request::ip(),
-                  'Log_Time'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
+                  'Log_Time'  => "" . $time->day. "-" . $time->month . "-" . $time->year . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
             ]);
 
         $logid =  \App\log::where([
@@ -268,7 +268,7 @@ if ($request->fileoffice) {
                           'datelast' => $request->datelast,
                           'Hotnews_status'=>'-',
                           'Hotnews_type' => $request->type,
-                          'hotupdated_at' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
+                          'hotupdated_at' =>"" . $time->day. "-" . $time->month . "-" . $time->year . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
                         ]);
 
 
@@ -289,7 +289,7 @@ if ($request->fileoffice) {
          'project_log' => $id,
          'Log_Event' => 'ลบข้อมูล',
          'Log_IP'  => \Request::ip(),
-         'Log_Time'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
+         'Log_Time'  => "" . $time->day. "-" . $time->month . "-" . $time->year . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
          ]);
          $imagedel = \App\hotnews::select('Hotnews_img')
                      ->where('Hotnews_ID','=',$id)
@@ -321,7 +321,7 @@ if ($request->fileoffice) {
          'project_log' => $id,
          'Log_Event' => 'แก้ไขสถานะการโชว์',
          'Log_IP'  => \Request::ip(),
-         'Log_Time'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
+         'Log_Time'  => "" . $time->day. "-" . $time->month . "-" . $time->year . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
    ]);
 
    $logid =  \App\log::where([

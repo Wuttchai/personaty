@@ -73,7 +73,7 @@ if ($request->status == 'delete') {
         'project_log' => $request->id,
         'Log_Event' => 'ไม่อนุมัติการสั่งซื้อ',
         'Log_IP'  => \Request::ip(),
-        'Log_Time'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
+        'Log_Time'  => "" . $time->day. "-" . $time->month . "-" . $time->year . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
   ]);
 
 
@@ -122,7 +122,7 @@ $time =Carbon::now('Asia/Bangkok');
       'project_log' => $request->id,
       'Log_Event' => 'เพิ่มหมายเลขพัสดุ',
       'Log_IP'  => \Request::ip(),
-      'Log_Time'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
+      'Log_Time'  => "" . $time->day. "-" . $time->month . "-" . $time->year . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
 ]);
 
 

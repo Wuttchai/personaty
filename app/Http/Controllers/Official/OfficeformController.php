@@ -75,7 +75,7 @@ $time =Carbon::now('Asia/Bangkok');
       'project_log' => '0',
       'Log_Event' => 'เพิ่มข้อมูล',
       'Log_IP'  => \Request::ip(),
-      'Log_Time'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
+      'Log_Time'  => "" . $time->day. "-" . $time->month . "-" . $time->year . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
 ]);
 
                 $logid =  \App\log::where([
@@ -89,8 +89,8 @@ $time =Carbon::now('Asia/Bangkok');
                               'Info_Name' => $request->name,
                               'Info_Img'  => $fileName,
                               'Info_status' => '-',
-                              'Info_cre' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "" ,
-                              'Info_up' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
+                              'Info_cre' =>"" . $time->day. "-" . $time->month . "-" . $time->year . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "" ,
+                              'Info_up' =>"" . $time->day. "-" . $time->month . "-" . $time->year . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
                             ]);
                 $projectlog =  \App\info::where([
                                 ['Log_ID', '=', $logid],
@@ -166,7 +166,7 @@ if ($request->fileoffice) {
                   'project_log' => '0',
                   'Log_Event' => 'แก้ไขข้อมูล',
                   'Log_IP'  => \Request::ip(),
-                  'Log_Time'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
+                  'Log_Time'  => "" . $time->day. "-" . $time->month . "-" . $time->year . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
             ]);
 
         $logid =  \App\log::where([
@@ -181,7 +181,7 @@ if ($request->fileoffice) {
                           'Info_Name' => $request->name,
                           'Info_Img'  => $fileName,
                           'Info_status' => '-',
-                          'Info_up' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
+                          'Info_up' =>"" . $time->day. "-" . $time->month . "-" . $time->year . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
                         ]);
 
 
@@ -215,7 +215,7 @@ if ($request->fileoffice) {
                   'project_log' => '0',
                   'Log_Event' => 'แก้ไขข้อมูล',
                   'Log_IP'  => \Request::ip(),
-                  'Log_Time'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
+                  'Log_Time'  => "" . $time->day. "-" . $time->month . "-" . $time->year . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
             ]);
 
         $logid =  \App\log::where([
@@ -229,7 +229,7 @@ if ($request->fileoffice) {
                           'Log_ID' => $logid,
                           'Info_Name' => $request->name,
                           'Info_status' => '-',
-                          'Info_up' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
+                          'Info_up' =>"" . $time->day. "-" . $time->month . "-" . $time->year . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
                         ]);
 
 
@@ -255,7 +255,7 @@ if ($request->fileoffice) {
          'project_log' => $id,
          'Log_Event' => 'ลบข้อมูล',
          'Log_IP'  => \Request::ip(),
-         'Log_Time'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
+         'Log_Time'  => "" . $time->day. "-" . $time->month . "-" . $time->year . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
          ]);
 
          $imagedel = \App\info::select('Info_Img')
@@ -289,7 +289,7 @@ if ($request->fileoffice) {
          'project_log' => $id,
          'Log_Event' => 'แก้ไขสถานะการโชว์',
          'Log_IP'  => \Request::ip(),
-         'Log_Time'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
+         'Log_Time'  => "" . $time->day. "-" . $time->month . "-" . $time->year . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
      ]);
 
      $logid =  \App\log::where([

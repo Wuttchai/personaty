@@ -106,7 +106,7 @@ $time =Carbon::now('Asia/Bangkok');
       'project_log' => '0',
       'Log_Event' => 'เพิ่มข้อมูล',
       'Log_IP'  => \Request::ip(),
-      'Log_Time'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
+      'Log_Time'  => "" . $time->day. "-" . $time->month . "-" . $time->year . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
 ]);
 
                 $logid =  \App\log::where([
@@ -120,8 +120,8 @@ $time =Carbon::now('Asia/Bangkok');
                               'doc_name' => $request->name,
                               'doc_file'  => $imageName,
                               'doc_status'  => '-',
-                              'doc_datecre' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "" ,
-                              'doc_dateup' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
+                              'doc_datecre' =>"" . $time->day. "-" . $time->month . "-" . $time->year . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "" ,
+                              'doc_dateup' =>"" . $time->day. "-" . $time->month . "-" . $time->year . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
                             ]);
                 $projectlog =  \App\doccument::where([
                                 ['Log_ID', '=', $logid],
@@ -204,7 +204,7 @@ $time =Carbon::now('Asia/Bangkok');
                   'project_log' => $id,
                   'Log_Event' => 'แก้ไขข้อมูล',
                   'Log_IP'  => \Request::ip(),
-                  'Log_Time'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
+                  'Log_Time'  => "" . $time->day. "-" . $time->month . "-" . $time->year . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
             ]);
 
         $logid =  \App\log::where([
@@ -217,7 +217,7 @@ $time =Carbon::now('Asia/Bangkok');
                           'doc_name' => $request->name,
                           'doc_file'  => $imageName,
                           'doc_status'  => '-',
-                          'doc_dateup' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
+                          'doc_dateup' =>"" . $time->day. "-" . $time->month . "-" . $time->year . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
                         ]);
 }else {
 
@@ -241,7 +241,7 @@ $time =Carbon::now('Asia/Bangkok');
                   'project_log' => $id,
                   'Log_Event' => 'แก้ไขข้อมูล',
                   'Log_IP'  => \Request::ip(),
-                  'Log_Time'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
+                  'Log_Time'  => "" . $time->day. "-" . $time->month . "-" . $time->year . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
             ]);
 
         $logid =  \App\log::where([
@@ -253,7 +253,7 @@ $time =Carbon::now('Asia/Bangkok');
                           'Log_ID' => $logid,
                           'doc_name' => $request->name,
                           'doc_status'  => '-',
-                          'doc_dateup' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
+                          'doc_dateup' =>"" . $time->day. "-" . $time->month . "-" . $time->year . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
                         ]);
 }
 
@@ -270,7 +270,7 @@ $time =Carbon::now('Asia/Bangkok');
          'project_log' => $id,
          'Log_Event' => 'ลบข้อมูล',
          'Log_IP'  => \Request::ip(),
-         'Log_Time'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
+         'Log_Time'  => "" . $time->day. "-" . $time->month . "-" . $time->year . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
          ]);
          $imagedel = \App\doccument::select('doc_file')
                      ->where('doc_id','=',$id)
@@ -304,7 +304,7 @@ $time =Carbon::now('Asia/Bangkok');
         'project_log' => $id,
         'Log_Event' => 'แก้ไขสถานะการโชว์',
         'Log_IP'  => \Request::ip(),
-        'Log_Time'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
+        'Log_Time'  => "" . $time->day. "-" . $time->month . "-" . $time->year . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
   ]);
 
 $logid =  \App\log::where([

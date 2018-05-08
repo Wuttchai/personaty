@@ -52,7 +52,7 @@ if (Session::get('login') == 'yes') {
         'ques_name' => $request->headqestion,
         'ques_detail' => $request->textqestion,
         'ques_type' => $request->type,
-        'ques_date'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
+        'ques_date'  => "" . $time->day. "-" . $time->month . "-" . $time->year . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
   ]);
   $ques_id =  \App\question::where([
       ['User_ID', '=', '1'],
@@ -63,7 +63,7 @@ if (Session::get('login') == 'yes') {
         'ques_id' => $ques_id,
         'quesde_detail' => $request->textqestion,
         'quesde_owner'=> 'เจ้าหน้าที่',
-        'quesde_date'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
+        'quesde_date'  => "" . $time->day. "-" . $time->month . "-" . $time->year . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
   ]);
 }else {
                   \App\question::insert([
@@ -72,7 +72,7 @@ if (Session::get('login') == 'yes') {
                     'ques_name' => $request->headqestion,
                     'ques_detail' => $request->textqestion,
                     'ques_type' => $request->type,
-                    'ques_date'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
+                    'ques_date'  => "" . $time->day. "-" . $time->month . "-" . $time->year . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
               ]);
 
               $ques_id =  \App\question::where([
@@ -84,7 +84,7 @@ if (Session::get('login') == 'yes') {
                     'ques_id' => $ques_id,
                     'quesde_detail' => $request->textqestion,
                     'quesde_owner'=> 'ผู้ใช้',
-                    'quesde_date'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
+                    'quesde_date'  => "" . $time->day. "-" . $time->month . "-" . $time->year . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
               ]);
 }
 
@@ -110,7 +110,7 @@ if (Session::get('login') == 'yes') {
            'quesde_owner' => 'เจ้าหน้าที่',
            'ques_id' => $request->id,
            'quesde_detail' => $request->message,
-           'quesde_date'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
+           'quesde_date'  => "" . $time->day. "-" . $time->month . "-" . $time->year . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
      ]);
 
        }else {
@@ -119,7 +119,7 @@ if (Session::get('login') == 'yes') {
            'quesde_owner' => 'ผู้ใช้',
            'ques_id' => $request->id,
            'quesde_detail' => $request->message,
-           'quesde_date'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
+           'quesde_date'  => "" . $time->day. "-" . $time->month . "-" . $time->year . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
      ]);
        }
 
@@ -161,7 +161,7 @@ return response()->json($question);
                      'ques_name' => $request->headqestion,
                      'ques_detail' => $request->textqestion,
                      'ques_type' => $request->type,
-                     'ques_date' =>"" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
+                     'ques_date' =>"" . $time->day. "-" . $time->month . "-" . $time->year . " " . $time->hour . ":" . $time->minute. ":" . $time->second . ""
                    ]);
 
 return redirect('/webboard');

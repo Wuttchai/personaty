@@ -55,7 +55,7 @@ public function update(Request $request, $id)
                 'project_log' => $id,
                 'Log_Event' => 'แก้ไขข้อมูล',
                 'Log_IP'  => \Request::ip(),
-                'Log_Time'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
+                'Log_Time'  => "" . $time->day. "-" . $time->month . "-" . $time->year . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
           ]);
 
       $logid =  \App\log::where([
@@ -119,7 +119,7 @@ Session::put("modalshow","active");
                      'project_log' => '0',
                      'Log_Event' => 'เพิ่มข้อมูล',
                      'Log_IP'  => \Request::ip(),
-                     'Log_Time'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
+                     'Log_Time'  => "" . $time->day. "-" . $time->month . "-" . $time->year . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
                ]);
 
     $logid =  \App\log::where([
@@ -164,7 +164,7 @@ Session::put("modalshow","active");
         'project_log' => $id,
         'Log_Event' => 'ลบข้อมูล',
         'Log_IP'  => \Request::ip(),
-        'Log_Time'  => "" . $time->year. "-" . $time->month . "-" . $time->day . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
+        'Log_Time'  => "" . $time->day. "-" . $time->month . "-" . $time->year . " " . $time->hour . ":" . $time->minute. ":" . $time->second . "",
         ]);
 
     \App\calender::where('cal_id', '=', $id)->delete();
