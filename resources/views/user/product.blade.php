@@ -177,7 +177,7 @@ window.location.href = '/ProductCarOrders';
               @endisset
 
             @endif
-                <div class="thumbnail" style="border-color: #e80b0b" >
+                <div class="thumbnail" style="border-color: #e80b0b;height: 380px;" >
                     <br>
 
                     <div class="preview col text-center">
@@ -196,18 +196,20 @@ window.location.href = '/ProductCarOrders';
                     <h4 ><a href="#" class="text-dark">{{ $products[$key1]->Pro_Name }} </a></h4>
                     <?php
                     $stringhot4 = strip_tags($products[$key1]->Pro_Detail);
-                    if (strlen($stringhot4) >= 22) {
+                    if (strlen($stringhot4) >= 70) {
 
                       // truncate string
-                    $stringCutname4 = iconv_substr($stringhot4, 0, 22, "UTF-8");
+                    $stringCutname4 = iconv_substr($stringhot4, 0, 70, "UTF-8");
 
                     }else {
-                    $stringCutname4 = $products[$key1]->Pro_Detail;
+
+                    $stringCutname4 =  $products[$key1]->Pro_Detail ;
 
                     }
 
                      ?>
-                    <p>{{ $stringCutname4 }}</p>
+
+                    <p>{{ $stringCutname4 }} ..</p> @if(strlen($stringhot4) < 70) <br> @endif
                   </div>
 
                   <div class="space-ten"></div>
