@@ -67,16 +67,37 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
+
     protected function create(array $data)
     {
 
-        return User::create([
-                'User_Name' =>  $data['User_Name'],
-                'email' => $data['email'],
-                'address_id' => 0,
-                'remember_token' => $data['_token'],
-                'password' =>  bcrypt($data['password']),
-        ]);
+    $user =  User::create([
+             'User_Name' =>  $data['User_Name'],
+             'email' => $data['email'],
+             'address_id' => 0,
+             'remember_token' => $data['_token'],
+             'password' =>  bcrypt($data['password']),
+     ]);
+
+     $iduser =  \App\user::max('User_ID');
+
+     \App\address::insert([
+                   'User_ID' => $iduser,
+                   'address_name'  => $data['User_Name'],
+                   'address_at' => $data['User_Address'],
+                   'address_tumbon' => $data['tumbon'],
+                   'address_aumpor'  => $data['aumpor'],
+                   'address_province'  =>  $data['province'],
+                   'address_zipcode'  => $data['zipcode'],
+                   'address_tel'  => $data['User_Tel'],
+                   ]);
+     $idaddress =  \App\address::max('address_id');
+
+     \App\User::where('User_ID',$iduser)
+                 ->update([
+                   'address_id' => $idaddress,
+                 ]);
+        return $user;
 
 
 
