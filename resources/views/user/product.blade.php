@@ -194,7 +194,20 @@ window.location.href = '/ProductCarOrders';
                   <div class="caption">
                     <h4 class="pull-right">{{  number_format($products[$key1]->Pro_Price) }} บาท</h4>
                     <h4 ><a href="#" class="text-dark">{{ $products[$key1]->Pro_Name }} </a></h4>
-                    <p>{{ $products[$key1]->Pro_Detail }}</p>
+                    <?php
+                    $stringhot4 = strip_tags($products[$key1]->Pro_Detail);
+                    if (strlen($stringhot4) >= 22) {
+
+                      // truncate string
+                    $stringCutname4 = iconv_substr($stringhot4, 0, 22, "UTF-8");
+
+                    }else {
+                    $stringCutname4 = $products[$key1]->Pro_Detail;
+
+                    }
+
+                     ?>
+                    <p>{{ $stringCutname4 }}</p>
                   </div>
 
                   <div class="space-ten"></div>
