@@ -12,6 +12,7 @@
         "gloudemans/shoppingcart": "^2.5",
         "intervention/image": "^2.4",
         "khill/lavacharts": "~3.1",
+        "kryptonit3/counter": "5.2.*",
         "laravel/framework": "5.6.*",
         "laravel/tinker": "~1.0"
     },

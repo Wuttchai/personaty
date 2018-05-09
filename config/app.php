@@ -53,7 +53,7 @@ return [
     */
 
     'url' => env('APP_URL', 'http://localhost'),
-    
+
     /*
     |--------------------------------------------------------------------------
     | Application Timezone
@@ -163,6 +163,7 @@ return [
         Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
         Khill\Lavacharts\Laravel\LavachartsServiceProvider::class,
         Fx3costa\LaravelChartJs\Providers\ChartjsServiceProvider::class,
+        Kryptonit3\Counter\CounterServiceProvider::class,
 
     ],
 
@@ -216,6 +217,7 @@ return [
         'img_min_size' => Intervention\Image\Facades\img_min_size::class,
         'Cart' => Gloudemans\Shoppingcart\Facades\Cart::class,
         'Lava' => Khill\Lavacharts\Laravel\LavachartsFacade::class,
+        'Counter' => Kryptonit3\Counter\Facades\CounterFacade::class,
     ],
 
 ];

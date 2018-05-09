@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<?php Counter::showAndCount('product') ?>
 <div class="container"  id="information"  >
 <div class="loader" id="loader"></div>
    <div class="row justify-content-center" >
