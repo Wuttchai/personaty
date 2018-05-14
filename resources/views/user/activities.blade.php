@@ -4,7 +4,7 @@
    <div class="row">
        <div class="col-md-12">
 
-
+<?php Counter::showAndCount('activit') ?>
 
 
 <hr width=80% size=3>

@@ -53,7 +53,12 @@ class HomeController extends Controller
      }
      public function about()
     {
-
+      Session::forget('tabmanu1');
+      Session::forget('tabmanu2');
+      Session::forget('tabmanu5');
+      Session::forget('tabmanu4');
+      Session::forget('tabmanu');
+      Session::put("tabmanu3","active");
       if ($_GET['type'] == 'ประวัติความเป็นมา') {
 return view('about.history');
     }
@@ -179,7 +184,7 @@ Cart::update($request->id, ['qty' => $request->qty]);
                    return view('user.detailproduct',[
                    'product' => $product
                    ]);
-       
+
      }
      public function webbord()
      {
@@ -393,8 +398,10 @@ Cart::update($request->id, ['qty' => $request->qty]);
     {
       Session::forget('tabmanu1');
       Session::forget('tabmanu2');
+      Session::forget('tabmanu3');
+      Session::forget('tabmanu4');
       Session::forget('tabmanu');
-      Session::put("tabmanu3","active");
+      Session::put("tabmanu5","active");
 
       $hotnew = \App\hotnews::select('Hotnews_ID', 'hotnews.Hotnews_name','Hotnews_img', 'Hotnews_detail', 'datefirst', 'datelast')
                   ->where('Hotnews_type','=','ข่าวกิจกรรม')

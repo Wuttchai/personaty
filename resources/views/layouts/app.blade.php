@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="{{ asset('fonts/thsarabunnew.css') }}" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
       <link rel="stylesheet" href="{{ asset('css/magiczoom.css') }}" />
-  
+
 
 
 <style media="screen">
@@ -414,7 +414,7 @@ a.list-group-item {
                   </li>
 
 
-                  <li class="dropdown <?php echo  Session::get('tabmanu3'); ?>" >
+                  <li class="dropdown <?php echo  Session::get('tabmanu5'); ?>" >
                     <a data-toggle="dropdown" class="dropdown-toggle " ><h5>ข่าวเกี่ยวกับเรือนจำ<b class="caret"></b> </h5></a>
                       <ul class="dropdown-menu">
                           <li ><a href="/advertise">ข่าวประชาสัมพันธ์</a></li>
@@ -429,8 +429,8 @@ a.list-group-item {
 
               <ul class="nav navbar-nav navbar-right">
                 @guest
-                    <li><a class="nav-link" href="{{ route('login') }}"><h5>เข้าสู่ระบบ</h5></a></li>
-                    <li><a class="nav-link" href="{{ route('register') }}"><h5>สมัครสมาชิก</h5></a></li>
+                    <li ><a class="nav-link" href="{{ route('login') }}"><h5>เข้าสู่ระบบ</h5></a></li>
+                    <li ><a class="nav-link" href="{{ route('register') }}"><h5>สมัครสมาชิก</h5></a></li>
                     @else
     <li class="dropdown">
       <a data-toggle="dropdown" class="dropdown-toggle " href="#"><h5>{{ Auth::user()->User_Name }} <b class="caret"></b> </h5></a>

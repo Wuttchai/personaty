@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use Carbon\Carbon;
 use Khill\Lavacharts\Lavacharts;
 use DB;
+use Counter;
 
 class AddOfficeController extends Controller
 {
@@ -56,21 +57,26 @@ public function graph() {
 
 
       $chartjs = app()->chartjs
-           ->name('barChartTest')
+           ->name('canvas')
            ->type('doughnut')
            ->size(['width' => 200  , 'height' => 100])
-           ->labels(['เอกสารที่เผยแพร่','ภาพแบรน์เนอร์','จำนวนผู้ต้องขัง','สินค้าวิชาชีพ','ข่าวประชาสัมพันธ์','ข่าวกิจกรรม','ข้อมูลวันหยุด'])
+           ->labels(['เกี่ยวกับเรือนจำ','ข่าวเกี่ยวกับเรือนจำ','กระทู้สอบถาม','สินค้าวิชาชีพ'])
 
          ->datasets([
              [
-                 'backgroundColor' => ['#FF6384', '#36A2EB','#147a00','#efff00','#1d3461','#463359','#cc6600'],
-                 'hoverBackgroundColor' => ['#FF6384', '#36A2EB','#147a00','#efff00','#1d3461','#463359','#cc6600'],
-                 'data' => [$doccument, $info, $person_count, $product, $Hotnews_type1, $Hotnews_type2, $calender]
+                "label" => "My First dataset",
+                 'backgroundColor' => ['#FF6384', '#36A2EB','#147a00','#efff00'],
+                 'hoverBackgroundColor' => ['#FF6384', '#36A2EB','#147a00','#efff00'],
+                 'data' => [Counter::show('about'), Counter::show('activit'), Counter::show('webbord'), Counter::show('product')]
              ]
          ])
-         ->options([]);
+         ->options([
+      'legend' => [
+        'display' => true,
+    ],
+]);
 
-
+dd(Counter::show('home', $job->id));
 
      return view('official.loggraph', compact('chartjs'));
  }

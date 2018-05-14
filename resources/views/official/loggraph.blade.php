@@ -6,7 +6,7 @@
    <div class="row justify-content-center" >
      <div class="col-md-10" id="dsds">
          <div class="card card-default ">
-             <div class="card-header card text-center bg-warning">กราฟรายงานข้อมูลการจัดการ</div>
+             <div class="card-header card text-center bg-warning">รายงานจำนวนคนเข้าดูเว็ปไซต์</div>
 
            </div>
 </div>
@@ -19,9 +19,29 @@
 
 
    </div>
+
  </div>
+
        </div>
-       {!! $chartjs->render()  !!}
+
+
+<!-- Nav tabs -->
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link active" data-toggle="tab" href="#home">จำคนเข้าดูในแต่ละหน้า</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#menu1">จำคนเข้าดูเว็บไซต์</a>
+  </li>
+
+</ul>
+
+<!-- Tab panes -->
+<div class="tab-content">
+  <div class="tab-pane container active" id="home">{!!$chartjs->render()!!}</div>
+  <div class="tab-pane container fade" id="menu1">...</div>
+
+</div>
    </div>
 
 </div>

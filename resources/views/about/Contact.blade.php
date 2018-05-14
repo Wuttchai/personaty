@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<?php Counter::showAndCount('contact') ?>
+<?php Counter::showAndCount('about') ?>
 <div class="container"   >
 
    <div class="row justify-content-center" >
