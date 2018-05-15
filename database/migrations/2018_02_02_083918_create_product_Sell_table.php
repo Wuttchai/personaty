@@ -12,16 +12,6 @@ class CreateProductSellTable extends Migration
      * @return void
      */
 
-
-
-
-
-
-
-
-
-
-
     public function up()
     {
         Schema::create('product_Sell', function (Blueprint $table) {
@@ -38,7 +28,7 @@ class CreateProductSellTable extends Migration
             $table->string('address_aumpor');
             $table->string('address_province');
             $table->string('address_zipcode');
-            $table->string('address_tel')            
+            $table->string('address_tel');
             $table->string('Prosell_creat');
             $table->string('Prosell_orderdate');
             $table->string('Prosell_senddate');
