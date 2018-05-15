@@ -76,7 +76,7 @@ public function graph() {
     ],
 ]);
 
-dd(Counter::show('home', $job->id));
+
 
      return view('official.loggraph', compact('chartjs'));
  }

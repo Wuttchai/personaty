@@ -1,6 +1,6 @@
  @extends('layouts.app')
 @section('content')
-{{ Counter::show('home') }}
+
 <?php Counter::showAndCount('home','home') ?>
     <div class="row">
         <div class="col-md-12">

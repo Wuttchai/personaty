@@ -326,7 +326,7 @@ body {
                             </a>
                               @endif
                               <a class="dropdown-item" href="/official/logfile/graph">
-                                  รายงาน
+                                  รายงานกราฟคนเข้าดู
                               </a>
                               @if (session('product') == 'จัดการ')
                             <a class="dropdown-item" href="/official/logfile/graph">
