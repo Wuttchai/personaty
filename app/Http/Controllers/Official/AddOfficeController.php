@@ -35,7 +35,7 @@ public function productlog() {
               ->join('product','product.Pro_ID','=','sell_detail.Pro_ID')
               ->select('product.Pro_Name','sell_detail.Det_Num', 'product.Pro_Price','product_Sell.address_name','product_Sell.Prosell_senddate')
               ->where('product_Sell.Prosell_send','=' ,'จัดส่งสินค้า')
-              ->orderBy('doccument.Prosell_senddate', 'desc')
+              ->orderBy('product_Sell.Prosell_senddate', 'desc')
               ->get();
      return view('official.logproduct', ['logfile' => $logfile]);
  }
