@@ -11,6 +11,17 @@ class CreateProductSellTable extends Migration
      *
      * @return void
      */
+
+
+
+
+
+
+
+
+
+
+
     public function up()
     {
         Schema::create('product_Sell', function (Blueprint $table) {
@@ -19,11 +30,19 @@ class CreateProductSellTable extends Migration
             $table->integer('Prosell_Quantity');
             $table->integer('Prosell_totalPirce');
             $table->string('Prosell_send');
-            $table->string('Prosell_name');
-            $table->string('Prosell_address');
+            $table->string('address_name');
+            $table->string('address_at');
             $table->string('Prosell_img');
+            $table->string('Prosell_about');
+            $table->string('address_tumbon');
+            $table->string('address_aumpor');
+            $table->string('address_province');
+            $table->string('address_zipcode');
+            $table->string('address_tel')            
             $table->string('Prosell_creat');
             $table->string('Prosell_orderdate');
+            $table->string('Prosell_senddate');
+
         });
     }
 
